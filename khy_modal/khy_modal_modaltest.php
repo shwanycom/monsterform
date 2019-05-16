@@ -105,6 +105,10 @@ btn2.onclick = function(){
   sign_man();
 }
 
+btn3.onclick = function(){
+
+}
+
 function memform(){
   first_name.setAttribute("type","text");
   last_name.setAttribute("type","text");
@@ -166,12 +170,6 @@ function sign_man(){
   modal.style.display = "block";
 }
 
-
-
-
-
-
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
@@ -184,10 +182,7 @@ window.onclick = function(event) {
   }
 }
 
-
-
 </script>
-
 
 </body>
 </html>
