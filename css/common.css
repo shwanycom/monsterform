@@ -64,7 +64,7 @@ a:visited {
 /* ----------------------------- */
 /* --------------------------------------------------------------------------------------------- */
 #header_logout_form_div2 {
-  height: 300px;
+  height: 150px;
 }
 
 #header_logout_form_div2_1 {
@@ -117,13 +117,14 @@ a:visited {
 }
 
 .header_logout_form_div2_ul1_li:hover .submenu {  /* 값 변경 */
-  transition: 0.8s;
+  transition: 0.4s;
   display: block;
-  height: 250px;
+  height: auto;
   position: absolute;
   left: 0;
   top: 50px;
   width: 550px;
+  background-color: white;
 }
 
 .subheader_logout_form_div2_ul1_li_a:hover {  /* 추가 */
@@ -137,7 +138,23 @@ a:visited {
 #header_logout_form_div2_3 {
   float: right;
 }
-
+/* ------------------------------텍스트 섹션 추가부분------------------------------------------------------ */
+#text_category{
+  text-align: center;
+  color:white;
+}
+#text_category_text_div_span1{
+  font-size: 40pt;
+}
+#text_category_text_div_span2{
+  font-size: 25pt;
+}
+#text_category_text_div{
+  background-image: url("../img/indexbarlogo.png");
+  height: 300px;
+  width:100%;
+  background-repeat: no-repeat;
+}
 /* ------------------------------템플릿 추가 부분 ------------------------------------------------------ */
 #categories_section {
   height: 300px;
