@@ -1,7 +1,7 @@
 <?php
 function create_table($conn, $table_name){
   $flag = "NO";
-  $sql = "show tables from ansisung";
+  $sql = "show tables from monsterform_db";
   $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
   while ($row = mysqli_fetch_row($result)) {
     if($row[0]==="$table_name"){
@@ -11,140 +11,116 @@ function create_table($conn, $table_name){
   }
   if($flag=="NO"){
     switch($table_name){
-      case 'memo' :
-      $sql = "CREATE TABLE `memo`(
-        `num` int(11) NOT NULL AUTO_INCREMENT,
-        `id` char(15) NOT NULL,
-        `name` char(10) NOT NULL,
-        `nick` char(10) NOT NULL,
-        `content` text NOT NULL,
-        `regist_day` char(20) DEFAULT NULL,
-        PRIMARY KEY (`num`)
-      )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-      break;
-      case 'memo_ripple' :
-        $sql = "CREATE TABLE `memo_ripple`(
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `parent` int(11) NOT NULL,
-          `id` char(15) NOT NULL,
-          `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-      break;
       case 'member' :
-        $sql = "CREATE TABLE `member`(
-          `id` char(15) NOT NULL,
-          `pass` char(15) NOT NULL,
-          `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
-          `hp` char(20) NOT NULL,
-          `email` varchar(80) DEFAULT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          `level` int(11) DEFAULT NULL,
-          PRIMARY KEY (`id`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      $sql = "CREATE TABLE `member` (
+              `no` int(11) NOT NULL AUTO_INCREMENT,
+              `email` varchar(100) NOT NULL,
+              `username` varchar(100) NOT NULL,
+              `password` varchar(100) DEFAULT NULL,
+              `point_mon` int(11) NOT NULL DEFAULT '0',
+              PRIMARY KEY (`no`),
+              UNIQUE KEY `email_UNIQUE` (`email`)
+          ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'greet_board':
-        $sql = "CREATE TABLE `greet_board`(
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `id` char(15) NOT NULL,
-          `subject` char(100) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          `hit` int(11) DEFAULT NULL,
-          `is_html` char(1) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      case 'cart' :
+        $sql = "CREATE TABLE `cart` (
+                `no` int(11) NOT NULL,
+                `num` int(11) NOT NULL,
+                `product_num` int(11) NOT NULL,
+                `price` int(11) NOT NULL,
+                `cart_img_name` varchar(100) NOT NULL,
+                `checked` varchar(100) NOT NULL DEFAULT 'n',
+                PRIMARY KEY (`num`)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'concert_board':
-        $sql = "CREATE TABLE `concert_board`(
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `id` char(15) NOT NULL,
-          `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
-          `subject` char(100) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          `hit` int(11) DEFAULT NULL,
-          `is_html` char(1) DEFAULT NULL,
-          `file_name_0` char(40) DEFAULT NULL,
-          `file_copied_0` char(40) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      case 'collections' :
+        $sql = "CREATE TABLE `collections` (
+                `no` int(11) NOT NULL,
+                `folder_name` varchar(100) NOT NULL DEFAULT '...',
+                `product_num` int(11) NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'download_board':
-        $sql = "CREATE TABLE `download_board`(
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `id` char(15) NOT NULL,
-          `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
-          `subject` char(100) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          `hit` int(11) DEFAULT NULL,
-          `file_name_0` char(40) DEFAULT NULL,
-          `file_copied_0` char(40) DEFAULT NULL,
-          `file_type_0` char(40) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      case 'discossion':
+        $sql = "CREATE TABLE `discossion` (
+                `no` int(11) NOT NULL,
+                `num` int(11) NOT NULL AUTO_INCREMENT,
+                `username` varchar(100) NOT NULL,
+                `email` varchar(100) NOT NULL,
+                `subject` varchar(100) NOT NULL,
+                `content` varchar(100) NOT NULL,
+                `regist_day` date NOT NULL,
+                PRIMARY KEY (`num`)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'free_board':
-        $sql = "CREATE TABLE `free_board`(
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `id` char(15) NOT NULL,
-          `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
-          `subject` char(100) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          `hit` int(11) DEFAULT NULL,
-          `is_html` char(1) DEFAULT NULL,
-          `file_name_0` char(40) DEFAULT NULL,
-          `file_copied_0` char(40) DEFAULT NULL,
-          `file_type_0` char(40) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      case 'discossion_ripple':
+        $sql = "CREATE TABLE `discossion_ripple` (
+                `num` int(11) NOT NULL AUTO_INCREMENT,
+                `parent` int(11) NOT NULL,
+                `username` varchar(100) NOT NULL,
+                `email` varchar(100) NOT NULL,
+                `content` varchar(100) NOT NULL,
+                `regist_day` date NOT NULL,
+                PRIMARY KEY (`num`)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'free_ripple' :
-        $sql = "CREATE TABLE `free_ripple`(
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `parent` int(11) NOT NULL,
-          `id` char(15) NOT NULL,
-          `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      case 'follow':
+        $sql = "CREATE TABLE `follow` (
+                `following` int(11) NOT NULL,
+                `follower` int(11) NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'qna':
-      $sql = "CREATE TABLE `qna` (
-        `num` int(11) unsigned NOT NULL AUTO_INCREMENT,
-        `group_num` int(11) unsigned NOT NULL,
-        `depth` int(11) unsigned NOT NULL,
-        `ord` int(11) unsigned NOT NULL,
-        `id` char(15) NOT NULL,
-        `name` char(10) NOT NULL,
-        `nick` char(10) NOT NULL,
-        `subject` char(100) NOT NULL,
-        `content` text NOT NULL,
-        `regist_day` char(20) DEFAULT NULL,
-        `hit` TINYINT unsigned DEFAULT 0,
-        `is_html` char(1) DEFAULT NULL,
-        PRIMARY KEY (`num`)
-      )CHARSET=utf8;";
+      case 'likes':
+        $sql = "CREATE TABLE `likes` (
+                `no` int(11) NOT NULL,
+                `product_num` int(11) NOT NULL,
+                `regist_day` date NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'survey':
-      $sql = "CREATE TABLE `survey` (
-        `ans1` int(11) unsigned default 0,
-        `ans2` int(11) unsigned default 0,
-        `ans3` int(11) unsigned default 0,
-        `ans4` int(11) unsigned default 0
-      )CHARSET=utf8;";
-      $sql_insert="INSERT INTO `survey` (`ans1`, `ans2`, `ans3`, `ans4`) VALUES (0,0,0,0);";
+      case 'products' :
+        $sql = "CREATE TABLE `products` (
+                `no` int(11) NOT NULL,
+                `num` int(11) NOT NULL AUTO_INCREMENT,
+                `product_num` int(11) NOT NULL,
+                `username` varchar(100) NOT NULL,
+                `email` varchar(100) NOT NULL,
+                `subject` varchar(100) NOT NULL,
+                `content` text NOT NULL,
+                `regist_day` date NOT NULL,
+                `price` int(11) NOT NULL,
+                `handpicked` varchar(100) NOT NULL DEFAULT 'n',
+                `freegoods` varchar(100) NOT NULL DEFAULT 'n',
+                `hit` int(11) NOT NULL DEFAULT '0',
+                `sell_count` int(11) NOT NULL DEFAULT '0',
+                `img_file_name1` varchar(100) NOT NULL,
+                `img_file_name2` varchar(100) NOT NULL,
+                `img_file_name3` varchar(100) NOT NULL,
+                `img_file_name4` varchar(100) NOT NULL,
+                `img_file_copied1` varchar(100) NOT NULL,
+                `img_file_copied2` varchar(100) NOT NULL,
+                `img_file_copied3` varchar(100) NOT NULL,
+                `img_file_copied4` varchar(100) NOT NULL,
+                `zip_file_name` varchar(100) NOT NULL,
+                `zip_file_copied` varchar(100) NOT NULL,
+                `zip_file_type` varchar(100) NOT NULL,
+                PRIMARY KEY (`num`)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      break;
+      case 'report':
+      $sql = "CREATE TABLE `report` (
+                `product_num` int(11) NOT NULL,
+                `price` int(11) NOT NULL,
+                `regist_day` date NOT NULL,
+                `no` int(11) NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      break;
+      case 'sales':
+      $sql = "CREATE TABLE `sales` (
+                `won` int(11) NOT NULL,
+                `bonus_won` int(11) NOT NULL DEFAULT '0',
+                `point_mon` int(11) NOT NULL,
+                `no` int(11) NOT NULL,
+                `regist_day` date NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
       default:
       echo '<script >alert("해당 테이블명이 없습니다.");</script>';

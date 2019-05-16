@@ -151,6 +151,11 @@ function sign_man(){
     left_img.src = "./img/signin.png";
     username2.setAttribute("type","hidden");
     password2.setAttribute("type","hidden");
+    first_name.setAttribute("type","hidden");
+    last_name.setAttribute("type","hidden");
+    email_address.setAttribute("type","hidden");
+    username.setAttribute("type","hidden");
+    password.setAttribute("type","hidden");
     login.setAttribute("type","hidden");
     last_td.innerText = "Already have an account?";
     by_span.innerText = "By creating an account, you agree to our terms and privacy policy.";
