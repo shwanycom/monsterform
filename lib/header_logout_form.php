@@ -1,3 +1,21 @@
+<script type="text/javascript">
+  var value="";
+  function select(value){
+  var text = ""+value;
+  document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
+  }
+
+
+  function mouse_over(){
+    document.getElementById('change_img').src="./img/up.jpg";
+  }
+  function mouse_out(){
+    document.getElementById('change_img').src="./img/a.jpg";
+  }
+
+
+  </script>
+
 <header id="header">
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
@@ -69,13 +87,22 @@
             </li>
           </ul>
         </div>
-        <div id="header_logout_form_div2_3">
-          <a href="#"><span id="header_logout_form_div2_3_span">All</span></a>
-          <ul id="header_logout_form_div2_3_ul">
-            <li class="header_logout_form_div2_3_ul_li">Photos</li>
-            <li class="header_logout_form_div2_3_ul_li">Graphics</li>
-            <li class="header_logout_form_div2_3_ul_li">Fonts</li>
-          </ul>
+
+
+        <div class="header_logout_form_div5">
+          <label id="search_label"><img src="./img/a.jpg" id="search_img" style="width:15px; height:15px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
+          <div id="header_logout_form_div2_3">
+              <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
+                <span id="header_logout_form_div2_3_span">All</span>
+                <img id="change_img" src="./img/a.jpg" style="width:20px; height:10px;"/>
+              </a>
+            <ul id="header_logout_form_div2_3_ul">
+              <li class="header_logout_form_div2_3_ul_li" id="All" onclick="select('All')" value="allcategories"><a href="#">All&nbspcategories</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="photos" onclick="select('Photos')" value="Photos"><a href="#">Photos</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="Graphics" onclick="select('Graphics')" value="Graphics"><a href="#">Graphics</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="Fonts" onclick="select('Fonts')" value="Fonts"><a href="#">Fonts</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 </header>

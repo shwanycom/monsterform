@@ -236,8 +236,7 @@ h5 {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -259,4 +258,53 @@ h5 {
 
 #div_mem tr, td{
   text-align: center;
+}
+
+#header_logout_form_div2_3 {
+  position: relative;
+}
+
+#header_logout_form_div2_3_ul {
+  position: absolute;
+  height: 0px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#header_logout_form_div2_3_a {
+  border: 0.5px solid lightgray;
+  width: 79px;
+}
+
+.header_logout_form_div2_3_ul_li{ /* 서브 매뉴 속성 추가 */
+  display: block;
+  font-size: 15px;
+}
+
+#header_logout_form_div2_3:hover #header_logout_form_div2_3_ul {  /* 값 변경 */
+  transition: 0.8s;
+  display: block;
+  height: auto;
+  position: absolute;
+  left: 0;
+}
+
+#search_label #search_img{
+  width: 24px;
+  height: 15px;
+}
+
+#search_text{
+  text-decoration: none;
+}
+
+#search_label{
+  float: right;
+  border: 0.5px solid lightgray;
+}
+
+#search_text{
+  border:0px;
+  background:white;
 }
