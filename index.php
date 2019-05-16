@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -18,8 +20,15 @@ session_start();
     </style>
   </head>
   <body>
-    <?php include "./lib/header_logout_form.php";
-        include "./khy_modal/khy_modal_modaltest.php";
-     ?>
+    <?php
+    include "./lib/header_logout_form.php";
+    include "./lib/footer.php";
+    ?>
+    <?php
+    include "./khy_modal/khy_modal_modaltest.php";
+    ?>
+
+
+
   </body>
 </html>
