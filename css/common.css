@@ -1,24 +1,27 @@
-<<<<<<< HEAD
+
   /* * {
     border: 0.1px solid lightgray;
   } */
-=======
+
   * {
     /* border: 0.1px solid lightgray; */
   }
->>>>>>> 02db2a2a3e508a6cf2020cbba1085ee45db0d973
 
-a {
+body{
+  background-color: rgb(245,245,244,230);
+}
+a{
   text-decoration: none;
   color: #444444;
 }
-
 a:link {
   color: #444444;
 }
-
 a:visited {
   color: #444444;
+}
+a:hover {
+  cursor: pointer;
 }
 
 #header {
@@ -73,7 +76,6 @@ section{
 /* --------------------------------------------------------------------------------------------- */
 #header_logout_form_div2 {
   height: 70px;
-
 }
 
 #header_logout_form_div2_1 {
@@ -109,17 +111,15 @@ section{
 .subheader_logout_form_div2_ul1_li_a { /* 서브 매뉴 속성 추가 */
   display: block;
   width: 150px;
-  font-size: 15px;
-  font-weight: bold;
-  font-family: "nina";
+  font-size: 20px;
+
 }
 
 .header_logout_form_div2_ul1_li {
   list-style-type: none;
   display: inline-block;
   font-size: 20pt;
-  font-family: "ninab";
-
+  font-family: "nina";
 }
 
 .submenu {
@@ -153,28 +153,52 @@ section{
 }
 
 #header_logout_form_div2_3 {
+  padding-top: 2px;
   float: right;
 }
 /* ------------------------------버튼------------------------------------------------------ */
+button:hover{
+  cursor: pointer;
+}
 #myBtn {
-  background: #444444;
+  background-color: rgba(139,167,83,118);
   color:rgb(245,245,244,230);
   border: none;
+  border-radius: 2px;
+}
+#myBtn:hover{
+  background-color: rgba(151,177,98,129);
+  color:rgb(245,245,244,230);
+  border: none;
+  border-radius: 2px;
 }
 #myBtn2 {
   font-weight: bold;
   background-color: rgb(245,245,244,230);
-  color:#444444;
+  color:rgba(139,167,83,118);
   border: none;
 }
 #continue{
-  width:100px;
+  width:150px;
   height:33px;
   margin-left:30px;
   font-weight: bold;
-  background: rgb(245,245,244,230);
-  color:#444444;
+  background-color: rgba(139,167,83,118);
+  border:0px;
+  border-radius: 2px;
+  color:rgb(245,245,244,230);
 }
+#continue:hover{
+  width:150px;
+  height:33px;
+  margin-left:30px;
+  font-weight: bold;
+  background-color: rgba(151,177,98,129);
+  border-color: rgba(139,167,83,118);
+  border-radius: 2px;
+  color:rgb(245,245,244,230);
+}
+
 /* ------------------------------텍스트 섹션 추가부분------------------------------------------------------ */
 #text_category{
   text-align: center;
@@ -192,6 +216,7 @@ section{
   width:100%;
   background-repeat: no-repeat;
 }
+
 /* ------------------------------템플릿 추가 부분 ------------------------------------------------------ */
 #categories_section {
   height: 250px;
@@ -214,12 +239,12 @@ section{
 }
 .category img {
   width: 110px;
-  border-radius: 10px;
+  border-radius: 2px;
   box-shadow: 3px 5px 12px rgba(192, 192, 191, 180);
 }
 .category img:hover {
   box-shadow: 8px 13px 20px rgba(192, 192, 191, 180);
-  border-radius: 10px;
+  border-radius: 2px;
 }
 h2{
   text-align:center;
@@ -316,7 +341,6 @@ h2{
 #header_logout_form_div2_3_a {
   height: 100%;
   width: 79px;
-
 }
 
 .header_logout_form_div2_3_ul_li{ /* 서브 매뉴 속성 추가 */
@@ -324,6 +348,7 @@ h2{
   font-size: 15px;
   top:5px;
   padding: 5px;
+  height:auto;
 }
 
 #header_logout_form_div2_3:hover #header_logout_form_div2_3_ul {  /* 값 변경 */
@@ -332,45 +357,54 @@ h2{
   height: auto;
    margin-top: 5px;
   /*padding-top:20px; */
-  font-family: "nina";
+
   left: 0;
-
-
 }
-
+#change_img{
+  position: relative;
+  margin-top:7px;
+}
 #search_text{
   text-decoration: none;
   border:0px;
-  background:rgb(245,245,244,230);
-
+  background:white;
+  float:right;
+  margin-top:8px;
 }
-
 #search_text:focus{
   text-decoration: none;
   border:0px;
-  background:rgb(245,245,244,230);
+  background:white;
   outline: none;
 }
-
-#search_label{
-float: right;
+#search_img{
+  vertical-align: middle;
+  margin-top:7px;
 }
-
+#search_div{
+float: right;
+height:100%;
+}
 #header_logout_form_div2_3_span{
   height: 100%;
-  padding-left: 8px;
-  padding-right: 8px;
-  font-family: "nina";
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 5px;
+  color: rgba(64,64,64,68);
 }
 
 .header_logout_form_div5{
-  border :1px solid lightgray;
+  border :2px solid lightgray;
   display: inline-block;
   float: right;
-  padding-top:5px;
   margin-top: 20px;
-  height: 25px;
+  height: 30px;
 }
+.header_logout_form_div5 a{
+  text-decoration: none;
+}
+
+
 
 
 /* ---------------------------------------------- */
