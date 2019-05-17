@@ -269,6 +269,20 @@ h2{
   /* border: 1px solid black; */
 }
 
+#gloginBtn {
+  border: none;
+  width: 280px;
+  height: 45px;
+  cursor: pointer;
+}
+
+#kloginBtn {
+  border: none;
+  width: 280px;
+  height: 42px;
+  cursor: pointer;
+}
+
 #div_mem table{
   /* border: 1px solid black;
   border-collapse: collapse; */

@@ -1,9 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-</head>
-<body>
+  <!-- google api -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+<!-- kakao api -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<!-- init -->
+<script>
+window.gauth ="";
+function init(){
+  console.log('init');
+  gapi.load('auth2', function() {
+    console.log('auth2');
+    //window로 사용하면서 전역변수로 선언
+    window.gauth = gapi.auth2.init({
+      client_id:'1080320778777-ek18ne6sdkqhvl39fj5vas0oicf7pc6j.apps.googleusercontent.com'
+    });
+    gauth.then(function(){
+      console.log('googleAuth success');
+      checkLoginStatus();
+    }, function(){
+      console.log('googleAuth fail');
+    });
+  });
+  Kakao.init('691e275903af0fd875572a4f90438fc1');
+}
+</script><!-- end of init -->
+
+<!-- google login script -->
+<script >
+function google_login(){
+  gauth.disconnect();
+  gauth.signIn().then(function(){
+    console.log('gauth.signIn()');
+    // location.href='http://localhost/monsterform/';
+    sendToDml("google");
+  });
+}
+
+
+
+function getKakaotalkUserProfile(){
+        Kakao.API.request({
+           url: '/v1/user/me',
+           success: function(res) {
+              $("#kakao-profile").append(res.properties.nickname);
+              $("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname+"님의 프로필 사진",}));
+           },
+           fail: function(error) {
+              console.log(error);
+           }
+        });
+     }
+
+// function google_logout(){
+//   gauth.disconnect();
+//   location.href='http://localhost/monsterform/';
+// }
+</script><!-- end of google login script -->
+
+<!-- kakao login script -->
+<script type='text/javascript'>
+function checkLoginStatus(){
+  console.log(gauth.isSignedIn.get());
+  if(gauth.isSignedIn.get()){
+    profile = gauth.currentUser.get().getBasicProfile(); //프로필 정보를 가져온다.
+    console.log('ID: ' + profile.getId());
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+    <?php
+      $_SESSION['userid']=$row['id'];
+      $_SESSION['username']=$row['name'];
+      $_SESSION['usernick']=$row['nick'];
+      $_SESSION['userlevel']=$row['level'];
+    ?>
+  }
+
+  Kakao.API.request({
+    url: '/v1/user/me',
+    success: function(res) {
+       var email = res.kaccount_email;   //유저의 이메일
+       var username = res.properties.nickname; //유저가 등록한 별명
+    },
+    fail: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function kakao_login() {
+  Kakao.Auth.loginForm({
+    success: function(authObj) {
+      location.href='http://localhost/monsterform/';
+    },
+    fail: function(err) {
+      alert(JSON.stringify(err));
+    }
+  });
+  sendToDml("kakao");
+}
+
+// function kakao_logout(){
+//   Kakao.Auth.logout();
+// }
+
+</script>
+<!-- end of kakao login script -->
+
+<script>
+
+function sendToDml(type){
+  if(type=="google"){
+    console.log("보내자");
+    if(gauth.isSignedIn.get()){
+      profile = gauth.currentUser.get().getBasicProfile(); //프로필 정보를 가져온다.
+      console.log('ID: ' + profile.getId());
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+
+      document.getElementById("email").value=profile.getEmail();
+      document.getElementById("username").value=profile.getName();
+
+      console.log(document.getElementById("email").value);
+      console.log(document.getElementById("username").value);
+
+      // form1=document.getElementById("gklogin_form");
+      // document.gklogin_form.submit();
+      // document.getElementById("gklogin_form").submit();
+      document.getElementById("gklogin_form").submit();
+    }
+  }
+  if (type=="kakao") {
+    Kakao.API.request({
+       url: '/v1/user/me',
+       success: function(res) {
+         document.getElementById("email").value=res.properties.nickname;
+         document.getElementById("username").value=res.kaccount_email;
+         document.getElementById("gklogin_form").submit();
+       },
+       fail: function(error) {
+          console.log(error);
+       }
+    });
+  }
+}
+
+</script>
+
+</head>
+
+<body>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -19,10 +174,15 @@
           <tr><span class="close">&times;</span>
             <td colspan="3">Creat Your Free Account</td>
           </tr>
-          <tr>
-            <td colspan="3">
-              <button type="button" name="button">facebook Login</button>
-            </td>
+          <tr class="gklogin_btn">
+              <td colspan="3">
+                <form id="gklogin_form" action="./khy_modal/khy_modal_dml.php" method="post">
+                  <input type="hidden" id="email" name="email" >
+                  <input type="hidden" id="username" name="username">
+                <button type="button" id="gloginBtn" onclick="google_login();">Google로 로그인</button><br><br>
+                <button type="button" id="kloginBtn" onclick="kakao_login();"/>카카오로 로그인</button>
+              </form>
+              </td>
           </tr>
           <tr>
             <td colspan="3">
@@ -88,6 +248,7 @@ var modal = document.getElementById("myModal");
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 var btn2 = document.getElementById("myBtn2");
+var btn3 = document.getElementById("myBtn3");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -97,12 +258,19 @@ btn.onclick = function() {
   modal.style.display = "block";
   flag = false;
   sign_man();
+  init();
 }
 
 btn2.onclick = function(){
   modal.style.display = "block";
   flag = true;
   sign_man();
+  init();
+}
+
+btn3.onclick = function(){
+  google_logout();
+  kakao_logout();
 }
 
 function memform(){
@@ -166,12 +334,6 @@ function sign_man(){
   modal.style.display = "block";
 }
 
-
-
-
-
-
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
@@ -184,10 +346,7 @@ window.onclick = function(event) {
   }
 }
 
-
-
 </script>
-
 
 </body>
 </html>
