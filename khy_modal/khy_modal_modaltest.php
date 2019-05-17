@@ -41,8 +41,6 @@ function google_login(){
   });
 }
 
-
-
 function getKakaotalkUserProfile(){
         Kakao.API.request({
            url: '/v1/user/me',
@@ -143,8 +141,8 @@ function sendToDml(type){
     Kakao.API.request({
        url: '/v1/user/me',
        success: function(res) {
-         document.getElementById("email").value=res.properties.nickname;
-         document.getElementById("username").value=res.kaccount_email;
+         document.getElementById("email").value=res.kaccount_email;
+         document.getElementById("username").value=res.properties.nickname;
          document.getElementById("gklogin_form").submit();
        },
        fail: function(error) {
