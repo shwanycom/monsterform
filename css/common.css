@@ -110,7 +110,7 @@ section{
 
 .subheader_logout_form_div2_ul1_li_a { /* 서브 매뉴 속성 추가 */
   display: block;
-  width: 150px;
+  width: 180px;
   font-size: 20px;
 
 }
@@ -139,8 +139,8 @@ section{
   height: auto;
   position: absolute;
   left: 0;
-  top: 50px;
-  width: 550px;
+  top: 30px;
+  width: 600px;
   background-color: rgb(245,245,244,230);
 }
 
