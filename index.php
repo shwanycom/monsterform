@@ -1,14 +1,12 @@
 <?php
 session_start();
-
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <title></title>
     <style media="screen">
     @font-face{
@@ -26,9 +24,11 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
     include "./lib/header_logout_form.php";
     include "./lib/footer.php";
     ?>
+
     <?php
     include "./khy_modal/khy_modal_modaltest.php";
     ?>
+
 
 
 
