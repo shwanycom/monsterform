@@ -31,10 +31,9 @@
           </ul>
         </div>
       </div>
-
       <div id="header_logout_form_div2">
         <div id="header_logout_form_div2_1">
-          <img id="logo" src="./img/logo.png" alt="">
+          <a href="#"><img id="logo" src="./img/logo.png" alt=""></a>
         </div>
         <div id="header_logout_form_div2_2">
           <ul>
@@ -84,10 +83,10 @@
             </li>
           </ul>
         </div>
-
-
         <div class="header_logout_form_div5">
-            <label id="search_label"><img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
+            <div id="search_div">
+              <img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
+            </div>
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
                 <span id="header_logout_form_div2_3_span">All</span>
@@ -101,57 +100,5 @@
             </ul>
           </div>
         </div>
-
       </div>
 </header>
-
-<section id="text_category">
-<div id="text_category_text_div">
-<span id="text_category_text_div_span1">Ready-to-use design assets<br>from many independent creators<br></span>
-<span id="text_category_text_div_span2">Graphics, fonts, themes, photos and more, starting at 50MON!<br><br></span>
-<span id="text_category_text_div_span3">Get 6 free products and 10% off!</span><button type="button" name="button" id="continue">Continue →</button>
-</div>
-</section>
-
-<!--템플릿 추가-->
-    <section id="categories_section">
-      <h2><span class="featured_title">FEATURED CATEGORIES</span></h2>
-      <div class="container">
-      <!--각각 템플릿-->
-        <div class="category">
-          <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/photo_animal.png" alt="Branding Mockups">
-          </a>
-        </div>
-      <!--각각 템플릿-->
-        <div class="category">
-          <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/photo_food.png" alt="Branding Mockups">
-          </a>
-        </div>
-      <!--각각 템플릿-->
-        <div class="category">
-          <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/font_symbol.png" alt="Branding Mockups">
-          </a>
-        </div>
-      <!--각각 템플릿-->
-        <div class="category">
-          <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/font_brush.png" alt="Branding Mockups">
-          </a>
-        </div>
-      <!--각각 템플릿-->
-        <div class="category">
-          <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/graphic_texture.png" alt="Branding Mockups">
-          </a>
-        </div>
-      <!--각각 템플릿-->
-        <div class="category">
-          <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/graphic_pattern.png" alt="Branding Mockups">
-          </a>
-        </div>
-      </div>
-    </section>

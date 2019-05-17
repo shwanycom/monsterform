@@ -153,6 +153,7 @@ section{
 }
 
 #header_logout_form_div2_3 {
+  padding-top: 2px;
   float: right;
 }
 /* ------------------------------버튼------------------------------------------------------ */
@@ -377,9 +378,10 @@ h2{
   outline: none;
 }
 #search_img{
+  vertical-align: middle;
   margin-top:7px;
 }
-#search_label{
+#search_div{
 float: right;
 height:100%;
 }

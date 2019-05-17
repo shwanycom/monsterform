@@ -6,7 +6,7 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
-    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/common.css?ver=1">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/footer_2.css">
     <title></title>
@@ -27,7 +27,9 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
   </head>
   <body>
     <?php
-    include "./lib/header_logout_form.php";
+    include "./lib/header.php";
+    include "./lib/section_text_category.php";
+    include "./lib/section_categories_section.php";
     include './lib/footer_2.php';
     include "./lib/footer.php";
     ?>
