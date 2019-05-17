@@ -1,0 +1,25 @@
+.clear { clear:both; }
+
+#discussion_div{
+  clear : both;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#discussion_title_div1{
+  font-size: 2em;
+  text-align: center;
+  width : 200px;
+  float: left;
+}
+
+#discussion_search_div1{
+  display: inline;
+  width : 300px;
+  float: right;
+}
+
+#general_ul li{
+  list-style: none;
+  display: inline;
+}

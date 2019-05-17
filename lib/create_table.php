@@ -40,8 +40,8 @@ function create_table($conn, $table_name){
                 `product_num` int(11) NOT NULL
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'discossion':
-        $sql = "CREATE TABLE `discossion` (
+      case 'discussion':
+        $sql = "CREATE TABLE `discussion` (
                 `no` int(11) NOT NULL,
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `username` varchar(100) NOT NULL,
@@ -53,8 +53,8 @@ function create_table($conn, $table_name){
                 PRIMARY KEY (`num`)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'discossion_ripple':
-        $sql = "CREATE TABLE `discossion_ripple` (
+      case 'discussion_ripple':
+        $sql = "CREATE TABLE `discussion_ripple` (
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `parent` int(11) NOT NULL,
                 `username` varchar(100) NOT NULL,

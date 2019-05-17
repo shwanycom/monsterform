@@ -3,7 +3,6 @@ session_start();
 
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 
-
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -29,8 +28,6 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
     <?php
     include "./khy_modal/khy_modal_modaltest.php";
     ?>
-
-
 
   </body>
 </html>
