@@ -162,19 +162,31 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 mysqli_close($conn);
                ?>
                <div class="clear"></div>
+               <br><br>
                  <div id="page_num">
-                   ◀ 이전 &nbsp;&nbsp;
-                     <?php
+                   <?php
+                   if(!($page-1==0)){
+                     $go_page = $page-1;
+                     echo "<a href='list.php?mode=search&page=$go_page'>◀ 이전</a> &nbsp;&nbsp;";
+                   }else{
+                     echo "◀ 이전&nbsp;&nbsp;";
+                   }
                      for($i=1;$i<=$total_page;$i++){
                        if($page==$i){
                          echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
                        }else{
-                         echo "<a href='list.php?page=$i'>$i</a>";
+                         echo "<a href='./list.php?mode=search&page=$i'>$i</a>";
                        }
                      }
+
+                     if($page==$total_page){
+                       echo "&nbsp;&nbsp;&nbsp;다음 ▶";
+                     }else{
+                       $go_page = $page+1;
+                       echo "<a href='./list.php?mode=search&page=$go_page'>&nbsp;&nbsp;&nbsp;다음 ▶</a>";
+                     }
                       ?>
-                &nbsp;&nbsp;&nbsp;다음 ▶
-                <br><br><br><br><br>
+                <br><br><br>
                  </div> <!-- end of page_num -->
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
