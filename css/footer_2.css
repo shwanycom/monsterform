@@ -1,0 +1,38 @@
+#section_earn{
+  color: #444444;
+  height:380px;
+  background-color:rgb(245,245,244,230);
+}
+#section_earn a{
+  text-decoration: none;
+  height:150px;
+  color: #444444;
+}
+#section_earn{
+  text-align: center;
+}
+#section_earn h3{
+  color:rgb(148,146,158,143);
+}
+.section_earn_div{
+  height: 350px;
+  width:300px;
+  display: inline-flex;
+}
+
+.section_earn_div button{
+  width:150px;
+  height:25px;
+  background-color: rgba(139,167,83,118);
+  border:0px;
+  border-radius: 2px;
+  color:rgb(245,245,244,230);
+  font-weight: bold;
+}
+.section_earn_div button:hover{
+  background-color: rgba(151,177,98,129);
+  border-color: rgba(139,167,83,118);
+  border-radius: 2px;
+  color:rgb(245,245,244,230);
+  font-weight: bold;
+}

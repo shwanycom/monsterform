@@ -5,10 +5,10 @@
   document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
   }
   function mouse_over(){
-    document.getElementById('change_img').src="./img/up.png";
+    document.getElementById('change_img').src="../img/up.png";
   }
   function mouse_out(){
-    document.getElementById('change_img').src="./img/down.png";
+    document.getElementById('change_img').src="../img/down.png";
   }
   </script>
 
@@ -34,7 +34,7 @@
 
       <div id="header_logout_form_div2">
         <div id="header_logout_form_div2_1">
-          <img id="logo" src="./img/logo.png" alt="">
+          <img id="logo" src="../img/logo.png" alt="">
         </div>
         <div id="header_logout_form_div2_2">
           <ul>
@@ -87,11 +87,11 @@
 
 
         <div class="header_logout_form_div5">
-            <label id="search_label"><img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
+            <label id="search_label"><img src="../img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
                 <span id="header_logout_form_div2_3_span">All</span>
-                <img id="change_img" src="./img/down.png" style="width:15px; height:15px;"/>&nbsp;&nbsp;&nbsp;
+                <img id="change_img" src="../img/down.png" style="width:15px; height:15px;"/>&nbsp;&nbsp;&nbsp;
               </a>
             <ul id="header_logout_form_div2_3_ul">
               <li class="header_logout_form_div2_3_ul_li" id="All" onclick="select('All')" value="allcategories"><a href="#">All&nbsp;categories</a></li>
@@ -120,37 +120,37 @@
       <!--각각 템플릿-->
         <div class="category">
           <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/photo_animal.png" alt="Branding Mockups">
+              <img class="retina" src="../img/photo_animal.png" alt="Branding Mockups">
           </a>
         </div>
       <!--각각 템플릿-->
         <div class="category">
           <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/photo_food.png" alt="Branding Mockups">
+              <img class="retina" src="../img/photo_food.png" alt="Branding Mockups">
           </a>
         </div>
       <!--각각 템플릿-->
         <div class="category">
           <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/font_symbol.png" alt="Branding Mockups">
+              <img class="retina" src="../img/font_symbol.png" alt="Branding Mockups">
           </a>
         </div>
       <!--각각 템플릿-->
         <div class="category">
           <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/font_brush.png" alt="Branding Mockups">
+              <img class="retina" src="../img/font_brush.png" alt="Branding Mockups">
           </a>
         </div>
       <!--각각 템플릿-->
         <div class="category">
           <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/graphic_texture.png" alt="Branding Mockups">
+              <img class="retina" src="../img/graphic_texture.png" alt="Branding Mockups">
           </a>
         </div>
       <!--각각 템플릿-->
         <div class="category">
           <a href="#" data-tracking="Branding Mockups">
-              <img class="retina" src="./img/graphic_pattern.png" alt="Branding Mockups">
+              <img class="retina" src="../img/graphic_pattern.png" alt="Branding Mockups">
           </a>
         </div>
       </div>

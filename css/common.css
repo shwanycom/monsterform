@@ -14,13 +14,14 @@ a{
   text-decoration: none;
   color: #444444;
 }
-
 a:link {
   color: #444444;
 }
-
 a:visited {
   color: #444444;
+}
+a:hover {
+  cursor: pointer;
 }
 
 #header {
@@ -110,17 +111,15 @@ section{
 .subheader_logout_form_div2_ul1_li_a { /* 서브 매뉴 속성 추가 */
   display: block;
   width: 150px;
-  font-size: 15px;
-  font-weight: bold;
-  font-family: "nina";
+  font-size: 20px;
+
 }
 
 .header_logout_form_div2_ul1_li {
   list-style-type: none;
   display: inline-block;
   font-size: 20pt;
-  font-family: "ninab";
-
+  font-family: "nina";
 }
 
 .submenu {
@@ -157,27 +156,48 @@ section{
   float: right;
 }
 /* ------------------------------버튼------------------------------------------------------ */
+button:hover{
+  cursor: pointer;
+}
 #myBtn {
-  background: #444444;
+  background-color: rgba(139,167,83,118);
   color:rgb(245,245,244,230);
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
+}
+#myBtn:hover{
+  background-color: rgba(151,177,98,129);
+  color:rgb(245,245,244,230);
+  border: none;
+  border-radius: 2px;
 }
 #myBtn2 {
   font-weight: bold;
   background-color: rgb(245,245,244,230);
-  color:#444444;
+  color:rgba(139,167,83,118);
   border: none;
 }
 #continue{
-  width:100px;
+  width:150px;
   height:33px;
   margin-left:30px;
   font-weight: bold;
-  background: rgb(245,245,244,230);
-  border-radius: 5px;
-  color:#444444;
+  background-color: rgba(139,167,83,118);
+  border:0px;
+  border-radius: 2px;
+  color:rgb(245,245,244,230);
 }
+#continue:hover{
+  width:150px;
+  height:33px;
+  margin-left:30px;
+  font-weight: bold;
+  background-color: rgba(151,177,98,129);
+  border-color: rgba(139,167,83,118);
+  border-radius: 2px;
+  color:rgb(245,245,244,230);
+}
+
 /* ------------------------------텍스트 섹션 추가부분------------------------------------------------------ */
 #text_category{
   text-align: center;
@@ -218,12 +238,12 @@ section{
 }
 .category img {
   width: 110px;
-  border-radius: 10px;
+  border-radius: 2px;
   box-shadow: 3px 5px 12px rgba(192, 192, 191, 180);
 }
 .category img:hover {
   box-shadow: 8px 13px 20px rgba(192, 192, 191, 180);
-  border-radius: 10px;
+  border-radius: 2px;
 }
 h2{
   text-align:center;
@@ -363,7 +383,6 @@ h2{
 float: right;
 height:100%;
 }
-
 #header_logout_form_div2_3_span{
   height: 100%;
   font-weight: bold;
