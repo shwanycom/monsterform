@@ -135,7 +135,7 @@ section{
   left: 0;
   top: 50px;
   width: 550px;
-  background-color: white;
+  background-color: rgb(245,245,244,230);
 }
 
 .subheader_logout_form_div2_ul1_li_a:hover {  /* 추가 */
@@ -152,12 +152,12 @@ section{
 /* ------------------------------버튼------------------------------------------------------ */
 #myBtn {
   background: #444444;
-  color:white;
+  color:rgb(245,245,244,230);
   border: none;
 }
 #myBtn2 {
   font-weight: bold;
-  background: white;
+  background-color: rgb(245,245,244,230);
   color:#444444;
   border: none;
 }
@@ -166,13 +166,13 @@ section{
   height:33px;
   margin-left:30px;
   font-weight: bold;
-  background: white;
+  background: rgb(245,245,244,230);
   color:#444444;
 }
 /* ------------------------------텍스트 섹션 추가부분------------------------------------------------------ */
 #text_category{
   text-align: center;
-  color:white;
+  color:rgb(245,245,244,230);
 }
 #text_category_text_div_span1{
   font-size: 40pt;
@@ -304,7 +304,7 @@ h2{
   padding: 0px;
   margin: 0px;
   overflow: hidden;
-  background-color: white;
+  background-color: rgb(245,245,244,230);
 }
 
 #header_logout_form_div2_3_a {
@@ -335,14 +335,14 @@ h2{
 #search_text{
   text-decoration: none;
   border:0px;
-  background:white;
+  background:rgb(245,245,244,230);
 
 }
 
 #search_text:focus{
   text-decoration: none;
   border:0px;
-  background:white;
+  background:rgb(245,245,244,230);
   outline: none;
 }
 

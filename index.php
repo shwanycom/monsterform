@@ -1,10 +1,7 @@
 <?php
 session_start();
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
-<<<<<<< HEAD
 
-=======
->>>>>>> 193a524d4c62c2617ba3c5b2ca8bffc2bcf00a2a
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -21,6 +18,8 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
     	font-family:"nina"; /*폰트 패밀리 이름 추가*/
     	src:url("./font/nina.TTF"); /*폰트 파일 주소*/
     }
+    body{margin: 0; padding: 0;}
+    
     </style>
   </head>
   <body>
@@ -28,16 +27,8 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
     include "./lib/header_logout_form.php";
     include "./lib/footer.php";
     ?>
-
     <?php
     include "./khy_modal/khy_modal_modaltest.php";
     ?>
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 193a524d4c62c2617ba3c5b2ca8bffc2bcf00a2a
   </body>
 </html>

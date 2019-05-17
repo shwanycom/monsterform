@@ -16,9 +16,9 @@
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
         <ul id="header_logout_form_div1_1_ul">
-          <li class="header_logout_form_div1_1_ul_li"><a href="#">Get Free Goods</a></li>
-          <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner</a></li>
-          <li class="header_logout_form_div1_1_ul_li"><a href="#">Discussions</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="#">Get Free Goods&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="#">Discussions&nbsp;&nbsp;</a></li>
         </ul>
       </div>
         <div id="header_logout_form_div1_2">
