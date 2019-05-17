@@ -1,3 +1,16 @@
+/* *{
+  border : 1px solid red;
+} */
+
+#discussion_div a{
+  text-decoration: none;
+}
+
+#discussion_div button{
+  background-color: #8ba753;
+  color : white;
+}
+
 .clear { clear:both; }
 
 #discussion_div{
@@ -9,17 +22,57 @@
 #discussion_title_div1{
   font-size: 2em;
   text-align: center;
-  width : 200px;
+  width : 180px;
   float: left;
 }
 
 #discussion_search_div1{
-  display: inline;
-  width : 300px;
+  width : 260px;
   float: right;
+}
+
+
+#discussion_search_div1 button{
+  margin:0;
+}
+
+#list_item{
+  border-top: 1px solid #8ba753;
+  border-bottom: 1px solid #8ba753;
+  margin-top : 2px;
+}
+
+#general_img_div{
+  margin : 0;
+  float: left;
+}
+
+#general_ul{
+  float : left;
+  margin : 0;
+  padding-left: 20px;
 }
 
 #general_ul li{
   list-style: none;
   display: inline;
+}
+
+#discussion_write_button{
+  text-align: right;
+}
+
+#list_top_title ul{
+  margin:0;
+  padding:0;
+}
+
+#list_top_title ul li{
+  list-style: none;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+  background-color: #8ba753;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
