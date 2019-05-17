@@ -18,8 +18,10 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
     	font-family:"nina"; /*폰트 패밀리 이름 추가*/
     	src:url("./font/nina.TTF"); /*폰트 파일 주소*/
     }
-    body{margin: 0; padding: 0;}
-    
+    body{
+      margin: 0; padding: 0;
+    }
+
     </style>
   </head>
   <body>
