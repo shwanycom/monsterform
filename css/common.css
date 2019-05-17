@@ -163,7 +163,7 @@ a:visited {
 }
 
 .featured_title {
-  padding-left:500px;
+
   font-size: 14pt;
   color: rgba(81,79,76,74);
 }
@@ -214,9 +214,7 @@ h5 {
 .container {
   margin-top: 10px; /*확인차 10 줌 지워야 됨*/
   height: 150px;
-  position: absolute;
   width: auto;
-  padding-left:300px;
 }
 /*------------------------------------로그인 모달창---------------------------------*/
 
@@ -266,6 +264,20 @@ h5 {
   width : 50%;
   height : 520px;
   /* border: 1px solid black; */
+}
+
+#gloginBtn {
+  border: none;
+  width: 280px;
+  height: 45px;
+  cursor: pointer;
+}
+
+#kloginBtn {
+  border: none;
+  width: 280px;
+  height: 42px;
+  cursor: pointer;
 }
 
 #div_mem table{
