@@ -7,13 +7,11 @@
 
 
   function mouse_over(){
-    document.getElementById('change_img').src="./img/up.jpg";
+    document.getElementById('change_img').src="./img/up.png";
   }
   function mouse_out(){
-    document.getElementById('change_img').src="./img/a.jpg";
+    document.getElementById('change_img').src="./img/down.png";
   }
-
-
   </script>
 
 <header id="header">
@@ -91,11 +89,11 @@
 
 
         <div class="header_logout_form_div5">
-          <label id="search_label"><img src="./img/a.jpg" id="search_img" style="width:15px; height:15px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
+            <label id="search_label"><img src="./img/zoom.png" id="search_img" style="width:15px; height:15px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
                 <span id="header_logout_form_div2_3_span">All</span>
-                <img id="change_img" src="./img/a.jpg" style="width:20px; height:10px;"/>
+                <img id="change_img" src="./img/down.png" style="width:15px; height:15px;"/>&nbsp;&nbsp;&nbsp;
               </a>
             <ul id="header_logout_form_div2_3_ul">
               <li class="header_logout_form_div2_3_ul_li" id="All" onclick="select('All')" value="allcategories"><a href="#">All&nbspcategories</a></li>
@@ -105,6 +103,7 @@
             </ul>
           </div>
         </div>
+
       </div>
 </header>
 
@@ -158,4 +157,3 @@
         </div>
       </div>
     </section>
-    
