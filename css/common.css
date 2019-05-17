@@ -1,14 +1,16 @@
-<<<<<<< HEAD
+
   /* * {
     border: 0.1px solid lightgray;
   } */
-=======
+
   * {
     /* border: 0.1px solid lightgray; */
   }
->>>>>>> 02db2a2a3e508a6cf2020cbba1085ee45db0d973
 
-a {
+body{
+  background-color: rgb(245,245,244,230);
+}
+a{
   text-decoration: none;
   color: #444444;
 }
@@ -73,7 +75,6 @@ section{
 /* --------------------------------------------------------------------------------------------- */
 #header_logout_form_div2 {
   height: 70px;
-
 }
 
 #header_logout_form_div2_1 {
@@ -160,6 +161,7 @@ section{
   background: #444444;
   color:rgb(245,245,244,230);
   border: none;
+  border-radius: 5px;
 }
 #myBtn2 {
   font-weight: bold;
@@ -173,6 +175,7 @@ section{
   margin-left:30px;
   font-weight: bold;
   background: rgb(245,245,244,230);
+  border-radius: 5px;
   color:#444444;
 }
 /* ------------------------------텍스트 섹션 추가부분------------------------------------------------------ */
@@ -192,6 +195,7 @@ section{
   width:100%;
   background-repeat: no-repeat;
 }
+
 /* ------------------------------템플릿 추가 부분 ------------------------------------------------------ */
 #categories_section {
   height: 250px;
@@ -316,7 +320,6 @@ h2{
 #header_logout_form_div2_3_a {
   height: 100%;
   width: 79px;
-
 }
 
 .header_logout_form_div2_3_ul_li{ /* 서브 매뉴 속성 추가 */
@@ -324,6 +327,7 @@ h2{
   font-size: 15px;
   top:5px;
   padding: 5px;
+  height:auto;
 }
 
 #header_logout_form_div2_3:hover #header_logout_form_div2_3_ul {  /* 값 변경 */
@@ -332,45 +336,54 @@ h2{
   height: auto;
    margin-top: 5px;
   /*padding-top:20px; */
-  font-family: "nina";
+
   left: 0;
-
-
 }
-
+#change_img{
+  position: relative;
+  margin-top:7px;
+}
 #search_text{
   text-decoration: none;
   border:0px;
-  background:rgb(245,245,244,230);
-
+  background:white;
+  float:right;
+  margin-top:8px;
 }
-
 #search_text:focus{
   text-decoration: none;
   border:0px;
-  background:rgb(245,245,244,230);
+  background:white;
   outline: none;
 }
-
+#search_img{
+  margin-top:7px;
+}
 #search_label{
 float: right;
+height:100%;
 }
 
 #header_logout_form_div2_3_span{
   height: 100%;
-  padding-left: 8px;
-  padding-right: 8px;
-  font-family: "nina";
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 5px;
+  color: rgba(64,64,64,68);
 }
 
 .header_logout_form_div5{
-  border :1px solid lightgray;
+  border :2px solid lightgray;
   display: inline-block;
   float: right;
-  padding-top:5px;
   margin-top: 20px;
-  height: 25px;
+  height: 30px;
 }
+.header_logout_form_div5 a{
+  text-decoration: none;
+}
+
+
 
 
 /* ---------------------------------------------- */
