@@ -4,8 +4,6 @@
   var text = ""+value;
   document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
   }
-
-
   function mouse_over(){
     document.getElementById('change_img').src="./img/up.png";
   }

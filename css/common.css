@@ -1,6 +1,12 @@
+<<<<<<< HEAD
   /* * {
     border: 0.1px solid lightgray;
   } */
+=======
+  * {
+    /* border: 0.1px solid lightgray; */
+  }
+>>>>>>> 02db2a2a3e508a6cf2020cbba1085ee45db0d973
 
 a {
   text-decoration: none;
@@ -113,7 +119,6 @@ section{
   display: inline-block;
   font-size: 20pt;
   font-family: "ninab";
-
 
 }
 
@@ -297,7 +302,6 @@ h2{
 #header_logout_form_div2_3 {
   position: relative;
   height: 50px;
-
 }
 
 #header_logout_form_div2_3_ul {
@@ -319,22 +323,33 @@ h2{
   display: block;
   font-size: 15px;
   top:5px;
+  padding: 5px;
 }
 
 #header_logout_form_div2_3:hover #header_logout_form_div2_3_ul {  /* 값 변경 */
   position: absolute;
   display: block;
   height: auto;
-  margin-top: 5px;
-  padding-top:20px;
+   margin-top: 5px;
+  /*padding-top:20px; */
+  font-family: "nina";
   left: 0;
-  border: 1px solid black;
+
+
 }
 
 #search_text{
   text-decoration: none;
   border:0px;
   background:white;
+
+}
+
+#search_text:focus{
+  text-decoration: none;
+  border:0px;
+  background:white;
+  outline: none;
 }
 
 #search_label{
@@ -343,7 +358,9 @@ float: right;
 
 #header_logout_form_div2_3_span{
   height: 100%;
-
+  padding-left: 8px;
+  padding-right: 8px;
+  font-family: "nina";
 }
 
 .header_logout_form_div5{
@@ -354,3 +371,6 @@ float: right;
   margin-top: 20px;
   height: 25px;
 }
+
+
+/* ---------------------------------------------- */
