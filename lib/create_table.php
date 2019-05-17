@@ -46,6 +46,7 @@ function create_table($conn, $table_name){
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `username` varchar(100) NOT NULL,
                 `email` varchar(100) NOT NULL,
+                `topic` varchar(100) NOT NULL,
                 `subject` varchar(100) NOT NULL,
                 `content` varchar(100) NOT NULL,
                 `regist_day` date NOT NULL,
