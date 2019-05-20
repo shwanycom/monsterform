@@ -1,7 +1,12 @@
 <?php
 session_start();
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
-
+include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
+$memeber_no = $_SESSION['no'];
+$memeber_email = $_SESSION['email'];
+$memeber_username = $_SESSION['username'];
+$member_mon = $_SESSION['mon'];
+$member_partner = $_SESSION['partner'];
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -22,7 +27,6 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
     body{
       margin: 0; padding: 0;
     }
-
     </style>
   </head>
   <body>
