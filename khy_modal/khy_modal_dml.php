@@ -18,7 +18,6 @@ if (!$result) {
 $rowcount=mysqli_num_rows($result);
 
 if($rowcount){
-  echo "<script>alert('아이디존재!!!');</script>";
   $row=mysqli_fetch_array($result);
   if($row){
     $_SESSION['no'] = $row['no'];
@@ -30,13 +29,13 @@ if($rowcount){
   // exit;
 }else{
   $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`)";
-  $sql.=" VALUES (null,'$email','$username',null,0)";
+  $sql.=" VALUES (null,'$email','$username','ekguddldi',0)";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
-  } 
+  }
 }
 mysqli_close($conn);
-Header("Location: ./session_test.php");
+Header("Location: ../index.php");
 
 ?>
