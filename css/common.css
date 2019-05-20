@@ -302,14 +302,14 @@ h2{
 #gloginBtn {
   border: none;
   width: 280px;
-  height: 45px;
+  height: 35px;
   cursor: pointer;
 }
 
 #kloginBtn {
   border: none;
   width: 280px;
-  height: 42px;
+  height: 33px;
   cursor: pointer;
 }
 
@@ -323,7 +323,7 @@ h2{
   text-align: center;
 }
 
-/* -------------search 창  css------------- */
+/* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {
   position: relative;
   height: 50px;

@@ -100,8 +100,8 @@ function sendToDml(type){
       </div>
       <div class="div_float" id="div_mem">
         <table>
-          <tr><span class="close">&times;</span>
-            <td colspan="3">Creat Your Free Account</td>
+          <tr>
+            <td colspan="3">Creat Your Free Account <span class="close">&times;</span></td>
           </tr>
           <tr class="gklogin_btn">
               <td colspan="3">
@@ -115,6 +115,7 @@ function sendToDml(type){
           </tr>
           <tr>
             <td colspan="3">
+              <!-- <hr size="18" noshade> OR  -->
               <img width="100%" src="./img/or.png" alt="">
             </td>
           </tr>
