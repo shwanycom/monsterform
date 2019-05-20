@@ -1,8 +1,8 @@
 <?php
-session_start();
 
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 
 // include "./lib/footer.php";
 // include "./khy_modal/khy_modal_modaltest.php";
@@ -25,7 +25,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
   }else if(isset($_GET["topic"])){
     $search = test_input($_GET["topic"]);
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql = "SELECT * from `discussion` where topic='$q_search';";
+    $sql = "SELECT * from `discussion` where topic='$q_search' order by num desc;";
     $title = "".$q_search;
   }else{
     $search = test_input($_POST["search"]);
@@ -214,7 +214,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================일반================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;일반</li>
+                <li id=list_title1>&nbsp;&nbsp;&nbsp;general</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -266,7 +266,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================제품요청================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;제품요청</li>
+                <li id=list_title1>&nbsp;&nbsp;&nbsp;request</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -317,7 +317,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================피드백요청================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;피드백요청</li>
+                <li id=list_title1>&nbsp;&nbsp;&nbsp;feedback</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -369,7 +369,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================제품후기================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;제품후기</li>
+                <li id=list_title1>&nbsp;&nbsp;&nbsp;review</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">

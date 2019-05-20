@@ -208,12 +208,12 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
               if($email==$_SESSION['email']){
                 echo '<div style="float: right">
                   <button type="button" id="write_button" onclick="open_modal()">수정</button>&nbsp;
-                  <a href="./discussion_dml.php?mode=delete"><button type="button">삭제</button></a>
+                  <a href="./discussion_dml.php?mode=delete&num='.$num.'"><button type="button">삭제</button></a>
                 </div><br>';
               }
               ?>
               <div class="clear"></div>
-              <!--========================================글쓰기모달창======================================== -->
+              <!--========================================글수정모달창======================================== -->
               <div id="write_discussion_modal" class="modal">
                 <!-- Modal content -->
                 <?php
@@ -223,7 +223,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 $write_email = $_SESSION['email'];
                 $selected = "";
                 $write_mode = "update";
-                $write_num = test_input($_GET["write_num"]);
+                $write_num = test_input($_GET["num"]);
                 $write_q_num = mysqli_real_escape_string($conn, $write_num);
 
                 $write_sql = "SELECT * from `discussion` where num = '$write_q_num';";
@@ -234,10 +234,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 $write_row = mysqli_fetch_array($write_result);
                 $write_username = $write_row['username'];
                 $write_email = $write_row['email'];
-                $write_subject = htmlspecialchars($write_row['subject']);
+                $write_subject = test_input($write_row['subject']);
                 $write_subject = str_replace("\n", "<br>", $write_subject);
                 $write_subject = str_replace(" ", "&nbsp;", $write_subject);
-                $write_content = htmlspecialchars($write_row['content']);
+                $write_content = test_input($write_row['content']);
                 $write_content = str_replace("\n", "<br>", $write_content);
                 $write_content = str_replace(" ", "&nbsp;", $write_content);
                 $now = $write_row['regist_day'];
@@ -262,7 +262,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  ?>
                 <div class="modal-content">
                   <span class="write_discussion_close">&times;</span>
-                  <form name="discussion_write_form" action="./discussion_dml.php?mode=<?=$write_mode?>" method="post">
+                  <form name="discussion_write_form" action="./discussion_dml.php?mode=<?=$write_mode?>&num=<?=$num?>" method="post">
                     <input type="hidden" name="username" value="<?=$write_username?>">
                     <input type="hidden" name="email" value="<?=$write_email?>">
                     <table id="write_form_table">
@@ -283,14 +283,15 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                       </tr>
                       <tr>
                         <td>제  목</td>
-                        <td colspan="2"><input type="text" name="subject" id="write_subject" value="" size="90"></td>
+                        <td colspan="2"><input type="text" name="subject" id="write_subject" value="<?=$write_subject?>" size="90"></td>
                       </tr>
                       <tr>
                         <td>본  문</td>
-                        <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"></textarea></td>
+                        <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"><?=$write_content?></textarea></td>
                       </tr>
                     </table>
-                    <a href="#"><input type="button" id="write_save_button" value="등록" onclick="check_write_discussion()"></a>
+                    <a href="./view.php?num=<?=$write_num?>"><button type="button">취소</button></a>&nbsp;
+                    <a href="#"><input type="button" id="write_save_button" value="수정" onclick="check_write_discussion()"></a>
                   </form>
 
                   <!-- <p>Some text in the Modal..</p> -->
@@ -319,6 +320,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   $content1= str_replace(" ", "&nbsp;", $content1);
                   $date1 = substr($row1['regist_day'], 0, 10);
                   ?>
+                  <form class="" action="./discussion_dml.php?mode=ripple_delete" method="post">
+                    <input type="hidden" name="num" value="<?=$row1['num']?>">
+                    <input type="hidden" name="parent" value="<?=$row1['parent']?>">
                   <table id="view_ripple_table">
                     <tr>
                       <td colspan="2"><?=$content1?></td>
@@ -331,6 +335,12 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     </tr>
                     <br>
                   </table>
+                  <?php
+                  if($email1==$_SESSION['email']){
+                    echo '<input id="write_save_button" type="submit" name="" value="삭제" style="float:right">';
+                  }
+                   ?>
+                 </form>
                  <div class="clear"></div>
                 <?php
                 }
@@ -342,20 +352,25 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                    if(isset($_SESSION['username'])){
                      date_default_timezone_set("Asia/Seoul");
                      $now = date("Y-m-d(H:i)");
+                     $username = $_SESSION['username'];
+                     $email = $_SESSION['email'];
                      // date("y-m-d h:i:sa");
                     echo '<form name="ripple_form" action="discussion_dml.php?mode=insert_ripple" method="post">
                     <input type="hidden" name="now" value="'.$now.'">
+                    <input type="hidden" name="parent" value="'.$num.'">
+                    <input type="hidden" name="username" value="'.$username.'">
+                    <input type="hidden" name="email" value="'.$email.'">
                     <table id="view_ripple_table">
                       <tr>
-                        <td><a href="#">'.$_SESSION['username'].'('.$_SESSION['email'].')</a></td>
+                        <td><a href="#">'.$username.'('.$email.')</a></td>
                         <td>'.$now.'</td>
                       </tr>
                       <tr>
-                        <td colspan="2"><textarea name="ripple_content" rows="8" cols="135"></textarea></td>
+                        <td colspan="2"><textarea name="ripple_content" id="ripple_content" rows="8" cols="135"></textarea></td>
                       </tr>
                     </table>
                     <a href="./list.php"><button type="button" name="button">목록</button></a>
-                    &nbsp;<button type="submit" name="">등록</button></a>
+                    &nbsp;<button type="submit" name="" onclick="check_ripple_discussion()">등록</button></a>
                     </form>';
                    }else{
                      echo '<a href="./list.php"><button type="button" name="button">목록</button></a>';

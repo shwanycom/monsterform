@@ -286,3 +286,14 @@ function check_write_discussion(){
 
   document.discussion_write_form.submit();
 }
+
+function check_ripple_discussion(){
+  var ripple_content = document.getElementById("ripple_content");
+
+  if(ripple_content.value.length===0){
+    alert("댓글에 내용이 없네요"); ripple_content.focus(); ripple_content.value="";
+    return false;
+  }
+
+  document.ripple_form.submit();
+}

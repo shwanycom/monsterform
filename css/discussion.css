@@ -24,6 +24,26 @@
   opacity: 0.8;
 }
 
+#write_save_button{
+  background-color: #ff6d70;
+  border : none;
+  width : 60px;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 1;
+  float: right;
+}
+
+#write_save_button:hover{
+  background-color: #ff6d70;
+  border : none;
+  width : 60px;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 1;
+  float: right;
+}
+
 .clear { clear:both; }
 
 #discussion_div{
@@ -151,12 +171,6 @@
 
 #write_form_table tr, #write_form_table td{
   text-align: center;
-}
-
-#write_save_button{
-  background-color: rgba(139,167,83,118);
-  color : rgb(245,245,244,230);
-  float: right;
 }
 
 #id_td{
