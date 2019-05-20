@@ -21,7 +21,6 @@ function init(){
     });
     gauth.then(function(){
       console.log('googleAuth success');
-      checkLoginStatus();
     }, function(){
       console.log('googleAuth fail');
     });
@@ -40,58 +39,10 @@ function google_login(){
     sendToDml("google");
   });
 }
-
-function getKakaotalkUserProfile(){
-        Kakao.API.request({
-           url: '/v1/user/me',
-           success: function(res) {
-              $("#kakao-profile").append(res.properties.nickname);
-              $("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname+"님의 프로필 사진",}));
-           },
-           fail: function(error) {
-              console.log(error);
-           }
-        });
-     }
-
-// function google_logout(){
-//   gauth.disconnect();
-//   location.href='http://localhost/monsterform/';
-// }
 </script><!-- end of google login script -->
 
 <!-- kakao login script -->
-<script type='text/javascript'>
-function checkLoginStatus(){
-  console.log(gauth.isSignedIn.get());
-  if(gauth.isSignedIn.get()){
-    profile = gauth.currentUser.get().getBasicProfile(); //프로필 정보를 가져온다.
-    console.log('ID: ' + profile.getId());
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
-    <?php
-      $_SESSION['userid']=$row['id'];
-      $_SESSION['username']=$row['name'];
-      $_SESSION['usernick']=$row['nick'];
-      $_SESSION['userlevel']=$row['level'];
-    ?>
-  }
-
-  Kakao.API.request({
-    url: '/v1/user/me',
-    success: function(res) {
-       var email = res.kaccount_email;   //유저의 이메일
-       var username = res.properties.nickname; //유저가 등록한 별명
-    },
-    fail: function(error) {
-      console.log(error);
-    }
-  });
-}
-
+<script>
 function kakao_login() {
   Kakao.Auth.loginForm({
     success: function(authObj) {
@@ -103,37 +54,17 @@ function kakao_login() {
   });
   sendToDml("kakao");
 }
-
-// function kakao_logout(){
-//   Kakao.Auth.logout();
-// }
-
 </script>
 <!-- end of kakao login script -->
 
 <script>
-
 function sendToDml(type){
   if(type=="google"){
     console.log("보내자");
     if(gauth.isSignedIn.get()){
       profile = gauth.currentUser.get().getBasicProfile(); //프로필 정보를 가져온다.
-      console.log('ID: ' + profile.getId());
-      console.log('Full Name: ' + profile.getName());
-      console.log('Given Name: ' + profile.getGivenName());
-      console.log('Family Name: ' + profile.getFamilyName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
-
       document.getElementById("email").value=profile.getEmail();
       document.getElementById("username").value=profile.getName();
-
-      console.log(document.getElementById("email").value);
-      console.log(document.getElementById("username").value);
-
-      // form1=document.getElementById("gklogin_form");
-      // document.gklogin_form.submit();
-      // document.getElementById("gklogin_form").submit();
       document.getElementById("gklogin_form").submit();
     }
   }
@@ -169,8 +100,9 @@ function sendToDml(type){
       </div>
       <div class="div_float" id="div_mem">
         <table>
-          <tr><span class="close">&times;</span>
-            <td colspan="3">Creat Your Free Account</td>
+          <tr>
+            <td colspan="3">Creat Your Free Account <span class="close">&times;</span>
+            <hr size="1" width="320"></td>            
           </tr>
           <tr class="gklogin_btn">
               <td colspan="3">
@@ -184,22 +116,24 @@ function sendToDml(type){
           </tr>
           <tr>
             <td colspan="3">
-              <img width="100%" src="./img/or.png" alt="">
+              <hr size="1" width="150"> OR <hr size="1" width="150">
+
+              <!-- <img width="100%" src="./img/or.png" alt=""> -->
             </td>
           </tr>
           <tr>
             <td colspan="3">
-              <form class="member_info" action="#" method="post">
+              <form class="member_info" action="./khy_modal/not_social.php?mode=join" method="post">
                 <input type="hidden" name="member_firstname" value="" placeholder="First name" id="first_name" size="20">
                 <input type="hidden" name="member_lastname" value="" placeholder="Last name" id="last_name" size="20">
                 <input type="hidden" name="member_email_address" value="" placeholder="Email Address" id="email_address" size="46">
-                <input type="hidden" name="member_username" value="" placeholder="Username" id="username" size="46">
-                <input type="hidden" name="member_password" value="" placeholder="Password" id="password" size="46">
+                <input type="hidden" name="member_username" value="" placeholder="email" id="member_username" size="46">
+                <input type="hidden" name="member_password" value="" placeholder="Password" id="member_password" size="46">
                 <input type="hidden" id="signup_btn" value="Sign up" style="float : right">
               </form>
 
-              <form name="login_info" action="#" method="post">
-                <input type="hidden" name="login_username" value="" placeholder="Username" id="username2" size="46">
+              <form name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
+                <input type="hidden" name="login_email" value="" placeholder="email" id="username2" size="46">
                 <input type="hidden" name="login_password" value="" placeholder="Password" id="password2" size="46">
                 <input type="hidden" id="login" value="Log in!" style="float : right">
               </form>
@@ -226,9 +160,9 @@ var flag = true;
 var first_name = document.getElementById("first_name");
 var last_name = document.getElementById("last_name");
 var email_address = document.getElementById("email_address");
-var username = document.getElementById("username");
+var username = document.getElementById("member_username");
 var username2 = document.getElementById("username2");
-var password = document.getElementById("password");
+var password = document.getElementById("member_password");
 var password2 = document.getElementById("password2");
 var login = document.getElementById("login");
 
