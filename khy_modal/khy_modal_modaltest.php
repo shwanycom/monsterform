@@ -102,7 +102,7 @@ function sendToDml(type){
         <table>
           <tr>
             <td colspan="3">Creat Your Free Account <span class="close">&times;</span>
-            <hr size="1" width="320"></td>            
+            <hr size="1" width="320"></td>
           </tr>
           <tr class="gklogin_btn">
               <td colspan="3">
@@ -124,16 +124,17 @@ function sendToDml(type){
           <tr>
             <td colspan="3">
               <form class="member_info" action="./khy_modal/not_social.php?mode=join" method="post">
-                <input type="hidden" name="member_firstname" value="" placeholder="First name" id="first_name" size="20">
-                <input type="hidden" name="member_lastname" value="" placeholder="Last name" id="last_name" size="20">
+                <!-- <input type="hidden" name="member_firstname" value="" placeholder="First name" id="first_name" size="20">
+                <input type="hidden" name="member_lastname" value="" placeholder="Last name" id="last_name" size="20"> -->
                 <input type="hidden" name="member_email_address" value="" placeholder="Email Address" id="email_address" size="46">
-                <input type="hidden" name="member_username" value="" placeholder="email" id="member_username" size="46">
+                <input type="hidden" name="member_username" value="" placeholder="Username" id="member_username" size="46">
                 <input type="hidden" name="member_password" value="" placeholder="Password" id="member_password" size="46">
+                <input type="hidden" name="member_password_confirm" value="" placeholder="Password Confirm" id="member_password_confirm" size="46">
                 <input type="hidden" id="signup_btn" value="Sign up" style="float : right">
               </form>
 
-              <form name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
-                <input type="hidden" name="login_email" value="" placeholder="email" id="username2" size="46">
+              <form class="login_info" name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
+                <input type="hidden" name="login_email" value="" placeholder="Email Address" id="username2" size="46">
                 <input type="hidden" name="login_password" value="" placeholder="Password" id="password2" size="46">
                 <input type="hidden" id="login" value="Log in!" style="float : right">
               </form>
@@ -157,12 +158,13 @@ function sendToDml(type){
 
 var flag = true;
 
-var first_name = document.getElementById("first_name");
-var last_name = document.getElementById("last_name");
+// var first_name = document.getElementById("first_name");
+// var last_name = document.getElementById("last_name");
 var email_address = document.getElementById("email_address");
 var username = document.getElementById("member_username");
 var username2 = document.getElementById("username2");
 var password = document.getElementById("member_password");
+var password_confirm = document.getElementById("member_password_confirm");
 var password2 = document.getElementById("password2");
 var login = document.getElementById("login");
 
@@ -191,6 +193,7 @@ btn.onclick = function() {
   flag = false;
   sign_man();
   init();
+  memberCheck();
 }
 
 btn2.onclick = function(){
@@ -198,25 +201,29 @@ btn2.onclick = function(){
   flag = true;
   sign_man();
   init();
+  memberCheck();
 }
 
-btn3.onclick = function(){
-  google_logout();
-  kakao_logout();
-}
+// btn3.onclick = function(){
+//   google_logout();
+//   kakao_logout();
+// }
 
 function memform(){
-  first_name.setAttribute("type","text");
-  last_name.setAttribute("type","text");
-  email_address.setAttribute("type","text");
+  // first_name.setAttribute("type","text");
+  // last_name.setAttribute("type","text");
+  email_address.setAttribute("type","email");
   email_address.style.display = "block";
   email_address.style.margin = "10px 15px";
   username.setAttribute("type","text");
   username.style.display = "block";
   username.style.margin = "10px 15px";
-  password.setAttribute("type","text");
+  password.setAttribute("type","password");
   password.style.display = "block";
   password.style.margin = "10px 15px";
+  password_confirm.setAttribute("type","password");
+  password_confirm.style.display = "block";
+  password_confirm.style.margin = "10px 15px";
   signup_btn.setAttribute("type","submit");
   signup_btn.style.display = "block";
   signup_btn.style.margin = "10px 15px";
@@ -229,13 +236,14 @@ function sign_man(){
   if(flag){
     sign.value = "Sign up!";
     left_img.src = "./img/signup.png";
-    first_name.setAttribute("type","hidden");
-    last_name.setAttribute("type","hidden");
+    // first_name.setAttribute("type","hidden");
+    // last_name.setAttribute("type","hidden");
     email_address.setAttribute("type","hidden");
     username.setAttribute("type","hidden");
     password.setAttribute("type","hidden");
+    password_confirm.setAttribute("type","hidden");
     username2.setAttribute("type","text");
-    password2.setAttribute("type","text");
+    password2.setAttribute("type","password");
     password2.style.display = "block";
     password2.style.margin = "10px 15px";
     login.setAttribute("type","submit");
@@ -251,11 +259,12 @@ function sign_man(){
     left_img.src = "./img/signin.png";
     username2.setAttribute("type","hidden");
     password2.setAttribute("type","hidden");
-    first_name.setAttribute("type","hidden");
-    last_name.setAttribute("type","hidden");
+    // first_name.setAttribute("type","hidden");
+    // last_name.setAttribute("type","hidden");
     email_address.setAttribute("type","hidden");
     username.setAttribute("type","hidden");
     password.setAttribute("type","hidden");
+    password_confirm.setAttribute("type","hidden");
     login.setAttribute("type","hidden");
     last_td.innerText = "Already have an account?";
     by_span.innerText = "By creating an account, you agree to our terms and privacy policy.";
@@ -264,6 +273,46 @@ function sign_man(){
     flag=true;
   }
   modal.style.display = "block";
+}
+
+function memberCheck(){
+  $("#email_address").blur(function(event){
+    // var id = document.getElementById("id");
+    var emailPattern = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if(email_address.value.length===0){
+      console.log("이메일이 비어있음");
+      $("#email_address").css("border","2px solid #ff948a");
+      return false;
+    }
+    if(!emailPattern.test(email_address.value)){
+      console.log("이메일 형식이 잘못되었습니다.");
+      $("#email_address").css("border","2px solid #ff948a");
+      return false;
+    }
+    $.ajax({
+      url: './not_social.php?mode=email_ajax',
+      type: 'POST',
+      data: {id: $("#email_address").val()}
+    })
+    .done(function(result) {
+      console.log("success");
+      var json = $.parseJSON(result);
+      var output = json[0].ok;
+
+      if(parseInt(json[1].sign)){
+        $("#email_address").css("border","2px solid #ff948a");
+      }else{        
+        $("#email_address").css("border","2px solid #ff948a");
+      }
+
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+  });
 }
 
 // When the user clicks on <span> (x), close the modal
