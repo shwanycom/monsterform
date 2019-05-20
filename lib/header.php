@@ -19,16 +19,36 @@
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Get Free Goods&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Discussions&nbsp;&nbsp;</a></li>
+          <?php
+            if(isset($memeber_email)){
+              echo '<li class="header_logout_form_div1_1_ul_li"><a href="#">Free Bonus Credits&nbsp;&nbsp;</a></li>';
+            }
+          ?>
         </ul>
       </div>
         <div id="header_logout_form_div1_2">
           <?php
-          ?><ul id="header_logout_form_div1_2_ul">
-            <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>
-            <li class="header_logout_form_div1_2_ul_li">&nbsp;or&nbsp;</li>
-            <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn">Join Now</button></li>
-            <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn3">Sign out</button></li>
-          </ul>
+            if(isset($memeber_email)){
+              echo '<ul id="header_logout_form_div1_2_ul">
+                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div1"><div id="header_logout_form_div1_2_ul_li_div1_div"><button type="button" name="button">View Profile</button></div><img src="./img/profile.png" alt=""></div></a></li>
+                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div2"><img src="./img/notify.png" alt=""></div></a></li>
+                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div3"><img src="./img/message.png" alt=""></div></a></li>
+                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div4"><img src="./img/cart.png" alt=""></div></a></li>
+                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div5">'.$memeber_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON </div></a></li>
+              </ul>';
+            }
+            if(!isset($memeber_email)){
+              echo '
+              <ul id="header_logout_form_div1_2_ul">
+                <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>
+                <li class="header_logout_form_div1_2_ul_li">&nbsp;or&nbsp;</li>
+                <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn">Join Now</button></li>
+                <li class="header_logout_form_div1_2_ul_li"><a href="./lib/logout.php"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn3">Sign out</button></a> </li>
+              </ul>
+              ';
+            }
+          ?>
+
         </div>
       </div>
       <div id="header_logout_form_div2">
@@ -84,9 +104,15 @@
           </ul>
         </div>
         <div class="header_logout_form_div5">
+<<<<<<< HEAD:lib/header_logout_form.php
+          <div id="search_div">
+            <img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
+          </div>
+=======
             <div id="search_div">
               <img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
             </div>
+>>>>>>> 4098921f7d441ed30547bffb29a49d14466ef809:lib/header.php
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
                 <span id="header_logout_form_div2_3_span">All</span>

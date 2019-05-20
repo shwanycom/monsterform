@@ -242,7 +242,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                    }else{
                      date_default_timezone_set("Asia/Seoul");
                      $now = "20";
-                     $now .= date("y-m-d h:i:sa");
+                     $now .= date("y-m-d");
+                     // date("y-m-d h:i:sa");
                     echo '<form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
                     <input type="hidden" name="now" value="'.$now.'">
                     <table id="view_ripple_table">
