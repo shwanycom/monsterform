@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 function check_id() {
   window.open("check_id.php?mode=id_check&id=" + document.member_form.id.value,
     "IDcheck",
@@ -299,4 +297,3 @@ function check_ripple_discussion(){
 
   document.ripple_form.submit();
 }
->>>>>>> aa0e4797d003d11e1578592cdb6227034717f6f5
