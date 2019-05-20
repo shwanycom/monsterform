@@ -20,7 +20,7 @@
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Discussions&nbsp;&nbsp;</a></li>
           <?php
-            if(){
+            if(isset($member_email)){
               echo '<li class="header_logout_form_div1_1_ul_li"><a href="#">Free Bonus Credits&nbsp;&nbsp;</a></li>';
             }
           ?>
@@ -28,7 +28,7 @@
       </div>
         <div id="header_logout_form_div1_2">
           <?php
-            if(isset($memeber_email)){
+            if(isset($member_email)){
 
             }
             if(!isset($memeber_email)){

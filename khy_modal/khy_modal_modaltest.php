@@ -50,6 +50,9 @@ function kakao_login() {
     },
     fail: function(err) {
       alert(JSON.stringify(err));
+      success: function(authObj) {
+        location.href='http://localhost/monsterform/';
+      },
     }
   });
   sendToDml("kakao");
@@ -301,7 +304,7 @@ function memberCheck(){
 
       if(parseInt(json[1].sign)){
         $("#email_address").css("border","2px solid #ff948a");
-      }else{        
+      }else{
         $("#email_address").css("border","2px solid #ff948a");
       }
 
