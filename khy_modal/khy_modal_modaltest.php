@@ -101,7 +101,8 @@ function sendToDml(type){
       <div class="div_float" id="div_mem">
         <table>
           <tr>
-            <td colspan="3">Creat Your Free Account <span class="close">&times;</span></td>
+            <td colspan="3">Creat Your Free Account <span class="close">&times;</span>
+            <hr size="1" width="320"></td>            
           </tr>
           <tr class="gklogin_btn">
               <td colspan="3">
@@ -115,8 +116,9 @@ function sendToDml(type){
           </tr>
           <tr>
             <td colspan="3">
-              <!-- <hr size="18" noshade> OR  -->
-              <img width="100%" src="./img/or.png" alt="">
+              <hr size="1" width="150"> OR <hr size="1" width="150">
+
+              <!-- <img width="100%" src="./img/or.png" alt=""> -->
             </td>
           </tr>
           <tr>
@@ -125,13 +127,13 @@ function sendToDml(type){
                 <input type="hidden" name="member_firstname" value="" placeholder="First name" id="first_name" size="20">
                 <input type="hidden" name="member_lastname" value="" placeholder="Last name" id="last_name" size="20">
                 <input type="hidden" name="member_email_address" value="" placeholder="Email Address" id="email_address" size="46">
-                <input type="hidden" name="member_username" value="" placeholder="Username" id="member_username" size="46">
+                <input type="hidden" name="member_username" value="" placeholder="email" id="member_username" size="46">
                 <input type="hidden" name="member_password" value="" placeholder="Password" id="member_password" size="46">
                 <input type="hidden" id="signup_btn" value="Sign up" style="float : right">
               </form>
 
               <form name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
-                <input type="hidden" name="login_email" value="" placeholder="Username" id="username2" size="46">
+                <input type="hidden" name="login_email" value="" placeholder="email" id="username2" size="46">
                 <input type="hidden" name="login_password" value="" placeholder="Password" id="password2" size="46">
                 <input type="hidden" id="login" value="Log in!" style="float : right">
               </form>

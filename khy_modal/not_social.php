@@ -29,6 +29,7 @@ if($_GET["mode"]=="login"){
       $_SESSION['email'] = $row['email'];
       $_SESSION['username'] = $row['username'];
       $_SESSION['mon'] = $row['point_mon'];
+      $_SESSION['partner'] = $row['partner'];
       //echo "<script>alert('세션값 부여완료');</script>";
     }
   }
@@ -43,8 +44,8 @@ if($_GET["mode"]=="login"){
     $username = $_POST["member_username"];
     $password = $_POST["member_password"];
 
-    $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`)";
-    $sql.=" VALUES (null,'$email','$username','$password',0)";
+    $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`.`partner`)";
+    $sql.=" VALUES (null,'$email','$username','$password',0,null)";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
