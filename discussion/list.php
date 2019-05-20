@@ -541,24 +541,24 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 
         var div_mem = document.getElementById("div_mem");
         // Get the modal
-        var modal = document.getElementById("write_discussion_modal");
+        var modal1 = document.getElementById("write_discussion_modal");
 
         // Get the button that opens the modal
         var btn1 = document.getElementById("write_button");
 
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("write_discussion_close")[0];
+        var span1 = document.getElementsByClassName("write_discussion_close")[0];
 
         // When the user clicks the button, open the modal
         btn1.onclick = function() {
-          modal.style.display = "block";
+          modal1.style.display = "block";
           flag = false;
 
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-          modal.style.display = "none";
+        span1.onclick = function() {
+          modal1.style.display = "none";
         }
 
         </script>
@@ -566,6 +566,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <!--===============================섹션영역=================================== -->
         <?php
           include "../lib/footer_in_folder.php";
+          include "../khy_modal/login_modal.php";
          ?>
+
    </body>
  </html>

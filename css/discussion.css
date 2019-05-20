@@ -82,6 +82,7 @@
 }
 
 #view_main_table{
+  border-collapse: collapse;
   border: 1px solid #8ba753;
   width : 100%;
   text-align: left;
