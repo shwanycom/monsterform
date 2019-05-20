@@ -24,8 +24,9 @@ $q_search = mysqli_real_escape_string($conn, $search);
 $sql = "SELECT * from `products` where $find like '%$q_search%';";
 }else{
 $sql = "SELECT * from `products` order by num desc";
-
 }
+
+
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result);
 // 한 페이지에 보여지는 게시글수
@@ -101,9 +102,8 @@ $orderSQL = " ORDER BY created DESC ";
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" href="../css/photo.css">
-
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -146,7 +146,6 @@ $orderSQL = " ORDER BY created DESC ";
 	// include "../lib/header_logout_form_in_folder.php";
 	 ?>
   <div class="main_div">
-
     <div id="filter_div">
       <div class="filter_container">
         <div class="filter_container_div_1">
@@ -190,7 +189,8 @@ $orderSQL = " ORDER BY created DESC ";
           </ul>
         </div>
         <div class="switch_div">
-						<input class="apple-switch" type="checkbox">
+					<a href="fetch.php?mode=imglist">d</a>
+						<input class="switch_check" type="checkbox" value="certified">
           <span class="certified_span">Certified(<?=$total_count?>)</span>
         </div>
 
@@ -220,21 +220,22 @@ $orderSQL = " ORDER BY created DESC ";
                       <input type="text" style="width:40px;" name="maximum_range" id="maximum_range" class="form-control" value="<?php echo $maximum_range; ?>" />
                     </div>
                   </div>
-                  <br />
+                  <br/>
 
               </form>
             </div>
           </li>
           <hr>
-            <li class="header_logout_form_div2_3_ul_li_2"><label><input type="checkbox" /> check1</label></li>
-            <li class="header_logout_form_div2_3_ul_li_2"><label><input type="checkbox" /> check1</label> </li>
-            <li class="header_logout_form_div2_3_ul_li_2"><label><input type="checkbox" /> check1</label></li>
+            <li class="header_logout_form_div2_3_ul_li_2"><label><input type="checkbox" /> animal</label></li>
+            <li class="header_logout_form_div2_3_ul_li_2"><label><input type="checkbox" /> sports</label></li>
+            <li class="header_logout_form_div2_3_ul_li_2"><label><input type="checkbox" /> people</label></li>
           </ul>
           <input type="text" name="search" value="">
         </div>
     </div>
   </div>
 
+</form>
   <div class="list_container">
     <div class="info_div">
       asdasdf
@@ -242,7 +243,6 @@ $orderSQL = " ORDER BY created DESC ";
       <div id="load_product">
         <script>
           $(document).ready(function() {
-
             $("#price_range").slider({
               range: true,
               min: 1000,
@@ -259,7 +259,7 @@ $orderSQL = " ORDER BY created DESC ";
 
             function load_product(minimum_range, maximum_range) {
               $.ajax({
-                url: "add_list.php",
+                url: "fetch.php",
                 method: "POST",
                 data: {
                   minimum_range: minimum_range,
@@ -328,8 +328,10 @@ $orderSQL = " ORDER BY created DESC ";
           <h4 class="img_title"> Abstract</h4></a>
       </div>
     </div>
-
   </div>
+  <?php
+    // include "../lib/footer_in_folder.php";
+   ?>
 </body>
 
 </html>

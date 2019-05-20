@@ -334,15 +334,17 @@ h2{
 #gloginBtn {
   border: none;
   width: 280px;
-  height: 35px;
+  height: 40px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #kloginBtn {
   border: none;
   width: 280px;
-  height: 33px;
+  height: 40px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #div_mem table{
@@ -358,6 +360,13 @@ h2{
 hr{
   display: inline-block;
 }
+
+div#div_mem input{
+  border-radius: 5px;
+  outline: none;
+  height: 30px;
+}
+
 /* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {
   position: relative;

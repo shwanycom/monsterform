@@ -45,7 +45,7 @@ if($_GET["mode"]=="login"){
     $password = $_POST["member_password"];
 
     $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`.`partner`)";
-    $sql.=" VALUES (null,'$email','$username','$password',0,null)";
+    $sql.=" VALUES (null,'$email','$username','$password',0,'n')";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -53,5 +53,20 @@ if($_GET["mode"]=="login"){
   }
   mysqli_close($conn);
   Header("Location: ../index.php");
+}else if(isset($_GET["mode"]) && $_GET["mode"]=="email_ajax") {
+  $email = test_input($_POST["email_address"]);
+  if (!preg_match(
+    "/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/",$email)) {
+    echo '[{"ok":"이메일 형식이 올바르지 않습니다."},{"sign":"1"}]';
+    exit;
+  }
+  $sql = "SELECT * FROM `member` where `email` = '$email';";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  if($row){
+    echo '[{"ok":"아이디 중복됨"},{"sign":"'.$row.'"}]';
+  }else{
+    echo '[{"ok":"사용가능함"},{"sign":"'.$row.'"}]';
+  }
 }
 ?>
