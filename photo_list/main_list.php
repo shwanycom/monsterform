@@ -189,7 +189,7 @@ $orderSQL = " ORDER BY created DESC ";
           </ul>
         </div>
         <div class="switch_div">
-					<a href="fetch.php?mode=imglist">d</a>
+					<!-- <a href="fetch.php?mode=imglist">d</a> -->
 						<input class="switch_check" type="checkbox" value="certified">
           <span class="certified_span">Certified(<?=$total_count?>)</span>
         </div>
