@@ -259,7 +259,7 @@ $orderSQL = " ORDER BY created DESC ";
 
             function load_product(minimum_range, maximum_range) {
               $.ajax({
-                url: "fetch.php",
+                url: "add_list.php",
                 method: "POST",
                 data: {
                   minimum_range: minimum_range,
