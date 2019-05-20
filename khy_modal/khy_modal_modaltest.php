@@ -121,8 +121,6 @@ function sendToDml(type){
           <tr>
             <td colspan="3">
               <form class="member_info" action="./khy_modal/not_social.php?mode=join" method="post">
-                <!-- <input type="hidden" name="member_firstname" value="" placeholder="First name" id="first_name" size="20">
-                <input type="hidden" name="member_lastname" value="" placeholder="Last name" id="last_name" size="20"> -->
                 <input type="hidden" name="member_email_address" value="" placeholder="Email Address" id="email_address" size="46">
                 <input type="hidden" name="member_username" value="" placeholder="Username" id="member_username" size="46">
                 <input type="hidden" name="member_password" value="" placeholder="Password" id="member_password" size="46">
@@ -152,9 +150,7 @@ function sendToDml(type){
 
 
 <script>
-
 var flag = true;
-
 // var first_name = document.getElementById("first_name");
 // var last_name = document.getElementById("last_name");
 var email_address = document.getElementById("email_address");
@@ -190,7 +186,6 @@ btn.onclick = function() {
   flag = false;
   sign_man();
   init();
-  memberCheck();
 }
 
 btn2.onclick = function(){
@@ -198,17 +193,9 @@ btn2.onclick = function(){
   flag = true;
   sign_man();
   init();
-  memberCheck();
 }
 
-// mem_btn.onclick = function(){
-//   memberCheck();
-// }
 
-// btn3.onclick = function(){
-//   google_logout();
-//   kakao_logout();
-// }
 
 function memform(){
   // first_name.setAttribute("type","text");
@@ -229,6 +216,7 @@ function memform(){
   signup_btn.style.display = "block";
   signup_btn.style.margin = "10px 15px";
   mem_btn.setAttribute("type","hidden");
+  email_check();
 }
 
 function sign_man(){
@@ -276,7 +264,7 @@ function sign_man(){
   modal.style.display = "block";
 }
 
-function memberCheck(){
+function email_check(){
   $("#email_address").blur(function(event){
     // var id = document.getElementById("id");
     var emailPattern = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -293,9 +281,7 @@ function memberCheck(){
     $.ajax({
       url: './khy_modal/not_social.php?mode=email_ajax',
       type: 'POST',
-      data: {email: $("#email_address").val()},
-      error:function(request,status,error){
-        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+      data: {email: $("#email_address").val()}
     })
     .done(function(result) {
       console.log("success");
@@ -304,11 +290,11 @@ function memberCheck(){
       console.log(json[1].sign);
       if(parseInt(json[1].sign)){
         $("#email_address").css("border","2px solid #ff948a");
+        $("#email_address").attr("title","중복된 이메일입니다");
       }else{
-        $("#email_address").css("border","2px solid #e2e2e2");
-
+        $("#email_address").css("border","2px solid #cfcfcf");
+        $("#email_address").attr("title","사용 가능한 이메일입니다");
       }
-
     })
     .fail(function() {
       console.log("error");

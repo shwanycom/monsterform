@@ -478,6 +478,7 @@ hr{
 
 div#div_mem input{
   border-radius: 5px;
+  border: 2px solid #cfcfcf;
   outline: none;
   height: 30px;
 }
