@@ -23,11 +23,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "insert"){
     alert("내용과 제목을 입력하세요."); history.go(-1); </script>';
     exit;
   }
-<<<<<<< HEAD
-    $sql = "SELECT * from `member` where email='$email'";
-=======
     $sql = "SELECT * from `member` where email='$email';";
->>>>>>> 09ea7b5cc713872d9c6933f82e6d61b57c534f41
+
     $result = mysqli_query($conn, $sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -58,6 +55,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "insert"){
     mysqli_close($conn);
 
     echo '<script>location.href="./view.php?num='.$num.'";</script>';
+}else if(isset($_GET["mode"]) && $_GET["mode"] == "delete"){
+
 }
 
  ?>

@@ -19,6 +19,9 @@ function create_table($conn, $table_name){
               `password` varchar(100) DEFAULT NULL,
               `point_mon` int(11) NOT NULL DEFAULT '0',
               `partner` varchar(100) NOT NULL DEFAULT 'n',
+              `location` varchar(100) DEFAULT NULL,
+              `profession` varchar(100) DEFAULT NULL,
+              `use_mf` varchar(100) DEFAULT NULL,
               PRIMARY KEY (`no`),
               UNIQUE KEY `email_UNIQUE` (`email`)
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -93,6 +96,9 @@ function create_table($conn, $table_name){
                 `freegoods` varchar(100) NOT NULL DEFAULT 'n',
                 `hit` int(11) NOT NULL DEFAULT '0',
                 `sell_count` int(11) NOT NULL DEFAULT '0',
+                `big_data` varchar(100) NOT NULL,
+                `small_data` varchar(100) NOT NULL,
+                `hash_tag` varchar(100) NOT NULL,
                 `img_file_name1` varchar(100) NOT NULL,
                 `img_file_name2` varchar(100) NOT NULL,
                 `img_file_name3` varchar(100) NOT NULL,
