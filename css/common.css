@@ -110,7 +110,7 @@ section{
 
 .subheader_logout_form_div2_ul1_li_a { /* 서브 매뉴 속성 추가 */
   display: block;
-  width: 150px;
+  width: 180px;
   font-size: 20px;
 
 }
@@ -139,8 +139,8 @@ section{
   height: auto;
   position: absolute;
   left: 0;
-  top: 50px;
-  width: 550px;
+  top: 30px;
+  width: 600px;
   background-color: rgb(245,245,244,230);
 }
 
@@ -274,7 +274,7 @@ h2{
   padding: 20px;
   border: 1px solid #888;
   width: 760px;
-  height : 520px;
+  height : 550px;
 }
 
 /* The Close Button */
@@ -302,14 +302,14 @@ h2{
 #gloginBtn {
   border: none;
   width: 280px;
-  height: 45px;
+  height: 35px;
   cursor: pointer;
 }
 
 #kloginBtn {
   border: none;
   width: 280px;
-  height: 42px;
+  height: 33px;
   cursor: pointer;
 }
 
@@ -323,7 +323,10 @@ h2{
   text-align: center;
 }
 
-/* -------------search 창  css------------- */
+hr{
+  display: inline-block;
+}
+/* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {
   position: relative;
   height: 50px;

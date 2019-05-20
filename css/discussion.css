@@ -76,3 +76,27 @@
   padding-top: 7px;
   padding-bottom: 7px;
 }
+
+#page_num{
+  text-align: center;
+}
+
+#view_main_table{
+  border: 1px solid #8ba753;
+  width : 100%;
+  text-align: left;
+}
+
+#view_main_table th, td, tr{
+  border: 1px solid #8ba753;
+  text-align: left;
+}
+
+#view_ripple_table{
+  border: 1px solid #8ba753;
+  width : 100%;
+}
+
+#view_ripple_table th, td, tr{
+  border: 1px solid #8ba753;
+}
