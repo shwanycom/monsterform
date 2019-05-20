@@ -567,5 +567,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <?php
           include "../lib/footer_in_folder.php";
          ?>
+         <?php
+           include "../khy_modal/khy_modal_modaltest.php";
+          ?>
    </body>
  </html>
