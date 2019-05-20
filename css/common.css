@@ -85,24 +85,107 @@ section{
 .header_logout_form_div1_2_ul_li img{
   width:30px;
 }
-.header_logout_form_div1_2_ul_li div{
 
-}
+
 #header_logout_form_div1_2_ul_li_div1:hover #header_logout_form_div1_2_ul_li_div1_div{
   transition: 0.25s;
   margin-top:30px;
   background-color: rgb(245,245,244,230);
-  width:200px;
-  height:100px;
+  width:100px;
+  height:40px;
   border:1px solid lightgray;
   float: left;
   z-index: 1;
+  border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div1_div{
   position: absolute;
   width:0;
   height:0;
   overflow: hidden;
+}
+#header_logout_form_div1_2_ul_li_div1_div_button{
+  width:100%;
+  height:40px;
+  background-color: rgb(245,245,244,230);
+  color:rgba(139,167,83,118);
+  border-color:rgba(139,167,83,118);
+  border-radius: 5px;
+}
+#header_logout_form_div1_2_ul_li_div2:hover #header_logout_form_div1_2_ul_li_div2_div{
+  transition: 0.25s;
+  margin-top:30px;
+  background-color: rgb(245,245,244,230);
+  width:100px;
+  height:40px;
+  border:1px solid lightgray;
+  float: left;
+  z-index: 1;
+  border-radius: 5px;
+}
+#header_logout_form_div1_2_ul_li_div2_div{
+  position: absolute;
+  width:0;
+  height:0;
+  overflow: hidden;
+}
+#header_logout_form_div1_2_ul_li_div2_div_button{
+  width:100%;
+  height:40px;
+  background-color: rgb(245,245,244,230);
+  color:rgba(139,167,83,118);
+  border-color:rgba(139,167,83,118);
+  border-radius: 5px;
+}
+#header_logout_form_div1_2_ul_li_div3:hover #header_logout_form_div1_2_ul_li_div3_div{
+  transition: 0.25s;
+  margin-top:30px;
+  background-color: rgb(245,245,244,230);
+  width:100px;
+  height:40px;
+  border:1px solid lightgray;
+  float: left;
+  z-index: 1;
+  border-radius: 5px;
+}
+#header_logout_form_div1_2_ul_li_div3_div{
+  position: absolute;
+  width:0;
+  height:0;
+  overflow: hidden;
+}
+#header_logout_form_div1_2_ul_li_div3_div_button{
+  width:100%;
+  height:40px;
+  background-color: rgb(245,245,244,230);
+  color:rgba(139,167,83,118);
+  border-color:rgba(139,167,83,118);
+  border-radius: 5px;
+}
+#header_logout_form_div1_2_ul_li_div4:hover #header_logout_form_div1_2_ul_li_div4_div{
+  transition: 0.25s;
+  margin-top:30px;
+  background-color: rgb(245,245,244,230);
+  width:100px;
+  height:40px;
+  border:1px solid lightgray;
+  float: left;
+  z-index: 1;
+  border-radius: 5px;
+}
+#header_logout_form_div1_2_ul_li_div4_div{
+  position: absolute;
+  width:0;
+  height:0;
+  overflow: hidden;
+}
+#header_logout_form_div1_2_ul_li_div4_div_button{
+  width:100%;
+  height:40px;
+  background-color: rgb(245,245,244,230);
+  color:rgba(139,167,83,118);
+  border-color:rgba(139,167,83,118);
+  border-radius: 5px;
 }
 /* ----------------------------- */
 /* --------------------------------------------------------------------------------------------- */
