@@ -568,6 +568,12 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           include "../lib/footer_in_folder.php";
           include "../khy_modal/login_modal.php";
          ?>
+<<<<<<< HEAD
+         <?php
+           include "../khy_modal/khy_modal_modaltest.php";
+          ?>
+=======
 
+>>>>>>> 09ea7b5cc713872d9c6933f82e6d61b57c534f41
    </body>
  </html>

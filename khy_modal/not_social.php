@@ -31,6 +31,8 @@ if($_GET["mode"]=="login"){
       $_SESSION['mon'] = $row['point_mon'];
       $_SESSION['partner'] = $row['partner'];
       //echo "<script>alert('세션값 부여완료');</script>";
+    }else{
+      echo "<script>alert('패스워드가 일치하지 않습니다'); history.go(-1);</script>";
     }
   }
   mysqli_close($conn);

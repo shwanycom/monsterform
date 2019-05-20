@@ -88,7 +88,7 @@
   text-align: left;
 }
 
-#view_main_table th, td, tr{
+#view_main_table th, #view_ripple_table td, #view_ripple_table tr{
   border: 1px solid #8ba753;
   text-align: left;
 }
@@ -98,7 +98,7 @@
   width : 100%;
 }
 
-#view_ripple_table th, td, tr{
+#view_ripple_table th, #view_ripple_table td, #view_ripple_table tr{
   border: 1px solid #8ba753;
 }
 

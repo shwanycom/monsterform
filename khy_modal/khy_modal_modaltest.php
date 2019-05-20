@@ -35,7 +35,6 @@ function google_login(){
   gauth.disconnect();
   gauth.signIn().then(function(){
     console.log('gauth.signIn()');
-    // location.href='http://localhost/monsterform/';
     sendToDml("google");
   });
 }
@@ -46,16 +45,12 @@ function google_login(){
 function kakao_login() {
   Kakao.Auth.loginForm({
     success: function(authObj) {
-      location.href='http://localhost/monsterform/';
+      sendToDml("kakao");
     },
     fail: function(err) {
       alert(JSON.stringify(err));
-      success: function(authObj) {
-        location.href='http://localhost/monsterform/';
-      },
     }
   });
-  sendToDml("kakao");
 }
 </script>
 <!-- end of kakao login script -->
@@ -85,7 +80,6 @@ function sendToDml(type){
     });
   }
 }
-
 </script>
 
 </head>
