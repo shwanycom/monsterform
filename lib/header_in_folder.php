@@ -19,16 +19,29 @@
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Get Free Goods&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Discussions&nbsp;&nbsp;</a></li>
+          <?php
+            if(){
+              echo '<li class="header_logout_form_div1_1_ul_li"><a href="#">Free Bonus Credits&nbsp;&nbsp;</a></li>';
+            }
+          ?>
         </ul>
       </div>
         <div id="header_logout_form_div1_2">
           <?php
-          ?><ul id="header_logout_form_div1_2_ul">
-            <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>
-            <li class="header_logout_form_div1_2_ul_li">&nbsp;or&nbsp;</li>
-            <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn">Join Now</button></li>
-            <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn3">Sign out</button></li>
-          </ul>
+            if(isset($memeber_email)){
+
+            }
+            if(!isset($memeber_email)){
+              echo '
+              <ul id="header_logout_form_div1_2_ul">
+                <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>
+                <li class="header_logout_form_div1_2_ul_li">&nbsp;or&nbsp;</li>
+                <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn">Join Now</button></li>
+                <li class="header_logout_form_div1_2_ul_li"><a href="../lib/logout.php"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn3">Sign out</button></a> </li>
+              </ul>
+              ';
+            }
+          ?>
         </div>
       </div>
       <div id="header_logout_form_div2">

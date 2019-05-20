@@ -25,6 +25,7 @@ a:hover {
 }
 
 #header {
+
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -32,13 +33,23 @@ section{
   background: #f5f5f4;
 }
 /* --------------------------------------------------------------------------------------------- */
-#header_logout_form_div1 {}
+#header_logout_form_div1 {
+  border-bottom: 0.1px solid lightgray;
+  height:35px;
+  margin-top:5px;
+
+}
+#header_logout_form_div1 *{
+  /* border-bottom: 0.1px solid red; */
+
+}
 
 /* ----------------------------- */
 #header_logout_form_div1_1 {
   display: inline-block;
   width: 400px;
   font-size: 9pt;
+  vertical-align: middle;
 }
 
 #header_logout_form_div1_1_ul {
@@ -66,22 +77,43 @@ section{
   padding: 0;
   float: right;
 }
-
 .header_logout_form_div1_2_ul_li {
   list-style: none;
   display: inline-block;
+  vertical-align: middle;
 }
+.header_logout_form_div1_2_ul_li img{
+  width:30px;
+}
+.header_logout_form_div1_2_ul_li div{
 
+}
+#header_logout_form_div1_2_ul_li_div1:hover #header_logout_form_div1_2_ul_li_div1_div{
+  transition: 0.25s;
+  margin-top:30px;
+  background-color: rgb(245,245,244,230);
+  width:200px;
+  height:100px;
+  border:1px solid lightgray;
+  float: left;
+  z-index: 1;
+}
+#header_logout_form_div1_2_ul_li_div1_div{
+  position: absolute;
+  width:0;
+  height:0;
+  overflow: hidden;
+}
 /* ----------------------------- */
 /* --------------------------------------------------------------------------------------------- */
 #header_logout_form_div2 {
   height: 70px;
+  vertical-align: middle;
 }
 
 #header_logout_form_div2_1 {
   display: inline-block;
   float: left;
-
 }
 
 #header_logout_form_div2_2{
@@ -302,15 +334,17 @@ h2{
 #gloginBtn {
   border: none;
   width: 280px;
-  height: 35px;
+  height: 40px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #kloginBtn {
   border: none;
   width: 280px;
-  height: 33px;
+  height: 40px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #div_mem table{
@@ -326,6 +360,13 @@ h2{
 hr{
   display: inline-block;
 }
+
+div#div_mem input{
+  border-radius: 5px;
+  outline: none;
+  height: 30px;
+}
+
 /* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {
   position: relative;
@@ -370,14 +411,14 @@ hr{
 #search_text{
   text-decoration: none;
   border:0px;
-  background:white;
+  background-color:rgb(245,245,244,230);;
   float:right;
   margin-top:8px;
 }
 #search_text:focus{
   text-decoration: none;
   border:0px;
-  background:white;
+  background:rgb(245,245,244,230);
   outline: none;
 }
 #search_img{

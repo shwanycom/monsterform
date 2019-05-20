@@ -7,8 +7,8 @@
 }
 
 #discussion_div button{
-  background-color: #8ba753;
-  color : white;
+  background-color: rgba(139,167,83,118);
+  color : rgb(245,245,244,230);
 }
 
 .clear { clear:both; }
@@ -99,4 +99,38 @@
 
 #view_ripple_table th, td, tr{
   border: 1px solid #8ba753;
+}
+
+/* The Modal (background) */
+
+
+/* The Close Button */
+.write_discussion_close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.write_discussion_close:hover, .write_discussion_close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#write_form_table{
+  border-collapse: collapse;
+  border: 1px solid #8ba753;
+  width : 100%;
+  text-align: center;
+}
+
+#write_form_table tr, td{
+  text-align: center;
+}
+
+#write_save_button{
+  background-color: rgba(139,167,83,118);
+  color : rgb(245,245,244,230);
+  float: right;
 }

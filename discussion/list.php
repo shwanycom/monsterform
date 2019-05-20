@@ -444,10 +444,93 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <!--========================================글쓰기모달창======================================== -->
 
         <div id="write_discussion_modal" class="modal">
+          <?php
+          date_default_timezone_set("Asia/Seoul");
+          $now = date("Y-m-d(H:i)");
+          $selected = "selected";
+          $selected1 = $selected2 = $selected3 = $selected4 = "";
+          $write_mode = "insert";
+          $write_username = $_SESSION['username'];
+          $write_email = $_SESSION['email'];
 
+          if(isset($_GET["write_mode"]) && $_GET["write_mode"] == "update"){
+            $selected = "";
+            $write_mode = "update";
+            $write_num = test_input($_GET["write_num"]);
+            $write_q_num = mysqli_real_escape_string($conn, $write_num);
+
+            $write_sql = "SELECT * from `discussion` where num = '$write_q_num';";
+            $write_result = mysqli_query($conn, $write_sql);
+            if (!$write_result) {
+              die('Error: ' . mysqli_error($conn));
+            }
+            $write_row = mysqli_fetch_array($write_result);
+            $write_username = $write_row['username'];
+            $write_email = $write_row['email'];
+            $write_subject = htmlspecialchars($write_row['subject']);
+            $write_subject = str_replace("\n", "<br>", $write_subject);
+            $write_subject = str_replace(" ", "&nbsp;", $write_subject);
+            $write_content = htmlspecialchars($write_row['content']);
+            $write_content = str_replace("\n", "<br>", $write_content);
+            $write_content = str_replace(" ", "&nbsp;", $write_content);
+            $now = $write_row['regist_day'];
+            $write_topic = $write_row['topic'];
+            switch ($write_topic) {
+              case 'general':
+                $selected1 = "selected";
+                break;
+              case 'request':
+                $selected2 = "selected";
+                break;
+              case 'feedback':
+                $selected3 = "selected";
+                break;
+              case 'review':
+                $selected4 = "selected";
+                break;
+              default:
+                break;
+            }
+
+            mysqli_close($conn);
+          }
+
+           ?>
           <!-- Modal content -->
           <div class="modal-content">
             <span class="write_discussion_close">&times;</span>
+            <form name="discussion_write_form" action="./discussion_dml.php?mode=<?=$write_mode?>" method="post">
+              <input type="hidden" name="username" value="<?=$write_username?>">
+              <input type="hidden" name="email" value="<?=$write_email?>">
+              <table id="write_form_table">
+                <tr>
+                  <td>
+                    <select class="" name="topic" id="write_topic">
+                      <option value="none" <?=$selected?>>선택하세요</option>
+                      <option value="general" <?=$selected1?>>일반</option>
+                      <option value="request" <?=$selected2?>>제품요청</option>
+                      <option value="feedback" <?=$selected3?>>피드백요청</option>
+                      <option value="review" <?=$selected4?>>제품후기</option>
+                    </select>
+                  </td>
+                  <td>작성자 : <?=$write_username?>(<?=$write_email?>)</td>
+                  <td>
+                    날짜 : <?=$now?>
+                  </td>
+                </tr>
+                <tr>
+                  <td>제  목</td>
+                  <td colspan="2"><input type="text" name="subject" id="write_subject" value="" size="90"></td>
+                </tr>
+                <tr>
+                  <td>본  문</td>
+                  <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"></textarea></td>
+                </tr>
+              </table>
+              <a href="#"><input type="button" id="write_save_button" value="등록" onclick="check_write_discussion()"></a>
+            </form>
+
+
             <!-- <p>Some text in the Modal..</p> -->
           </div>
 
