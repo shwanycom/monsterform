@@ -167,9 +167,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
+                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>&nbsp;';
+                     echo '<a href="./write_edit_form.php"><button type="button" name="button">글작성</button></a>';
                    }
-                   echo '<a href="./list.php"><button type="button" name="button">목록</button></a>&nbsp;';
-                   echo '<a href="./write_edit_form.php"><button type="button" name="button">글작성</button></a>';
+                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>';
                    ?>
                  </div> <!-- end of button -->
               </div> <!-- end of list_content -->
@@ -238,12 +239,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>';
-                   }else{
                      date_default_timezone_set("Asia/Seoul");
                      $now = date("Y-m-d(H:i)");
                      // date("y-m-d h:i:sa");
-                    echo '<form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
+                    echo '<form name="ripple_form" action="discussion_dml.php?mode=insert_ripple" method="post">
                     <input type="hidden" name="now" value="'.$now.'">
                     <table id="view_ripple_table">
                       <tr>
@@ -257,6 +256,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     <a href="./list.php"><button type="button" name="button">목록</button></a>
                     &nbsp;<button type="submit" name="">등록</button></a>
                     </form>';
+                   }else{
+                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>';
                    }
 
 
@@ -279,6 +280,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <!--===============================섹션영역=================================== -->
         <?php
           include "../lib/footer_in_folder.php";
+          include "../khy_modal/login_modal.php";
          ?>
    </body>
  </html>
