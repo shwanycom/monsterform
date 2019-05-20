@@ -19,7 +19,7 @@
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="./discussion/list.php">Discussions&nbsp;&nbsp;</a></li>
           <?php
-            if(isset($memeber_email)){
+            if(isset($member_email)){
               echo '<li class="header_logout_form_div1_1_ul_li"><a href="#">Free Bonus Credits&nbsp;&nbsp;</a></li>';
             }
           ?>
@@ -27,7 +27,7 @@
       </div>
         <div id="header_logout_form_div1_2">
           <?php
-            if(isset($memeber_email)){
+            if(isset($member_email)){
               echo '<ul id="header_logout_form_div1_2_ul">
                 <li class="header_logout_form_div1_2_ul_li">
                   <a href="#">
@@ -53,7 +53,6 @@
                     </div>
                   </a>
                 </li>
-
                 <li class="header_logout_form_div1_2_ul_li">
                   <a href="#">
                     <div id="header_logout_form_div1_2_ul_li_div3">
@@ -66,7 +65,6 @@
                     </div>
                   </a>
                 </li>
-
                 <li class="header_logout_form_div1_2_ul_li">
                   <a href="#">
                     <div id="header_logout_form_div1_2_ul_li_div4">
@@ -79,17 +77,25 @@
                     </div>
                   </a>
                 </li>
-
                 <li class="header_logout_form_div1_2_ul_li">
                 <a href="#">
                 <div id="header_logout_form_div1_2_ul_li_div5">
-                '.$memeber_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON
+                '.$member_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON
+                <div id="header_logout_form_div1_2_ul_li_div5_div">
+                  <div><a href="#">&nbsp;Profile</a></div>
+                  <div><a href="#">&nbsp;Notification</a></div>
+                  <div><a href="#">&nbsp;Message</a></div>
+                  <div><a href="#">&nbsp;Collections</a></div>
+                  <div><a href="#">&nbsp;Cart</a></div>
+                  <div><a href="#">&nbsp;Setting</a></div>
+                  <div id="header_logout_form_div1_2_ul_li_div5_div_border_bottom"><a href="./lib/logout.php">&nbsp;Sign Out</a></div>
+                </div>
                 </div>
                 </a>
                 </li>
               </ul>';
             }
-            if(!isset($memeber_email)){
+            if(!isset($member_email)){
               echo '
               <ul id="header_logout_form_div1_2_ul">
                 <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>

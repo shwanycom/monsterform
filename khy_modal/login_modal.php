@@ -109,7 +109,7 @@ function sendToDml(type){
           </tr>
           <tr class="gklogin_btn">
               <td colspan="3">
-                <form id="gklogin_form" action="./khy_modal/khy_modal_dml.php" method="post">
+                <form id="gklogin_form" action="../khy_modal/khy_modal_dml.php" method="post">
                   <input type="hidden" id="email" name="email" >
                   <input type="hidden" id="username" name="username">
                 <button type="button" id="gloginBtn" onclick="google_login();">Google로 로그인</button><br><br>
@@ -126,7 +126,7 @@ function sendToDml(type){
           </tr>
           <tr>
             <td colspan="3">
-              <form class="member_info" action="./khy_modal/not_social.php?mode=join" method="post">
+              <form class="member_info" action="../khy_modal/not_social.php?mode=join" method="post">
                 <!-- <input type="hidden" name="member_firstname" value="" placeholder="First name" id="first_name" size="20">
                 <input type="hidden" name="member_lastname" value="" placeholder="Last name" id="last_name" size="20"> -->
                 <input type="hidden" name="member_email_address" value="" placeholder="Email Address" id="email_address" size="46">
@@ -136,7 +136,7 @@ function sendToDml(type){
                 <input type="hidden" id="signup_btn" value="Sign up" style="float : right">
               </form>
 
-              <form class="login_info" name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
+              <form class="login_info" name="login_info" action="../khy_modal/not_social.php?mode=login" method="post">
                 <input type="hidden" name="login_email" value="" placeholder="Email Address" id="username2" size="46">
                 <input type="hidden" name="login_password" value="" placeholder="Password" id="password2" size="46">
                 <input type="hidden" id="login" value="Log in!" style="float : right">
@@ -293,7 +293,7 @@ function memberCheck(){
       return false;
     }
     $.ajax({
-      url: './not_social.php?mode=email_ajax',
+      url: '../khy_modal/not_social.php?mode=email_ajax',
       type: 'POST',
       data: {id: $("#email_address").val()}
     })

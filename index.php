@@ -3,8 +3,8 @@ session_start();
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 $memeber_no = $_SESSION['no'];
-$memeber_email = $_SESSION['email'];
-$memeber_username = $_SESSION['username'];
+$member_email = $_SESSION['email'];
+$member_username = $_SESSION['username'];
 $member_mon = $_SESSION['mon'];
 $member_partner = $_SESSION['partner'];
 ?>
