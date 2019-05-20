@@ -5,7 +5,6 @@ include '../lib/db_connector.php';
 
 $content = $q_content = $q_userid = $sql = $result = "";
 $username = $_SESSION['username'];
-$email = $_SESSION['email'];
 if(empty($username)){
   echo '<script>
   alert("로그인 후 이용하세요."); history.go(-1); </script>';
