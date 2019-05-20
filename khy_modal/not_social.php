@@ -56,11 +56,10 @@ if($_GET["mode"]=="login"){
   mysqli_close($conn);
   Header("Location: ../index.php");
 }else if(isset($_GET["mode"]) && $_GET["mode"]=="email_ajax") {
-  $email = test_input($_POST["email_address"]);
+  $email=$_POST["email"];
   if (!preg_match(
     "/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/",$email)) {
     echo '[{"ok":"이메일 형식이 올바르지 않습니다."},{"sign":"1"}]';
-    exit;
   }
   $sql = "SELECT * FROM `member` where `email` = '$email';";
   $result = mysqli_query($conn, $sql);
