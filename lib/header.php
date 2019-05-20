@@ -104,15 +104,9 @@
           </ul>
         </div>
         <div class="header_logout_form_div5">
-<<<<<<< HEAD:lib/header_logout_form.php
           <div id="search_div">
             <img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
           </div>
-=======
-            <div id="search_div">
-              <img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
-            </div>
->>>>>>> 4098921f7d441ed30547bffb29a49d14466ef809:lib/header.php
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
                 <span id="header_logout_form_div2_3_span">All</span>
