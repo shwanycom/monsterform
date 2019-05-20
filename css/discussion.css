@@ -7,8 +7,41 @@
 }
 
 #discussion_div button{
-  background-color: rgba(139,167,83,118);
+  background-color: #ff6d70;
+  border : none;
+  width : 60px;
+  height : 20px;
   color : rgb(245,245,244,230);
+  opacity: 1;
+}
+
+#discussion_div button:hover{
+  background-color: #ff6d70;
+  border : none;
+  width : 60px;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 0.8;
+}
+
+#write_save_button{
+  background-color: #ff6d70;
+  border : none;
+  width : 60px;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 1;
+  float: right;
+}
+
+#write_save_button:hover{
+  background-color: #ff6d70;
+  border : none;
+  width : 60px;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 1;
+  float: right;
 }
 
 .clear { clear:both; }
@@ -36,9 +69,8 @@
   margin:0;
 }
 
-#list_item{
-  border-top: 1px solid #8ba753;
-  border-bottom: 1px solid #8ba753;
+#list_item ul{
+  border-bottom: 0.5px dotted #ff6d70;
   margin-top : 2px;
 }
 
@@ -68,11 +100,23 @@
 }
 
 #list_top_title ul li{
+  font-family: 'nina';
   list-style: none;
-  font-size: 18px;
-  font-style: italic;
+  font-size: 20pt;
   font-weight: bold;
-  background-color: #8ba753;
+  background-color: #ff6d70;
+  color: rgb(245,245,244,230);
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#topics_title{
+  font-family: 'nina';
+  list-style: none;
+  font-size: 20pt;
+  font-weight: bold;
+  background-color: #ff6d70;
+  color: rgb(245,245,244,230);
   padding-top: 7px;
   padding-bottom: 7px;
 }
@@ -82,24 +126,23 @@
 }
 
 #view_main_table{
-  border-collapse: collapse;
-  border: 1px solid #8ba753;
   width : 100%;
   text-align: left;
 }
 
-#view_main_table th, #view_ripple_table td, #view_ripple_table tr{
-  border: 1px solid #8ba753;
+#view_main_table th, #view_main_table td, #view_main_table tr{
+
   text-align: left;
 }
 
 #view_ripple_table{
-  border: 1px solid #8ba753;
+
   width : 100%;
 }
 
 #view_ripple_table th, #view_ripple_table td, #view_ripple_table tr{
-  border: 1px solid #8ba753;
+
+  text-align: left;
 }
 
 /* The Modal (background) */
@@ -126,12 +169,19 @@
   text-align: center;
 }
 
-#write_form_table tr, td{
+#write_form_table tr, #write_form_table td{
   text-align: center;
 }
 
-#write_save_button{
-  background-color: rgba(139,167,83,118);
-  color : rgb(245,245,244,230);
-  float: right;
+#id_td{
+  font-size : 8pt;
+}
+
+#date_td{
+  font-size : 10pt;
+}
+
+#subject_column{
+  font-size : 15pt;
+  font-weight: bold;
 }

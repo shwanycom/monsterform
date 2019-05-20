@@ -1,0 +1,58 @@
+#become_section{
+  text-align: center;
+  vertical-align: middle;
+}
+#become_section h1{
+  margin:0;
+  padding:0;
+  vertical-align: middle;
+}
+#become_section1{
+  height:450px;
+  padding-top:25px;
+}
+#become_section2, #become_section3, #become_section4, #become_section5{
+  padding-top:100px;
+}
+#become_section6{
+  padding-top:60px;
+}
+#become_section1{
+  border-top:1px solid lightgray;
+}
+#become_section button{
+  width:200px;
+  height:40px;
+  background-color: rgba(139,167,83,118);
+  color:rgb(245,245,244,230);
+  border:none;
+  border-radius: 5px;
+}
+#become_section button:hover{
+  width:200px;
+  height:40px;
+  background-color: rgba(151,177,98,129);
+  color:rgb(245,245,244,230);
+  border: none;
+  border-radius: 5px;
+}
+#become_section2{
+  background-image: url('../img/become_section2.png');
+  height: 170px;
+}
+#become_section3{
+  background-image: url('../img/become_section3.png');
+  height: 170px;
+}
+#become_section4{
+  background-image: url('../img/become_section4.png');
+  height: 170px;
+}
+#become_section5{
+  background-image: url('../img/become_section5.png');
+  height: 170px;
+}
+#become_section6{
+  background-color: color:rgb(245,245,244,230);
+  height: 170px;
+}
