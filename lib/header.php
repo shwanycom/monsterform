@@ -30,14 +30,63 @@
             if(isset($memeber_email)){
               echo '<ul id="header_logout_form_div1_2_ul">
                 <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div1">
+                      <div id="header_logout_form_div1_2_ul_li_div1_div">
+                        <button id="header_logout_form_div1_2_ul_li_div1_div_button" type="button" name="button">
+                        View Profile
+                        </button>
+                      </div>
+                    <img src="./img/profile.png" alt="">
+                    </div>
+                  </a>
+                </li>
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div2">
+                      <div id="header_logout_form_div1_2_ul_li_div2_div">
+                        <button id="header_logout_form_div1_2_ul_li_div2_div_button" type="button" name="button">
+                        Notification
+                        </button>
+                      </div>
+                      <img src="./img/notify.png" alt="">
+                    </div>
+                  </a>
+                </li>
+
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div3">
+                      <div id="header_logout_form_div1_2_ul_li_div3_div">
+                        <button id="header_logout_form_div1_2_ul_li_div3_div_button" type="button" name="button">
+                        Message
+                        </button>
+                      </div>
+                      <img src="./img/message.png" alt="">
+                    </div>
+                  </a>
+                </li>
+
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div4">
+                    <div id="header_logout_form_div1_2_ul_li_div4_div">
+                      <button id="header_logout_form_div1_2_ul_li_div4_div_button" type="button" name="button">
+                      Cart
+                      </button>
+                    </div>
+                      <img src="./img/cart.png" alt="">
+                    </div>
+                  </a>
+                </li>
+
+                <li class="header_logout_form_div1_2_ul_li">
                 <a href="#">
-                <div id="header_logout_form_div1_2_ul_li_div1">
-                <div id="header_logout_form_div1_2_ul_li_div1_div">
-                <button type="button" name="button">View Profile</button></div><img src="./img/profile.png" alt=""></div></a></li>
-                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div2"><img src="./img/notify.png" alt=""></div></a></li>
-                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div3"><img src="./img/message.png" alt=""></div></a></li>
-                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div4"><img src="./img/cart.png" alt=""></div></a></li>
-                <li class="header_logout_form_div1_2_ul_li"><a href="#"><div id="header_logout_form_div1_2_ul_li_div5">'.$memeber_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON </div></a></li>
+                <div id="header_logout_form_div1_2_ul_li_div5">
+                '.$memeber_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON
+                </div>
+                </a>
+                </li>
               </ul>';
             }
             if(!isset($memeber_email)){

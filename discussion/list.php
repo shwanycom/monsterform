@@ -544,30 +544,16 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         var modal = document.getElementById("write_discussion_modal");
 
         // Get the button that opens the modal
-        var btn = document.getElementById("write_button");
-        var btn2 = document.getElementById("myBtn2");
-        var btn3 = document.getElementById("myBtn3");
+        var btn1 = document.getElementById("write_button");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("write_discussion_close")[0];
 
         // When the user clicks the button, open the modal
-        btn.onclick = function() {
+        btn1.onclick = function() {
           modal.style.display = "block";
           flag = false;
 
-        }
-
-        btn2.onclick = function(){
-          modal.style.display = "block";
-          flag = true;
-          sign_man();
-          init();
-        }
-
-        btn3.onclick = function(){
-          google_logout();
-          kakao_logout();
         }
 
         // When the user clicks on <span> (x), close the modal
