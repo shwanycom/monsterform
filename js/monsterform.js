@@ -263,3 +263,26 @@ function modifyCheck(){
     });
   });
 }
+
+function check_write_discussion(){
+  var cate = document.getElementById("write_topic");
+  var write_subject = document.getElementById("write_subject");
+  var write_content = document.getElementById("write_content");
+
+  if(cate.value == 'none'){
+    alert("카테고리를 선택하세요."); cate.focus();
+    return false;
+  }
+
+  if(write_subject.value.length===0){
+    alert("제목이 비어있네요"); write_subject.focus(); write_subject.value="";
+    return false;
+  }
+
+  if(write_content.value.length===0){
+    alert("본문이 비어있네요"); write_content.focus(); write_content.value="";
+    return false;
+  }
+
+  document.discussion_write_form.submit();
+}
