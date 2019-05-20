@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- google api -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!-- kakao api -->
@@ -201,6 +201,10 @@ btn2.onclick = function(){
   memberCheck();
 }
 
+// mem_btn.onclick = function(){
+//   memberCheck();
+// }
+
 // btn3.onclick = function(){
 //   google_logout();
 //   kakao_logout();
@@ -287,19 +291,22 @@ function memberCheck(){
       return false;
     }
     $.ajax({
-      url: './not_social.php?mode=email_ajax',
+      url: './khy_modal/not_social.php?mode=email_ajax',
       type: 'POST',
-      data: {id: $("#email_address").val()}
+      data: {email: $("#email_address").val()},
+      error:function(request,status,error){
+        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
     })
     .done(function(result) {
       console.log("success");
       var json = $.parseJSON(result);
-      var output = json[0].ok;
-
+      console.log(json[0].ok);
+      console.log(json[1].sign);
       if(parseInt(json[1].sign)){
         $("#email_address").css("border","2px solid #ff948a");
       }else{
-        $("#email_address").css("border","2px solid #ff948a");
+        $("#email_address").css("border","2px solid #e2e2e2");
+
       }
 
     })

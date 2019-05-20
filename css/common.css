@@ -88,7 +88,7 @@ section{
 
 
 #header_logout_form_div1_2_ul_li_div1:hover #header_logout_form_div1_2_ul_li_div1_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -113,7 +113,7 @@ section{
   border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div2:hover #header_logout_form_div1_2_ul_li_div2_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -138,7 +138,7 @@ section{
   border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div3:hover #header_logout_form_div1_2_ul_li_div3_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -163,7 +163,7 @@ section{
   border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div4:hover #header_logout_form_div1_2_ul_li_div4_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -187,6 +187,38 @@ section{
   border-color:rgba(139,167,83,118);
   border-radius: 5px;
 }
+#header_logout_form_div1_2_ul_li_div5{
+  height:20px;
+}
+#header_logout_form_div1_2_ul_li_div5_div{
+  position: absolute;
+  height:0;
+  width:0;
+  overflow: hidden;
+  background-color: rgb(245,245,244,230);
+}
+
+#header_logout_form_div1_2_ul_li_div5:hover #header_logout_form_div1_2_ul_li_div5_div{
+
+  margin-top:2px;
+  width:150px;
+  height:130px;
+  z-index: 1;
+  border-radius: 5px;
+  font-size: 10pt;
+  border:1.5px solid;
+  border-color: rgba(139,167,83,118);
+}
+#header_logout_form_div1_2_ul_li_div5_div div:hover{
+  background-color: rgb(220,220,220,230);
+}
+#header_logout_form_div1_2_ul_li_div5_div_border_bottom{
+  border-top: 0.1px solid lightgray;
+  margin-top:3px;
+
+}
+
+
 /* ----------------------------- */
 /* --------------------------------------------------------------------------------------------- */
 #header_logout_form_div2 {
