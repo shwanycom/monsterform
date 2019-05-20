@@ -446,8 +446,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <div id="write_discussion_modal" class="modal">
           <?php
           date_default_timezone_set("Asia/Seoul");
-          $now = "20";
-          $now .= date("y-m-d");
+          $now = date("Y-m-d(H:i)");
           $selected = "selected";
           $selected1 = $selected2 = $selected3 = $selected4 = "";
           $write_mode = "insert";
@@ -503,7 +502,6 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <form name="discussion_write_form" action="./discussion_dml.php?mode=<?=$write_mode?>" method="post">
               <input type="hidden" name="username" value="<?=$write_username?>">
               <input type="hidden" name="email" value="<?=$write_email?>">
-              <input type="hidden" name="date" value="<?=$now?>">
               <table id="write_form_table">
                 <tr>
                   <td>
