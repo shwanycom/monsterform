@@ -2,13 +2,23 @@
 
 //fetch.php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/db_connector.php";
+session_start();
 
-$mode=$num="";
+$num="";
 $row = "";
+if(isset($_GET["mode"]) && $_GET["mode"] == "imglist"){
+	$query = "select * from products p inner join member m on p.username=m.username where m.partner='n';";
+	$result = mysqli_query($conn, $query);
+	$row = mysqli_num_rows($result);
+}else{
+	$query = "SELECT * FROM `products` WHERE price BETWEEN '".$_POST["minimum_range"]."' AND '".$_POST["maximum_range"]."' ORDER BY price ASC";
+	$result = mysqli_query($conn, $query);
+	$row = mysqli_num_rows($result);
 
-$query = "SELECT * FROM `products` WHERE price BETWEEN '".$_POST["minimum_range"]."' AND '".$_POST["maximum_range"]."' ORDER BY price ASC";
-$result = mysqli_query($conn, $query);
-$row = mysqli_num_rows($result);
+}
+
+
+
 
 
 $total_record = $row;
@@ -74,6 +84,7 @@ if($total_record > 0){
 					}
 
 		$output .= '
+
           <div class="img_div">
             <figure class="snip1368">
               <a href="#">
@@ -106,8 +117,6 @@ if($total_record > 0){
             </figure>
           </div>
 
-
-
 		';
 		  $number --;
 	}
@@ -125,3 +134,4 @@ $output .= '
 echo $output;
 
 ?>
+  <link rel="stylesheet" href="../css/photo.css">
