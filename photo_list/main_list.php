@@ -1,15 +1,40 @@
+
+
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/db_connector.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/create_table.php";
 
+
 // include "./lib/footer.php";
 // include "./khy_modal/khy_modal_modaltest.php";
+
+if(!isset($_POST["minimum_range"])){
+	$minimum_range=0;
+}
+if(!isset($_POST["maximum_range"])){
+	$maximum_range=4000;
+}
+if(isset($_POST["minimum_range"])){
+  $minimum_range=$_POST["minimum_range"];
+}
+if(isset($_POST["maximum_range"])){
+  $maximum_range=$_POST["maximum_range"];
+}
+
+if(isset($_GET["partner"])){
+  $check_partner=$_GET["partner"];
+}
+
+if(isset($_GET["handpicked"])){
+  $handpicked=$_GET["handpicked"];
+
+}
 
 create_table($conn, "products"); //가입인사 게시판 테이블 생성
 //**************************************************************
 $mode=$num="";
 $row = "";
-$sql=$result=$total_record=$total_page=$start="";
+$sql=$result=$total_record=$total_page=$start=$page="";
 //**************************************************************
 if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
  //subject, content, id
@@ -17,9 +42,48 @@ $search = test_input($_POST["search"]);
 $q_search = mysqli_real_escape_string($conn, $search);
 $sql = "SELECT * from `products` where subject like '%$q_search%';";
 }else{
-$sql = "SELECT * from `products` order by num desc";
+$sql = "SELECT * from `products` order by num asc";
 }
 
+
+if(isset($_GET["mode"]) && $_GET["mode"] == "animallist"){
+	$mode = $_GET["mode"];
+	if($handpicked=="total"){
+		$sql = "SELECT * from `products` order by num asc";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_num_rows($result);
+
+	}else if($handpicked=="animal"){
+		$mode = $_GET["mode"];
+		$sql = "select* from products where handpicked ='n';";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_num_rows($result);
+	}
+
+}
+
+if(isset($_GET["mode"]) && $_GET["mode"] == "imglist"){
+	if($check_partner=="n" ){
+		$mode = $_GET["mode"];
+		$sql = "SELECT * from `products` order by num asc";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_num_rows($result);
+
+	}else if($check_partner=="y"){
+		$mode = $_GET["mode"];
+		$sql = "select * from products p inner join member m on p.username=m.username where m.partner='n'and price BETWEEN '$minimum_range' AND '$maximum_range' ORDER BY price asc;";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_num_rows($result);
+	}
+	}
+
+
+
+if(empty($_GET['page'])){
+	$page=1;  // 첫째 페이지를 1페이지로 초기화
+}else{
+	$page = $_GET['page'];
+}
 
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result);
@@ -32,13 +96,6 @@ $pages_scale=3;
 
 // 전체 페이지 수 ($total_page) 계산
 $total_pages= ceil($total_record/$rows_scale);
-
-
-if(empty($_GET['page'])){
-		$page=1;  // 첫째 페이지를 1페이지로 초기화
-}else{
-		$page = $_GET['page'];
-}
 
 
 // 현재 페이지 시작 위치 = (페이지 당 글 수 * (현재페이지 -1))  [[ EX) 현재 페이지 2일 때 => 3*(2-1) = 3 ]]
@@ -66,12 +123,6 @@ $result1 = mysqli_query($conn, $sql2);
 $row= mysqli_fetch_array($result1); //전체 게시글의 수
 
 $total_count=$row[0];
-
-
-
-
-
-
 
 
 ?>
@@ -137,10 +188,7 @@ $total_count=$row[0];
 				}
 			});
 
-
-
-			function load_product(minimum_range, maximum_range)
-			{
+			function load_product(minimum_range, maximum_range){
 				$.ajax({
 					url:"add_list.php",
 					method:"POST",
@@ -156,34 +204,34 @@ $total_count=$row[0];
 
 
 		//파트너 클릭시
-						function checklilst() {
-							var checked = document.getElementById('switch_checkbox').checked;
-							if (checked == false) {
-								alert(checked);
-								$.ajax({
-									type: "POST",
-									url: "add_list.php?mode=imglist&partner=n",
-									success: function(data) {
-										$('#load_product').fadeIn('slow').html(data);
-									},
-									error: function() {
-										alert('it broke');
-									},
-								});
-							} else {
+				function checklilst() {
+					var checked = document.getElementById('switch_checkbox').checked;
+					if (checked == false) {
+						alert(checked);
+						$.ajax({
+							type: "POST",
+							url: "add_list.php?mode=imglist&partner=n",
+							success: function(data) {
+								$('#load_product').fadeIn('slow').html(data);
+							},
+							error: function() {
+								alert('it broke');
+							},
+						});
+					} else {
 
-								$.ajax({
-									type: "POST",
-									url: "add_list.php?mode=imglist&partner=y",
-									success: function(data) {
-										$('#load_product').fadeIn('slow').html(data);
-									},
-									error: function() {
-										alert('it broke');
-									},
-								});
-							}
-									}
+						$.ajax({
+							type: "POST",
+							url: "add_list.php?mode=imglist&partner=y",
+							success: function(data) {
+								$('#load_product').fadeIn('slow').html(data);
+							},
+							error: function() {
+								alert('it broke');
+							},
+						});
+					}
+				}
 							//animal클릭시
 				function checkfilter() {
 					var checked = document.getElementById('filter_checkbox').checked;
@@ -192,7 +240,7 @@ $total_count=$row[0];
 						alert(checked);
 						$.ajax({
 							type: "POST",
-							url: "add_list.php?mode=animallist&handpicked=total",
+							url: "fetch.php?mode=animallist&handpicked=total",
 							success: function(data) {
 								$('#load_product').fadeIn('slow').html(data);
 							},
@@ -204,7 +252,7 @@ $total_count=$row[0];
 						alert(checked);
 						$.ajax({
 							type: "POST",
-							url: "add_list.php?mode=animallist&handpicked=animal",
+							url: "fetch.php?mode=animallist&handpicked=animal",
 							success: function(data) {
 								$('#load_product').fadeIn('slow').html(data);
 							},
@@ -214,8 +262,6 @@ $total_count=$row[0];
 						});
 					}
 				}
-
-
 	</script>
 </head>
 
@@ -261,155 +307,173 @@ $total_count=$row[0];
 							<li class="filter_form_div2_3_ul_li_2" id="Sports" onclick="select('Sports')" value="Sports"><a href="#">Sports</a></li>
 							<li class="filter_form_div2_3_ul_li_2" id="Technology" onclick="select('Technology')" value="Technology"><a href="#">Technology</a></li>
 							<li class="filter_form_div2_3_ul_li_2" id="Transportation" onclick="select('Transportation')" value="Transportation"><a href="#">Transportation</a></li>
-
 						</ul>
 					</div>
 					<form name="board_form" action="main_list.php?mode=search" method="post" id="form_search">
 					<div class="switch_div">
-
 						<input class="switch_check" type="checkbox" id="switch_checkbox" onclick="checklilst()" value="certified" name="certified_check">
 						<span class="certified_span">Certified(<?=$total_record?>)</span>
 					</div>
 
-					<div class="filter_container_div_3">
-
-						<a href="#" id="filter_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
-							<span id="filter_form_div2_3_span">Filter</span>
-							<img id="change_img" src="../img/down.png" style="width:15px; height:15px;" />&nbsp;&nbsp;&nbsp;
-						</a>
-						<ul id="filter_form_div2_3_ul_3">
-							<li class="filter_form_div2_3_ul_li_2" name="find">
+						<div class="filter_container_div_3">
+							<a href="#" id="filter_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
+								<span id="filter_form_div2_3_span">Filter</span>
+								<img id="change_img" src="../img/down.png" style="width:15px; height:15px;" />&nbsp;&nbsp;&nbsp;
+							</a>
+							<ul id="filter_form_div2_3_ul_3">
+								<li class="filter_form_div2_3_ul_li_2" name="find">
 									<div class="container">
-
-												<div class="range_slider" style="width:400px ">
-												<div class="col-md-1">
-													<input type="text" style="width:40px;" name="minimum_range" id="minimum_range" class="form-control" value="<?php echo $minimum_range; ?>" />
-												</div>
-												<div class="col-md-8" style="">
-													<div id="price_range"></div>
-												</div>
-												<div class="col-md-2">
-													<input type="text" style="width:40px;" name="maximum_range" id="maximum_range" class="form-control" value="<?php echo $maximum_range; ?>" />
-												</div>
-											</div>
-
-
+										<div class="range_slider" style="width:400px ">
+										<div class="col-md-1">
+											<input type="text" style="width:40px;" name="minimum_range" id="minimum_range" class="form-control" value="<?php echo $minimum_range; ?>" />
+										</div>
+										<div class="col-md-8" style="">
+											<div id="price_range"></div>
+										</div>
+										<div class="col-md-2">
+											<input type="text" style="width:40px;" name="maximum_range" id="maximum_range" class="form-control" value="<?php echo $maximum_range; ?>" />
+										</div>
+									</div>
+								</div>
+						</li>
+						<hr>
+						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="filter_checkbox" onclick="checkfilter()" /> animal</label></li>
+						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" /> sports</label></li>
+						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" /> people</label></li>
+						</ul>
 					</div>
-					</li>
-					<hr>
-					<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="filter_checkbox" onclick="checkfilter()" /> animal</label></li>
-					<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" /> sports</label></li>
-					<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" /> people</label></li>
-					</ul>
-				</div>
 					<input type="text" name="search" value=""><button type="submit" name="button">search</button>
 				</form>
 			</div>
 		</div>
 		<div class="list_container">
 	<div id="load_product">
+		<?php
+		// 모든 레코드를 가져오는 로직
+		for ($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
+					 // 가져올 레코드 위치 이동
+							mysqli_data_seek($result, $i);
 
-			<?php
+					 // 하나 레코드 가져오기
+							$row = mysqli_fetch_array($result);
+							$item_num = $row["num"];
+							$item_name = $row["username"];
+							$price = $row["price"];
 
-			// 모든 레코드를 가져오는 로직
-			for ($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
-             // 가져올 레코드 위치 이동
-                mysqli_data_seek($result, $i);
-
-             // 하나 레코드 가져오기
-                $row = mysqli_fetch_array($result);
-                $item_num = $row["num"];
-                $item_name = $row["username"];
-                $price = $row["price"];
-
-                $img_copy_name0 = $row["img_file_copied1"];
+							$img_copy_name0 = $row["img_file_copied1"];
 
 
-                $item_hit = $row["hit"];
-                $item_date = $row["regist_day"];
-                $item_date = substr($item_date, 0, 10);
-                $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+							$item_hit = $row["hit"];
+							$item_date = $row["regist_day"];
+							$item_date = substr($item_date, 0, 10);
+							$item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
 
+							// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
+							if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
+									$main_img = $img_copy_name0;
 
+							}
+							?>
+							<div class="img_div">
+								<figure class="snip1368">
+									<a href="#">
+										<img id="main_img" src="./data/<?=$main_img?>" alt="sample30" />
+									</a>
+									<div class="hover_img">
+										<img src="../img/logo.png" alt="" style="width:50px; height:20px;">
+									</div>
+									<div class="meta">
+										<a href="#" class="free_download">
+											 $<?=$price?>
+										</a>
+										<strong class="title">
+											<a href="#" class="title_a">
+												<span class="title_a_span">  <?=$item_subject?></span> <!-- 제목 들어가는 부분 Bulb Layered Font -->
+											</a>
+										</strong>
+									</div>
+									<span class="subtitle">
+										by <a href="#" class="shop_name"> <?=$item_name?></a>
+										<!--user id가 들어가는 부분-->
+										in <a href="#" class="shop_name">Fonts</a>
+									</span>
+									<figcaption>
+										<div class="icons">
+											<a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
+											<a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
+										</div>
+									</figcaption>
+								</figure>
+							</div>
+	 <?php
+			$number --;
 
-
-
-                // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
-                if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
-                    $main_img = $img_copy_name0;
-
-                }
-                ?>
-								<div class="img_div">
-								            <figure class="snip1368">
-								              <a href="#">
-								                <img id="main_img" src="./data/<?=$main_img?>" alt="sample30" />
-								              </a>
-								              <div class="hover_img">
-								                <img src="../img/logo.png" alt="" style="width:50px; height:20px;">
-								              </div>
-								              <div class="meta">
-								                <a href="#" class="free_download">
-								                   $<?=$price?>
-								                </a>
-								                <strong class="title">
-								                  <a href="#" class="title_a">
-								                    <span class="title_a_span">  <?=$item_subject?></span> <!-- 제목 들어가는 부분 Bulb Layered Font -->
-								                  </a>
-								                </strong>
-								              </div>
-								              <span class="subtitle">
-								                by <a href="#" class="shop_name"> <?=$username?></a>
-								                <!--user id가 들어가는 부분-->
-								                in <a href="#" class="shop_name">Fonts</a>
-								              </span>
-								              <figcaption>
-								                <div class="icons">
-								                  <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
-								                  <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
-								                </div>
-								              </figcaption>
-								            </figure>
-								          </div>
-     <?php
-        $number --;
-
-    }
-    ?>
-	</div>
-		</div>
-		<div class="move_page">
-
-				<?php
-				#----------------이전블럭 존재시 링크------------------#
-				// 4>3 $pages_scale은 3인데 3보다 시작 페이지가
-				if($start_page >= $pages_scale){
-					$go_page= $start_page - $pages_scale;
-					echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
-				}
-				#----------------이전페이지 존재시 링크------------------#
-				if($pre_page){
-					echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
-				}
-				#--------------바로이동하는 페이지를 나열---------------#
-				for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
-					if($dest_page == $page){
-						echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
-					}else{
-						echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page'> $dest_page </a>";
+	}
+	?>
+	<div class="move_page">
+					<?php
+					if($start_page >= $pages_scale){
+						$go_page= $start_page - $pages_scale;
+						if(isset($_GET["handpicked"])){
+							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else if(isset($_GET["partner"])){
+							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'> &nbsp&nbsp....&nbsp&nbsp  </a>";
+						}
+						echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 					}
-				}
-				#----------------이전페이지 존재시 링크------------------#
-				if($next_page){
-					echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page'> NEXT</a>";
-				}
-				#---------------다음페이지를 링크------------------#
-				if($total_pages >= $start_page+ $pages_scale){
-					$go_page= $start_page+ $pages_scale;
-					echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp </a>";
-				}
-				?>
-			</div>
+
+					if($pre_page){
+						if(isset($_GET["handpicked"])){
+							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&handpicked=$handpicked'> PREV   </a>";
+						}else if(isset($_GET["partner"])){
+							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$check_partner'> PREV  </a>";
+						}
+						echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
+					}
+
+					for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
+						if($dest_page == $page){
+							echo "&nbsp;<b id='present_page'>$dest_page</b>&nbsp";
+						}else{
+							if(isset($_GET["handpicked"])){
+								echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page&handpicked=$handpicked'> $dest_page  </a>";
+							}else if(isset($_GET["partner"])){
+								echo "<a id='move_page' href='main_list.php?mode=$mode&page=$dest_page&partner=$check_partner'> $dest_page  </a>";
+							}else{
+								echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page'> $dest_page </a>";
+							}
+						}
+					}
+
+					if($next_page){
+						if(isset($_GET["handpicked"])){
+							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&handpicked=$handpicked'> NEXT</a>";
+						}else if(isset($_GET["partner"])){
+							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$check_partner'> NEXT  </a>";
+						}else{
+							echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page'> NEXT</a>";
+						}
+					}
+
+					if($total_pages >= $start_page+ $pages_scale){
+						$go_page= $start_page+ $pages_scale;
+						if(isset($_GET["handpicked"])){
+							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp </a>";
+						}else if(isset($_GET["partner"])){
+							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'>&nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else{
+							echo  "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp </a>";
+						}
+					}
+					?>
+				</div>
+		</div>
+
+</div>
+
+
+
+
 	  <div style="clear: both;"></div>
 		<div class="list_categories">
 			<h4 class="img_h4">Shop Photo Categories</h4>
