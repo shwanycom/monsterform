@@ -2,11 +2,14 @@
 session_start();
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
-$memeber_no = $_SESSION['no'];
-$member_email = $_SESSION['email'];
-$member_username = $_SESSION['username'];
-$member_mon = $_SESSION['mon'];
-$member_partner = $_SESSION['partner'];
+if(isset($_SESSION['no'])){
+  $memeber_no = $_SESSION['no'];
+  $member_email = $_SESSION['email'];
+  $member_username = $_SESSION['username'];
+  $member_mon = $_SESSION['mon'];
+  $member_partner = $_SESSION['partner'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -14,6 +17,7 @@ $member_partner = $_SESSION['partner'];
     <link rel="stylesheet" href="./css/common.css?ver=1">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/footer_2.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <title></title>
     <style media="screen">
     @font-face{
@@ -24,9 +28,6 @@ $member_partner = $_SESSION['partner'];
     	font-family:"nina"; /*폰트 패밀리 이름 추가*/
     	src:url("./font/nina.TTF"); /*폰트 파일 주소*/
     }
-    body{
-      margin: 0; padding: 0;
-    }
     </style>
   </head>
   <body>
@@ -35,6 +36,9 @@ $member_partner = $_SESSION['partner'];
     include "./lib/section_text_category.php";
     include "./lib/section_categories_section.php";
     include './lib/footer_2.php';
+    if(isset($_SESSION['username']) && $_SESSION['username']=='admin'){
+      include "./admin/admin_main.php";
+    }
     include "./lib/footer.php";
     ?>
     <?php

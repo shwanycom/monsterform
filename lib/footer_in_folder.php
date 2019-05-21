@@ -40,14 +40,13 @@
                 <li><a href="">About</a></li>
                 <li><a href="">Brand</a></li>
                 <li><a href="">Terms</a></li>
-                <li><a href="">Cookie Policy</a></li>
                 <li><a href="">Privacy Policy</a></li>
               </ul>
             </div>
         </div>
       </div>
       <div id="footer_div2">
-        <ul class="stats">
+        <ul id="footer_div2_ul">
           <li><?php echo "3,345,959"; ?>&nbsp;Products</li>
           <li><?php echo "5,922,327"; ?>&nbsp;Members</li>
           <li><?php echo "29,318"; ?>&nbsp;Shops</li>
