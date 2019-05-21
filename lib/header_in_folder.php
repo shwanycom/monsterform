@@ -11,14 +11,13 @@
     document.getElementById('change_img').src="../img/down.png";
   }
   </script>
-
 <header id="header">
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
         <ul id="header_logout_form_div1_1_ul">
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Get Free Goods&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="#">Become a Partner&nbsp;&nbsp;</a></li>
-          <li class="header_logout_form_div1_1_ul_li"><a href="#">Discussions&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="../discussion/list.php">Discussions&nbsp;&nbsp;</a></li>
           <?php
             if(isset($member_email)){
               echo '<li class="header_logout_form_div1_1_ul_li"><a href="#">Free Bonus Credits&nbsp;&nbsp;</a></li>';
@@ -29,9 +28,74 @@
         <div id="header_logout_form_div1_2">
           <?php
             if(isset($member_email)){
-
+              echo '<ul id="header_logout_form_div1_2_ul">
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div1">
+                      <div id="header_logout_form_div1_2_ul_li_div1_div">
+                        <button id="header_logout_form_div1_2_ul_li_div1_div_button" type="button" name="button">
+                        View Profile
+                        </button>
+                      </div>
+                    <img src="../img/profile.png" alt="">
+                    </div>
+                  </a>
+                </li>
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div2">
+                      <div id="header_logout_form_div1_2_ul_li_div2_div">
+                        <button id="header_logout_form_div1_2_ul_li_div2_div_button" type="button" name="button">
+                        Notification
+                        </button>
+                      </div>
+                      <img src="../img/notify.png" alt="">
+                    </div>
+                  </a>
+                </li>
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div3">
+                      <div id="header_logout_form_div1_2_ul_li_div3_div">
+                        <button id="header_logout_form_div1_2_ul_li_div3_div_button" type="button" name="button">
+                        Message
+                        </button>
+                      </div>
+                      <img src="../img/message.png" alt="">
+                    </div>
+                  </a>
+                </li>
+                <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div4">
+                    <div id="header_logout_form_div1_2_ul_li_div4_div">
+                      <button id="header_logout_form_div1_2_ul_li_div4_div_button" type="button" name="button">
+                      Cart
+                      </button>
+                    </div>
+                      <img src="../img/cart.png" alt="">
+                    </div>
+                  </a>
+                </li>
+                <li class="header_logout_form_div1_2_ul_li">
+                <a href="#">
+                <div id="header_logout_form_div1_2_ul_li_div5">
+                '.$member_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON
+                <div id="header_logout_form_div1_2_ul_li_div5_div">
+                  <div><a href="#">&nbsp;Profile</a></div>
+                  <div><a href="#">&nbsp;Notification</a></div>
+                  <div><a href="#">&nbsp;Message</a></div>
+                  <div><a href="#">&nbsp;Collections</a></div>
+                  <div><a href="#">&nbsp;Cart</a></div>
+                  <div><a href="#">&nbsp;Setting</a></div>
+                  <div id="header_logout_form_div1_2_ul_li_div5_div_border_bottom"><a href="../lib/logout.php">&nbsp;Sign Out</a></div>
+                </div>
+                </div>
+                </a>
+                </li>
+              </ul>';
             }
-            if(!isset($memeber_email)){
+            if(!isset($member_email)){
               echo '
               <ul id="header_logout_form_div1_2_ul">
                 <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>
@@ -42,11 +106,12 @@
               ';
             }
           ?>
+
         </div>
       </div>
       <div id="header_logout_form_div2">
         <div id="header_logout_form_div2_1">
-          <a href="#"><img id="logo" src="../img/logo.png" alt=""></a>
+          <a href="../index.php"><img id="logo" src="../img/logo.png" alt=""></a>
         </div>
         <div id="header_logout_form_div2_2">
           <ul>
@@ -97,7 +162,9 @@
           </ul>
         </div>
         <div class="header_logout_form_div5">
-            <label id="search_label"><img src="../img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search"> </label>
+          <div id="search_div">
+            <img src="../img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
+          </div>
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
                 <span id="header_logout_form_div2_3_span">All</span>

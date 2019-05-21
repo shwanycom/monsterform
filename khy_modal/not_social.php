@@ -1,7 +1,7 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/monsterform/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/monsterform/lib/create_table.php";
+include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/create_table.php";
 create_table($conn, 'member');
 
 if($_GET["mode"]=="login"){
@@ -31,10 +31,15 @@ if($_GET["mode"]=="login"){
       $_SESSION['mon'] = $row['point_mon'];
       $_SESSION['partner'] = $row['partner'];
       //echo "<script>alert('세션값 부여완료');</script>";
+    }else{
+      echo "<script>alert('패스워드가 일치하지 않습니다'); history.go(-1);</script>";
     }
   }
   mysqli_close($conn);
-  Header("Location: ../index.php");
+  ?>
+  <script>document.location.href="../index.php";</script>
+
+  <?php
 }elseif ($_GET["mode"]=="join") {
   if(!(isset($_POST["member_email_address"])&&isset($_POST["member_username"])&&isset($_POST["member_password"]))
      ||empty($_POST["member_email_address"])||empty($_POST["member_username"])||empty($_POST["member_password"])){
@@ -44,7 +49,7 @@ if($_GET["mode"]=="login"){
     $username = $_POST["member_username"];
     $password = $_POST["member_password"];
 
-    $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`.`partner`)";
+    $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`,`partner`)";
     $sql.=" VALUES (null,'$email','$username','$password',0,'n')";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
@@ -52,13 +57,15 @@ if($_GET["mode"]=="login"){
     }
   }
   mysqli_close($conn);
-  Header("Location: ../index.php");
+  echo "<script>
+          alert('Thankyou for join us!');
+          document.location.href='../index.php';
+        </script>";
 }else if(isset($_GET["mode"]) && $_GET["mode"]=="email_ajax") {
-  $email = test_input($_POST["email_address"]);
+  $email=$_POST["email"];
   if (!preg_match(
     "/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/",$email)) {
     echo '[{"ok":"이메일 형식이 올바르지 않습니다."},{"sign":"1"}]';
-    exit;
   }
   $sql = "SELECT * FROM `member` where `email` = '$email';";
   $result = mysqli_query($conn, $sql);

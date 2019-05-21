@@ -25,7 +25,6 @@ a:hover {
 }
 
 #header {
-
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -88,7 +87,7 @@ section{
 
 
 #header_logout_form_div1_2_ul_li_div1:hover #header_logout_form_div1_2_ul_li_div1_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -113,7 +112,7 @@ section{
   border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div2:hover #header_logout_form_div1_2_ul_li_div2_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -138,7 +137,7 @@ section{
   border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div3:hover #header_logout_form_div1_2_ul_li_div3_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -163,7 +162,7 @@ section{
   border-radius: 5px;
 }
 #header_logout_form_div1_2_ul_li_div4:hover #header_logout_form_div1_2_ul_li_div4_div{
-  transition: 0.25s;
+
   margin-top:30px;
   background-color: rgb(245,245,244,230);
   width:100px;
@@ -187,6 +186,38 @@ section{
   border-color:rgba(139,167,83,118);
   border-radius: 5px;
 }
+#header_logout_form_div1_2_ul_li_div5{
+  height:20px;
+}
+#header_logout_form_div1_2_ul_li_div5_div{
+  position: absolute;
+  height:0;
+  width:0;
+  overflow: hidden;
+  background-color: rgb(245,245,244,230);
+}
+
+#header_logout_form_div1_2_ul_li_div5:hover #header_logout_form_div1_2_ul_li_div5_div{
+
+  margin-top:2px;
+  width:150px;
+  height:130px;
+  z-index: 1;
+  border-radius: 5px;
+  font-size: 10pt;
+  border:1.5px solid;
+  border-color: rgba(139,167,83,118);
+}
+#header_logout_form_div1_2_ul_li_div5_div div:hover{
+  background-color: rgb(220,220,220,230);
+}
+#header_logout_form_div1_2_ul_li_div5_div_border_bottom{
+  border-top: 0.1px solid lightgray;
+  margin-top:3px;
+
+}
+
+
 /* ----------------------------- */
 /* --------------------------------------------------------------------------------------------- */
 #header_logout_form_div2 {
@@ -414,20 +445,24 @@ h2{
   /* border: 1px solid black; */
 }
 
-#gloginBtn {
-  border: none;
-  width: 280px;
-  height: 40px;
+
+div#div_mem button.modal_text{
+  border:none;
+  width : 90%;
+  height: 40px;  
   cursor: pointer;
   border-radius: 5px;
+  font-weight: bolder;
+}
+#gloginBtn {
+  background-color:#ff5e5e;
+  color: white;
+
 }
 
 #kloginBtn {
-  border: none;
-  width: 280px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
+  background-color: #f4e42c;
+  color:#0f0505;
 }
 
 #div_mem table{
@@ -446,9 +481,36 @@ hr{
 
 div#div_mem input{
   border-radius: 5px;
+  border: 2px solid #cfcfcf;
   outline: none;
   height: 30px;
 }
+div#div_mem input.modal_text{
+  width : 90%;
+  text-indent : 1.5em;
+}
+div#div_mem input.modal_btn{
+  width : 91%;
+  height: 35px;
+  padding: 1px 0px;
+  cursor: pointer;
+  border: 2px solid #67b57a;
+  background-color: #67b57a;
+  color : white;
+}
+div#div_mem input#email_btn{
+  margin-bottom: 20px;
+}
+div#div_mem input#sign{
+  float: left;
+  border: none;
+  background-color: white;
+  color : #67b57a;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+
 
 /* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {
