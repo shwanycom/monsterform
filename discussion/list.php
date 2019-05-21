@@ -522,7 +522,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <!--===============================섹션영역=================================== -->
         <?php
           include "../lib/footer_in_folder.php";
-          include "../khy_modal/login_modal.php";
+          include "../khy_modal/login_modal_in_folder.php";
          ?>
    </body>
  </html>
