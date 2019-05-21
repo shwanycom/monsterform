@@ -14,13 +14,13 @@
             Earn<br><br><br>
             <ul>
               <li><a href="">Open a Shop</a></li>
-              <li><a href="">Become a Partner</a></li>
+              <li><a href="./earn/becomeapartner.php">Become a Partner</a></li>
             </ul>
           </div>
           <div class="footer_div1_div2_div">
               Resources<br><br><br>
               <ul>
-                <li><a href="">Discussions</a></li>
+                <li><a href="./discussion/list.php">Discussions</a></li>
                 <li><a href="">Products</a></li>
                 <li><a href="">Collections</a></li>
                 <li><a href="">Help Center</a></li>

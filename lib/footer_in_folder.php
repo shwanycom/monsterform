@@ -3,7 +3,7 @@
     <div id="footer_main_margin_left_right">
       <div id="footer_div1">
         <div id="footer_div1_div1">
-          <a href="#"><img id="footer_logo"src="../img/logo.png"></a><br><br>
+          <a href="../index.php"><img id="footer_logo"src="../img/logo.png"></a><br><br>
             MonsterForm is the world’s marketplace for
             <br>design. Bring your creative projects to life with
             <br>ready-to-use design assets from independent
@@ -13,14 +13,14 @@
           <div class="footer_div1_div2_div">
             Earn<br><br><br>
             <ul>
-              <li><a href="">Open a Shop</a></li>
+              <li><a href="../earn/becomeapartner.php">Open a Shop</a></li>
               <li><a href="">Become a Partner</a></li>
             </ul>
           </div>
           <div class="footer_div1_div2_div">
               Resources<br><br><br>
               <ul>
-                <li><a href="">Discussions</a></li>
+                <li><a href="../discussion/list.php">Discussions</a></li>
                 <li><a href="">Products</a></li>
                 <li><a href="">Collections</a></li>
                 <li><a href="">Help Center</a></li>
