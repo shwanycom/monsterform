@@ -438,46 +438,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           $write_username = $_SESSION['username'];
           $write_email = $_SESSION['email'];
 
-          if(isset($_GET["write_mode"]) && $_GET["write_mode"] == "update"){
-            $selected = "";
-            $write_mode = "update";
-            $write_num = test_input($_GET["write_num"]);
-            $write_q_num = mysqli_real_escape_string($conn, $write_num);
-
-            $write_sql = "SELECT * from `discussion` where num = '$write_q_num';";
-            $write_result = mysqli_query($conn, $write_sql);
-            if (!$write_result) {
-              die('Error: ' . mysqli_error($conn));
-            }
-            $write_row = mysqli_fetch_array($write_result);
-            $write_username = $write_row['username'];
-            $write_email = $write_row['email'];
-            $write_subject = htmlspecialchars($write_row['subject']);
-            $write_subject = str_replace("\n", "<br>", $write_subject);
-            $write_subject = str_replace(" ", "&nbsp;", $write_subject);
-            $write_content = htmlspecialchars($write_row['content']);
-            $write_content = str_replace("\n", "<br>", $write_content);
-            $write_content = str_replace(" ", "&nbsp;", $write_content);
-            $now = $write_row['regist_day'];
-            $write_topic = $write_row['topic'];
-            switch ($write_topic) {
-              case 'general':
-                $selected1 = "selected";
-                break;
-              case 'request':
-                $selected2 = "selected";
-                break;
-              case 'feedback':
-                $selected3 = "selected";
-                break;
-              case 'review':
-                $selected4 = "selected";
-                break;
-              default:
-                break;
-            }
-            mysqli_close($conn);
-          }
+          mysqli_close($conn);
+          
            ?>
           <div class="modal-content">
             <span class="write_discussion_close">&times;</span>

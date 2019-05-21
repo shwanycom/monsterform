@@ -1,8 +1,8 @@
 <?php
-session_start();
 
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 
 create_table($conn, "discussion_ripple"); //가입인사 게시판 테이블 생성
 

@@ -1,7 +1,7 @@
 <?php
-session_start();
 
-include '../lib/db_connector.php';
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 
 $content = $q_content = $q_userid = $sql = $result = "";
 $username = $_SESSION['username'];
