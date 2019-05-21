@@ -18,6 +18,7 @@ function create_table($conn, $table_name){
               `username` varchar(100) NOT NULL,
               `password` varchar(100) DEFAULT NULL,
               `point_mon` int(11) NOT NULL DEFAULT '0',
+              `hwan_mon` int(11) NOT NULL DEFAULT '0',
               `partner` varchar(100) NOT NULL DEFAULT 'n',
               `location` varchar(100) DEFAULT NULL,
               `profession` varchar(100) DEFAULT NULL,

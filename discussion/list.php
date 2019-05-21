@@ -439,7 +439,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           $write_email = $_SESSION['email'];
 
           mysqli_close($conn);
-          
+
            ?>
           <div class="modal-content">
             <span class="write_discussion_close">&times;</span>

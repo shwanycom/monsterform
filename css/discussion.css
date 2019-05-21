@@ -164,12 +164,13 @@
 
 #write_form_table{
   border-collapse: collapse;
-  border: 1px solid #8ba753;
+  border: 1px solid #ff6d70;
   width : 100%;
   text-align: center;
 }
 
 #write_form_table tr, #write_form_table td{
+  border: 1px solid #ff6d70;
   text-align: center;
 }
 
