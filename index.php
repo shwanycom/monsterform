@@ -38,7 +38,7 @@ $member_partner = $_SESSION['partner'];
     include "./lib/footer.php";
     ?>
     <?php
-    include "./khy_modal/khy_modal_modaltest.php";
+    include "./khy_modal/index_login_modal.php";
     ?>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/monsterform/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/monsterform/lib/create_table.php";
+include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/create_table.php";
 create_table($conn, 'member');
 
 if($_GET["mode"]=="login"){
@@ -36,7 +36,10 @@ if($_GET["mode"]=="login"){
     }
   }
   mysqli_close($conn);
-  Header("Location: ../index.php");
+  ?>
+  <script>document.location.href="../index.php";</script>
+
+  <?php
 }elseif ($_GET["mode"]=="join") {
   if(!(isset($_POST["member_email_address"])&&isset($_POST["member_username"])&&isset($_POST["member_password"]))
      ||empty($_POST["member_email_address"])||empty($_POST["member_username"])||empty($_POST["member_password"])){
@@ -46,7 +49,7 @@ if($_GET["mode"]=="login"){
     $username = $_POST["member_username"];
     $password = $_POST["member_password"];
 
-    $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`.`partner`)";
+    $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`,`partner`)";
     $sql.=" VALUES (null,'$email','$username','$password',0,'n')";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
@@ -54,7 +57,10 @@ if($_GET["mode"]=="login"){
     }
   }
   mysqli_close($conn);
-  Header("Location: ../index.php");
+  echo "<script>
+          alert('Thankyou for join us!');
+          document.location.href='../index.php';
+        </script>";
 }else if(isset($_GET["mode"]) && $_GET["mode"]=="email_ajax") {
   $email=$_POST["email"];
   if (!preg_match(
