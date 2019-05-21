@@ -1,0 +1,40 @@
+#section_admin_main{
+  height:250px;
+  text-align: center;
+  background-color: rgb(245,245,244,230);
+  border-top:1px solid rgb(185, 185, 185);
+}
+#section_admin_main div{
+  margin-top:15px;
+}
+.admin_div img{
+  width:130px;
+  border-radius: 5px;
+}
+.admin_div img:hover{
+  box-shadow: 3px 3px 3px rgba(192, 192, 191, 180);
+  border-radius: 5px;
+  width:130px;
+}
+.admin_div a:link{
+  text-decoration: none;
+  color:rgb(127,127,127,120);
+}
+.admin_div a:visited{
+  text-decoration: none;
+  color:rgb(127,127,127,120);
+}
+.admin_div a{
+  height:300px;
+  margin-top:30px;
+  text-decoration: none;
+  color:rgb(127,127,127,120);
+}
+.admin_div a:hover{
+  text-decoration: none;
+  color:rgb(180,180,180,120);
+}
+.admin_div{
+  display: inline-block;
+  width:200px;
+}

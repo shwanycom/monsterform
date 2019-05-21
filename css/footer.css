@@ -12,7 +12,7 @@
   background-color: rgb(127,127,127,120);
   text-align: center;
   color: rgb(245,245,244,230);
-  height:320px;
+  height:350px;
 }
 #footer_main_margin_left_right{
   margin-left: 10%;
@@ -28,7 +28,7 @@
 #footer_div1_div1{
   display: inline-block;
   height:300px;
-  padding-top:80px;
+  padding-top:50px;
   text-align: left;
 }
 #footer_div1_div2{
@@ -54,7 +54,16 @@
 #footer_div1_div2_div5_id{
   padding-right: 0;
 }
+#footer_div2{
+  margin:0;
+  margin-top:10px;
+  padding:0;
+}
 #footer_div2 ul li{
   display: inline-block;
   list-style: none;
+}
+#footer_div2_ul{
+  margin:0px;
+  padding:0px;
 }

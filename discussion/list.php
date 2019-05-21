@@ -439,7 +439,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           $write_email = $_SESSION['email'];
 
           mysqli_close($conn);
-          
+
            ?>
           <div class="modal-content">
             <span class="write_discussion_close">&times;</span>
@@ -484,7 +484,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <!--===============================섹션영역=================================== -->
         <?php
           include "../lib/footer_in_folder.php";
-          include "../khy_modal/login_modal.php";
+          include "../khy_modal/login_modal_in_folder.php";
          ?>
    </body>
  </html>

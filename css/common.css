@@ -449,7 +449,7 @@ h2{
 div#div_mem button.modal_text{
   border:none;
   width : 90%;
-  height: 40px;  
+  height: 40px;
   cursor: pointer;
   border-radius: 5px;
   font-weight: bolder;
@@ -509,8 +509,6 @@ div#div_mem input#sign{
   font-size: 1.5em;
   cursor: pointer;
 }
-
-
 
 /* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {
