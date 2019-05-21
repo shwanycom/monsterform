@@ -445,20 +445,24 @@ h2{
   /* border: 1px solid black; */
 }
 
-#gloginBtn {
-  border: none;
-  width: 280px;
-  height: 40px;
+
+div#div_mem button.modal_text{
+  border:none;
+  width : 90%;
+  height: 40px;  
   cursor: pointer;
   border-radius: 5px;
+  font-weight: bolder;
+}
+#gloginBtn {
+  background-color:#ff5e5e;
+  color: white;
+
 }
 
 #kloginBtn {
-  border: none;
-  width: 280px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
+  background-color: #f4e42c;
+  color:#0f0505;
 }
 
 #div_mem table{
@@ -481,6 +485,32 @@ div#div_mem input{
   outline: none;
   height: 30px;
 }
+div#div_mem input.modal_text{
+  width : 90%;
+  text-indent : 1.5em;
+}
+div#div_mem input.modal_btn{
+  width : 91%;
+  height: 35px;
+  padding: 1px 0px;
+  cursor: pointer;
+  border: 2px solid #67b57a;
+  background-color: #67b57a;
+  color : white;
+}
+div#div_mem input#email_btn{
+  margin-bottom: 20px;
+}
+div#div_mem input#sign{
+  float: left;
+  border: none;
+  background-color: white;
+  color : #67b57a;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+
 
 /* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {

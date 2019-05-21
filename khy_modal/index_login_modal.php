@@ -106,8 +106,8 @@ function sendToDml(type){
                 <form id="gklogin_form" action="./khy_modal/khy_modal_dml.php" method="post">
                   <input type="hidden" id="email" name="email" >
                   <input type="hidden" id="username" name="username">
-                <button type="button" id="gloginBtn" onclick="google_login();">Google로 로그인</button><br><br>
-                <button type="button" id="kloginBtn" onclick="kakao_login();"/>카카오로 로그인</button>
+                <button type="button" id="gloginBtn" class="modal_text" onclick="google_login();">Google로 로그인</button><br><br>
+                <button type="button" id="kloginBtn" class="modal_text" onclick="kakao_login();"/>카카오로 로그인</button>
               </form>
               </td>
           </tr>
@@ -120,35 +120,32 @@ function sendToDml(type){
           </tr>
           <tr>
             <td colspan="3">
-              <form class="member_info" action="./khy_modal/not_social.php?mode=join" method="post">
-                <input type="hidden" name="member_email_address" value="" placeholder="Email Address" id="email_address" size="46">
-                <input type="hidden" name="member_username" value="" placeholder="Username" id="member_username" size="46">
-                <input type="hidden" name="member_password" value="" placeholder="Password" id="member_password" size="46">
-                <input type="hidden" name="member_password_confirm" value="" placeholder="Password Confirm" id="member_password_confirm" size="46">
-                <input type="hidden" id="signup_btn" value="Sign up" style="float : right">
+              <form class="member_info" id="member_info" action="./khy_modal/not_social.php?mode=join" method="post">
+                <input type="hidden" class="modal_text" name="member_email_address"  placeholder="Email Address" id="email_address">
+                <input type="hidden" class="modal_text" name="member_username"  placeholder="Username" id="member_username" >
+                <input type="hidden" class="modal_text" name="member_password"  placeholder="Password" id="member_password" >
+                <input type="hidden" class="modal_text" name="member_password_confirm"  placeholder="Password Confirm" id="member_password_confirm" >
+                <input type="hidden" class="modal_btn" id="signup_btn" value="Sign up">
               </form>
 
-              <form class="login_info" name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
-                <input type="hidden" name="login_email" value="" placeholder="Email Address" id="username2" size="46">
-                <input type="hidden" name="login_password" value="" placeholder="Password" id="password2" size="46">
-                <input type="hidden" id="login" value="Log in!" style="float : right">
+              <form class="login_info" id="login_info" name="login_info" action="./khy_modal/not_social.php?mode=login" method="post">
+                <input type="hidden" class="modal_text" name="login_email" placeholder="Email Address" id="username2" >
+                <input type="hidden" class="modal_text" name="login_password" placeholder="Password" id="password2" >
+                <input type="hidden" class="modal_btn" id="login" value="Log in!">
               </form>
-              <input type="button" name="button" id="email_btn" value="Continue with E-mail" onclick="memform()">
-              <br><br>
+              <input type="button" class="modal_btn" name="button" id="email_btn" value="Continue with E-mail" onclick="memform()" >
+              <br>
               <span id="by_span">By creating an account, you agree to our terms and privacy policy.<span>
             </td>
           </tr>
-          <tr>
+          <tr id="last_tr">
             <td colspan="2" id="last_td">Already have an account?</td><td><input type="button" id="sign" value="Sign in!" onclick="sign_man()"></td>
           </tr>
         </table>
     </div>
     <!-- <p>Some text in the Modal..</p> -->
   </div>
-
 </div>
-
-
 <script>
 var flag = true;
 // var first_name = document.getElementById("first_name");
@@ -180,6 +177,13 @@ var btn3 = document.getElementById("myBtn3");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+</script>
+
+<?php  include $_SERVER["DOCUMENT_ROOT"]."./monsterform/khy_modal/check_input.php"; ?>
+
+<script>
+
+
 // When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
@@ -193,6 +197,14 @@ btn2.onclick = function(){
   flag = true;
   sign_man();
   init();
+}
+
+signup_btn.onclick = function(){
+  check_input();
+}
+
+login.onclick = function(){
+  check_login();
 }
 
 
@@ -212,11 +224,10 @@ function memform(){
   password_confirm.setAttribute("type","password");
   password_confirm.style.display = "block";
   password_confirm.style.margin = "10px 15px";
-  signup_btn.setAttribute("type","submit");
+  signup_btn.setAttribute("type","button");
   signup_btn.style.display = "block";
   signup_btn.style.margin = "10px 15px";
   mem_btn.setAttribute("type","hidden");
-  email_check();
 }
 
 function sign_man(){
@@ -235,7 +246,7 @@ function sign_man(){
     password2.setAttribute("type","password");
     password2.style.display = "block";
     password2.style.margin = "10px 15px";
-    login.setAttribute("type","submit");
+    login.setAttribute("type","button");
     login.style.display = "block";
     login.style.margin = "10px 15px";
     last_td.innerText = "New to Monster Form?";
@@ -248,8 +259,6 @@ function sign_man(){
     left_img.src = "./img/signin.png";
     username2.setAttribute("type","hidden");
     password2.setAttribute("type","hidden");
-    // first_name.setAttribute("type","hidden");
-    // last_name.setAttribute("type","hidden");
     email_address.setAttribute("type","hidden");
     username.setAttribute("type","hidden");
     password.setAttribute("type","hidden");
@@ -262,47 +271,6 @@ function sign_man(){
     flag=true;
   }
   modal.style.display = "block";
-}
-
-function email_check(){
-  $("#email_address").blur(function(event){
-    // var id = document.getElementById("id");
-    var emailPattern = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    if(email_address.value.length===0){
-      console.log("이메일이 비어있음");
-      $("#email_address").css("border","2px solid #ff948a");
-      return false;
-    }
-    if(!emailPattern.test(email_address.value)){
-      console.log("이메일 형식이 잘못되었습니다.");
-      $("#email_address").css("border","2px solid #ff948a");
-      return false;
-    }
-    $.ajax({
-      url: './khy_modal/not_social.php?mode=email_ajax',
-      type: 'POST',
-      data: {email: $("#email_address").val()}
-    })
-    .done(function(result) {
-      console.log("success");
-      var json = $.parseJSON(result);
-      console.log(json[0].ok);
-      console.log(json[1].sign);
-      if(parseInt(json[1].sign)){
-        $("#email_address").css("border","2px solid #ff948a");
-        $("#email_address").attr("title","중복된 이메일입니다");
-      }else{
-        $("#email_address").css("border","2px solid #cfcfcf");
-        $("#email_address").attr("title","사용 가능한 이메일입니다");
-      }
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-  });
 }
 
 // When the user clicks on <span> (x), close the modal
