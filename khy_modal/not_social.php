@@ -30,7 +30,7 @@ if($_GET["mode"]=="login"){
       $_SESSION['username'] = $row['username'];
       $_SESSION['mon'] = $row['point_mon'];
       $_SESSION['partner'] = $row['partner'];
-      //echo "<script>alert('세션값 부여완료');</script>";
+      echo "<script>alert('세션값 부여완료');</script>";
     }else{
       echo "<script>alert('패스워드가 일치하지 않습니다'); history.go(-1);</script>";
     }
@@ -63,17 +63,28 @@ if($_GET["mode"]=="login"){
         </script>";
 }else if(isset($_GET["mode"]) && $_GET["mode"]=="email_ajax") {
   $email=$_POST["email"];
-  if (!preg_match(
-    "/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/",$email)) {
-    echo '[{"ok":"이메일 형식이 올바르지 않습니다."},{"sign":"1"}]';
-  }
   $sql = "SELECT * FROM `member` where `email` = '$email';";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_num_rows($result);
   if($row){
-    echo '[{"ok":"아이디 중복됨"},{"sign":"'.$row.'"}]';
+    echo '[{"ok":"디비에 있는 메일"},{"sign":"'.$row.'"}]';
   }else{
-    echo '[{"ok":"사용가능함"},{"sign":"'.$row.'"}]';
+    echo '[{"ok":"디비에 없는 메일"},{"sign":"'.$row.'"}]';
+  }
+}else if(isset($_GET["mode"]) && $_GET["mode"]=="pw_ajax") {
+  $email=$_POST["email"];
+  $password=$_POST["password"];
+  if (!preg_match(
+    "/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/",$email)) {
+    echo '[{"ok":"이메일 형식이 올바르지 않습니다."},{"sign":"1"}]';
+  }
+  $sql = "SELECT * FROM `member` where `email` = '$email'&&`password` = '$password';";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  if($row){
+    echo '[{"ok":"아이디와 비밀번호 일치"},{"sign":"'.$row.'"}]';
+  }else{
+    echo '[{"ok":"아이디와 비밀번호 불일치"},{"sign":"'.$row.'"}]';
   }
 }
 ?>

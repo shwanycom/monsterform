@@ -106,8 +106,8 @@ function sendToDml(type){
                 <form id="gklogin_form" action="./khy_modal/khy_modal_dml.php" method="post">
                   <input type="hidden" id="email" name="email" >
                   <input type="hidden" id="username" name="username">
-                <button type="button" id="gloginBtn" class="modal_text" onclick="google_login();">Google로 로그인</button><br><br>
-                <button type="button" id="kloginBtn" class="modal_text" onclick="kakao_login();"/>카카오로 로그인</button>
+                <button type="button" id="gloginBtn" class="modal_text" onclick="google_login();"></button><br><br>
+                <button type="button" id="kloginBtn" class="modal_text" onclick="kakao_login();"/></button>
               </form>
               </td>
           </tr>
@@ -148,8 +148,7 @@ function sendToDml(type){
 </div>
 <script>
 var flag = true;
-// var first_name = document.getElementById("first_name");
-// var last_name = document.getElementById("last_name");
+var gloginBtn = document.getElementById("gloginBtn");
 var email_address = document.getElementById("email_address");
 var username = document.getElementById("member_username");
 var username2 = document.getElementById("username2");
@@ -207,11 +206,7 @@ login.onclick = function(){
   check_login();
 }
 
-
-
 function memform(){
-  // first_name.setAttribute("type","text");
-  // last_name.setAttribute("type","text");
   email_address.setAttribute("type","email");
   email_address.style.display = "block";
   email_address.style.margin = "10px 15px";
@@ -234,10 +229,11 @@ function sign_man(){
   var sign = document.getElementById("sign");
   var left_img = document.getElementById("left_img");
   if(flag){
+    //로그인모드
+    $("#gloginBtn").html("Sign in using Google");
+    $("#kloginBtn").html("Sign in using Kakao");
     sign.value = "Sign up!";
     left_img.src = "./img/signup.png";
-    // first_name.setAttribute("type","hidden");
-    // last_name.setAttribute("type","hidden");
     email_address.setAttribute("type","hidden");
     username.setAttribute("type","hidden");
     password.setAttribute("type","hidden");
@@ -253,8 +249,12 @@ function sign_man(){
     by_span.innerText = "";
     mem_btn.setAttribute("type","hidden");
     signup_btn.setAttribute("type","hidden");
+    reset_member_form();
     flag=false;
   }else{
+    //회원가입모드
+    $("#gloginBtn").html("Sign up using Google");
+    $("#kloginBtn").html("Sign up using Kakao");    
     sign.value="Sign in!";
     left_img.src = "./img/signin.png";
     username2.setAttribute("type","hidden");
@@ -268,6 +268,7 @@ function sign_man(){
     by_span.innerText = "By creating an account, you agree to our terms and privacy policy.";
     mem_btn.setAttribute("type","button");
     signup_btn.setAttribute("type","hidden");
+    reset_member_form();
     flag=true;
   }
   modal.style.display = "block";
@@ -275,12 +276,16 @@ function sign_man(){
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
+  reset_member_form();
+  reset_login_form();
   modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
+    reset_member_form();
+    reset_login_form();
     modal.style.display = "none";
   }
 }

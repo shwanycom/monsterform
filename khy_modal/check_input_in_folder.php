@@ -12,7 +12,7 @@ $("#email_address").blur(function(event){
    return false;
   }else{
     $.ajax({
-      url: './khy_modal/not_social.php?mode=email_ajax',
+      url: '../khy_modal/not_social.php?mode=email_ajax',
       type: 'POST',
       data: {email: $("#email_address").val()}
     })
@@ -117,7 +117,7 @@ function check_login(){
       return false;
     }else{
       $.ajax({
-        url: './khy_modal/not_social.php?mode=email_ajax',
+        url: '../khy_modal/not_social.php?mode=email_ajax',
         type: 'POST',
         data: {email: $("#username2").val()}
       })
@@ -148,7 +148,7 @@ function check_login(){
       return false;
     }else{
       $.ajax({
-        url: './khy_modal/not_social.php?mode=pw_ajax',
+        url: '../khy_modal/not_social.php?mode=pw_ajax',
         type: 'POST',
         data: {email: $("#username2").val(),password: $("#password2").val()}
       })
