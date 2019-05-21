@@ -111,7 +111,7 @@
       </div>
       <div id="header_logout_form_div2">
         <div id="header_logout_form_div2_1">
-          <a href="#"><img id="logo" src="../img/logo.png" alt=""></a>
+          <a href="../index.php"><img id="logo" src="../img/logo.png" alt=""></a>
         </div>
         <div id="header_logout_form_div2_2">
           <ul>
