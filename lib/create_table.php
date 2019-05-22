@@ -23,6 +23,8 @@ function create_table($conn, $table_name){
               `location` varchar(100) DEFAULT NULL,
               `profession` varchar(100) DEFAULT NULL,
               `use_mf` varchar(100) DEFAULT NULL,
+              `image_named` varchar(100) DEFAULT NULL,
+              `image_copied` varchar(100) DEFAULT NULL,
               PRIMARY KEY (`no`),
               UNIQUE KEY `email_UNIQUE` (`email`)
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
