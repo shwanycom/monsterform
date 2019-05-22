@@ -1,0 +1,154 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+#member_profile{
+  margin-right : 20%;
+  margin-left : 20%;
+  border : 1px solid red;
+  width : auto;
+  height: 100vh;
+}
+
+#member_profile_left{
+  /* border : 1px solid red; */
+  width : 70%;
+  height : 100%;
+  float: left;
+  margin : 0;
+  padding: 0;
+}
+
+#member_profile_left ul{
+  margin : 0;
+  padding: 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+#member_profile_left ul li{
+  list-style: none;
+  display: inline-block;
+}
+
+#member_profile_right{
+  width : 28%;
+  height : 100%;
+  float:right;
+  margin : 0;
+  padding: 0;
+}
+
+#member_profile_right table{
+  border-collapse: collapse;
+  border: 1px solid #dddddd;
+  padding : 0;
+  width : 100%;
+}
+
+#member_profile_right tr, #member_profile_right td{
+  padding: 5px;
+  text-align: center;
+}
+
+#title{
+  font-size : 22pt;
+  font-weight: bold;
+}
+
+.clear{
+  clear: both;
+}
+
+#spe_tr1 td{
+  border : 1px solid #dddddd;
+  font-weight: bold;
+}
+
+#member_profile_menu ul{
+  margin : 0;
+  padding: 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+#member_profile_menu ul li{
+  list-style: none;
+  display: inline-block;
+}
+
+#member_profile_info{
+  margin-right : 20%;
+  margin-left : 20%;
+}
+
+#member_profile_info ul{
+  margin : 0;
+  padding: 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+#member_profile_info ul li{
+  list-style: none;
+  display: inline-block;
+}
+
+#profile_image_div{
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 100px;
+  background-color: #dddddd;
+}
+
+#profile_image_div_left{
+  /* border : 1px solid red; */
+  width : 17%;
+  float: left;
+  margin-top : 10px;
+  margin-left : 10px;
+  padding: 0;
+  display: inline;
+}
+
+#profile_image_div_right{
+  width : 50%;
+  height : 100%;
+  float:left;
+  margin-top : 10px;
+
+  padding: 0;
+}
+
+#profile_image_div_right label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #5cb85c;
+  cursor: pointer;
+  border: 1px solid #4cae4c;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+#profile_image_div_right label:hover {
+  background-color: #6ed36e;
+}
+
+#profile_image_div_right label:active {
+  background-color: #367c36;
+}
+
+#profile_image_div_right input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
