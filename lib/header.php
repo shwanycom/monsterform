@@ -34,10 +34,10 @@
                     <div id="header_logout_form_div1_2_ul_li_div1">
                       <div id="header_logout_form_div1_2_ul_li_div1_div">
                         <button id="header_logout_form_div1_2_ul_li_div1_div_button" type="button" name="button">
-                        View Profile
+                        Like
                         </button>
                       </div>
-                    <img src="./img/profile.png" alt="">
+                    <img src="./img/like.png" alt="">
                     </div>
                   </a>
                 </li>
@@ -46,10 +46,10 @@
                     <div id="header_logout_form_div1_2_ul_li_div2">
                       <div id="header_logout_form_div1_2_ul_li_div2_div">
                         <button id="header_logout_form_div1_2_ul_li_div2_div_button" type="button" name="button">
-                        Notification
+                        Shop
                         </button>
                       </div>
-                      <img src="./img/notify.png" alt="">
+                      <img src="./img/shop.png" alt="">
                     </div>
                   </a>
                 </li>
@@ -78,15 +78,28 @@
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
+                  <a href="#">
+                    <div id="header_logout_form_div1_2_ul_li_div6">
+                    <div id="header_logout_form_div1_2_ul_li_div6_div">
+                      <button id="header_logout_form_div1_2_ul_li_div6_div_button" type="button" name="button">
+                      Chart
+                      </button>
+                    </div>
+                      <img src="./img/chart_top.png" alt="">
+                    </div>
+                  </a>
+                </li>
+                <li class="header_logout_form_div1_2_ul_li">
                 <a href="#">
-                <div id="header_logout_form_div1_2_ul_li_div5">
-                '.$member_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON
+                <div id="header_logout_form_div1_2_ul_li_div5">&nbsp;
+                <span style="font-weight:bold;">'.$member_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON</span>
                 <div id="header_logout_form_div1_2_ul_li_div5_div">
                   <div><a href="#">&nbsp;Profile</a></div>
-                  <div><a href="#">&nbsp;Notification</a></div>
-                  <div><a href="#">&nbsp;Message</a></div>
-                  <div><a href="#">&nbsp;Collections</a></div>
+                  <div><a href="#">&nbsp;Shop</a></div>
+                  <div><a href="#">&nbsp;Like</a></div>
+                  <div><a href="#">&nbsp;Chart</a></div>
                   <div><a href="#">&nbsp;Cart</a></div>
+                  <div><a href="#">&nbsp;Message</a></div>
                   <div><a href="#">&nbsp;Setting</a></div>
                   <div id="header_logout_form_div1_2_ul_li_div5_div_border_bottom"><a href="./lib/logout.php">&nbsp;Sign Out</a></div>
                 </div>

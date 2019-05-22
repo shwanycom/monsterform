@@ -1,5 +1,5 @@
 <?php
-  include_once include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -53,6 +53,6 @@
     </div>
 
     <?php include "../lib/footer_in_folder.php"; ?>
-    <?php include "../khy_modal/login_modal.php"; ?>
+    <?php include "../khy_modal/login_modal_in_folder.php"; ?>
   </body>
 </html>

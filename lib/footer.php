@@ -23,7 +23,6 @@
                 <li><a href="./discussion/list.php">Discussions</a></li>
                 <li><a href="">Products</a></li>
                 <li><a href="">Collections</a></li>
-                <li><a href="">Help Center</a></li>
               </ul>
             </div>
             <div class="footer_div1_div2_div">
