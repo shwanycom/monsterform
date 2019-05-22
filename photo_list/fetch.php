@@ -2,21 +2,11 @@
 
 
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/db_connector.php";
+
 $num="";
 $mode="";
 $row = "";
-if(!isset($_POST["minimum_range"])){
-	$minimum_range=0;
-}
-if(!isset($_POST["maximum_range"])){
-	$maximum_range=4000;
-}
-if(isset($_POST["minimum_range"])){
-  $minimum_range=$_POST["minimum_range"];
-}
-if(isset($_POST["maximum_range"])){
-  $maximum_range=$_POST["maximum_range"];
-}
+
 
 if(isset($_GET["partner"])){
   $check_partner=$_GET["partner"];
@@ -24,52 +14,112 @@ if(isset($_GET["partner"])){
 
 if(isset($_GET["handpicked"])){
   $handpicked=$_GET["handpicked"];
-	var_dump($handpicked);
 }
 
-//파트너만 클릭했을때
-//금액만 조정했을때
-//animal만 클릭했을때
-//spoarts만 클릭했을때
-//people만 클릭했을때
+if(isset($_GET["populer"])){
+  $populer=$_GET["populer"];
+}
 
+if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
+	$check_partner=$_GET["partner"];
+	$handpicked=$_GET["handpicked"];
+	$populer=$_GET["populer"];
+ 	$search = test_input($_POST["search"]);
+	$q_search = mysqli_real_escape_string($conn, $search);
+
+	if($check_partner=='n' && $handpicked=='total' && $populer=='n'){
+		$query="select * from `products` where subject like '%$q_search%';";
+		$result = mysqli_query($conn, $query);
+	}else if($check_partner=='n' && $handpicked=='animal' && $populer=='n'){
+		$query="select * from products p inner join member m on p.username=m.username where p.handpicked='y' and subject like '%$q_search%';";
+		$result = mysqli_query($conn, $query);
+	}else if($check_partner=='n' && $handpicked=='total' && $populer=='y'){
+		$query="select * from products where subject like '%$q_search%' order by hit desc;";
+		$result = mysqli_query($conn, $query);
+	}else if($check_partner=='y' && $handpicked=='total' && $populer=='n'){
+		$query="select * from products p inner join member m on p.username=m.username where m.partner='y' and subject like '%$q_search%';";
+		$result = mysqli_query($conn, $query);
+	}else if($check_partner=='y' && $handpicked=='animal' && $populer=='n'){
+		$query="select * from products p inner join member m on p.username=m.username where m.partner='y' and p.hendpicked='y' and subject like '%$q_search%';";
+		$result = mysqli_query($conn, $query);
+	}else if($check_partner=='y' && $handpicked=='total' && $populer=='y'){
+		$query="select * from products p inner join member m on p.username=m.username where m.partner='y' and subject like '%$q_search%' order by hit desc;";
+		$result = mysqli_query($conn, $query);
+	}
+}
 
 if(isset($_GET["mode"]) && $_GET["mode"] == "imglist"){
 	if($check_partner=="n" ){
+			if($handpicked=="animal"){
+				$mode = $_GET["mode"];
+				$query = "select* from products where handpicked ='y';";
+				$result = mysqli_query($conn, $query);
+			}else{
+				$mode = $_GET["mode"];
+				$query = "SELECT * from `products` order by num asc;";
+				$result = mysqli_query($conn, $query);
+			}
+		}else if($check_partner=="y"){
+			if($handpicked=="total" ){
+				$mode = $_GET["mode"];
+				$query = "select * from products p inner join member m on p.username=m.username where m.partner='y'";
+				$result = mysqli_query($conn, $query);
+			}else{
+				$query = "select * from products p inner join member m on p.username=m.username where m.partner='y'and p.handpicked='y'";
+				$result = mysqli_query($conn, $query);
+			}
+		}
+ }
+
+
+	if(isset($_GET["mode"]) && $_GET["mode"] == "animallist"){
 		$mode = $_GET["mode"];
-		$query = "SELECT * from `products` order by num asc";
-		$result = mysqli_query($conn, $query);
-		$row = mysqli_num_rows($result);
+		if($handpicked=="total"){
+			if($check_partner=="y"){
+				$query = "select * from products p inner join member m on p.username=m.username where m.partner='y'";
+				$result = mysqli_query($conn, $query);
+				$row = mysqli_num_rows($result);
+			}else{
+				$query = "SELECT * from `products` order by num asc";
+				$result = mysqli_query($conn, $query);
+				$row = mysqli_num_rows($result);
+			}
+		}else if($handpicked=="animal"){
+			if($check_partner=="n"){
+				$mode = $_GET["mode"];
+				$query = "select* from products where handpicked ='y';";
+				$result = mysqli_query($conn, $query);
+				$row = mysqli_num_rows($result);
+			}else if($check_partner=="y"){
+				$mode = $_GET["mode"];
+				$query = "select * from products p inner join member m on p.username=m.username where m.partner='y'and p.handpicked='y';";
+				$result = mysqli_query($conn, $query);
+				$row = mysqli_num_rows($result);
+			}
+		}
 
-	}else if($check_partner=="y"){
-		$mode = $_GET["mode"];
-		$query = "select * from products p inner join member m on p.username=m.username where m.partner='n'and price BETWEEN '$minimum_range' AND '$maximum_range' ORDER BY price asc;";
-		$result = mysqli_query($conn, $query);
-		$row = mysqli_num_rows($result);
-	}
-	}else{
-
-	$query = "SELECT * FROM `products` WHERE price BETWEEN '$minimum_range' AND '$maximum_range' ORDER BY price asc";
-	$result = mysqli_query($conn, $query);
-	$row = mysqli_num_rows($result);
-	}
-
-if(isset($_GET["mode"]) && $_GET["mode"] == "animallist"){
-	$mode = $_GET["mode"];
-	if($handpicked=="total"){
-		$query = "SELECT * from `products` order by num asc";
-		$result = mysqli_query($conn, $query);
-		$row = mysqli_num_rows($result);
-
-	}else if($handpicked=="animal"){
-		$mode = $_GET["mode"];
-		$query = "select* from products where handpicked ='n';";
-		$result = mysqli_query($conn, $query);
-		$row = mysqli_num_rows($result);
 	}
 
+if(isset($_GET["mode"]) && $_GET["mode"] == "populer"){
+	if($populer=="n"){
+		if($check_partner=="y"){
+					$query = "select * from products p inner join member m on p.username=m.username where m.partner='y'";
+					$result = mysqli_query($conn, $query);
+			}else{
+					$query = "SELECT * from `products` order by num asc";
+					$result = mysqli_query($conn, $query);
+			}
+	}else if($populer=="y"){
+		if($check_partner=="y"){
+					$query = "select * from products p inner join member m on p.username=m.username where m.partner='y' order by hit desc;";
+					$result = mysqli_query($conn, $query);
+			}else{
+					$query = "select * from products order by hit desc;";
+					$result = mysqli_query($conn, $query);
+
+			}
+	}
 }
-
 $total_record = mysqli_num_rows($result);
 
 $rows_scale=12;
@@ -107,7 +157,7 @@ $end_page= ($total_pages >= ($start_page + $pages_scale)) ? $start_page + $pages
 $number=$total_record- $start_row;
 
 $output = '
-<h4 align="center">Total Item - '.$total_record.'</h4>
+<h6 style="font-size: 10pt; margin-right:800px; font-family: "nina";" margin:0px;> Total('.$total_record.')</h6>
 
 ';
 if($total_record >= 0){
@@ -127,7 +177,7 @@ for ($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
                 <img id="main_img" src="./data/'.$row["img_file_copied1"].'" alt="sample30" />
               </a>
               <div class="hover_img">
-                <img src="../img/logo.png" alt="" style="width:50px; height:20px;">
+                <img src="../img/logo.png" alt="" style="width:30px; height:20px;">
               </div>
               <div class="meta">
                 <a href="#" class="free_download">
@@ -145,10 +195,7 @@ for ($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
                 in <a href="#" class="shop_name">Fonts</a>
               </span>
               <figcaption>
-                <div class="icons">
-                  <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
-                  <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
-                </div>
+
               </figcaption>
             </figure>
           </div>
@@ -164,19 +211,23 @@ $output .='
 							$output.= "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 						}else if(isset($_GET["partner"])){
 							$output.= "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'> &nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else if(isset($_GET["populer"])){
+							$output.= "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$populer'> &nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else{
+							$output.= "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 						}
-						$output.= "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 					}
-
 					if($pre_page){
 						if(isset($_GET["handpicked"])){
 							$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&handpicked=$handpicked'> PREV   </a>";
 						}else if(isset($_GET["partner"])){
 							$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$check_partner'> PREV  </a>";
+						}else if(isset($_GET["populer"])){
+							$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$populer'> PREV  </a>";
+						}else{
+							$output.=  "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
 						}
-						$output.=  "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
 					}
-
 					for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
 						if($dest_page == $page){
 							$output.= "&nbsp;<b id='present_page'>$dest_page</b>&nbsp";
@@ -185,6 +236,8 @@ $output .='
 								$output.= "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page&handpicked=$handpicked'> $dest_page  </a>";
 							}else if(isset($_GET["partner"])){
 								$output.= "<a id='move_page' href='main_list.php?mode=$mode&page=$dest_page&partner=$check_partner'> $dest_page  </a>";
+							}else if(isset($_GET["populer"])){
+								$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$dest_page&partner=$populer'> $dest_page  </a>";
 							}else{
 								$output.= "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page'> $dest_page </a>";
 							}
@@ -196,6 +249,8 @@ $output .='
 							$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&handpicked=$handpicked'> NEXT</a>";
 						}else if(isset($_GET["partner"])){
 							$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$check_partner'> NEXT  </a>";
+						}else if(isset($_GET["populer"])){
+							$output.= "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$populer'> NEXT  </a>";
 						}else{
 							$output.=  "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page'> NEXT</a>";
 						}
@@ -207,6 +262,8 @@ $output .='
 							$output.= "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp </a>";
 						}else if(isset($_GET["partner"])){
 							$output.= "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'>&nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else if(isset($_GET["populer"])){
+							$output.= "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$populer'>&nbsp&nbsp....&nbsp&nbsp  </a>";
 						}else{
 							$output.=  "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp </a>";
 						}

@@ -1,5 +1,6 @@
 a {
   text-decoration: none;
+  color:#444444;
 }
 body{
   background-color: rgb(245,245,244,230);
@@ -14,12 +15,12 @@ body{
 }
 
 .filter_container_div_1 {
-  width: 10%;
+  width: 20%;
   display: inline-block;
 }
 
 .filter_container_div_2 {
-  width: 10%;
+  width: 20%;
   display: inline-block;
 }
 
@@ -62,13 +63,18 @@ input.switch_check:checked:after {
 .switch_div {
   width: 10%;
   display: inline;
+  top:2px;
   /* margin-left: 100px; */
 }
-
+.certified_span{
+  vertical-align: middle;
+}
 
 .filter_container_div_3 {
   width: 20%;
   display: inline;
+  top:5px;
+  vertical-align: middle;
 }
 
 #filter_form_div2_3_ul_1 {
@@ -123,13 +129,13 @@ input.switch_check:checked:after {
   /* 값 변경 */
   position: absolute;
   display: block;
-  width: 250px;
+  width: 200px;
   color: #444444;
   height: auto;
-  margin-top: 0px;
   font-family: "nina";
-  left: 1000px;
+  left: 800PX;
   z-index: 1;
+
 }
 
 /* range_slider 부분 */
@@ -210,7 +216,7 @@ figure.snip1368 .icons {
 
 figure.snip1368 #checkimg {
   padding: 0px 8px;
-  display: inline-block;
+  display: inline-block;s
   font-size: 24px;
   color: #ffffff;
   text-align: center;
@@ -220,6 +226,10 @@ figure.snip1368 #checkimg {
 figure.snip1368 #checkimg:hover {
   opacity: 1;
   transition: all 0.35s ease;
+
+}
+#like{
+  z-index: 1;
 }
 
 figure.snip1368:hover figcaption,
@@ -340,6 +350,6 @@ figure.snip1368.hover figcaption {
 #form_search{
   width: 500px;
   display: inline;
-padding-left: 300px;
+  padding-left: 100px;
 }
 }
