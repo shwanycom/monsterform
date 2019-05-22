@@ -180,11 +180,26 @@ input.switch_check:checked:after {
 }
 </style>
 <script>
-var partner_index1=0;
+var partner_index1="defalut"
+var partner_email1="default";
       // <a href='admin_member_update.php?no=$no&partner='>
-      function check_partner(partner_index){
+      function check_partner(partner_email, partner_index){
+        partner_email1=partner_email;
         partner_index1=partner_index;
-          alert(partner_index1);
+        check_partner();
+      }
+      function check_partner(partner_email1){
+        var change_index=1;
+        change_index++;
+        if(change_index%2===0){
+          alert(partner_email1+"님과 파트너를 해지합니다.");
+        }else{
+          alert(partner_email1+"님과 파트너를 계약합니다.");
+        }
+        last_index()
+      }
+      function last_index(){
+        alert(change_index);
       }
 </script>
 <section id="admin_member_section">
@@ -200,7 +215,7 @@ var partner_index1=0;
           </div>
           <div id="search_form_div2">
             <label for="">PARTNER</label>
-            <input class="switch_check" type="checkbox" id="switch_checkbox" onclick="check_partner()" value="partner" name="switch_checkbox">
+            <input class="switch_check" type="checkbox" id="switch_checkbox" onclick="sort_partner()" value="partner" name="switch_checkbox">
             <input type="submit" value="Search" id="search_submit">
           </div>
         </form>
@@ -233,35 +248,36 @@ for($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
   $partner=$row["partner"];
   if($partner=='y'){
     $check='checked';
-    $check_index=1;
+    $button_index="TERMINATE";
   }else{
     $check='';
-    $check_index=0;
+    $button_index="PARTNER";
   }
   $location=$row["location"];
   $profession=$row["profession"];
   $use_mf=$row["use_mf"];
-  echo "<tr class=''>
-              <td>$no</td>
-              <td id='td_send_message'>$email<div id='div_send_message'><a href='#'>
-              <button id='button_send_message' type='button' name='button'>
-              Send Message to $email
+  echo '<tr class="">
+              <td>'.$no.'</td>
+              <td id="td_send_message">'.$email.'<div id="div_send_message"><a href="#">
+              <button id="button_send_message" type="button" name="button">
+              Send Message to '.$email.'
               </button></a></div></td>
-              <td>$username</td>
-              <td>$mon</td>
-              <td><input id='on_partner' type='checkbox' name='on_partner' value='y' onclick='check_partner($check_index)' $check></td>
-              <td>$location</td>
-              <td>$profession</td>
-              <td>$use_mf</td>
+              <td>'.$username.'</td>
+              <td>'.$mon.'</td>
+              <td><input id="on_partner" type="checkbox" name="on_partner" value="y" '.$check.'  ></td>
+              <td>'.$location.'</td>
+              <td>'.$profession.'</td>
+              <td>'.$use_mf.'</td>
               <td>
-              <a href='admin_member_delete.php?no=$no'>
-              <button type='button' class='button' id='button_delete'>DELETE</button>
+              <a href="admin_member_dml.php?mode=update&no='.$no.'">
+              <button type="button" class="button" id="button_delete">DELETE</button>
               </a>
               </td>
               <td>
-              <button type='button' class='button' id='button_update'>UPDATE</button>
+              <a href="admin_member_dml.php?mode=update&no='.$no.'&partner='.$button_index.'">
+              <button type="button" class="button" id="button_update">'.$button_index.'</button>
               </td>
-              </tr>";
+              </tr>';
   echo"  <tr></td></tr>";
 }
   ?>
