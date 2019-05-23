@@ -12,18 +12,8 @@ body{
 .filter_container {
   margin: 0 auto;
   max-width: 960px;
+  max-height: 1000px;
 }
-
-.filter_container_div_1 {
-  width: 20%;
-  display: inline-block;
-}
-
-.filter_container_div_2 {
-  width: 20%;
-  display: inline-block;
-}
-
 
 input.switch_check {
   position: relative;
@@ -37,7 +27,6 @@ input.switch_check {
   box-shadow: inset 0 0 5px rgba(0,0,0,.2);
   transition: .5s;
 }
-
 
 
 input.switch_check:after {
@@ -71,49 +60,11 @@ input.switch_check:checked:after {
 }
 
 .filter_container_div_3 {
-  width: 20%;
+  width: 1000px;
+  max-height: 1000px;
   display: inline;
   top:5px;
   vertical-align: middle;
-}
-
-#filter_form_div2_3_ul_1 {
-  position: absolute;
-  height: 0px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  background-color: rgb(245,245,244,230);
-}
-
-.filter_container_div_1:hover #filter_form_div2_3_ul_1 {
-  /* 값 변경 */
-  position: absolute;
-  display: block;
-  height: auto;
-  font-family: "nina";
-  left: 350;
-  z-index: 1;
-}
-
-#filter_form_div2_3_ul_2 {
-  position: absolute;
-  height: 0px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  background-color: rgb(245,245,244,230);
-}
-
-.filter_container_div_2:hover #filter_form_div2_3_ul_2 {
-  /* 값 변경 */
-  position: absolute;
-  display: block;
-  height: auto;
-  font-family: "nina";
-  left: 250;
-  z-index: 1;
-  color: #444444;
 }
 
 #filter_form_div2_3_ul_3 {
@@ -123,19 +74,19 @@ input.switch_check:checked:after {
   margin: 0px;
   overflow: hidden;
   background-color:rgb(245,245,244,230);
+  vertical-align: middle;
 }
 /* 필터 부분 hover*/
 .filter_container_div_3:hover #filter_form_div2_3_ul_3 {
   /* 값 변경 */
-  position: absolute;
-  display: block;
-  width: 200px;
-  color: #444444;
-  height: auto;
-  font-family: "nina";
-  left: 800PX;
+  margin-left:175px;
+  width:120px;
+  height:43px;
   z-index: 1;
-
+  border-radius: 5px;
+  font-size: 10pt;
+  border:1.5px solid;
+  border-color: rgba(139,167,83,118);
 }
 
 /* range_slider 부분 */
@@ -286,7 +237,7 @@ figure.snip1368.hover figcaption {
   font-size: 10px;
   line-height: 32px;
   background-color: #dddedb;
-  background-image: url(./img);
+  background-image: url(../img);
   color: #444444;
   float: right;
 }
@@ -352,4 +303,29 @@ figure.snip1368.hover figcaption {
   display: inline;
   padding-left: 100px;
 }
+}
+
+.product_page_num *{
+  display:inline-block;
+}
+.product_page_num{
+  text-align: center;
+}
+
+#filter_div button{
+  background-color: rgba(139,167,83,118);
+  border : none;
+  width : auto;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 1;
+}
+
+#filter_div button:hover{
+  background-color: rgba(139,167,83,118);
+  border : none;
+  width : auto;
+  height : 20px;
+  color : rgb(245,245,244,230);
+  opacity: 0.8;
 }

@@ -1,0 +1,90 @@
+*{
+  /* border:0.1px solid red; */
+}
+#main_img{
+  width:250px;
+  height:200px;
+}
+figure.snip1368 {
+position: relative;
+overflow: hidden;
+margin: 7.1px;
+width:250px;
+height:250px;
+/*   width: 100%; */
+color: black;
+line-height: 1.4em;
+}
+
+figure.snip1368 * {
+transition: all 0.4s ease;
+}
+
+figure.snip1368 figcaption {
+position: absolute;
+top: 0%;
+z-index: 1;
+text-align: right;
+transform: translateX(400px);
+}
+
+figure.snip1368 .icons {
+margin-top: 10px;
+}
+
+figure.snip1368 #checkimg {
+padding: 0px 8px;
+display: inline-block;s
+font-size: 24px;
+color: black;
+text-align: center;
+opacity: 0.7;
+}
+
+figure.snip1368 #checkimg:hover {
+opacity: 1;
+transition: all 0.35s ease;
+
+}
+#like{
+z-index: 1;
+}
+
+figure.snip1368:hover figcaption,
+figure.snip1368.hover figcaption {
+transform: translateX(165px);
+}
+
+.hover_img {
+position: absolute;
+top: 20px;
+left: 20px;
+width: 25px;
+height: 25px;
+text-align: center;
+/* 추가된 부분 */
+opacity: 0;
+transform: scale(2);
+transition: all .3s linear;
+}
+meta
+.icons span {
+color: black;
+}
+.list_title_div_a_float_right{
+  float:right;
+}
+/* 추가된 부분 */
+.snip1368:hover .hover_img {
+opacity: 1;
+}
+.list_title_div{
+  color:black;
+  font-size:8pt;
+}
+
+#product_write_button{
+  display : inline;
+  float : right;
+  margin-right: 10px;
+}
