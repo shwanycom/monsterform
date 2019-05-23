@@ -228,6 +228,7 @@ for($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
           }
  ?>
 </div>
+<br><br>
 </section>
 <?php
   include "./admin_main_in_folder.php";
