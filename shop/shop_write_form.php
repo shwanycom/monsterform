@@ -12,7 +12,6 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 // }
 create_table($conn, "products"); //가입인사 게시판 테이블 생성
 ?>
-<head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/common.css">
@@ -59,7 +58,6 @@ create_table($conn, "products"); //가입인사 게시판 테이블 생성
     readURL(this);
   });
 </script>
-</head>
 
 <form id="form" runat="server" enctype="multipart/form-data">
   <input type='file' id="imgInput" />
