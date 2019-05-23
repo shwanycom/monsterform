@@ -329,3 +329,14 @@ figure.snip1368.hover figcaption {
   color : rgb(245,245,244,230);
   opacity: 0.8;
 }
+
+#filter_div ul{
+  margin : 0;
+  padding: 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+#filter_div ul li{
+  list-style: none;
+  display: inline-block;
+}

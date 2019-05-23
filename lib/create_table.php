@@ -139,6 +139,15 @@ function create_table($conn, $table_name){
                 `regist_day` date NOT NULL
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
+      case 'message':
+      $sql = "CREATE TABLE `message` (
+                `send_no` int(11) NOT NULL,
+                `rece_no` int(11) NOT NULL,
+                `msg` text NOT NULL,
+                `rece_status` varchar(100) DEFAULT 'n',
+                `regist_day` date NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      break;
       default:
       echo '<script >alert("해당 테이블명이 없습니다.");</script>';
       break;
