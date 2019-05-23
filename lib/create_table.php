@@ -90,7 +90,6 @@ function create_table($conn, $table_name){
         $sql = "CREATE TABLE `products` (
                 `no` int(11) NOT NULL,
                 `num` int(11) NOT NULL AUTO_INCREMENT,
-                `product_num` int(11) NOT NULL,
                 `username` varchar(100) NOT NULL,
                 `email` varchar(100) NOT NULL,
                 `subject` varchar(100) NOT NULL,
@@ -103,7 +102,7 @@ function create_table($conn, $table_name){
                 `sell_count` int(11) NOT NULL DEFAULT '0',
                 `big_data` varchar(100) NOT NULL,
                 `small_data` varchar(100) NOT NULL,
-                `hash_tag` varchar(100) NOT NULL,
+                `hash_tag` varchar(100) DEFAULT NULL,
                 `img_file_name1` varchar(100) NOT NULL,
                 `img_file_name2` varchar(100) NOT NULL,
                 `img_file_name3` varchar(100) NOT NULL,
@@ -115,8 +114,12 @@ function create_table($conn, $table_name){
                 `zip_file_name` varchar(100) NOT NULL,
                 `zip_file_copied` varchar(100) NOT NULL,
                 `zip_file_type` varchar(100) NOT NULL,
+                `ttf_file_name` varchar(100) DEFAULT NULL,
+                `ttf_file_copied` varchar(100) DEFAULT NULL,
+                `ttf_file_type` varchar(100) DEFAULT NULL,
+                `freegoods_agree` varchar(100) DEFAULT 'n',
                 PRIMARY KEY (`num`)
-              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
       break;
       case 'report':
       $sql = "CREATE TABLE `report` (

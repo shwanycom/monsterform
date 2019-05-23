@@ -189,14 +189,47 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       var partner = document.getElementById('partner').value;
       var handpicked = document.getElementById('handpicked').value;
       var popular = document.getElementById('popular').value;
+      var search_text = document.getElementById('products_search_text').value;
+      var big_data = document.getElementById('big_data').value;
 
       if(partner=='n'){
         partner='y';
-        var location = "./list.php?big_data=photos&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text=";
       }else{
         partner='n';
-        var location = "./list.php?big_data=photos&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text=";
       }
+      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      window.location.href = location;
+    }
+
+    function check_handpicked(){
+      var partner = document.getElementById('partner').value;
+      var handpicked = document.getElementById('handpicked').value;
+      var popular = document.getElementById('popular').value;
+      var search_text = document.getElementById('products_search_text').value;
+      var big_data = document.getElementById('big_data').value;
+
+      if(handpicked=='n'){
+        handpicked='y';
+      }else{
+        handpicked='n';
+      }
+      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      window.location.href = location;
+    }
+
+    function check_popular(){
+      var partner = document.getElementById('partner').value;
+      var handpicked = document.getElementById('handpicked').value;
+      var popular = document.getElementById('popular').value;
+      var search_text = document.getElementById('products_search_text').value;
+      var big_data = document.getElementById('big_data').value;
+
+      if(popular=='n'){
+        popular='y';
+      }else{
+        popular='n';
+      }
+      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
       window.location.href = location;
     }
 
@@ -205,7 +238,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       var handpicked = document.getElementById('handpicked').value;
       var popular = document.getElementById('popular').value;
       var search_text = document.getElementById('products_search_text').value;
-      var location = "./list.php?big_data=photos&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      var big_data = document.getElementById('big_data').value;
+
+      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
       window.location.href = location;
     }
 
@@ -217,166 +252,135 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/header_in_folder.php";
    ?>
    <div id="filter_div">
+     <input type="hidden" id="big_data" value="<?=$big_data?>">
      <div class="filter_container">
        <div class="switch_div">
-         <input class="switch_check" type="checkbox" id="partner" value="<?=$partner_default?>" name="partner" onclick="check_partner()" <?=$partner_checked?>>
-         <span class="certified_span">Certified</span>
+         <label>
+           <input class="switch_check" type="checkbox" id="partner" value="<?=$partner_default?>" name="partner" onclick="check_partner()" <?=$partner_checked?>>
+           <span class="certified_span">Certified</span>
+         </label>
        </div>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <div class="filter_container_div_3">
-           <a href="#" id="filter_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
-             <span id="filter_form_div2_3_span">Filter</span>
-             <img id="change_img" src="../img/down.png" style="width:15px; height:15px;" />&nbsp;&nbsp;&nbsp;
-           </a>
-           <ul id="filter_form_div2_3_ul_3">
-             <li class="filter_form_div2_3_ul_li_2" name="find">
-         </li>
-         <li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="handpicked" onclick="checkfilter()" name="checkgroup" value="<?=$handpicked_default?>" <?=$handpicked_checked?>/> handpicked</label></li>
-         <li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="popular" class="checkbox" onclick="checkpopular()" name="checkgroup" value="<?=$popular_default?>" <?=$popular_checked?>/> popular</label></li>
-         </ul>
-       </div>
-      <input type="text" name="" value="" id="products_search_text">
-      <button type="button" id="search_button" onclick="products_search_text()">search</button>
-   </div>
- </div>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="filter_container_div_3">
+         <a href="#" id="filter_form_div2_3_a">
+           <span id="filter_form_div2_3_span">Filter</span>
+           <img id="change_img" src="../img/down.png" style="width:15px; height:15px;" />&nbsp;&nbsp;&nbsp;
+         </a>
+          <ul id="filter_form_div2_3_ul_3">
+            <li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="handpicked" onclick="check_handpicked()" name="checkgroup" value="<?=$handpicked_default?>" <?=$handpicked_checked?>/> handpicked</label></li>
+            <li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="popular" class="checkbox" onclick="check_popular()" name="checkgroup" value="<?=$popular_default?>" <?=$popular_checked?>/> popular</label></li>
+          </ul>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="" value="" id="products_search_text">
+        <button type="button" id="search_button" onclick="products_search_text()">search</button>
+        <div id="product_write_button">
+          <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
+          if(isset($_SESSION['username'])){
+            echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp';
+            echo '<a href="../shop/shop_write_form.php"><button type="button" name="button">Open My Shop</button></a>';
+          }
+          echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp;';
+          ?>
+        </div> <!-- end of button -->
+      </div>
+    </div>
 
-
-
-		<div class="list_container">
-	     <div id="load_product">
+	<div class="list_container">
+	  <div id="load_product">
 		<?php
 		// 모든 레코드를 가져오는 로직
 		for ($i=$start; ($i<$start+SCALE) && ($i< $total_record); $i++){
-					 // 가져올 레코드 위치 이동
-							mysqli_data_seek($result, $i);
+	 // 가져올 레코드 위치 이동
+			mysqli_data_seek($result, $i);
 
-					 // 하나 레코드 가져오기
-							$row = mysqli_fetch_array($result);
-							$item_num = $row["num"];
-							$item_name = $row["username"];
-							$price = $row["price"];
+	 // 하나 레코드 가져오기
+			$row = mysqli_fetch_array($result);
+			$item_num = $row["num"];
+			$item_name = $row["username"];
+			$price = $row["price"];
+      $item_price = $price/100;
+      $item_email = $row["email"];
 
-							$img_copy_name0 = $row["img_file_copied1"];
+			$img_copy_name0 = $row["img_file_copied1"];
 
+			$item_hit = $row["hit"];
+			$item_date = $row["regist_day"];
+			$item_date = substr($item_date, 0, 10);
+			$item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
 
-							$item_hit = $row["hit"];
-							$item_date = $row["regist_day"];
-							$item_date = substr($item_date, 0, 10);
-							$item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+			// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
+			if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
+					$main_img = $img_copy_name0;
 
-							// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
-							if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
-									$main_img = $img_copy_name0;
-
-							}
-							?>
-
-
-              <div class="img_div">
-                <figure class="snip1368">
-                  <a href="#">
-                    <img id="main_img" src="../img/openmarket.png" alt="sample30" />
-                  </a>
-                  <div class="hover_img">
-                    <img src="../img/logo.png" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
-                  </div>
-                  <div class="list_title_div">
-                    <div class="">
-                      <a href="#" class="">
-                        <span class="list_title_div_span_bold">게시물번호(순서)</span>
-                        <span class="list_title_div_span_bold">게시물이름</span>
-                      </a>
-                      <a href="#" class="list_title_div_a_float_right">
-                        M&nbsp; 5,000(가격)
-                      </a>
-                    </div>
-                    <div class="">
-                        by&nbsp;<a href="#" class="">shwanycom@gmail.com</a>
-                        in&nbsp;<a href="#" class="">게시물 대분류</a>
-                    </div>
-                  </div>
-                  <figcaption>
-                    <div class="icons">
-                      <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
-                      <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
-                    </div>
-                  </figcaption>
-                </figure>
-
-              </div>
-	 <?php
-			$number --;
-
-	}
-	?>
-	<div class="move_page">
-					<?php
-					if($start_page >= $pages_scale){
-						$go_page= $start_page - $pages_scale;
-						if(isset($_GET["handpicked"])){
-							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp  </a>";
-						}else if(isset($_GET["partner"])){
-							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'> &nbsp&nbsp....&nbsp&nbsp  </a>";
-						}else if(isset($_GET["popular"])){
-							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$popular'> &nbsp&nbsp....&nbsp&nbsp  </a>";
-						}else{
-							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
-						}
-					}
-					if($pre_page){
-						if(isset($_GET["handpicked"])){
-							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&handpicked=$handpicked'> PREV   </a>";
-						}else if(isset($_GET["partner"])){
-							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$check_partner'> PREV  </a>";
-						}else if(isset($_GET["popular"])){
-							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$popular'> PREV  </a>";
-						}else{
-							echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
-						}
-					}
-					for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
-						if($dest_page == $page){
-							echo "&nbsp;<b id='present_page'>$dest_page</b>&nbsp";
-						}else{
-							if(isset($_GET["handpicked"])){
-								echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page&handpicked=$handpicked'> $dest_page  </a>";
-							}else if(isset($_GET["partner"])){
-								echo "<a id='move_page' href='main_list.php?mode=$mode&page=$dest_page&partner=$check_partner'> $dest_page  </a>";
-							}else if(isset($_GET["popular"])){
-								echo "<a class='page_button' href='main_list.php?mode=$mode&page=$dest_page&partner=$popular'> $dest_page  </a>";
-							}else{
-								echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page'> $dest_page </a>";
-							}
-						}
-					}
-
-					if($next_page){
-						if(isset($_GET["handpicked"])){
-							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&handpicked=$handpicked'> NEXT</a>";
-						}else if(isset($_GET["partner"])){
-							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$check_partner'> NEXT  </a>";
-						}else if(isset($_GET["popular"])){
-							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$popular'> NEXT  </a>";
-						}else{
-							echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page'> NEXT</a>";
-						}
-					}
-
-					if($total_pages >= $start_page+ $pages_scale){
-						$go_page= $start_page+ $pages_scale;
-						if(isset($_GET["handpicked"])){
-							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp </a>";
-						}else if(isset($_GET["partner"])){
-							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'>&nbsp&nbsp....&nbsp&nbsp  </a>";
-						}else if(isset($_GET["popular"])){
-							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$popular'>&nbsp&nbsp....&nbsp&nbsp  </a>";
-						}else{
-							echo  "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp </a>";
-						}
-					}
-					?>
-				</div>
+			}
+			?>
+      <div class="img_div">
+        <figure class="snip1368">
+          <a href="#">
+            <img id="main_img" src="../img/openmarket.png" alt="sample30" />
+          </a>
+          <div class="hover_img">
+            <img src="../img/logo.png" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
+          </div>
+          <div class="list_title_div">
+            <div class="">
+              <a href="#" class="">
+                <span class="list_title_div_span_bold"><?=$item_subject?></span>
+              </a>
+              <a href="#" class="list_title_div_a_float_right">
+                M&nbsp; <?=$item_price?>
+              </a>
+            </div>
+            <div class="">
+                by&nbsp;<a href="#" class=""><?=$item_email?></a>
+                in&nbsp;<a href="#" class=""><?=$big_data?></a>
+            </div>
+          </div>
+          <figcaption>
+            <div class="icons">
+              <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
+              <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+      <?php
+        $number --;
+      }//end of for
+       ?>
 		</div>
+    <div class="product_page_num">
+      <?php
+      if(!($page-1==0)){
+        $go_page = $page-1;
+        echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'><span class='page_button'>&nbsp;PREV </span>&nbsp;</a>";
+      }else{
+        echo "";
+      }
+        for($i=1;$i<=$total_page;$i++){
+          if($page==$i){
+            echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
+          }else{
+            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$i'>$i</a>";
+          }
+        }
+
+        if($total_record!=0){
+          if($page==$total_page){
+            echo "";
+          }else{
+            $go_page = $page+1;
+            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
+          }
+        }else{
+          echo "";
+        }
+
+         ?>
+
+         <br><br>
+      </div> <!-- end of page_num -->
 
 </div>
 <?php
