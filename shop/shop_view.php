@@ -234,5 +234,4 @@ if(!isset($_SESSION['no'])) {
   </script>
   <?php
 }
-
 ?>
