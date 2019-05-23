@@ -2,7 +2,68 @@
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
-create_table($conn, "discussion"); //가입인사 게시판 테이블 생성
+create_table($conn, "products");
+?>
+
+<?php
+$row = "";
+if(!isset($_GET['num']) || empty($_GET['num'])){
+  echo "<script>alert('제품번호(num)을 주세용');
+        history.go(-1);</script>";
+  exit;
+}else{
+  $num=test_input($_GET["num"]);
+  $q_num = mysqli_real_escape_string($conn, $num);
+  var_dump($q_num); echo "<br>";
+  $sql = "SELECT * from `products` where `num` = {$q_num};";
+  $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+  var_dump($result); echo "<br>";
+  $row=mysqli_fetch_array($result);
+  var_dump($row); echo "<br>";
+  var_dump($row[`hit`]); echo "<br>";
+  $hit=$row[`hit`] + 1;
+  $sql = "UPDATE `products` SET `hit`=$hit WHERE `num`=$q_num";
+  // ===========================조회수 업데이트 끝===============================
+
+  $sql="SELECT `products`.*,`pro_img_named`,`pro_img_copied` from `products` inner join `member` ON `products`.`no`=`member`.`no`;";
+  $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+  $row = mysqli_fetch_array($result);
+  $user_no = $row['no'];
+  $username = $row['username'];
+  $email = $row['email'];
+  $subject = $row['subject'];
+  $content = $row['content'];
+  $regist_day = $row['regist_day'];
+  $mon = $row['price']/100;
+  $handpicked = $row['handpicked'];
+  $freegoods = $row['freegoods'];
+  $hit = $row['hit'];
+  $sell_count = $row['sell_count'];
+  $big_data = $row['big_data'];
+  $small_data = $row['small_data'];
+  $hash_tag = $row['hash_tag'];
+  $img_file_name1 = $row['img_file_name1'];
+  $img_file_name2 = $row['img_file_name2'];
+  $img_file_name3 = $row['img_file_name3'];
+  $img_file_name4 = $row['img_file_name4'];
+  $img_file_copied1 = $row['img_file_copied1'];
+  $img_file_copied2 = $row['img_file_copied2'];
+  $img_file_copied3 = $row['img_file_copied3'];
+  $img_file_copied4 = $row['img_file_copied4'];
+  $zip_file_name = $row['zip_file_name'];
+  $zip_file_copied = $row['zip_file_copied'];
+  $pro_img_named = $row['pro_img_named'];
+  $zip_file_type = $row['zip_file_type'];
+  $pro_img_copied = $row['pro_img_copied'];
+  // $subject=htmlspecialchars($row['subject']);
+  // $content=htmlspecialchars($row['content']);
+  // $subject=str_replace(" ", "&nbsp;",$subject);
+  // $subject=str_replace("\n", "<br>",$subject);
+  // $content=str_replace(" ", "&nbsp;",$content);
+  // $content=str_replace("\n", "<br>",$content);
+  mysqli_close($conn);
+}
+var_dump($user_no); echo "<br>";
 ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +90,7 @@ create_table($conn, "discussion"); //가입인사 게시판 테이블 생성
      document.getElementById('change_img').src="../img/down.png";
    }
    </script>
-  <script>
+   <script>
     function currentDiv(n) {
       showDivs(slideIndex = n);
     }
@@ -57,33 +118,33 @@ create_table($conn, "discussion"); //가입인사 게시판 테이블 생성
   <!--============================================================================== -->
   <div class="shop_view_wrap">
     <div class="shop_view_category">
-      <a href="#">Fonts</a> > <a href="#">Script</a>
+      <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
     </div>
 
     <div class="shop_view_container">
       <div id="shop_view_div1">
         <div class="shop_view_gal">
-          <img class="shop_view_mySlides" src="./product_img/fonts/red1.png" style="width:100%; ">
-          <img class="shop_view_mySlides" src="./product_img/fonts/red2.png" style="width:100%; display:none">
-          <img class="shop_view_mySlides" src="./product_img/fonts/red3.png" style="width:100%; display:none">
-          <img class="shop_view_mySlides" src="./product_img/fonts/red4.png" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="./product_img/<?=$img_file_copied1?>" style="width:100%; ">
+          <img class="shop_view_mySlides" src="./product_img/<?=$img_file_copied2?>" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="./product_img/<?=$img_file_copied3?>" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="./product_img/<?=$img_file_copied4?>" style="width:100%; display:none">
         </div>
 
         <div class="shop_view_minigal_set">
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/fonts/red1.png"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/<?=$img_file_copied1?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(1)">
           </div>
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/fonts/red2.png"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/<?=$img_file_copied2?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(2)">
           </div>
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/fonts/red3.png"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/<?=$img_file_copied3?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(3)">
           </div>
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/fonts/red4.png"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="./product_img/<?=$img_file_copied4?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(4)">
           </div>
         </div>
@@ -148,17 +209,33 @@ If you’re still having trouble installing the font,<br>
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_product_info">
           <div class="shop_view_sticky_inner" style="border-bottom:1px solid #c1bebe; padding-bottom:4%; height: 100%;">
-            <h2 style="text-align:left;">Pistoletto Regular</h2>
+            <h2 style="text-align:left; font-size:1.9em">Pistoletto Regular </h2>
             <p style="text-align:right;"><span style="color: #7d7b78;"><i>By</i> </span> <span>Etewut</span></p>
             <p style="text-align:right; color: #7d7b78;"><i>MAY 23, 2019</i></p>
           </div>
         </div><!-- end of shop_view_sticky_product_info -->
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_purchase">
-          <div class="shop_view_sticky_inner" style="height: 30%; color: #7d7b78;">
-            <span style="text-align:left;"></span>price<span style="text-align:right;">20 MON</span>
+          <div class="shop_view_sticky_inner" style="height: auto; color: #7d7b78; padding-top:7%;">
+            <div style="text-align:left; width:48%; display:inline-block ">
+              <span></span>
+            </div>
+            <div style="text-align:right; width:48%; display:inline-block">
+              <span style="font-size:20px;"><b> 20</b></span> <span>Mon</span>
+              <!-- <i class="fab fa-optin-monster" style="font-size:25px; color:#2f8f94;"></i> -->
+            </div>
           </div>
-          <div class="shop_view_sticky_inner" style="height: 50%;">          </div>
+          <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
+            <div class="shop_view_sticky_inner_btn">
+              <button type="button" style="background-color:#70a330; color:white;" ><b>Finish Purchase <span>20</span> Mon</b></button>
+            </div>
+            <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+              OR
+            </div>
+            <div class="shop_view_sticky_inner_btn">
+              <button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button>
+            </div>
+          </div>
         </div><!-- end of shop_view_sticky_purchase -->
 
       </div><!-- end of shop_view_sticky -->
