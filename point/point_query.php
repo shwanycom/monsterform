@@ -7,15 +7,15 @@ $point1 = $_SESSION['mon'];
 
 
 
-var_dump($email);
-var_dump($totalPrice);
-var_dump($point1);
+// var_dump($email);
+// var_dump($point1);
 
 
+$mon=$_POST['price'];
+var_dump($mon);
 
 
 if (isset($_GET["mode"])&&$_GET["mode"]=='update') {
-
      $email = test_input($email);
 
 

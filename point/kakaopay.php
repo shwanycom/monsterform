@@ -52,7 +52,7 @@ if(isset($_POST['totalPrice'])){
 
     			alert(msg);
           alert(rsp.paid_amount);
-           location.href="point_query.php?mode=update";
+          location.href="point_query.php?mode=update";
     		} else {
     			//[3] 아직 제대로 결제가 되지 않았습니다.
     			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
