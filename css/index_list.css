@@ -1,0 +1,20 @@
+#filter_div{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#title_ul{
+  margin : 0;
+  padding: 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+#filter_div ul li{
+  list-style: none;
+  display: inline-block;
+}
+
+#title{
+  font-size: 22pt;
+  font-weight: bold;
+}
