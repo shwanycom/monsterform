@@ -1,5 +1,3 @@
-
-
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/db_connector.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/create_table.php";
@@ -8,27 +6,24 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterpro/lib/create_table.php";
 // include "./lib/footer.php";
 // include "./khy_modal/khy_modal_modaltest.php";
 
-if(!isset($_POST["minimum_range"])){
-	$minimum_range=0;
-}
-if(!isset($_POST["maximum_range"])){
-	$maximum_range=4000;
-}
-if(isset($_POST["minimum_range"])){
-  $minimum_range=$_POST["minimum_range"];
-}
-if(isset($_POST["maximum_range"])){
-  $maximum_range=$_POST["maximum_range"];
-}
-
 if(isset($_GET["partner"])){
   $check_partner=$_GET["partner"];
+}else{
+	$check_partner="n";
 }
 
 if(isset($_GET["handpicked"])){
   $handpicked=$_GET["handpicked"];
-
+}else{
+	$handpicked='animal';
 }
+
+if(isset($_GET["populer"])){
+  $populer=$_GET["populer"];
+}else{
+	$populer='y';
+}
+
 
 create_table($conn, "products"); //가입인사 게시판 테이블 생성
 //**************************************************************
@@ -36,48 +31,14 @@ $mode=$num="";
 $row = "";
 $sql=$result=$total_record=$total_page=$start=$page="";
 //**************************************************************
+
 if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
- //subject, content, id
-$search = test_input($_POST["search"]);
-$q_search = mysqli_real_escape_string($conn, $search);
-$sql = "SELECT * from `products` where subject like '%$q_search%';";
-}else{
-$sql = "SELECT * from `products` order by num asc";
+		$search = test_input($_POST["search"]);
+			$q_search = mysqli_real_escape_string($conn, $search);
+		$sql="select * from products where subject like '%$q_search%';";
+	}else{
+		$sql = "select * from `products` order by num asc";
 }
-
-
-if(isset($_GET["mode"]) && $_GET["mode"] == "animallist"){
-	$mode = $_GET["mode"];
-	if($handpicked=="total"){
-		$sql = "SELECT * from `products` order by num asc";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_num_rows($result);
-
-	}else if($handpicked=="animal"){
-		$mode = $_GET["mode"];
-		$sql = "select* from products where handpicked ='n';";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_num_rows($result);
-	}
-
-}
-
-if(isset($_GET["mode"]) && $_GET["mode"] == "imglist"){
-	if($check_partner=="n" ){
-		$mode = $_GET["mode"];
-		$sql = "SELECT * from `products` order by num asc";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_num_rows($result);
-
-	}else if($check_partner=="y"){
-		$mode = $_GET["mode"];
-		$sql = "select * from products p inner join member m on p.username=m.username where m.partner='n'and price BETWEEN '$minimum_range' AND '$maximum_range' ORDER BY price asc;";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_num_rows($result);
-	}
-	}
-
-
 
 if(empty($_GET['page'])){
 	$page=1;  // 첫째 페이지를 1페이지로 초기화
@@ -117,14 +78,6 @@ $end_page= ($total_pages >= ($start_page + $pages_scale)) ? $start_page + $pages
 $number=$total_record- $start_row;
 
 
-
-$sql2= "SELECT count(num) from `products`";
-$result1 = mysqli_query($conn, $sql2);
-$row= mysqli_fetch_array($result1); //전체 게시글의 수
-
-$total_count=$row[0];
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -139,15 +92,10 @@ $total_count=$row[0];
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<?php
-			$minimum_range = 0;
-			$maximum_range = 4000;
-			?>
-
 	<script type="text/javascript">
 		var value = "";
 		// 첫번째 선택지
-		function select(value) {
+		function Categorie(value) {
 			var text = "" + value;
 			document.getElementById("filter_form_div2_3_span").innerHTML = text;
 		}
@@ -173,44 +121,25 @@ $total_count=$row[0];
 			document.getElementById('change_img').src = "../img/down.png";
 		}
 
-
-		$(document).ready(function(){
-
-			$( "#price_range" ).slider({
-				range: true,
-				min: 0,
-				max: 4000,
-				values: [ <?php echo $minimum_range; ?>, <?php echo $maximum_range; ?> ],
-				slide:function(event, ui){
-					$("#minimum_range").val(ui.values[0]);
-					$("#maximum_range").val(ui.values[1]);
-					load_product(ui.values[0], ui.values[1]);
-				}
-			});
-
-			function load_product(minimum_range, maximum_range){
-				$.ajax({
-					url:"add_list.php",
-					method:"POST",
-					data:{minimum_range:minimum_range, maximum_range:maximum_range},
-					success:function(data)
-					{
-						$('#load_product').fadeIn('slow').html(data);
-					}
-				});
-			}
-
-		});
-
-
 		//파트너 클릭시
 				function checklilst() {
 					var checked = document.getElementById('switch_checkbox').checked;
+					var total=document.getElementById('filter_checkbox').checked;
+					var populer_check=document.getElementById('populer_checkbox').checked;
 					if (checked == false) {
-						alert(checked);
+						if(total == true){
+							var save_url= "fetch.php?mode=imglist&handpicked=animal&partner=n";
+						}else if(total==false){
+							var save_url= "fetch.php?mode=imglist&handpicked=total&partner=n";
+						}else if(populer_check == true){
+							var save_url= "fetch.php?mode=imglist&populer=y&partner=n";
+						}else{
+							var save_url= "fetch.php?mode=imglist&populer=n&partner=n";
+						}
 						$.ajax({
+
 							type: "POST",
-							url: "add_list.php?mode=imglist&partner=n",
+							url: save_url,
 							success: function(data) {
 								$('#load_product').fadeIn('slow').html(data);
 							},
@@ -219,10 +148,20 @@ $total_count=$row[0];
 							},
 						});
 					} else {
+						if(total == true){
+							var save_url= "fetch.php?mode=imglist&partner=y&handpicked=animal";
+						}else if(total == false){
+							var save_url= "fetch.php?mode=imglist&handpicked=total&partner=y";
+						}else if(populer_check == true){
+							var save_url= "fetch.php?mode=imglist&populer=y&partner=y";
+						}else{
+							var save_url= "fetch.php?mode=imglist&populer=n&partner=y";
+						}
+
 
 						$.ajax({
 							type: "POST",
-							url: "add_list.php?mode=imglist&partner=y",
+								url: save_url,
 							success: function(data) {
 								$('#load_product').fadeIn('slow').html(data);
 							},
@@ -232,15 +171,23 @@ $total_count=$row[0];
 						});
 					}
 				}
+
 							//animal클릭시
 				function checkfilter() {
 					var checked = document.getElementById('filter_checkbox').checked;
+					var partner_check = document.getElementById('switch_checkbox').checked;
 
 					if (checked == false) {
-						alert(checked);
-						$.ajax({
+
+						if(partner_check == true){
+							var saved_url= "fetch.php?mode=animallist&partner=y&handpicked=total";
+						}else{
+							var saved_url= "fetch.php?mode=animallist&partner=n&handpicked=total";
+							}
+
+							$.ajax({
 							type: "POST",
-							url: "fetch.php?mode=animallist&handpicked=total",
+							url: saved_url,
 							success: function(data) {
 								$('#load_product').fadeIn('slow').html(data);
 							},
@@ -249,10 +196,17 @@ $total_count=$row[0];
 							},
 						});
 					} else {
-						alert(checked);
+
+						if(partner_check == true){
+
+							var saved_url= "fetch.php?mode=animallist&partner=y&handpicked=animal";
+						}else{
+							var saved_url= "fetch.php?mode=animallist&partner=n&handpicked=animal";
+						}
+
 						$.ajax({
 							type: "POST",
-							url: "fetch.php?mode=animallist&handpicked=animal",
+							url: saved_url,
 							success: function(data) {
 								$('#load_product').fadeIn('slow').html(data);
 							},
@@ -261,11 +215,111 @@ $total_count=$row[0];
 							},
 						});
 					}
+				}
+// checkgroup : $(".filter_checkbox").val(), search : $("#search_text").val()
+				//search function
+				function search() {
+					$("#search_button").click(function(event) {
+
+						if(($("#switch_checkbox").is(":checked")==true) && ($("#filter_checkbox").is(":checked")==false) && ($("#populer_checkbox").is(":checked")==false)){
+							var saved_url= "fetch.php?mode=search&partner=y&handpicked=total&populer=n";
+						}else if(($("#switch_checkbox").is(":checked")==true) && ($("#filter_checkbox").is(":checked")==true) && ($("#populer_checkbox").is(":checked")==false)){
+							var saved_url= "fetch.php?mode=search&partner=y&handpicked=animal&populer=n";
+						}else if(($("#switch_checkbox").is(":checked")==true) && ($("#filter_checkbox").is(":checked")==false) && ($("#populer_checkbox").is(":checked")==true)){
+							var saved_url= "fetch.php?mode=search&partner=y&handpicked=total&populer=y";
+						}else if(($("#switch_checkbox").is(":checked")==false) && ($("#filter_checkbox").is(":checked")==false) && ($("#populer_checkbox").is(":checked")==false)){
+							var saved_url= "fetch.php?mode=search&partner=n&handpicked=total&populer=n";
+						}else if(($("#switch_checkbox").is(":checked")==false) && ($("#filter_checkbox").is(":checked")==true) && ($("#populer_checkbox").is(":checked")==false)){
+							var saved_url= "fetch.php?mode=search&partner=n&handpicked=animal&populer=n";
+						}else if(($("#switch_checkbox").is(":checked")==false) && ($("#filter_checkbox").is(":checked")==false) && ($("#populer_checkbox").is(":checked")==true)){
+							var saved_url= "fetch.php?mode=search&partner=n&handpicked=total&populer=y";
+						}else{
+							var saved_url= "fetch.php?mode=search&partner=n&handpicked=total&populer=n";
+						}
+
+						var search_text = $("#search_text").val();
+							$.ajax({
+								type: "POST",
+								url: saved_url,
+								data : {"search": search_text},
+								success: function(data) {
+									$('#load_product').fadeIn('slow').html(data);
+								},
+								error: function() {
+									alert('it broke');
+								},
+							});
+					});
+				}
+
+				//populer check_box
+				function checkpopuler() {
+					var populer_check = document.getElementById('populer_checkbox').checked;
+					var partner_check = document.getElementById('switch_checkbox').checked;
+
+					if (populer_check == false) {
+
+						if(partner_check == true){
+							var saved_url= "fetch.php?mode=populer&populer=n&partner=y";
+						}else{
+							var saved_url= "fetch.php?mode=populer&populer=n&partner=n";
+							}
+
+							$.ajax({
+							type: "POST",
+							url: saved_url,
+							success: function(data) {
+								$('#load_product').fadeIn('slow').html(data);
+							},
+							error: function() {
+								alert('it broke');
+							},
+						});
+					} else{
+						if(partner_check == true){
+
+							var saved_url= "fetch.php?mode=populer&populer=y&partner=y";
+						}else{
+							var saved_url= "fetch.php?mode=populer&populer=y&partner=n";
+						}
+
+						$.ajax({
+							type: "POST",
+							url: saved_url,
+							success: function(data) {
+								$('#load_product').fadeIn('slow').html(data);
+							},
+							error: function() {
+								alert('it broke');
+							},
+						});
+					}
+				}
+
+				$(document).ready(function() {
+    //라디오 요소처럼 동작시킬 체크박스 그룹 셀렉터
+    			$('input[type="checkbox"][name="checkgroup"]').click(function(){
+		        //클릭 이벤트 발생한 요소가 체크 상태인 경우
+		        if ($(this).prop('checked')) {
+		            //체크박스 그룹의 요소 전체를 체크 해제후 클릭한 요소 체크 상태지정
+		            $('input[type="checkbox"][name="checkgroup"]').prop('checked', false);
+		            $(this).prop('checked', true);
+		        }
+    			});
+				});
+
+				function changeimage() {
+				    var image = document.getElementById('like');
+				    if (image.src.match("cart")) {
+				        image.src = "../img/logo.png";
+				    } else {
+				        image.src = "../img/cart.png";
+				    }
 				}
 	</script>
 </head>
 
-<body>
+<body onload="search()">
 	<section>
 		<article class="main">
 			<div id="filter_div">
@@ -276,13 +330,13 @@ $total_count=$row[0];
 							<img id="change1_img" src="../img/down.png" style="width:15px; height:15px;" />&nbsp;&nbsp;&nbsp;
 						</a>
 						<ul id="filter_form_div2_3_ul_1">
-							<li class="filter_form_div2_3_ul_li_1" id="3D" onclick="select('3D')" value="3D"><a href="#">3D</a></li>
-							<li class="filter_form_div2_3_ul_li_1" id="Add-One" onclick="select('Add-One')" value="Add-One"><a href="#">Add-One</a></li>
-							<li class="filter_form_div2_3_ul_li_1" id="Fonts" onclick="select('Fonts')" value="Fonts"><a href="#">Fonts</a></li>
-							<li class="filter_form_div2_3_ul_li_1" id="Graphics" onclick="select('Graphics')" value="Graphics"><a href="#">Graphics</a></li>
-							<li class="filter_form_div2_3_ul_li_1" id="Photos" onclick="select('Photos')" value="Photos"><a href="#">Photos</a></li>
-							<li class="filter_form_div2_3_ul_li_1" id="Templates" onclick="select('Templates')" value="Templates"><a href="#">Templates</a></li>
-							<li class="filter_form_div2_3_ul_li_1" id="Web Thems" onclick="select('Web Thems')" value="Web Thems"><a href="#">Web Thems</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="3D" onclick="Categorie('3D')" value="3D"><a href="#">3D</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="Add-One" onclick="Categorie('Add-One')" value="Add-One"><a href="#">Add-One</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="Fonts" onclick="Categorie('Fonts')" value="Fonts"><a href="#">Fonts</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="Graphics" onclick="Categorie('Graphics')" value="Graphics"><a href="#">Graphics</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="Photos" onclick="Categorie('Photos')" value="Photos"><a href="#">Photos</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="Templates" onclick="Categorie('Templates')" value="Templates"><a href="#">Templates</a></li>
+							<li class="filter_form_div2_3_ul_li_1" id="Web Thems" onclick="Categorie('Web Thems')" value="Web Thems"><a href="#">Web Thems</a></li>
 						</ul>
 					</div>
 					<div class="filter_container_div_2">
@@ -309,12 +363,10 @@ $total_count=$row[0];
 							<li class="filter_form_div2_3_ul_li_2" id="Transportation" onclick="select('Transportation')" value="Transportation"><a href="#">Transportation</a></li>
 						</ul>
 					</div>
-					<form name="board_form" action="main_list.php?mode=search" method="post" id="form_search">
 					<div class="switch_div">
 						<input class="switch_check" type="checkbox" id="switch_checkbox" onclick="checklilst()" value="certified" name="certified_check">
-						<span class="certified_span">Certified(<?=$total_record?>)</span>
+						<span class="certified_span">Certified</span>
 					</div>
-
 						<div class="filter_container_div_3">
 							<a href="#" id="filter_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
 								<span id="filter_form_div2_3_span">Filter</span>
@@ -322,30 +374,18 @@ $total_count=$row[0];
 							</a>
 							<ul id="filter_form_div2_3_ul_3">
 								<li class="filter_form_div2_3_ul_li_2" name="find">
-									<div class="container">
-										<div class="range_slider" style="width:400px ">
-										<div class="col-md-1">
-											<input type="text" style="width:40px;" name="minimum_range" id="minimum_range" class="form-control" value="<?php echo $minimum_range; ?>" />
-										</div>
-										<div class="col-md-8" style="">
-											<div id="price_range"></div>
-										</div>
-										<div class="col-md-2">
-											<input type="text" style="width:40px;" name="maximum_range" id="maximum_range" class="form-control" value="<?php echo $maximum_range; ?>" />
-										</div>
-									</div>
-								</div>
 						</li>
-						<hr>
-						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="filter_checkbox" onclick="checkfilter()" /> animal</label></li>
-						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" /> sports</label></li>
-						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" /> people</label></li>
+						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="filter_checkbox" onclick="checkfilter()" name="checkgroup" value="handpicked"/> handpicked</label></li>
+						<li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="populer_checkbox" class="checkbox" onclick="checkpopuler()" name="checkgroup" value="populer"/> populer</label></li>
 						</ul>
 					</div>
-					<input type="text" name="search" value=""><button type="submit" name="button">search</button>
-				</form>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="text" name="search" value="" id="search_text"><button type="button" id="search_button">search</button>
 			</div>
 		</div>
+		<script type="text/javascript">
+
+		</script>
 		<div class="list_container">
 	<div id="load_product">
 		<?php
@@ -380,7 +420,7 @@ $total_count=$row[0];
 										<img id="main_img" src="./data/<?=$main_img?>" alt="sample30" />
 									</a>
 									<div class="hover_img">
-										<img src="../img/logo.png" alt="" style="width:50px; height:20px;">
+										<img src="../img/logo.png" alt="" style="width:30px; height:20px; margin-right: 30px">
 									</div>
 									<div class="meta">
 										<a href="#" class="free_download">
@@ -399,8 +439,8 @@ $total_count=$row[0];
 									</span>
 									<figcaption>
 										<div class="icons">
-											<a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
-											<a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
+											<a href="#"><img src="../img/cart.png" alt="" style="width:50px; height:20px;" class="checkimg" id="like" onclick="changeimage()"></a> <br>
+											<!-- <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span> -->
 										</div>
 									</figcaption>
 								</figure>
@@ -418,19 +458,23 @@ $total_count=$row[0];
 							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 						}else if(isset($_GET["partner"])){
 							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'> &nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else if(isset($_GET["populer"])){
+							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page&partner=$populer'> &nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else{
+							echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 						}
-						echo "<a id='before_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp  </a>";
 					}
-
 					if($pre_page){
 						if(isset($_GET["handpicked"])){
 							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&handpicked=$handpicked'> PREV   </a>";
 						}else if(isset($_GET["partner"])){
 							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$check_partner'> PREV  </a>";
+						}else if(isset($_GET["populer"])){
+							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page&partner=$populer'> PREV  </a>";
+						}else{
+							echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
 						}
-						echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$pre_page'> PREV  </a>";
 					}
-
 					for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
 						if($dest_page == $page){
 							echo "&nbsp;<b id='present_page'>$dest_page</b>&nbsp";
@@ -439,6 +483,8 @@ $total_count=$row[0];
 								echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page&handpicked=$handpicked'> $dest_page  </a>";
 							}else if(isset($_GET["partner"])){
 								echo "<a id='move_page' href='main_list.php?mode=$mode&page=$dest_page&partner=$check_partner'> $dest_page  </a>";
+							}else if(isset($_GET["populer"])){
+								echo "<a class='page_button' href='main_list.php?mode=$mode&page=$dest_page&partner=$populer'> $dest_page  </a>";
 							}else{
 								echo "<a id='move_page'  href='main_list.php?mode=$mode&page=$dest_page'> $dest_page </a>";
 							}
@@ -450,6 +496,8 @@ $total_count=$row[0];
 							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&handpicked=$handpicked'> NEXT</a>";
 						}else if(isset($_GET["partner"])){
 							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$check_partner'> NEXT  </a>";
+						}else if(isset($_GET["populer"])){
+							echo "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page&partner=$populer'> NEXT  </a>";
 						}else{
 							echo  "<a class='page_button' href='main_list.php?mode=$mode&page=$next_page'> NEXT</a>";
 						}
@@ -461,6 +509,8 @@ $total_count=$row[0];
 							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&handpicked=$handpicked'> &nbsp&nbsp....&nbsp&nbsp </a>";
 						}else if(isset($_GET["partner"])){
 							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$check_partner'>&nbsp&nbsp....&nbsp&nbsp  </a>";
+						}else if(isset($_GET["populer"])){
+							echo "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page&partner=$populer'>&nbsp&nbsp....&nbsp&nbsp  </a>";
 						}else{
 							echo  "<a id='next_block' href='main_list.php?mode=$mode&page=$go_page'> &nbsp&nbsp....&nbsp&nbsp </a>";
 						}
@@ -470,7 +520,7 @@ $total_count=$row[0];
 		</div>
 
 </div>
-
+	</form>
 
 
 

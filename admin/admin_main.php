@@ -4,7 +4,7 @@
 </div>
 
 <div id="admin_member_div" class="admin_div">
-<a href="#"><img src="./img/admin_member.png" alt=""><p>Members</p></a>
+<a href="./admin/admin_member.php"><img src="./img/admin_member.png" alt=""><p>Members</p></a>
 </div>
 
 <div id="admin_chart_div" class="admin_div">
