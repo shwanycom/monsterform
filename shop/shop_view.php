@@ -156,9 +156,9 @@ If you’re still having trouble installing the font,<br>
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_purchase">
           <div class="shop_view_sticky_inner" style="height: 30%; color: #7d7b78;">
-            <span style="text-align:left;"></span>price<span style="text-align:right;">20 MON</span> 
+            <span style="text-align:left;"></span>price<span style="text-align:right;">20 MON</span>
           </div>
-          <div class="shop_view_sticky_inner" style="height: 65%;">          </div>
+          <div class="shop_view_sticky_inner" style="height: 50%;">          </div>
         </div><!-- end of shop_view_sticky_purchase -->
 
       </div><!-- end of shop_view_sticky -->
