@@ -39,21 +39,21 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       $sql = "SELECT * from `products` where big_data = '$big_data' and subject like '%$q_search%' order by num desc;";
       $title = "Result";
     }else if($partner=='n' && $handpicked=='y' && $popular=='n'){
-      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner='n' and p.handpicked='y' and p.subject like '%$q_search%' order by p.num desc;";
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.handpicked='y' and p.subject like '%$q_search%' order by p.num desc;";
       $title = "Result - HandPicked";
       $handpicked_checked = 'checked';
       $partner_default = 'n';
       $handpicked_default = 'y';
       $popular_default = 'n';
     }else if($partner=='n' && $handpicked=='n' && $popular=='y'){
-      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner='n' and p.subject like '%$q_search%' order by p.hit desc;";
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.subject like '%$q_search%' order by p.hit desc;";
       $title = "Result - Popular";
       $popular_checked = 'checked';
       $partner_default = 'n';
       $handpicked_default = 'n';
       $popular_default = 'y';
     }else if($partner=='n' && $handpicked=='y' && $popular=='y'){
-      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner = 'n' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
       $title = "Result - Popular";
       $popular_checked = 'checked';
       $handpicked_checked = 'checked';
