@@ -8,8 +8,8 @@ exit;
 ?>
 <style media="screen">
 #section_write{
-  margin-left: 10%;
-  margin-top:10%;
+  width: 1800px;
+  border:1px solid black;
 }
 </style>
 
