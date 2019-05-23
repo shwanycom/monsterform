@@ -1,6 +1,6 @@
 <section id="section_admin_main">
 <div id="admin_freegoods_div" class="admin_div">
-<a href="#"><img src="../img/admin_freegoods.png" alt=""><p>Select Freegoods</p></a>
+<a href="./admin_freegoods.php"><img src="../img/admin_freegoods.png" alt=""><p>Select Freegoods</p></a>
 </div>
 
 <div id="admin_member_div" class="admin_div">

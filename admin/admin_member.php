@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 if($_SESSION['username']!=='admin'){
   echo "<script> alert('no permission'); history.go(-1); </script>";
   exit;
