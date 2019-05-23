@@ -39,7 +39,6 @@ input.switch_check {
 }
 
 
-
 input.switch_check:after {
  content: "";
  position: absolute;
@@ -129,11 +128,11 @@ input.switch_check:checked:after {
   /* 값 변경 */
   position: absolute;
   display: block;
-  width: 200px;
+  width: 180px;
   color: #444444;
   height: auto;
   font-family: "nina";
-  left: 800PX;
+  left: 670PX;
   z-index: 1;
 
 }
@@ -286,7 +285,7 @@ figure.snip1368.hover figcaption {
   font-size: 10px;
   line-height: 32px;
   background-color: #dddedb;
-  background-image: url(./img);
+  background-image: url(../img);
   color: #444444;
   float: right;
 }

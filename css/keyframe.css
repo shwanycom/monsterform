@@ -1,0 +1,54 @@
+.img_anima {
+  position: relative;
+  border-radius: 5px;
+  width: 230px;
+  height: 200px;
+  background-image: url(../img/Abstract1.jpg);
+
+  animation-duration: 10s;
+  animation-iteration-count: 5;
+  border: 1px solid black;
+}
+
+.img_anima:hover {
+  width: 230px;
+  height: 200px;
+  animation-name: myanim;
+}
+
+@keyframes myanim {
+  0% {
+    width: 230px;
+    height: 200px;
+      background-image: url(../img/Abstract2.jpg);
+      background-size: cover;
+  }
+
+  25% {
+    width: 230px;
+    height: 200px;
+    background-image: url(../img/Abstract3.jpg);
+      background-size: cover;
+  }
+
+  50% {
+    width: 230px;
+    height: 200px;
+    background-image: url(../img/Abstract4.jpg);
+      background-size: cover;
+  }
+
+  75% {
+    width: 230px;
+    height: 200px;
+    background-image: url(../img/Abstract5.jpg);
+      background-size: cover;
+  }
+  100% {
+    width: 230px;
+    height: 200px;
+    background-image: url(../img/Abstract1.jpg);
+      background-size: cover;
+
+
+  }
