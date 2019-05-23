@@ -30,14 +30,13 @@ if(isset($_GET["popular"])){
   $popular=$_GET["popular"];
 }
 
-
 if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
     $search = test_input($_GET["search_text"]);
     $q_search = mysqli_real_escape_string($conn, $search);
 
     if($partner=='n' && $handpicked=='n' && $popular=='n'){
       $sql = "SELECT * from `products` where big_data = '$big_data' and subject like '%$q_search%' order by num desc;";
-      $title = "Result";
+      $title = "Total";
     }else if($partner=='n' && $handpicked=='y' && $popular=='n'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.handpicked='y' and p.subject like '%$q_search%' order by p.num desc;";
       $title = "Result - HandPicked";
@@ -54,7 +53,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       $popular_default = 'y';
     }else if($partner=='n' && $handpicked=='y' && $popular=='y'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
-      $title = "Result - Popular";
+      $title = "Result - Popular Handpicked";
       $popular_checked = 'checked';
       $handpicked_checked = 'checked';
       $partner_default = 'n';
@@ -62,7 +61,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       $popular_default = 'y';
     }else if($partner=='y' && $handpicked=='y' && $popular=='y'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner = 'y' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
-      $title = "Result - Popular";
+      $title = "Result - Popular Handpicked of Partner's";
       $partner_checked = 'checked';
       $popular_checked = 'checked';
       $handpicked_checked = 'checked';
@@ -71,14 +70,14 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       $popular_default = 'y';
     }else if($partner=='y' && $handpicked=='n' && $popular=='n'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner='y' and p.subject like '%$q_search%' order by p.num desc";
-      $title = "Result - Partner's Popular";
+      $title = "Result - Partner's";
       $partner_checked = 'checked';
       $partner_default = 'y';
       $handpicked_default = 'n';
       $popular_default = 'n';
     }else if($partner=='y' && $handpicked=='n' && $popular=='y'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner='y' and p.subject like '%$q_search%' order by p.hit desc;";
-      $title = "Result - Partner's Popular";
+      $title = "Result - Popular of Partner's";
       $partner_checked = 'checked';
       $popular_checked = 'checked';
       $partner_default = 'y';
@@ -113,7 +112,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 }else{
 
   $sql = "SELECT * from `products` where big_data = '$big_data'";
-  $title = $big_data;
+  $title = 'Total';
 
   $result = mysqli_query($conn, $sql);
   $total_record = mysqli_num_rows($result);
@@ -288,6 +287,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 
 	<div class="list_container">
 	  <div id="load_product">
+      <h1><?=$title?>(<?=$total_record?>)</h1>
 		<?php
 		// 모든 레코드를 가져오는 로직
 		for ($i=$start; ($i<$start+SCALE) && ($i< $total_record); $i++){
