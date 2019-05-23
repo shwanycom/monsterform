@@ -1,11 +1,11 @@
-<style media="screen">
+
 a{
   list-style: none;
   color: #44444;
 }
 .point_main {
   width: 100%;
-  height: 800px;
+  height: 600px;
 }
 
 .center_div {
@@ -13,7 +13,7 @@ a{
   padding: 0 10px;
   margin: 0 auto;
   /* position: relative; */
-  height: 800px;
+  height: 600px;
 }
 
 .point_result_div {
@@ -126,7 +126,3 @@ border-width:5px;
 border-style:solid;
 border-color:black;
 } */
-
-
-
-</style>
