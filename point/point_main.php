@@ -1,23 +1,19 @@
 <?php
 
-session_start();
-
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 // include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+if(isset($_SESSION['email'])){
+  $email = $_SESSION['email'];
+  $point1 = $_SESSION['mon'];
+}
 
-$email = $_SESSION['email'];
-$point1 = $_SESSION['mon'];
 if(empty($_GET['selected'])){
   $selected = 100000;
 }else{
   $selected = $_GET['selected'];
 }
-
-var_dump($selected);
-var_dump($email);
-var_dump($point1);
-
 
 
 create_table($conn, "member");
@@ -26,7 +22,9 @@ create_table($conn, "member");
 
 ?>
 <link rel="stylesheet" href="../css/point.css?">
-
+<link rel="stylesheet" href="../css/common.css?ver=1">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/admin_freegoods.css">
 <script type="text/javascript">
   var value="";
   var money="";
@@ -39,21 +37,12 @@ function select(value){
   money=document.getElementById("money_span").innerHTML = text;
   document.getElementById('money_kaka').value = money;
 }
-
-
-
-
   function check_input(){
       document.buy.action="./kakaopay.php";
       document.buy.submit();
   }
-
-
-
-
-
 </script>
-
+<?php include "../lib/header_in_folder.php";?>
 <div class="point_main">
   <div class="center_div">
     <div class="main_title">
@@ -145,3 +134,7 @@ function select(value){
     </div>
   </div>
 </div>
+<?php
+include "../lib/footer_in_folder.php";
+include "../khy_modal/login_modal_in_folder.php";
+?>
