@@ -1,0 +1,100 @@
+@font-face{
+  font-family:"ninab"; /*폰트 패밀리 이름 추가*/
+  src:url("../font/ninab.TTF"); /*폰트 파일 주소*/
+}
+#company_brand_logo{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#details{
+  font-family: "nina";
+}
+#company_brand_title{
+  font-family:"ninab";
+  font-size: 30pt;
+  border-bottom: 1px solid lightgray;
+}
+#img_plate{
+  height:200px;
+  text-align: center;
+}
+
+#download, #font{
+  text-align: center;
+  height:250px;
+  font-size: 20pt;
+}
+#color{
+  height:500px;
+  font-size: 20pt;
+  text-align: center;
+}
+#download_img{
+  width: 20%;
+
+}
+#font_child, #color_child{
+  font-family: nina;
+  font-size: 12pt;
+}
+#monstergreen{
+  font-family: nina;
+  font-size: 15pt;
+  text-align: center;
+  color: white;
+  height: 30px;
+  background-color: #8ba753;
+  padding:0;
+  margin: 0;
+}
+#darkgray{
+  font-family: nina;
+  font-size: 15pt;
+  text-align: center;
+  color: white;
+  height: 30px;
+  margin: 0;
+  padding:0;
+  background-color: #504e4b;
+}
+#livingcoral{
+  font-family: nina;
+  font-size: 15pt;
+  text-align: center;
+  color: white;
+  height: 30px;
+  margin: 0;
+  padding:0;
+  background-color: #FF6F61;
+}
+
+#lightgray{
+  color: #504e4b;
+  font-family: nina;
+  font-size: 15pt;
+  text-align: center;
+  color: #504e4b;
+  height: 30px;
+  margin: 0;
+  padding:0;
+  background-color: #eef0ef;
+
+}
+
+#nina{
+  font-family: nina;
+  font-size: 15pt;
+  text-align: center;
+
+}
+
+#ninab{
+  font-family: ninab;
+  font-size: 15pt;
+  text-align: center;
+
+}
+
+#img_plate{
+  margin-left: auto;
+}

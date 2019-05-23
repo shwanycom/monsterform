@@ -36,10 +36,10 @@
             <div class="footer_div1_div2_div" id="footer_div1_div2_div5_id">
               Company<br><br><br>
               <ul>
-                <li><a href="">About</a></li>
-                <li><a href="">Brand</a></li>
-                <li><a href="">Terms</a></li>
-                <li><a href="">Privacy Policy</a></li>
+                <li><a href="../company/about.php">About</a></li>
+                <li><a href="../company/brand.php">Brand</a></li>
+                <li><a href="../company/terms.php">Terms</a></li>
+                <li><a href="../company/privacy.php">Privacy Policy</a></li>
               </ul>
             </div>
         </div>
