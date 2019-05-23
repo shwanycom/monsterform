@@ -12,7 +12,7 @@ $sql = "show databases";
 $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
 while ($row = mysqli_fetch_row($result)) {
   if($row[0]==="monsterform_db"){
-    $dbflag="OK";
+    $dbflag="OK";    
   }
 }
 //$name=$sub1=$sub2=$sub3=$sub4=$sub5=$sum=$avg="";
