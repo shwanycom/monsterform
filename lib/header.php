@@ -10,7 +10,19 @@
   function mouse_out(){
     document.getElementById('change_img').src="./img/down.png";
   }
-  </script>
+  </script><style media="screen">
+  @font-face{
+    font-family:"1Abraham"; /*폰트 패밀리 이름 추가*/
+    src:url("./font/1 Abraham.OTF"); /*폰트 파일 주소*/
+  }
+  @font-face{
+    font-family:"Hansief"; /*폰트 패밀리 이름 추가*/
+    src:url("./font/Hansief.OTF"); /*폰트 파일 주소*/
+  }
+  #header *{
+      font-family: "Hansief";
+  }
+  </style>
 <header id="header">
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
