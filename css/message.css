@@ -1,0 +1,188 @@
+#section_write {
+  width: 960px;
+  height: auto;
+  margin-left: 20%;
+  margin-right: 10%;
+  margin-bottom: 50px;
+}
+
+#message_div {
+  border-bottom: 1px solid #e0dedb;
+}
+
+.send_div {
+  float: right;
+  border-radius: 4px;
+  background-color: #d9d9d7;
+  border: 1px solid #d9d9d7;
+  color: #7d7b78;
+  font-size: 10pt;
+  padding: 4px;
+}
+
+.list_div {
+  font-size: 16px;
+  border: 1px solid black;
+  /* padding: 22px 20px 21px; */
+  width: 100%;
+  height: 50px;
+  background: #d9d9d7;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+
+#list_content {
+  border-top: 1px solid #e0dedb;
+  ;
+  margin-top: 30px;
+}
+
+#list_message {
+  border-bottom: 1px solid #e0dedb;
+  ;
+  padding: 19px 9px;
+  height: 50px;
+  position: relative;
+  padding-top: 35px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+#list_message1 {
+  width: 15%;
+  float: left;
+}
+
+#list_message2 {
+  width: 15%;
+  float: left;
+}
+
+#list_message3 {
+  width: 35%;
+  float: left;
+}
+
+#list_message4 {
+  width: 10%;
+  float: right;
+  margin-right: 10px;
+}
+
+#list_message5 {
+  float: right;
+  width: 5%;
+}
+
+.select_div {
+  padding-top: 15px;
+}
+
+.select_a {
+  font-weight: 700;
+  color: #615f5c;
+}
+
+.message_h1 {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+/* 여기까지 message.php css */
+#write_form {
+  padding-top: 50px;
+  padding-left: 20px;
+  border-top: 0.5px solid #444444;
+  border-bottom: 0.5px solid #444444;
+}
+
+#subject_span {
+  color: #444444;
+  font-size: 20pt;
+}
+
+#send_span {
+  color: green;
+  transition: color .25s;
+  */ color: #8ba753;
+  */ text-decoration: none;
+}
+
+#date_span {
+  color: #c7c6c5;
+}
+
+.view_boder {
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 20px;
+}
+
+.write_form_2 {
+  padding-left: 30px;
+}
+
+#msg_h1 {
+  border-bottom: 1px solid #444444;
+  height: 60px;
+}
+
+#ripple {
+  border: 1px solid red;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 100px;
+}
+
+#re_button {
+  background-color: rgba(151, 177, 98, 129);
+  color: rgb(245, 245, 244, 230);
+  border: none;
+  width: 30px;
+}
+
+#ripple_button {
+  width: 100px;
+  border: 1px slid black;
+}
+
+button {
+  background-color: rgba(151, 177, 98, 129);
+  border-radius: 2px;
+  list-style: none;
+  border: 0;
+  outline: 0;
+}
+
+/* 여기 까지 view.php csss */
+.form_div {
+
+  text-align: center;
+}
+
+#title_h1 {
+  margin: 20px;
+  font-size: 16pt;
+  text-align: center;
+  color: #2b2927;
+}
+
+#write_id {
+  width: 90%;
+}
+
+#write_message {
+  width: 90%;
+  height: 220px;
+  margin-top: 20px;
+}
+
+#send_button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 90%;
+  color:#fff;
+  cursor: pointer;
+}
+
+/* send_message_form css */
