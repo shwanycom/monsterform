@@ -12,7 +12,6 @@ if(isset($_GET['mode'])){
   $freegoods_search_value = $_POST['freegoods_search_value'];
   $freegoods_search_kind = $_POST['freegoods_search_kind'];
 }
-
 if(isset($_POST['freegoods_sort_partner'])){
   $freegoods_sort_partner_check="checked";
 }else{
