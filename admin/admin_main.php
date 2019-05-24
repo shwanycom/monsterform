@@ -12,6 +12,6 @@
 </div>
 
 <div id="admin_handpicked_div" class="admin_div">
-<a href="#"><img src="./img/admin_handpicked.png" alt=""><p>Handpicked</p></a>
+<a href="./admin_test.php"><img src="./img/admin_handpicked.png" alt=""><p>Handpicked</p></a>
 </div>
 </section>

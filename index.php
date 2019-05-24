@@ -14,10 +14,11 @@ if(isset($_SESSION['no'])){
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
-    <link rel="stylesheet" href="./css/common.css?ver=1">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/footer_2.css">
     <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/index_point.css?">
+    <link rel="stylesheet" href="./css/common.css?ver=1">
     <title></title>
     <style media="screen">
     @font-face{
@@ -33,7 +34,12 @@ if(isset($_SESSION['no'])){
   <body>
     <?php
     include "./lib/header.php";
-    include "./lib/section_text_category.php";
+    if(isset($_SESSION['username'])){
+      include "./point/index_point.php";
+    }else{
+      include "./lib/section_text_category.php";
+    }
+
     include "./lib/section_categories_section.php";
     include './lib/footer_2.php';
     if(isset($_SESSION['username']) && $_SESSION['username']=='admin'){

@@ -1,0 +1,110 @@
+
+.point_main {
+  width: 100%;
+  height: 600px;
+}
+
+.center_div {
+  width: 1200px;
+  padding: 0 10px;
+  margin: 0 auto;
+  /* position: relative; */
+  height: 600px;
+}
+
+.point_result_div {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.point_1 {
+  cursor: pointer;
+  width: 170px;
+  height: 200px;
+  padding: 5px;
+  float: left;
+  margin-left: 8px;
+  background: #ffff;
+  transition: 0.3s;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #e3e3e3;
+  box-shadow: 0 5px 3px 0 rgba(0, 0, 0, .25);
+}
+
+/* 카카오페이 결제하는 div */
+.point_result {
+  cursor: pointer;
+  width: 200px;
+  height: 60px;
+  padding: 5px;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #e3e3e3;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .25);
+  margin-left: 490px;
+}
+
+/*금액 누르는 div 찾기*/
+.point_div {
+  height: 200px;
+  margin: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.main_title {
+  text-align: center;
+}
+
+/*div 위로 올리는 호버*/
+.point_2000:hover .point_1 {
+  transform: translatey(-20px);
+  border: 2px solid #e3e3e3;
+  border: 2px solid rgb(117, 158, 103);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .25);
+}
+
+/* 글씨 태그 부분*/
+.mon_h3 {
+  font-size: 19pt;
+}
+
+.mon_p {
+  font-size: 8.5pt;
+}
+
+.bonus_p {
+  font-size: 10.5pt;
+}
+
+.bonus_p_y {
+  font-size: 10.5pt;
+  color: rgb(170, 205, 179);
+  font-weight: bold;
+}
+
+#money_span {
+  font-weight: bold;
+  text-align: center;
+}
+
+.credit_span {
+  font-weight: bold;
+  color: rgb(185, 185, 185);
+}
+
+#title_h1 {
+  font-size: 40pt;
+  font-family: "ninab";
+}
+
+#sub_p {
+  color: rgb(185, 185, 185);
+  font-family: "ninab";
+  font-weight: bold;
+}
+
+#sub_h4 {
+  font-family: "ninab";
+}

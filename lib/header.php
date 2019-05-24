@@ -1,6 +1,6 @@
 <script type="text/javascript">
   var value="";
-  function select(value){
+  function index_select(value){
   var text = ""+value;
   document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
   }
@@ -20,7 +20,7 @@
           <li class="header_logout_form_div1_1_ul_li"><a href="./discussion/list.php">Discussions&nbsp;&nbsp;</a></li>
           <?php
             if(isset($member_email)){
-              echo '<li class="header_logout_form_div1_1_ul_li"><a href="#">Free Bonus Credits&nbsp;&nbsp;</a></li>';
+              echo '<li class="header_logout_form_div1_1_ul_li"><a href="./point/point_main.php">Free Bonus Credits&nbsp;&nbsp;</a></li>';
             }
           ?>
         </ul>
@@ -129,7 +129,7 @@
         <div id="header_logout_form_div2_2">
           <ul>
             <li class="header_logout_form_div2_ul1_li">
-              <a class="header_logout_form_div2_ul1_li_a" href="#">Photos</a>
+              <a class="header_logout_form_div2_ul1_li_a" href="./product_list/list.php?big_data=photos">Photos</a>
               <ul class="submenu">
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Abstract</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Animals</a></li>
@@ -150,7 +150,7 @@
               </ul>
             </li>
 
-            <li class="header_logout_form_div2_ul1_li"> <a class="header_logout_form_div2_ul1_li_a" href="#">Graphics</a>
+            <li class="header_logout_form_div2_ul1_li"> <a class="header_logout_form_div2_ul1_li_a" href="./product_list/list.php?big_data=graphics">Graphics</a>
               <ul class="submenu">
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Icons</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Illustrations</a></li>
@@ -160,7 +160,7 @@
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Textures</a></li>
               </ul>
             </li>
-            <li class="header_logout_form_div2_ul1_li"> <a class="header_logout_form_div2_ul1_li_a" href="#">Font</a>
+            <li class="header_logout_form_div2_ul1_li"> <a class="header_logout_form_div2_ul1_li_a" href="./product_list/list.php?big_data=fonts">Fonts</a>
               <ul class="submenu">
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Blackletter</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Display</a></li>
@@ -184,10 +184,10 @@
                 <img id="change_img" src="./img/down.png" style="width:15px; height:15px;"/>&nbsp;&nbsp;&nbsp;
               </a>
             <ul id="header_logout_form_div2_3_ul">
-              <li class="header_logout_form_div2_3_ul_li" id="All" onclick="select('All')" value="allcategories"><a href="#">All&nbsp;categories</a></li>
-              <li class="header_logout_form_div2_3_ul_li" id="photos" onclick="select('Photos')" value="Photos"><a href="#">Photos</a></li>
-              <li class="header_logout_form_div2_3_ul_li" id="Graphics" onclick="select('Graphics')" value="Graphics"><a href="#">Graphics</a></li>
-              <li class="header_logout_form_div2_3_ul_li" id="Fonts" onclick="select('Fonts')" value="Fonts"><a href="#">Fonts</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="All" onclick="index_select('All')" value="allcategories"><a href="#">All&nbsp;categories</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="photos" onclick="index_select('Photos')" value="Photos"><a href="#">Photos</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="Graphics" onclick="index_select('Graphics')" value="Graphics"><a href="#">Graphics</a></li>
+              <li class="header_logout_form_div2_3_ul_li" id="Fonts" onclick="index_select('Fonts')" value="Fonts"><a href="#">Fonts</a></li>
             </ul>
           </div>
         </div>

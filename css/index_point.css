@@ -1,0 +1,143 @@
+.point_main {
+  width: 100%;
+  height: 300px;
+  
+}
+
+.center_div {
+  width: 1200px;
+  padding: 0 10px;
+  margin: 0 auto;
+  /* position: relative; */
+  height: 250px;
+
+  margin-top: 15px;
+}
+
+/*  각각 div*/
+.point_1 {
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  padding: 5px;
+  float: left;
+  margin-left: 8px;
+  background: #ffff;
+  transition: 0.3s;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #e3e3e3;
+  box-shadow: 0 5px 3px 0 rgba(0, 0, 0, .25);
+}
+
+
+.point_div{
+
+  height: 180px;
+  right: 0;
+  width: 860px;
+  vertical-align: middle;
+  float: right;
+  padding-top: 60px;
+}
+
+
+.main_title {
+
+  text-align: center;
+  width: 330px;
+  display: inline-block;
+  margin-top: 80px;
+
+}
+
+/*div 위로 올리는 호버*/
+.point_2000:hover .point_1 {
+  transform: scale(1.3, 1.3);
+  border: 2px solid #e3e3e3;
+
+  /* border: 2px solid rgb(117, 158, 103); */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .25);
+}
+
+.point_2000:hover .point_1 .continue_p {
+  border: 2px solid #e3e3e3;
+  background-color: #b1c193;
+  color:#fff;
+}
+.point_2000:hover .point_1 .continue_center_p {
+  border: 2px solid #e3e3e3;
+  background-color: #b1c193;
+  color:#fff;
+}
+
+
+.mon_h3 {
+  color: #444444;
+  margin: 0;
+  padding: 0;
+  font-size: 15pt;
+}
+
+.mon_p {
+    color: #444444;
+    font-size: 6.5pt;
+}
+
+.bonus_p {
+    color: #444444;
+  font-size: 10.5pt;
+}
+
+.bonus_p_y {
+  font-size: 10.5pt;
+  color: rgb(170, 205, 179);
+  font-weight: bold;
+}
+
+#money_span {
+  font-weight: bold;
+  text-align: center;
+}
+
+.credit_span {
+  font-weight: bold;
+  color: rgb(185, 185, 185);
+}
+
+#title_h1 {
+  font-family: "ninab";
+
+  color: #7d7b78;
+  font-size: 30pt;
+  line-height: 44px;
+  font-weight: 100;
+  margin: 0;
+}
+
+#sub_p {
+  color: rgb(185, 185, 185);
+  font-family: "ninab";
+  font-weight: bold;
+}
+
+#sub_h4 {
+  font-family: "ninab";
+}
+.continue_p{
+  font-size: 9pt;
+  height: 20px;
+  background: #faf9f8;
+  border: 1px solid #d9d9d7;
+  color:#444444;
+
+}
+.continue_center_p{
+  font-size: 9pt;
+  height: 20px;
+  border: 1px solid #d9d9d7;
+  font-weight:bold;
+  color:#8ba753;
+  background-color:#fff;
+  border: 1px solid #d9d9d7;
+}

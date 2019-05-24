@@ -29,7 +29,7 @@
               The Goods<br><br><br>
               <ul>
                 <li><a href="">Free Goods</a></li>
-                <li><a href="">Purchase Credits</a></li>
+                <li><a href="../point/point_main.php">Purchase Credits</a></li>
                 <li><a href="">Gift Cards</a></li>
               </ul>
             </div>

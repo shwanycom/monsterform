@@ -118,6 +118,7 @@ function create_table($conn, $table_name){
                 `ttf_file_copied` varchar(100) DEFAULT NULL,
                 `ttf_file_type` varchar(100) DEFAULT NULL,
                 `freegoods_agree` varchar(100) DEFAULT 'n',
+                `file_type` varchar(100) NOT NULL,
                 PRIMARY KEY (`num`)
               ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
       break;

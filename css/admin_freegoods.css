@@ -1,10 +1,28 @@
 *{
   /* border:0.1px solid red; */
 }
+#admin_freegoods_section{
+  margin-left:20%;
+  margin-right:20%;
+}
 .gesipan_div{
-  margin-right:10%;
-  margin-left:10%;
   text-align: center;
+}
+.gesipan_div a{
+  color:black;
+  font-weight: bold;
+  text-decoration: none;
+  font-size:8pt;
+}
+.gesipan_div a:visited{
+  color:black;
+  font-weight: bold;
+  text-decoration: none;
+}
+.gesipan_div a:link{
+  color:black;
+  font-weight: bold;
+  text-decoration: none;
 }
 .img_div{
   display: inline-block;
@@ -25,7 +43,7 @@ line-height: 1.4em;
 }
 
 figure.snip1368 * {
-transition: all 0.1s ease;
+/* transition: all 0.4s ease; */
 }
 
 figure.snip1368 figcaption {
@@ -42,25 +60,31 @@ margin-top: 10px;
 
 figure.snip1368 #checkimg {
 padding: 0px 8px;
-display: inline-block;s
+display: inline-block;
 font-size: 24px;
 color: black;
 text-align: center;
 opacity: 0.7;
+vertical-align: middle;
 }
 
 figure.snip1368 #checkimg:hover {
 opacity: 1;
-transition: all 0.35s ease;
-
+transition: all 0.5s ease;
+}
+.checkimg_span{
+  vertical-align: middle;
 }
 #like{
 z-index: 1;
 }
 
-figure.snip1368:hover figcaption,
+figure.snip1368:hover figcaption{
+  transform: translateX(165px);
+  transition: all 0.5s ease;
+}
 figure.snip1368.hover figcaption {
-transform: translateX(165px);
+
 }
 
 .hover_img {
@@ -73,7 +97,6 @@ text-align: center;
 /* 추가된 부분 */
 opacity: 0;
 transform: scale(2);
-transition: all .3s linear;
 }
 meta
 .icons span {
@@ -85,8 +108,93 @@ color: black;
 /* 추가된 부분 */
 .snip1368:hover .hover_img {
 opacity: 1;
+transition: all 0.5s ease;
 }
 .list_title_div{
   color:black;
-  font-size:8pt;
+  font-size:8pt
+}
+.go_free_goods_img_class:hover{
+  cursor: pointer;
+}
+/*--------------------------------------------------------------------------------*/
+#admin_member_section{
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: rgb(245,245,244,230);
+  margin-bottom:15px;
+}
+#admin_member_section h1{
+  color:rgb(127,127,127,120);
+}
+#admin_member_section .button_a{
+  text-decoration: none;
+  border-radius: 15px;
+  display: inline-block;
+  width:80px;
+}
+#admin_member_section .button_a:hover{
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 15px;
+  display: inline-block;
+  width:80px;
+}
+#freegoods_search_form{
+  height:40px;
+  margin:0;
+  padding:0;
+}
+#freegoods_search_form_div1{
+  display: inline-block;
+  height:35px;
+  width:50%;
+  vertical-align: middle;
+}
+#freegoods_search_form_div2{
+  display: inline-block;
+  float: right;
+  position: right;
+  height:35px;
+  vertical-align: middle;
+}
+#freegoods_search_form_div2 *{
+  display: inline-block;
+}
+#freegoods_search_kind{
+  height:30px;
+  border:2px solid lightgray;
+  outline: none;
+  margin-left:5px;
+}
+#admin_freegoods_search_text{
+  height:30px;
+  width:250px;
+  border:2px solid lightgray;
+  outline: none;
+}
+#admin_freegoods_search_text:focus{
+  height:30px;
+  width:300px;
+  outline: none;
+  background-color: #eeeeee;
+}
+#admin_freegoods_button_list{
+  height:30px;
+  width:120px;
+  outline: none;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+#admin_freegoods_button_list:hover{
+  cursor: pointer;
+  height:30px;
+  width:120px;
+  outline: none;
+  background-color: #bbbbbb;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+.list_title_div_span_bold{
+  text-align: none;
 }
