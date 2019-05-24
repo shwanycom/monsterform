@@ -21,10 +21,12 @@ create_table($conn, "member");
 
 
 ?>
-<link rel="stylesheet" href="../css/point.css?">
-<link rel="stylesheet" href="../css/common.css?ver=1">
+<link rel="stylesheet" href="../css/point.css">
 <link rel="stylesheet" href="../css/footer.css">
-<link rel="stylesheet" href="../css/admin_freegoods.css">
+<link rel="stylesheet" href="../css/common.css?ver=2">
+<style media="screen">
+
+</style>
 <script type="text/javascript">
   var value="";
   var money="";
@@ -40,7 +42,7 @@ function select(value){
   function check_input(){
       document.buy.action="./kakaopay.php";
       document.buy.submit();
-  }
+}
 </script>
 <?php include "../lib/header_in_folder.php";?>
 <div class="point_main">
@@ -124,7 +126,6 @@ function select(value){
           <div class="point_result">
             <input type="hidden" name="totalPrice" id="money_kaka" value="<?=$selected?>">
             <span class="credit_span">Buy Credit :</span>
-
             <span id="money_span"><?=$selected?></span>
             <span class="credit_span">won</span> <br>
             <input type="image" onclick="check_input()" value="결제하기" src="../img/kakaopay.png" style="padding-top:9px; width: 60px;">
@@ -137,4 +138,12 @@ function select(value){
 <?php
 include "../lib/footer_in_folder.php";
 include "../khy_modal/login_modal_in_folder.php";
+session_start();
+if(!isset($_SESSION['no'])) {
+  ?>
+  <script>
+    auto_modal();
+  </script>
+  <?php
+}
 ?>

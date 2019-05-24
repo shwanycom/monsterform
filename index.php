@@ -14,11 +14,11 @@ if(isset($_SESSION['no'])){
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
-    <link rel="stylesheet" href="./css/common.css?ver=1">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/footer_2.css">
     <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="./css/index_point.css?">
+    <link rel="stylesheet" href="./css/common.css?ver=1">
     <title></title>
     <style media="screen">
     @font-face{
