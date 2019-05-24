@@ -145,11 +145,34 @@ include "../lib/header_in_folder.php";
     </div>
     <div class="shop_write_sticky">
       <div class="shop_write_sticky_outter" id="shop_write_sticky_product_info">
-
+        <div class="shop_write_sticky_inner" style="border-bottom:1px solid #c1bebe; padding-bottom:4%; height: 100%;">
+          <h2 style="text-align:left; font-size:1.9em"><?=$subject?> </h2>
+          <p style="text-align:right;"><span style="color: #7d7b78;"><i>By</i> </span> <span><?=$username?></span></p>
+          <p style="text-align:right; color: #7d7b78;"><i><?=$regist_day?></i></p>
+        </div>
       </div><!-- end of shop_write_sticky_product_info -->
 
       <div class="shop_write_sticky_outter" id="shop_write_sticky_purchase">
-        
+        <div class="shop_write_sticky_inner" style="height: auto; color: #7d7b78; padding-top:7%;">
+          <div style="text-align:left; width:48%; display:inline-block ">
+            <span></span>
+          </div>
+          <div style="text-align:right; width:48%; display:inline-block">
+            <span style="font-size:20px;"><b><?=$mon?></b></span> <span>Mon</span>
+            <!-- <i class="fab fa-optin-monster" style="font-size:25px; color:#2f8f94;"></i> -->
+          </div>
+        </div>
+        <div class="shop_write_sticky_inner" style="height: 70%; padding-top:1%;">
+          <div class="shop_write_sticky_inner_btn">
+            <button type="button" style="background-color:#70a330; color:white;" ><b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
+          </div>
+          <div class="shop_write_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+            OR
+          </div>
+          <div class="shop_write_sticky_inner_btn">
+            <button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button>
+          </div>
+        </div>
       </div><!-- end of shop_write_sticky_purchase -->
 
     </div><!-- end of shop_write_sticky -->

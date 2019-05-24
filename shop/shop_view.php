@@ -226,12 +226,4 @@ include "../lib/header_in_folder.php";
 <?php
 include "../lib/footer_in_folder.php";
 include "../khy_modal/login_modal_in_folder.php";
-session_start();
-if(!isset($_SESSION['no'])) {
-  ?>
-  <script>
-    auto_modal();
-  </script>
-  <?php
-}
 ?>

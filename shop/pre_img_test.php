@@ -1,7 +1,6 @@
 <input type="file" accept="image/*" onchange="loadFile(event)">
 <img id="output"/>
 <script>
-<form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
   var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
