@@ -1,11 +1,4 @@
 
-  * {
-    /* border: 0.1px solid lightgray; */
-  }
-
-  * {
-    /* border: 0.1px solid lightgray; */
-  }
 
 body{
   background-color: rgb(245,245,244,230);
@@ -37,12 +30,6 @@ section{
 #header_logout_form_div1 {
   border-bottom: 0.1px solid lightgray;
   height:35px;
-  margin-top:5px;
-
-}
-#header_logout_form_div1 *{
-  /* border-bottom: 0.1px solid red; */
-
 }
 
 /* ----------------------------- */
@@ -61,7 +48,7 @@ section{
 }
 
 .header_logout_form_div1_1_ul_li {
-  list-style: none;
+  /* list-style: none; */
   display: inline-block;
 }
 
@@ -78,9 +65,6 @@ section{
   margin: 0;
   padding: 0;
   float: right;
-}
-#header_logout_form_div1_2_ul *{
-
 }
 .header_logout_form_div1_2_ul_li {
   list-style: none;
@@ -292,7 +276,6 @@ section{
   list-style-type: none;
   display: inline-block;
   font-size: 20pt;
-  font-family: "nina";
 }
 
 .submenu {

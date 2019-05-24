@@ -319,6 +319,7 @@ figure.snip1368.hover figcaption {
   height : 20px;
   color : rgb(245,245,244,230);
   opacity: 1;
+  radius: 5px;
 }
 
 #filter_div button:hover{
@@ -328,6 +329,7 @@ figure.snip1368.hover figcaption {
   height : 20px;
   color : rgb(245,245,244,230);
   opacity: 0.8;
+  radius: 5px;
 }
 
 #filter_div ul{
