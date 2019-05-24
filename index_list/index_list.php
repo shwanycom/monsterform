@@ -13,6 +13,9 @@ $popular_default = 'n';
 $freegoods_checked = '';
 $handpicked_checked = '';
 $popular_checked = '';
+$freegoods_bold = '';
+$handpicked_bold = '';
+$popular_bold = '';
 
 if(isset($_GET["big_data"])){
   $big_data=$_GET["big_data"];
@@ -20,14 +23,23 @@ if(isset($_GET["big_data"])){
 
 if(isset($_GET["freegoods"])){
   $freegoods=$_GET["freegoods"];
+  if($freegoods=='y'){
+    $freegoods_bold = 'style = "font-weight:bold"';
+  }
 }
 
 if(isset($_GET["handpicked"])){
   $handpicked=$_GET["handpicked"];
+  if($handpicked=='y'){
+    $handpicked_bold = 'style = "font-weight:bold"';
+  }
 }
 
 if(isset($_GET["popular"])){
   $popular=$_GET["popular"];
+  if($popular=='y'){
+    $popular_bold = 'style = "font-weight:bold"';
+  }
 }
 
 if(isset($_GET["big_data"])){
@@ -249,50 +261,40 @@ if(isset($_GET["big_data"])){
 		}
 
     function check_freegoods(){
-      var freegoods = document.getElementById('freegoods').value;
-      var handpicked = document.getElementById('handpicked').value;
-      var popular = document.getElementById('popular').value;
-      var search_text = document.getElementById('products_search_text').value;
-      var big_data = document.getElementById('big_data').value;
-
-      if(freegoods=='n'){
-        freegoods='y';
+      var freegoods = 'y';
+      var handpicked = 'n';
+      var popular = 'n';
+      if(document.getElementById('big_data').value!='none'){
+        var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        freegoods='n';
+        var location = "./index_list.php?freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
-      var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+
+      // console.log(jQuery(window).scrollTop());
       window.location.href = location;
     }
 
     function check_handpicked(){
-      var freegoods = document.getElementById('freegoods').value;
-      var handpicked = document.getElementById('handpicked').value;
-      var popular = document.getElementById('popular').value;
-      var search_text = document.getElementById('products_search_text').value;
-      var big_data = document.getElementById('big_data').value;
-
-      if(handpicked=='n'){
-        handpicked='y';
+      var freegoods = 'n';
+      var handpicked = 'y';
+      var popular = 'n';
+      if(document.getElementById('big_data').value!='none'){
+        var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        handpicked='n';
+        var location = "./index_list.php?freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
-      var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       window.location.href = location;
     }
 
     function check_popular(){
-      var freegoods = document.getElementById('freegoods').value;
-      var handpicked = document.getElementById('handpicked').value;
-      var popular = document.getElementById('popular').value;
-      var search_text = document.getElementById('products_search_text').value;
-      var big_data = document.getElementById('big_data').value;
-
-      if(popular=='n'){
-        popular='y';
+      var freegoods = 'n';
+      var handpicked = 'n';
+      var popular = 'y';
+      if(document.getElementById('big_data').value!='none'){
+        var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        popular='n';
+        var location = "./index_list.php?freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
-      var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       window.location.href = location;
     }
 
@@ -303,43 +305,25 @@ if(isset($_GET["big_data"])){
      <ul id="title_ul">
        <li id="title">&nbsp;&nbsp;&nbsp;Products</li>
      </ul>
-     <ul>
-       <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="check_popular()" value="<?=$popular_default?>" id="popular">Popular</a></li>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="#" onclick="check_handpicked()" value="<?=$handpicked_default?>" id="handpicked">Handpicked</a></li>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a  href="#" onclick="check_freegoods()" value="<?=$freegoods_default?>" id="freegoods">FreeGoods</a></li>
+     <ul id="select_ul">
+       <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="check_popular()" value="" id="popular" <?=$popular_bold?>>Popular</a></li>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="#" onclick="check_handpicked()" value="" id="handpicked" <?=$handpicked_bold?>>Handpicked</a></li>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a  href="#" onclick="check_freegoods()" value="" id="freegoods" <?=$freegoods_bold?>>FreeGoods</a></li>
      </ul>
-     <input type="hidden" id="big_data" value="<?=$big_data?>">
-     <div class="filter_container">
-
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="filter_container_div_3">
-         <a href="#" id="filter_form_div2_3_a">
-           <span id="filter_form_div2_3_span">Filter</span>
-           <img id="change_img" src="../img/down.png" style="width:15px; height:15px;" />&nbsp;&nbsp;&nbsp;
-         </a>
-          <ul id="filter_form_div2_3_ul_3">
-            <li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="handpicked" onclick="check_handpicked()" name="checkgroup" value="<?=$handpicked_default?>" <?=$handpicked_checked?>/> handpicked</label></li>
-            <li class="filter_form_div2_3_ul_li_2"><label><input type="checkbox" id="popular" class="checkbox" onclick="check_popular()" name="checkgroup" value="<?=$popular_default?>" <?=$popular_checked?>/> popular</label></li>
-          </ul>
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" name="" value="" id="products_search_text">
-        <button type="button" id="search_button" onclick="products_search_text()">search</button>
-        <div id="product_write_button">
-          <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
-          if(isset($_SESSION['username'])){
-            echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp';
-            echo '<a href="../shop/shop_write_form.php"><button type="button" name="button">Open My Shop</button></a>';
-          }
-          echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp;';
-          ?>
-        </div> <!-- end of button -->
-      </div>
+     <div class="">
+       <select class="" id="big_data" name="">
+         <option value="none">All Categories</option>
+         <option value="photos" $selected2>Photos</option>
+         <option value="graphics" $selected3>Graphics</option>
+         <option value="fonts" $selected4>Fonts</option>
+       </select>
+     </div>
+     <input type="hidden" name="" value="<?=$big_data?>">
     </div>
 
 	<div class="list_container">
 	  <div id="load_product">
-      <h1><?=$title?>(<?=$total_record?>)</h1>
+      <br><br>
 		<?php
 		// 모든 레코드를 가져오는 로직
 		for ($i=$start; ($i<$start+SCALE) && ($i< $total_record); $i++){
@@ -403,6 +387,7 @@ if(isset($_GET["big_data"])){
        ?>
 		</div>
     <div class="product_page_num">
+      <!-- define('SCALE', SCALE+27); -->
       <?php
       if(!($page-1==0)){
         $go_page = $page-1;
@@ -435,9 +420,6 @@ if(isset($_GET["big_data"])){
       </div> <!-- end of page_num -->
 
 </div>
-<?php
-  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/footer_in_folder.php";
- ?>
 
 </body>
 </html>
