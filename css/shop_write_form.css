@@ -22,6 +22,7 @@ div.shop_write_container{
 div.shop_write_container img{
   border-radius: 5px;
 }
+
 div.shop_write_gal{
   margin-bottom: 10px;
   max-height: 600px;
@@ -57,16 +58,12 @@ div.shop_write_sticky{
   border-top: 5px solid #70a330;
   background-color: #fff;
 }
-div.shop_write_sticky_outter{
-  width : 97%;
-  margin: 3% 1%;
-  /* border: 1px solid #e2e2e2; */
-}
+
 div#shop_write_sticky_product_info{
-  height:30%;
+  height:320px;
 }
 div#shop_write_sticky_purchase{
-  height:60%;
+  height:440px;
 }
 div.shop_write_sticky_inner{
   height: 40%;
@@ -78,7 +75,7 @@ div.shop_write_sticky_inner_btn{
   text-align : center;
   /* border: 1px solid #e2e2e2; */
 }
-div.shop_write_sticky_inner_btn button{
+div#shop_write_sticky_product_info button{
   width:100%;
   height: 30%;
   font-size: 1.05em;

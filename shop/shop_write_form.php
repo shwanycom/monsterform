@@ -21,9 +21,7 @@ create_table($conn, "products"); //가입인사 게시판 테이블 생성
  integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
  crossorigin="anonymous">
 <script type="text/javascript" src="../js/monsterform.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="jquery-3.4.0.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
   function currentDiv(n) {
     showDivs(slideIndex = n);
@@ -71,6 +69,32 @@ create_table($conn, "products"); //가입인사 게시판 테이블 생성
     gal.src = URL.createObjectURL(event.target.files[0]);
   };
 </script>
+<!-- <script>
+  $("mon_selector").on("keydown", function(e){
+    /* e(지수), .(소수점) -(마이너스) 예외처리 */
+    if(e.keyCode == 69 || e.keyCode == 190 || e.keyCode == 109){
+      return false;
+    }
+  });
+</script> -->
+<script>
+  $(function(){
+    $("#free_check").click(function(){
+        // console.log("어그리");
+        // $("mon_selector").val(0);
+        // console.log($("mon_selector").val());
+        var chk = $(this).is(":checked");//.attr('checked');
+        if(chk) {
+          console.log("췤");
+          // $("#mon_selector").val(0);
+          $("#mon_selector").attr("disabled");
+        }else{
+          console.log("언췤");
+          $("#mon_selector").val(10);
+        }
+    });
+  });
+</script>
 <?php
 include "../lib/header_in_folder.php";
 ?>
@@ -91,30 +115,30 @@ include "../lib/header_in_folder.php";
   <div class="shop_write_container">
     <div id="shop_write_div1">
       <div class="shop_write_gal">
-        <img class="shop_write_mySlides" id="shop_write_gal1" src="./data/red1.png" style="width:100%; ">
-        <img class="shop_write_mySlides" id="shop_write_gal2" src="./data/red2.png" style="width:100%; display:none">
-        <img class="shop_write_mySlides" id="shop_write_gal3" src="./data/red3.png" style="width:100%; display:none">
-        <img class="shop_write_mySlides" id="shop_write_gal4" src="./data/red4.png" style="width:100%; display:none">
+        <img class="shop_write_mySlides" id="shop_write_gal1" src="./data/add_img.png" style="width:100%; ">
+        <img class="shop_write_mySlides" id="shop_write_gal2" src="./data/add_img.png" style="width:100%; display:none">
+        <img class="shop_write_mySlides" id="shop_write_gal3" src="./data/add_img.png" style="width:100%; display:none">
+        <img class="shop_write_mySlides" id="shop_write_gal4" src="./data/add_img.png" style="width:100%; display:none">
       </div>
 
       <div class="shop_write_minigal_set">
         <div class="shop_write_minigal">
-          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/red1.png"
+          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
           style="width:100%;cursor:pointer" onclick="currentDiv(1)" id="shop_write_mini1">
           <input type="file" name="upfile" accept="image/*" onchange="loadFile1(event)">
         </div>
         <div class="shop_write_minigal">
-          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/red2.png"
+          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
           style="width:100%;cursor:pointer" onclick="currentDiv(2)" id="shop_write_mini2">
           <input type="file" name="upfile" accept="image/*" onchange="loadFile2(event)" >
         </div>
         <div class="shop_write_minigal">
-          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/red3.png"
+          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
           style="width:100%;cursor:pointer" onclick="currentDiv(3)" id="shop_write_mini3">
           <input type="file" name="upfile" accept="image/*" onchange="loadFile3(event)">
         </div>
         <div class="shop_write_minigal">
-          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/red4.png"
+          <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
           style="width:100%;cursor:pointer" onclick="currentDiv(4)" id="shop_write_mini4">
           <input type="file" name="upfile" accept="image/*" onchange="loadFile4(event)">
         </div>
@@ -145,11 +169,26 @@ include "../lib/header_in_folder.php";
     </div>
     <div class="shop_write_sticky">
       <div class="shop_write_sticky_outter" id="shop_write_sticky_product_info">
+        <button type="button" style="background-color:#70a330; color:white;">
+          <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
+          <div class="shop_write_sticky_inner" style="height: 200px; color: #7d7b78; padding-top:7%;">
+            <div style="text-align:left; width:100%; display:inline-block ">
+              <p>Set the price of your product</p><br>
+            </div>
+            <div style="text-align:left; width:48%; display:inline-block ">
+              <input type="checkbox" name="" value="" id="free_check">Agree for Free <br>
+            </div>
+            <div style="text-align:right; width:48%; display:inline-block ">
+              <span>Mon </span> <input type="number" name="" id="mon_selector"
+                style="width:50px; text-align:center;">
+              <!-- <i class="fab fa-optin-monster" style="font-size:25px; color:#2f8f94;"></i> -->
+            </div>
+          </div>
 
       </div><!-- end of shop_write_sticky_product_info -->
 
       <div class="shop_write_sticky_outter" id="shop_write_sticky_purchase">
-        
+
       </div><!-- end of shop_write_sticky_purchase -->
 
     </div><!-- end of shop_write_sticky -->
