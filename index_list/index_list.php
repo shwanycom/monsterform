@@ -10,15 +10,47 @@ define('SCALE', 27);
 $freegoods_default = 'n';
 $handpicked_default = 'n';
 $popular_default = 'n';
-$freegoods_checked = '';
-$handpicked_checked = '';
-$popular_checked = '';
+
 $freegoods_bold = '';
 $handpicked_bold = '';
 $popular_bold = '';
 
+$selected1 = 'selected';
+$selected2 = '';
+$selected3 = '';
+$selected4 = '';
+
+
 if(isset($_GET["big_data"])){
   $big_data=$_GET["big_data"];
+  switch($big_data){
+    case 'none':
+    $selected1 = 'selected';
+    $selected2 = '';
+    $selected3 = '';
+    $selected4 = '';
+    break;
+    case 'photos':
+    $selected1 = '';
+    $selected2 = 'selected';
+    $selected3 = '';
+    $selected4 = '';
+    break;
+    case 'graphics':
+    $selected1 = '';
+    $selected2 = '';
+    $selected3 = 'selected';
+    $selected4 = '';
+    break;
+    case 'fonts':
+    $selected1 = '';
+    $selected2 = '';
+    $selected3 = '';
+    $selected4 = 'selected';
+    break;
+    default:
+    break;
+  }
 }
 
 if(isset($_GET["freegoods"])){
@@ -42,149 +74,61 @@ if(isset($_GET["popular"])){
   }
 }
 
-if(isset($_GET["big_data"])){
-  $big_data=$_GET["big_data"];
-
+if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
   if($freegoods=='n' && $handpicked=='n' && $popular=='n'){
     $sql = "SELECT * from `products` where big_data = '$big_data' order by num desc;";
     $title = "Total";
   }else if($freegoods=='n' && $handpicked=='y' && $popular=='n'){
     $sql = "SELECT * from `products` where big_data = '$big_data' and handpicked='y' order by num desc;";
     $title = "Result - HandPicked";
-    $handpicked_checked = 'checked';
     $freegoods_default = 'n';
     $handpicked_default = 'y';
     $popular_default = 'n';
   }else if($freegoods=='n' && $handpicked=='n' && $popular=='y'){
     $sql = "SELECT * from `products` where big_data = '$big_data' order by hit desc;";
     $title = "Result - Popular";
-    $popular_checked = 'checked';
     $freegoods_default = 'n';
     $handpicked_default = 'n';
-    $popular_default = 'y';
-  }else if($freegoods=='n' && $handpicked=='y' && $popular=='y'){
-    $sql = "SELECT * from `products` where big_data = '$big_data' and handpicked = 'y' order by hit desc;";
-    $title = "Result - Popular Handpicked";
-    $popular_checked = 'checked';
-    $handpicked_checked = 'checked';
-    $freegoods_default = 'n';
-    $handpicked_default = 'y';
-    $popular_default = 'y';
-  }else if($freegoods=='y' && $handpicked=='y' && $popular=='y'){
-    $sql = "SELECT * from `products` where big_data = '$big_data' and freegoods = 'y' and handpicked = 'y' order by hit desc;";
-    $title = "Result - Popular Handpicked of Partner's";
-    $partner_checked = 'checked';
-    $popular_checked = 'checked';
-    $handpicked_checked = 'checked';
-    $freegoods_default = 'y';
-    $handpicked_default = 'y';
     $popular_default = 'y';
   }else if($freegoods=='y' && $handpicked=='n' && $popular=='n'){
     $sql = "SELECT * from `products` where big_data = '$big_data' and freegoods='y' order by num desc";
     $title = "Result - Partner's";
-    $partner_checked = 'checked';
     $freegoods_default = 'y';
     $handpicked_default = 'n';
-    $popular_default = 'n';
-  }else if($freegoods=='y' && $handpicked=='n' && $popular=='y'){
-    $sql = "SELECT * from `products` where big_data = '$big_data' and freegoods='y' order by hit desc;";
-    $title = "Result - Popular of Partner's";
-    $partner_checked = 'checked';
-    $popular_checked = 'checked';
-    $freegoods_default = 'y';
-    $handpicked_default = 'n';
-    $popular_default = 'y';
-  }else if($freegoods=='y' && $handpicked=='y' && $popular=='n'){
-    $sql = "SELECT * from `products` where big_data = '$big_data' and freegoods='y' and handpicked='y' order by num desc;";
-    $title = "Result - Partner's HandPicked";
-    $partner_checked = 'checked';
-    $handpicked_checked = 'checked';
-    $freegoods_default = 'y';
-    $handpicked_default = 'y';
     $popular_default = 'n';
   }else{
-    $sql = "SELECT * from `products` order by num desc;";
+    $sql = "SELECT * from `products` where big_data = '$big_data' order by num desc;";
     $title = "Result";
   }
 
-  $result = mysqli_query($conn, $sql);
-  $total_record = mysqli_num_rows($result);
-
-  $total_page = ($total_record%SCALE==0)?(floor($total_record/SCALE)):(ceil($total_record/SCALE));
-
-  if(empty($_GET["page"])){
-    $page = 1;
-  }else{
-    $page = $_GET["page"];
-  }
-
-  $start = ($page-1) * SCALE;
-
-  $number = $total_record - $start;
-
-
 }else{
+
   if($freegoods=='n' && $handpicked=='n' && $popular=='n'){
     $sql = "SELECT * from `products` order by num desc;";
     $title = "Total";
   }else if($freegoods=='n' && $handpicked=='y' && $popular=='n'){
     $sql = "SELECT * from `products` where handpicked='y' order by num desc;";
     $title = "Result - HandPicked";
-    $handpicked_checked = 'checked';
     $freegoods_default = 'n';
     $handpicked_default = 'y';
     $popular_default = 'n';
   }else if($freegoods=='n' && $handpicked=='n' && $popular=='y'){
     $sql = "SELECT * from `products` order by hit desc;";
     $title = "Result - Popular";
-    $popular_checked = 'checked';
     $freegoods_default = 'n';
     $handpicked_default = 'n';
-    $popular_default = 'y';
-  }else if($freegoods=='n' && $handpicked=='y' && $popular=='y'){
-    $sql = "SELECT * from `products` where handpicked = 'y' order by hit desc;";
-    $title = "Result - Popular Handpicked";
-    $popular_checked = 'checked';
-    $handpicked_checked = 'checked';
-    $freegoods_default = 'n';
-    $handpicked_default = 'y';
-    $popular_default = 'y';
-  }else if($freegoods=='y' && $handpicked=='y' && $popular=='y'){
-    $sql = "SELECT * from `products` where freegoods = 'y' and handpicked = 'y' order by hit desc;";
-    $title = "Result - Popular Handpicked of Partner's";
-    $partner_checked = 'checked';
-    $popular_checked = 'checked';
-    $handpicked_checked = 'checked';
-    $freegoods_default = 'y';
-    $handpicked_default = 'y';
     $popular_default = 'y';
   }else if($freegoods=='y' && $handpicked=='n' && $popular=='n'){
     $sql = "SELECT * from `products` where freegoods='y' order by num desc";
     $title = "Result - Partner's";
-    $partner_checked = 'checked';
     $freegoods_default = 'y';
     $handpicked_default = 'n';
-    $popular_default = 'n';
-  }else if($freegoods=='y' && $handpicked=='n' && $popular=='y'){
-    $sql = "SELECT * from `products` where freegoods='y' order by hit desc;";
-    $title = "Result - Popular of Partner's";
-    $partner_checked = 'checked';
-    $popular_checked = 'checked';
-    $freegoods_default = 'y';
-    $handpicked_default = 'n';
-    $popular_default = 'y';
-  }else if($freegoods=='y' && $handpicked=='y' && $popular=='n'){
-    $sql = "SELECT * from `products` where freegoods='y' and handpicked='y' order by num desc;";
-    $title = "Result - Partner's HandPicked";
-    $partner_checked = 'checked';
-    $handpicked_checked = 'checked';
-    $freegoods_default = 'y';
-    $handpicked_default = 'y';
     $popular_default = 'n';
   }else{
     $sql = "SELECT * from `products` order by num desc;";
     $title = "Result";
   }
+}
 
   $result = mysqli_query($conn, $sql);
   $total_record = mysqli_num_rows($result);
@@ -200,10 +144,6 @@ if(isset($_GET["big_data"])){
   $start = ($page-1) * SCALE;
 
   $number = $total_record - $start;
-
-}
-
-
 
 ?>
 <!DOCTYPE html>
@@ -224,6 +164,8 @@ if(isset($_GET["big_data"])){
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		var value = "";
+    var scale = 27;
+
 		// 첫번째 선택지
 		function Categorie(value) {
 			var text = "" + value;
@@ -264,10 +206,11 @@ if(isset($_GET["big_data"])){
       var freegoods = 'y';
       var handpicked = 'n';
       var popular = 'n';
-      if(document.getElementById('big_data').value!='none'){
+      var big_data = $("#big_data_select").val();
+      if(big_data!='none'){
         var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        var location = "./index_list.php?freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
 
       // console.log(jQuery(window).scrollTop());
@@ -278,10 +221,11 @@ if(isset($_GET["big_data"])){
       var freegoods = 'n';
       var handpicked = 'y';
       var popular = 'n';
-      if(document.getElementById('big_data').value!='none'){
+      var big_data = $("#big_data_select").val();
+      if(big_data!='none'){
         var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        var location = "./index_list.php?freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
       window.location.href = location;
     }
@@ -290,13 +234,67 @@ if(isset($_GET["big_data"])){
       var freegoods = 'n';
       var handpicked = 'n';
       var popular = 'y';
-      if(document.getElementById('big_data').value!='none'){
+      var big_data = $("#big_data_select").val();
+      if(big_data!='none'){
         var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        var location = "./index_list.php?freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
       window.location.href = location;
     }
+
+
+    $(document).ready(function() {
+      $("#big_data_select").change(function(event) {
+        var big_data = $("#big_data_select").val();
+        var freegoods = 'n';
+        var handpicked = 'n';
+        var popular = 'n';
+        if(big_data=='none'){
+          var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        }else{
+          var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        }
+        window.location.href = location;
+      });
+    });
+
+
+    function read_more(){
+      var big_data = $("#big_data_select").val();
+      if(big_data!='none'){
+        var location1 = "./read_more.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+      }else{
+        var location1 = "./read_more.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+      }
+      $.ajax({
+        url: location1,
+        type: 'POST',
+        data: {scale : scale}
+      })
+      .done(function(result) {
+        console.log("success");
+        if(result==''){
+          $("#read_more_button").hide();
+        }else{
+          $("#load_product").append(result);
+          scale += 27;
+        }
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+    }
+
+    // $(document).ready(function() {
+    //
+    //   $("#read_more_button").click(function(event) {
+    //
+    //   });
+    // });
 
 	</script>
 </head>
@@ -311,14 +309,13 @@ if(isset($_GET["big_data"])){
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a  href="#" onclick="check_freegoods()" value="" id="freegoods" <?=$freegoods_bold?>>FreeGoods</a></li>
      </ul>
      <div class="">
-       <select class="" id="big_data" name="">
-         <option value="none">All Categories</option>
-         <option value="photos" $selected2>Photos</option>
-         <option value="graphics" $selected3>Graphics</option>
-         <option value="fonts" $selected4>Fonts</option>
+       <select class="" id="big_data_select">
+         <option value="none" <?=$selected1?>>All Categories</option>
+         <option value="photos" <?=$selected2?>>Photos</option>
+         <option value="graphics" <?=$selected3?>>Graphics</option>
+         <option value="fonts" <?=$selected4?>>Fonts</option>
        </select>
      </div>
-     <input type="hidden" name="" value="<?=$big_data?>">
     </div>
 
 	<div class="list_container">
@@ -387,36 +384,14 @@ if(isset($_GET["big_data"])){
        ?>
 		</div>
     <div class="product_page_num">
-      <!-- define('SCALE', SCALE+27); -->
       <?php
-      if(!($page-1==0)){
-        $go_page = $page-1;
-        echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'><span class='page_button'>&nbsp;PREV </span>&nbsp;</a>";
-      }else{
-        echo "";
+      if($number!=0){
+      ?>
+      <button type="button" id="read_more_button" onclick="read_more()">...Read More...</button>
+      <?php
       }
-        for($i=1;$i<=$total_page;$i++){
-          if($page==$i){
-            echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
-          }else{
-            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$i'>$i</a>";
-          }
-        }
-
-        if($total_record!=0){
-          if($page==$total_page){
-            echo "";
-          }else{
-            $go_page = $page+1;
-            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
-          }
-        }else{
-          echo "";
-        }
-
-         ?>
-
-         <br><br>
+       ?>
+      <br><br>
       </div> <!-- end of page_num -->
 
 </div>

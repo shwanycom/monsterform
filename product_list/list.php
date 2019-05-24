@@ -385,6 +385,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 </div>
 <?php
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/footer_in_folder.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/khy_modal/login_modal_in_folder.php";
  ?>
 
 </body>
