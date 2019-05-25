@@ -168,13 +168,13 @@ transition: all 0.5s ease;
   margin-left:5px;
 }
 #admin_handpicked_search_text{
-  height:30px;
+  height:36px;
   width:250px;
   border:2px solid lightgray;
   outline: none;
 }
 #admin_handpicked_search_text:focus{
-  height:30px;
+  height:36px;
   width:300px;
   outline: none;
   background-color: #eeeeee;
