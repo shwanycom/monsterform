@@ -26,8 +26,8 @@
           <div class="footer_div1_div2_div">
             Earn<br><br><br>
             <ul>
-              <li><a href="../earn/becomeapartner.php">Open a Shop</a></li>
-              <li><a href="">Become a Partner</a></li>
+              <li><a href="">Open a Shop</a></li>
+              <li><a href="../earn/becomeapartner.php">Become a Partner</a></li>
             </ul>
           </div>
           <div class="footer_div1_div2_div">
@@ -41,7 +41,7 @@
             <div class="footer_div1_div2_div">
               The Goods<br><br><br>
               <ul>
-                <li><a href="">Free Goods</a></li>
+                <li><a href="../goods/freegoods.php">Free Goods</a></li>
                 <li><a href="../point/point_main.php">Purchase Credits</a></li>
                 <li><a href="">Gift Cards</a></li>
               </ul>

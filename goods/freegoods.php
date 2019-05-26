@@ -113,8 +113,10 @@ $row2=mysqli_fetch_array($result2);
 <?php echo '<body onload="Timer(\''.$diff_in_secs.'\',\''.$diff_in_mins.'\',\''.$diff_in_hours.'\',\''.$diff_in_days.'\')">'; ?>
     <?php include "../lib/header_in_folder.php"; ?>
     <section class="section_freegoods">
+      <br><br><br>
       <h1>Free Goods of the Week</h1>
       <h2>Download these 6 free goods before it's too late!<form id="timer" name=timer><label id="counter_label">EXPIRATION</label><input id="counter" name=counter></form></h2>
+      <br><br>
       <div class="board_div">
       <?php
       for($i=0; $i<8; $i++){
@@ -138,7 +140,6 @@ $row2=mysqli_fetch_array($result2);
           $freegoods_img="../img/hover_logo.png";
         }
       echo '<div class="img_div">
-          <input type="hidden" class="hidden_num" value="'.$num.'">
           <figure class="snip1368">
             <a href="#">
               <img id="main_img" src="../img/'.$img_file_copied1.'" alt="sample30" />
@@ -169,101 +170,118 @@ $row2=mysqli_fetch_array($result2);
       }
       ?>
       </div>
+      <br><br>
     </section>
     <section class="tell_friends_section">
       <br>
       <span id="tell_friends_div">Don't forget to tell your friends&nbsp;&nbsp;</span><button type="" name="button" onclick="message_to_friends()">MESSAGE</button></h1>
     </section>
     <section class="section_handpicked">
+      <br>
       <h1>More top products from these great shops</h1>
+      <br>
       <div class="board_handpicked_div">
       <?php
-
-      $sql3="select * from `products` where `handpicked`='y'";
-      $result3 = mysqli_query($conn, $sql3);
-      $total_record3 = mysqli_num_rows($result3);
-      for($i=0; $i<16; $i++){
-        //하나 레코드 가져오기
-        $row3=mysqli_fetch_array($result3);
-        $no3=$row3["no"];
-        $num3=$row3["num"];
-        $username3=$row3["username"];
-        $email3=$row3["email"];
-        $subject3=$row3["subject"];
-        $content3=$row3["content"];
-        $regist_day3=$row3["regist_day"];
-        $price3=$row3["price"];
-        $big_data3=$row3["big_data"];
-        $small_data3=$row3["small_data"];
-        $img_file_copied1_3=$row3["img_file_copied1"];
-        $handpicked=$row3["handpicked"];
-        if($handpicked=='y'){
-          $handpicked_img="../img/free_partner_logo.png";
-        }else{
-          $handpicked_img="../img/hover_logo.png";
-        }
-        $sql_likes = "SELECT product_num from likes where no = '$member_no';";
-        $result_likes = mysqli_query($conn, $sql_likes);
-        $total_record_likes = mysqli_num_rows($result_likes);
-        $likes_img = "../img/hover_like.png";
-        $likes_img_value = "n";
-        for($j=0;$j<$total_record_likes;$j++){
-          mysqli_data_seek($result_likes, $j);
-          $row_likes = mysqli_fetch_array($result_likes);
-          $likes = $row_likes['product_num'];
-          if($likes == $num3){
-            $likes_img = "../img/like.png";
-            $likes_img_value = "y";
+      if(isset($_SESSION['no'])){
+        $sql3="select * from `products` where `handpicked`='y'";
+        $result3 = mysqli_query($conn, $sql3);
+        $total_record3 = mysqli_num_rows($result3);
+        for($i=0; $i<16; $i++){
+          //하나 레코드 가져오기
+          $row3=mysqli_fetch_array($result3);
+          $no3=$row3["no"];
+          $num3=$row3["num"];
+          $username3=$row3["username"];
+          $email3=$row3["email"];
+          $subject3=$row3["subject"];
+          $content3=$row3["content"];
+          $regist_day3=$row3["regist_day"];
+          $price3=$row3["price"];
+          $big_data3=$row3["big_data"];
+          $small_data3=$row3["small_data"];
+          $img_file_copied1_3=$row3["img_file_copied1"];
+          $handpicked=$row3["handpicked"];
+          if($handpicked=='y'){
+            $handpicked_img="../img/free_partner_logo.png";
+          }else{
+            $handpicked_img="../img/hover_logo.png";
+          }
+          $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+          $result_likes = mysqli_query($conn, $sql_likes);
+          $total_record_likes = mysqli_num_rows($result_likes);
+          $likes_img = "../img/hover_like.png";
+          $likes_img_value = "n";
+          for($j=0;$j<$total_record_likes;$j++){
+            mysqli_data_seek($result_likes, $j);
+            $row_likes = mysqli_fetch_array($result_likes);
+            $likes = $row_likes['product_num'];
+            if($likes == $num3){
+              $likes_img = "../img/like.png";
+              $likes_img_value = "y";
+              break;
+            }
+          }
+        echo '<div class="img_div">
+        <input type="hidden" class="hidden_num" value="'.$num3.'">
+            <figure class="snip1368">
+              <a href="#">
+                <img id="main_img" src="../img/'.$img_file_copied1_3.'" alt="sample30" />
+              </a>
+              <div class="hover_img" id="hover_img_id">
+                <img src="'.$handpicked_img.'" class="go_free_goods_img_class" name="go_free_goods_img"  style="width:25px; height:25px;"><!--가져다 댔을때-->
+              </div>
+              <div class="list_title_div">
+                <div class="">
+                  <a href="#" class="">
+                    <span class="list_title_div_span_bold">'.$subject3.'</span>
+                  </a>
+                  <a href="#" class="list_title_div_a_float_right">
+                    M&nbsp; '.$price3.'
+                  </a>
+                </div>
+                <div class="">
+                    by&nbsp;<a href="#" class="">'.$email3.'</a>
+                    in&nbsp;<a href="#" class="">'.$big_data3.'</a>
+                </div>
+              </div>
+              <figcaption>
+                <div class="icons">
+                  <img src="'.$likes_img.'" alt="" style="width:20px; height:20px;" class="checkimg">
+                  <input type="hidden" class="likes_img_value" value="'.$likes_img_value.'">
+                </div>
+              </figcaption>
+            </figure>
+            </div>
+          ';
+          if($i%4==3){
+            echo '<br>';
+          }
+          if($i==$total_record3-1){
             break;
           }
         }
-      echo '<div class="img_div">
-      <input type="hidden" class="hidden_num" value="'.$num3.'">
-          <figure class="snip1368">
-            <a href="#">
-              <img id="main_img" src="../img/'.$img_file_copied1_3.'" alt="sample30" />
-            </a>
-            <div class="hover_img" id="hover_img_id">
-              <img src="'.$handpicked_img.'" class="go_free_goods_img_class" name="go_free_goods_img"  style="width:25px; height:25px;"><!--가져다 댔을때-->
-            </div>
-            <div class="list_title_div">
-              <div class="">
-                <a href="#" class="">
-                  <span class="list_title_div_span_bold">'.$subject3.'</span>
-                </a>
-                <a href="#" class="list_title_div_a_float_right">
-                  M&nbsp; '.$price3.'
-                </a>
-              </div>
-              <div class="">
-                  by&nbsp;<a href="#" class="">'.$email3.'</a>
-                  in&nbsp;<a href="#" class="">'.$big_data3.'</a>
-              </div>
-            </div>
-            <figcaption>
-              <div class="icons">
-                <a href="#">
-                <img src="'.$likes_img.'" alt="" style="width:20px; height:20px;" class="checkimg">
-                <input type="hidden" class="likes_img_value" value="'.$likes_img_value.'">
-
-              </div>
-            </figcaption>
-          </figure>
-          </div>
-        ';
-        if($i%4==3){
-          echo '<br>';
-        }
-        if($i==$total_record3-1){
-          break;
-        }
       }
       ?>
+
       </div>
+      <br><br>
+    </section>
+    <section class="more_handpicked_section">
+      <a href="product_list/list.php?big_data=photos&mode=search&partner=y&handpicked=n&popular=n&search_text=">More Handpicked Photos</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_list/list.php?big_data=graphics&mode=search&partner=y&handpicked=n&popular=n&search_text=">More Handpicked Graphics</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_list/list.php?big_data=fonts&mode=search&partner=y&handpicked=n&popular=n&search_text=">More Handpicked Fonts</a>
+      <br><br>
     </section>
     <?php
       include "../lib/footer_in_folder.php";
       include "../khy_modal/login_modal_in_folder.php";
+      if(!isset($_SESSION['no'])) {
+        ?>
+        <script>
+          auto_modal();
+        </script>
+        <?php
+      }
     ?>
   </body>
 </html>
