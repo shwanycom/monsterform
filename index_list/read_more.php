@@ -1,5 +1,6 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 
 define('SCALE', 27);
 
@@ -75,27 +76,57 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
   $number = $total_record - $start;
 
 for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
-  mysqli_data_seek($result, $i);
-// 하나 레코드 가져오기
-  $row = mysqli_fetch_array($result);
-  $item_num = $row["num"];
-  $item_name = $row["username"];
-  $price = $row["price"];
-  $item_price = $price/100;
-  $item_email = $row["email"];
+  // 가져올 레코드 위치 이동
+     mysqli_data_seek($result, $i);
 
-  $img_copy_name0 = $row["img_file_copied1"];
+  // 하나 레코드 가져오기
+     $row = mysqli_fetch_array($result);
+     $item_no = $row["no"];
+     $item_num = $row["num"];
+     $item_name = $row["username"];
+     $price = $row["price"];
+     $item_price = $price/100;
+     $item_email = $row["email"];
+     $img_copy_name0 = $row["img_file_copied1"];
+     $item_hit = $row["hit"];
+     $item_date = $row["regist_day"];
+     $item_date = substr($item_date, 0, 10);
+     $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+     $item_freegoods=$row["freegoods"];
 
-  $item_hit = $row["hit"];
-  $item_date = $row["regist_day"];
-  $item_date = substr($item_date, 0, 10);
-  $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+     $sql_partner = "SELECT partner from member where no = '$item_no';";
+     $result_partner = mysqli_query($conn, $sql_partner);
+     $row_partner = mysqli_fetch_array($result_partner);
+     $partner = $row_partner['partner'];
 
-  // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
-  if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
-      $main_img = $img_copy_name0;
+     if($partner=='n' && $item_freegoods=='n'){
+       $freegoods_img="../img/hover_logo.png";
+     }else{
+       $freegoods_img="../img/free_partner_logo.png";
+     }
 
-  }
+     $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+     $result_likes = mysqli_query($conn, $sql_likes);
+     $total_record_likes = mysqli_num_rows($result_likes);
+
+     $likes_img = "../img/hover_like.png";
+     $likes_img_value = "n";
+
+     for($j=0;$j<$total_record_likes;$j++){
+       mysqli_data_seek($result_likes, $j);
+       $row_likes = mysqli_fetch_array($result_likes);
+       $likes = $row_likes['product_num'];
+       if($likes == $item_num){
+         $likes_img = "../img/like.png";
+         $likes_img_value = "y";
+         break;
+       }
+     }
+
+     // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
+     if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
+         $main_img = $img_copy_name0;
+     }
 
   echo '<div class="img_div">
     <figure class="snip1368">
@@ -103,7 +134,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
         <img id="main_img" src="../img/openmarket.png" alt="sample30" />
       </a>
       <div class="hover_img">
-        <img src="../img/logo.png" alt="" style="width:25px; height:25px;">
+        <img src="'.$freegoods_img.'" alt="" style="width:25px; height:25px;">
       </div>
       <div class="list_title_div">
         <div class="">
@@ -121,8 +152,9 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
       </div>
       <figcaption>
         <div class="icons">
-          <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
-          <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
+        <input type="hidden" class="hidden_num" value="'.$item_num.'">
+        <a href="#"><img class="likes_img_class" src="'.$likes_img.'" alt="" style="width:25px; height:25px;"></a><br>
+        <input type="hidden" class="likes_img_value" value="'.$likes_img_value.'">
         </div>
       </figcaption>
     </figure>
