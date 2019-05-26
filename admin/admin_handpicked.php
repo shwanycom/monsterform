@@ -256,6 +256,9 @@ $number=$total_record- $start_row;
         </figure>
         </div>
       ';
+      if($i%3==2){
+        echo '<br>';
+      }
     }
     ?>
     </div>
