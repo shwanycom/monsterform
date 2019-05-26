@@ -108,7 +108,7 @@
       }
     });
     $(".s_v_tags").click(function(event) {
-      $(this).remove();
+      $e.remove();
     });
   });
   </script>

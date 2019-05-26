@@ -182,7 +182,7 @@ transition: all 0.5s ease;
 }
 #admin_freegoods_search_text:focus{
   height:36px;
-  width:300px;
+  width:250px;
   outline: none;
   background-color: #eeeeee;
 }
@@ -207,4 +207,35 @@ transition: all 0.5s ease;
 }
 .list_title_div div{
   text-align: left;
+}
+#pick_date_submit{
+  height:30px;
+  width:150px;
+  outline: none;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+#pick_date_submit:hover{
+  cursor: pointer;
+  height:30px;
+  width:150px;
+  outline: none;
+  background-color: #bbbbbb;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+#pick_date{
+  height:30px;
+  width:200px;
+  border:2px solid lightgray;
+  outline: none;
+}
+#pick_date:focus{
+  height:30px;
+  width:200px;
+  outline: none;
+  background-color: #eeeeee;
+}
+.form_pick_date_div{
+  text-align: center;
 }

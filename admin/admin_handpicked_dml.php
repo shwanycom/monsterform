@@ -22,4 +22,5 @@ if(isset($_GET["mode"]) && $_GET["mode"]=='go_hand'){
   }
   mysqli_close($conn);
 }
+
 ?>
