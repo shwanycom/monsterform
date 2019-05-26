@@ -264,9 +264,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
     function read_more(){
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location1 = "./read_more.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location1 = "./index_list/read_more.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }else{
-        var location1 = "./read_more.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location1 = "./index_list/read_more.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
       $.ajax({
         url: location1,
@@ -299,7 +299,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         console.log(num_num);
         console.log(likes_img_value);
          $.ajax({
-           url: '..lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
+           url: './lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
            type: 'POST', // get 또는 post로 data를 보냄
            data: {num: num_num, liv : likes_img_value}
          })
