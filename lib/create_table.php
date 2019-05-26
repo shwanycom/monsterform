@@ -122,6 +122,11 @@ function create_table($conn, $table_name){
                 PRIMARY KEY (`num`)
               ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
       break;
+      case 'freegoods_date':
+      $sql = "CREATE TABLE `freegoods_date` (
+                `freegoods_date` varchar(100) DEFAULT '2019-06-01T18:00'
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      break;
       case 'report':
       $sql = "CREATE TABLE `report` (
                 `product_num` int(11) NOT NULL,

@@ -22,4 +22,15 @@ if(isset($_GET["mode"]) && $_GET["mode"]=='go_free'){
   }
   mysqli_close($conn);
 }
+if(isset($_GET["mode"]) && $_GET["mode"]=='date'){
+  var_dump($_POST['pick_date']);
+  $pick_date=$_POST['pick_date'];
+  $q_pick_date = mysqli_real_escape_string($conn, $pick_date);
+  $sql="UPDATE freegoods_date set `freegoods_date`='$q_pick_date'";
+  $result = mysqli_query($conn, $sql);
+  if (!$result) {
+    die('Error: UPDATE(FREE GOODS y) ERROR' . mysqli_error($conn));
+  }
+  echo "<script> location.href='./admin_freegoods.php';</script>";
+}
 ?>

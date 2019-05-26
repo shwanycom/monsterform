@@ -287,26 +287,44 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       });
     }
 
-    function go_free_goods_func(num){
-      var result = confirm("freegoods할래여??");
-      if(result){
-        var num_num=num;
-       $.ajax({
-         url: './like_dml.php?mode=go_free', // 데이터 보내서 작업되어질 url
-         type: 'POST', // get 또는 post로 data를 보냄
-         data: {num: num_num}
-       })
-       .done(function(result_ajax) {
-         console.log("success");
-       })
-       .fail(function() {
-         console.log("error");
-       })
-       .always(function() {
-         console.log("complete");
-       });
-      }
-    }
+    $(document).ready(function() {
+      $(".likes_img_class").click(function(event) {
+        var n = $(".likes_img_class").index(this);
+        var num_num = $(".hidden_num:eq("+n+")").val();
+        var likes_img_value = $(".likes_img_value:eq("+n+")").val();
+        console.log(n);
+        console.log(num_num);
+        console.log(likes_img_value);
+         $.ajax({
+           url: './like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
+           type: 'POST', // get 또는 post로 data를 보냄
+           data: {num: num_num, liv : likes_img_value}
+         })
+         .done(function(result_ajax) {
+           console.log("success");
+           console.log(result_ajax);
+           console.log($(".likes_img_class:eq("+n+")").attr("src"));
+           if($(".likes_img_class:eq("+n+")").attr("src")!="../img/hover_like.png"){
+             $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
+           }else{
+             $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
+            }
+            console.log($(".likes_img_class:eq("+n+")").attr("src"));
+          if($(".likes_img_value:eq("+n+")").val()=='y'){
+            $(".likes_img_value:eq("+n+")").val('n');
+          }else{
+            $(".likes_img_value:eq("+n+")").val('y');
+          }
+
+         })
+         .fail(function() {
+           console.log("error");
+         })
+         .always(function() {
+           console.log("complete");
+         });
+      });
+    });
 
 	</script>
 </head>
@@ -341,30 +359,51 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
 
 	 // 하나 레코드 가져오기
 			$row = mysqli_fetch_array($result);
+      $item_no = $row["no"];
 			$item_num = $row["num"];
 			$item_name = $row["username"];
 			$price = $row["price"];
       $item_price = $price/100;
       $item_email = $row["email"];
-
 			$img_copy_name0 = $row["img_file_copied1"];
-
 			$item_hit = $row["hit"];
 			$item_date = $row["regist_day"];
 			$item_date = substr($item_date, 0, 10);
 			$item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
-
       $item_freegoods=$row["freegoods"];
-      if($item_freegoods=='y'){
-        $freegoods_img="../img/like.png";
+
+      $sql_partner = "SELECT partner from member where no = '$item_no';";
+      $result_partner = mysqli_query($conn, $sql_partner);
+      $row_partner = mysqli_fetch_array($result_partner);
+      $partner = $row_partner['partner'];
+
+      if($partner=='n' && $item_freegoods=='n'){
+        $freegoods_img="../img/hover_logo.png";
       }else{
-        $freegoods_img="../img/hover_like.png";
+        $freegoods_img="../img/free_partner_logo.png";
+      }
+
+      $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+      $result_likes = mysqli_query($conn, $sql_likes);
+      $total_record_likes = mysqli_num_rows($result_likes);
+
+      $likes_img = "../img/hover_like.png";
+      $likes_img_value = "n";
+
+      for($j=0;$j<$total_record_likes;$j++){
+        mysqli_data_seek($result_likes, $j);
+        $row_likes = mysqli_fetch_array($result_likes);
+        $likes = $row_likes['product_num'];
+        if($likes == $item_num){
+          $likes_img = "../img/like.png";
+          $likes_img_value = "y";
+          break;
+        }
       }
 
 			// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
 			if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
 					$main_img = $img_copy_name0;
-
 			}
 			?>
       <div class="img_div">
@@ -373,7 +412,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
             <img id="main_img" src="../img/openmarket.png" alt="sample30" />
           </a>
           <div class="hover_img">
-            <img src="../img/logo.png" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
+            <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
           </div>
           <div class="list_title_div">
             <div class="">
@@ -391,8 +430,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
           </div>
           <figcaption>
             <div class="icons">
-              <a href="#"><img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;" class="checkimg" onclick="go_free_goods_func('<?=$item_num?>')"></a><span>Like</span> <br>
-              <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
+              <input type="hidden" class="hidden_num" value="<?=$item_num?>">
+              <a href="#"><img class="likes_img_class" src="<?=$likes_img?>" alt="" style="width:25px; height:25px;" ></a><br>
+              <input type="hidden" class="likes_img_value" value="<?=$likes_img_value?>">
             </div>
           </figcaption>
         </figure>
