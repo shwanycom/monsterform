@@ -1,3 +1,16 @@
+<style media="screen">
+@font-face{
+  font-family:"1Abraham"; /*폰트 패밀리 이름 추가*/
+  src:url("./font/1 Abraham.OTF"); /*폰트 파일 주소*/
+}
+@font-face{
+  font-family:"Hansief"; /*폰트 패밀리 이름 추가*/
+  src:url("./font/Hansief.OTF"); /*폰트 파일 주소*/
+}
+.footer_footer *{
+  font-family: "Hansief";
+}
+</style>
 <footer class="footer_footer">
   <div id="footer_main">
     <div id="footer_main_margin_left_right">

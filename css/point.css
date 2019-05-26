@@ -6,7 +6,7 @@
 
 .center_div {
   width: 1200px;
-  padding: 0 10px;
+  padding: 0px;
   margin: 0 auto;
   /* position: relative; */
   height: 600px;
@@ -60,7 +60,6 @@
 /*div 위로 올리는 호버*/
 .point_2000:hover .point_1 {
   transform: translatey(-20px);
-  border: 2px solid #e3e3e3;
   border: 2px solid rgb(117, 158, 103);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .25);
 }
