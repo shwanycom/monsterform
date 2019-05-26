@@ -268,7 +268,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
              }else{
                $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
-              }
+            }
               console.log($(".likes_img_class:eq("+n+")").attr("src"));
             if($(".likes_img_value:eq("+n+")").val()=='y'){
               $(".likes_img_value:eq("+n+")").val('n');

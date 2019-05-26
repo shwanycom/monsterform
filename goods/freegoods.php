@@ -83,7 +83,7 @@ $row2=mysqli_fetch_array($result2);
         console.log(num_num);
         console.log(likes_img_value);
          $.ajax({
-           url: './like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
+           url: '../lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
            type: 'POST', // get 또는 post로 data를 보냄
            data: {num: num_num, liv : likes_img_value}
          })
@@ -91,11 +91,15 @@ $row2=mysqli_fetch_array($result2);
            console.log("success");
            console.log(result_ajax);
            console.log($(".checkimg:eq("+n+")").attr("src"));
-           if($(".checkimg:eq("+n+")").attr("src")!="../img/hover_like.png"){
-             $(".checkimg:eq("+n+")").attr("src", "../img/hover_like.png");
+           if(result_ajax=='fail'){
+             alert("로그인 후 이용하세요.");
            }else{
-             $(".checkimg:eq("+n+")").attr("src", "../img/like.png");
-            }
+             if($(".checkimg:eq("+n+")").attr("src")!="../img/hover_like.png"){
+               $(".checkimg:eq("+n+")").attr("src", "../img/hover_like.png");
+             }else{
+               $(".checkimg:eq("+n+")").attr("src", "../img/like.png");
+              }
+           }
             console.log($(".checkimg:eq("+n+")").attr("src"));
           if($(".likes_img_value:eq("+n+")").val()=='y'){
             $(".likes_img_value:eq("+n+")").val('n');

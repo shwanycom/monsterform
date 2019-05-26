@@ -22,6 +22,7 @@ create_table($conn, 'report');
 create_table($conn, 'sales');
 create_table($conn, 'message');
 create_table($conn, 'message_ripple');
+
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -44,7 +45,7 @@ create_table($conn, 'message_ripple');
     }else{
       include "./lib/section_text_category.php";
     }
-
+    include "./index_list/index_list.php";
     include "./lib/section_categories_section.php";
     include './lib/footer_2.php';
     if(isset($_SESSION['username']) && $_SESSION['username']=='admin'){
