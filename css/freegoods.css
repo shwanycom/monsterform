@@ -1,8 +1,14 @@
 body{
-  background-color: rgba(82,92,97,84);
+  margin-left:0;
+  margin-right:0;
+  padding-left:0;
+  padding-right:0;
 }
-#section_freegoods{
+.section_freegoods{
+  background-color: rgba(82,92,97,84);
   text-align: center;
+  margin:0;
+  padding:0;
 }
 .board_div{
   width:100%;
@@ -83,7 +89,7 @@ z-index: 1;
 }
 
 figure.snip1368:hover figcaption{
-  transform: translateX(165px);
+  transform: translateX(220px);
   transition: all 0.5s ease;
 }
 figure.snip1368.hover figcaption {
@@ -124,3 +130,69 @@ transition: all 0.5s ease;
   cursor: pointer;
 }
 /*--------------------------------------------------------------------------------*/
+.section_freegoods h1, .section_freegoods h2{
+  margin:0;
+  padding:0;
+  color: rgb(245,245,244,230);
+  font-size: 25pt;
+}
+#counter_label{
+  color: rgb(245,245,244,230);
+  text-align: center;
+  width:300px;
+  font-size: 15pt;
+}
+#counter{
+  border:1px solid rgba(82,92,97,84);
+  background-color: rgba(82,92,97,84);
+  color: black;
+  text-align: center;
+  width:300px;
+  font-size: 15pt;
+}
+/*--------------------------------*/
+.tell_friends_section{
+  background-color: rgba(54,59,63,55);
+  height:80px;
+}
+.tell_friends_section{
+  text-align: center;
+}
+.tell_friends_section span{
+  padding:0;
+  margin:0;
+  font-size:16pt;
+  color:rgb(245,245,244,230);
+}
+.tell_friends_section button{
+  font-size: 15pt;
+  width:200px;
+  height:40px;
+  background-color: rgba(139,167,83,118);
+  color:rgb(245,245,244,230);
+  border:none;
+  border-radius: 5px;
+  margin:0;
+  padding:0;
+}
+.tell_friends_section button:hover{
+  width:200px;
+  height:40px;
+  background-color: rgba(151,177,98,129);
+  color:rgb(245,245,244,230);
+  border: none;
+  border-radius: 5px;
+  margin:0;
+  padding:0;
+}
+/*--------------------------------*/
+.section_handpicked{
+  text-align: center;
+  background-color: rgb(245,245,244,230);
+}
+.section_handpicked h1{
+  padding:0;
+  margin:0;
+  color:rgb(127,127,127,120);
+  font-size: 24pt;
+}
