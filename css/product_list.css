@@ -88,3 +88,7 @@ opacity: 1;
   float : right;
   margin-right: 10px;
 }
+
+.likes_img_class:hover{
+  cursor: pointer;
+}

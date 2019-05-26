@@ -213,8 +213,8 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
 
-      // console.log(jQuery(window).scrollTop());
       window.location.href = location;
+      $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
     }
 
     function check_handpicked(){
@@ -228,6 +228,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
       window.location.href = location;
+      $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
     }
 
     function check_popular(){
@@ -241,6 +242,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         var location = "./index_list.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
       }
       window.location.href = location;
+      $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
     }
 
     $(document).ready(function() {
@@ -255,6 +257,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
           var location = "./index_list.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
         }
         window.location.href = location;
+        $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
       });
     });
 
@@ -296,7 +299,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         console.log(num_num);
         console.log(likes_img_value);
          $.ajax({
-           url: './like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
+           url: '..lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
            type: 'POST', // get 또는 post로 data를 보냄
            data: {num: num_num, liv : likes_img_value}
          })
@@ -304,17 +307,21 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
            console.log("success");
            console.log(result_ajax);
            console.log($(".likes_img_class:eq("+n+")").attr("src"));
-           if($(".likes_img_class:eq("+n+")").attr("src")!="../img/hover_like.png"){
-             $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
+           if(result_ajax=='fail'){
+             alert("로그인 후 이용하세요.");
            }else{
-             $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
+             if($(".likes_img_class:eq("+n+")").attr("src")!="../img/hover_like.png"){
+               $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
+             }else{
+               $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
+              }
+              console.log($(".likes_img_class:eq("+n+")").attr("src"));
+            if($(".likes_img_value:eq("+n+")").val()=='y'){
+              $(".likes_img_value:eq("+n+")").val('n');
+            }else{
+              $(".likes_img_value:eq("+n+")").val('y');
             }
-            console.log($(".likes_img_class:eq("+n+")").attr("src"));
-          if($(".likes_img_value:eq("+n+")").val()=='y'){
-            $(".likes_img_value:eq("+n+")").val('n');
-          }else{
-            $(".likes_img_value:eq("+n+")").val('y');
-          }
+           }
 
          })
          .fail(function() {
@@ -431,7 +438,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
           <figcaption>
             <div class="icons">
               <input type="hidden" class="hidden_num" value="<?=$item_num?>">
-              <a href="#"><img class="likes_img_class" src="<?=$likes_img?>" alt="" style="width:25px; height:25px;" ></a><br>
+              <img class="likes_img_class" src="<?=$likes_img?>" alt="" style="width:25px; height:25px;" ><br>
               <input type="hidden" class="likes_img_value" value="<?=$likes_img_value?>">
             </div>
           </figcaption>
