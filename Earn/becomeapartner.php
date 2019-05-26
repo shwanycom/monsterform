@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/becomeapartner.css">
     <link rel="stylesheet" href="../css/footer.css">
     <style media="screen">
+  
     </style>
   </head>
   <body>

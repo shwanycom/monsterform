@@ -1,7 +1,7 @@
 *{
   /* border:0.1px solid red; */
 }
-#admin_freegoods_section{
+#admin_handpicked_section{
   margin-left:20%;
   margin-right:20%;
 }
@@ -48,7 +48,6 @@ figure.snip1368:hover{
   box-shadow: 8px 13px 20px rgba(192, 192, 191, 180);
   border-radius: 2px;
 }
-
 figure.snip1368 * {
 /* transition: all 0.4s ease; */
 }
@@ -121,7 +120,7 @@ transition: all 0.5s ease;
   color:black;
   font-size:8pt
 }
-.go_free_goods_img_class:hover{
+.go_hand_picked_img_class:hover{
   cursor: pointer;
 }
 /*--------------------------------------------------------------------------------*/
@@ -147,53 +146,53 @@ transition: all 0.5s ease;
   display: inline-block;
   width:80px;
 }
-#freegoods_search_form{
+#handpicked_search_form{
   height:40px;
   margin:0;
   padding:0;
 }
-#freegoods_search_form_div1{
+#handpicked_search_form_div1{
   display: inline-block;
   height:35px;
   width:50%;
   vertical-align: middle;
 }
-#freegoods_search_form_div2{
+#handpicked_search_form_div2{
   display: inline-block;
   float: right;
   position: right;
   height:35px;
   vertical-align: middle;
 }
-#freegoods_search_form_div2 *{
+#handpicked_search_form_div2 *{
   display: inline-block;
 }
-#freegoods_search_kind{
+#handpicked_search_kind{
   height:36px;
   border:2px solid lightgray;
   outline: none;
   margin-left:5px;
 }
-#admin_freegoods_search_text{
+#admin_handpicked_search_text{
   height:36px;
   width:250px;
   border:2px solid lightgray;
   outline: none;
 }
-#admin_freegoods_search_text:focus{
+#admin_handpicked_search_text:focus{
   height:36px;
   width:300px;
   outline: none;
   background-color: #eeeeee;
 }
-#admin_freegoods_button_list{
+#admin_handpicked_button_list{
   height:30px;
   width:150px;
   outline: none;
   border:2px solid lightgray;
   border-radius:15px;
 }
-#admin_freegoods_button_list:hover{
+#admin_handpicked_button_list:hover{
   cursor: pointer;
   height:30px;
   width:150px;

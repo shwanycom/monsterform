@@ -11,6 +11,19 @@
     document.getElementById('change_img').src="../img/down.png";
   }
   </script>
+  <style media="screen">
+  @font-face{
+    font-family:"1Abraham"; /*폰트 패밀리 이름 추가*/
+    src:url("../font/1 Abraham.OTF"); /*폰트 파일 주소*/
+  }
+  @font-face{
+    font-family:"Hansief"; /*폰트 패밀리 이름 추가*/
+    src:url("../font/Hansief.OTF"); /*폰트 파일 주소*/
+  }
+  #header *{
+    font-family: "Hansief";
+  }
+  </style>
 <header id="header">
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
@@ -114,7 +127,6 @@
                 <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button2" id="myBtn2">Sign in</button></li>
                 <li class="header_logout_form_div1_2_ul_li">&nbsp;or&nbsp;</li>
                 <li class="header_logout_form_div1_2_ul_li"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn">Join Now</button></li>
-                <li class="header_logout_form_div1_2_ul_li"><a href="../lib/logout.php"><button type="button" name="header_logout_form_div1_ul1_li2_button1" id="myBtn3">Sign out</button></a> </li>
               </ul>
               ';
             }

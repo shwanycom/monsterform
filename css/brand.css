@@ -1,16 +1,22 @@
 @font-face{
-  font-family:"ninab"; /*폰트 패밀리 이름 추가*/
-  src:url("../font/ninab.TTF"); /*폰트 파일 주소*/
+  font-family:"1Abraham"; /*폰트 패밀리 이름 추가*/
+  src:url("../font/1 Abraham.OTF"); /*폰트 파일 주소*/
+}
+@font-face{
+  font-family:"Hansief"; /*폰트 패밀리 이름 추가*/
+  src:url("../font/Hansief.OTF"); /*폰트 파일 주소*/
+}
+#company_brand_logo *{
+font-family: "Hansief";
 }
 #company_brand_logo{
+  text-align: center;
   margin-left: 10%;
   margin-right: 10%;
 }
-#details{
-  font-family: "nina";
-}
+
 #company_brand_title{
-  font-family:"ninab";
+  font-family:"1Abraham";
   font-size: 30pt;
   border-bottom: 1px solid lightgray;
 }
@@ -34,11 +40,11 @@
 
 }
 #font_child, #color_child{
-  font-family: nina;
+  font-family: "Hansief";
   font-size: 12pt;
 }
 #monstergreen{
-  font-family: nina;
+  font-family: "Hansief";
   font-size: 15pt;
   text-align: center;
   color: white;
@@ -48,7 +54,7 @@
   margin: 0;
 }
 #darkgray{
-  font-family: nina;
+  font-family: "Hansief";
   font-size: 15pt;
   text-align: center;
   color: white;
@@ -58,7 +64,7 @@
   background-color: #504e4b;
 }
 #livingcoral{
-  font-family: nina;
+  font-family: "Hansief";
   font-size: 15pt;
   text-align: center;
   color: white;
@@ -70,7 +76,7 @@
 
 #lightgray{
   color: #504e4b;
-  font-family: nina;
+  font-family: "Hansief";
   font-size: 15pt;
   text-align: center;
   color: #504e4b;
@@ -82,17 +88,15 @@
 }
 
 #nina{
-  font-family: nina;
+  font-family: "Hansief";
   font-size: 15pt;
   text-align: center;
-
 }
 
 #ninab{
-  font-family: ninab;
+  font-family: "1Abraham";
   font-size: 15pt;
   text-align: center;
-
 }
 
 #img_plate{

@@ -1,11 +1,4 @@
 
-  * {
-    /* border: 0.1px solid lightgray; */
-  }
-
-  * {
-    /* border: 0.1px solid lightgray; */
-  }
 
 body{
   background-color: rgb(245,245,244,230);
@@ -25,10 +18,10 @@ a:hover {
 }
 
 #header {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin:auto;
   margin-bottom:5px;
-  border-bottom:1px solid lightgray;
+  max-width: 1200px;
+
 }
 section{
   background: #f5f5f4;
@@ -37,12 +30,6 @@ section{
 #header_logout_form_div1 {
   border-bottom: 0.1px solid lightgray;
   height:35px;
-  margin-top:5px;
-
-}
-#header_logout_form_div1 *{
-  /* border-bottom: 0.1px solid red; */
-
 }
 
 /* ----------------------------- */
@@ -61,7 +48,7 @@ section{
 }
 
 .header_logout_form_div1_1_ul_li {
-  list-style: none;
+  /* list-style: none; */
   display: inline-block;
 }
 
@@ -78,9 +65,6 @@ section{
   margin: 0;
   padding: 0;
   float: right;
-}
-#header_logout_form_div1_2_ul *{
-
 }
 .header_logout_form_div1_2_ul_li {
   list-style: none;
@@ -229,7 +213,7 @@ section{
 #header_logout_form_div1_2_ul_li_div5:hover #header_logout_form_div1_2_ul_li_div5_div{
   margin-top:2px;
   width:65px;
-  height:150px;
+  height:130px;
   z-index: 1;
   border-radius: 5px;
   font-size: 10pt;
@@ -292,7 +276,6 @@ section{
   list-style-type: none;
   display: inline-block;
   font-size: 20pt;
-  font-family: "nina";
 }
 
 .submenu {
@@ -385,16 +368,18 @@ button:hover{
 }
 #text_category_text_div{
   background-image: url("../img/indexbarlogo.png");
-  height: 300px;
+  height: 400px;
   width:100%;
   background-repeat: no-repeat;
 }
 
 /* ------------------------------템플릿 추가 부분 ------------------------------------------------------ */
 #categories_section {
-  height: 250px;
+  height: 270px;
   border-bottom: 1px solid rgb(185, 185, 185);
   border-top: 1px solid rgb(185, 185, 185);
+  margin-left: 10%;
+  margin-right:10%;
 }
 .featured_title {
   font-size: 14pt;

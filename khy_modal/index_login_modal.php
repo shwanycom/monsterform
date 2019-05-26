@@ -146,6 +146,7 @@ function sendToDml(type){
     <!-- <p>Some text in the Modal..</p> -->
   </div>
 </div>
+</div>
 <script>
 var flag = true;
 var gloginBtn = document.getElementById("gloginBtn");
@@ -254,7 +255,7 @@ function sign_man(){
   }else{
     //회원가입모드
     $("#gloginBtn").html("Sign up using Google");
-    $("#kloginBtn").html("Sign up using Kakao");    
+    $("#kloginBtn").html("Sign up using Kakao");
     sign.value="Sign in!";
     left_img.src = "./img/signin.png";
     username2.setAttribute("type","hidden");
