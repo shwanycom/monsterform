@@ -37,10 +37,12 @@ if(isset($_GET['mode']) && $_GET['mode'] == 'likes'){
   $sql = "SELECT product_num from `likes` where no = $member_no;";
   $likes_bold = 'style = "font-size:25px"';
   $collections_bold = '';
+  $mode = 'likes';
 }else if(isset($_GET['mode']) && $_GET['mode'] == 'collections'){
   $sql = "SELECT * from `collections` where no=$member_no;";
   $collections_bold = 'style = "font-size:25px"';
   $likes_bold = '';
+  $mode = 'collections';
 }
 
 $result = mysqli_query($conn, $sql);
@@ -236,6 +238,39 @@ $number = $total_record - $start;
           $number --;
         }
            ?>
+           <br><br><br>
+           <div class="product_page_num">
+             <?php
+             if(!($page-1==0)){
+               $go_page = $page-1;
+               echo "<a href='./profile_view.php?mode=$mode&page=$go_page'><span class='page_button'>&nbsp;PREV </span>&nbsp;</a>";
+             }else{
+               echo "";
+             }
+               for($i=1;$i<=$total_page;$i++){
+                 if($page==$i){
+                   echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
+                 }else{
+                   echo "<a href='./profile_view.php?mode=$mode&page=$i'>$i</a>";
+                 }
+               }
+
+               if($total_record!=0){
+                 if($page==$total_page){
+                   echo "";
+                 }else{
+                   $go_page = $page+1;
+                   echo "<a href='./profile_view.php?mode=$mode&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
+                 }
+               }else{
+                 echo "";
+               }
+
+                ?>
+
+                <br>
+             </div> <!-- end of page_num -->
+
 
         </div>
 
@@ -256,6 +291,9 @@ $number = $total_record - $start;
           </tr>
         </table>
       </div> <!--end of member_profile_right -->
+
+
+
 
     </div> <!--end of member_profile -->
     <div class="clear"></div>
