@@ -31,7 +31,7 @@ if(isset($_POST['message'])){
     name : '주문명:결제테스트',
     amount : <?=$totalPrice?>,
     buyer_email : 'iamport@siot.do',
-    buyer_name : '이동현',
+    buyer_name : '<?=$name?>',
     buyer_tel : '12515',
     buyer_addr : '서울특별시 강남구 삼성동',
     buyer_postcode : '123-456'
