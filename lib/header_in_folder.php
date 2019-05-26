@@ -67,7 +67,7 @@
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
-                  <a href="#">
+                  <a href="../message/message.php">
                     <div id="header_logout_form_div1_2_ul_li_div3">
                       <div id="header_logout_form_div1_2_ul_li_div3_div">
                         <button id="header_logout_form_div1_2_ul_li_div3_div_button" type="button" name="button">

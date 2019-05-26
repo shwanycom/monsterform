@@ -1,5 +1,8 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+if(!isset($_SESSION['username'])){
+  echo "<script> alert('no permission'); history.go(-1); </script>";
+}
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 $sql="select * from `products` where `freegoods`='y'";
 $result = mysqli_query($conn, $sql);
@@ -30,6 +33,7 @@ $row2=mysqli_fetch_array($result2);
     <link rel="stylesheet" href="../css/freegoods.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/message.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script>
       var day;
@@ -67,7 +71,7 @@ $row2=mysqli_fetch_array($result2);
         window.setTimeout('Timer1()',1000);
       }
       function message_to_friends(){
-        location.href='../message/message.php';
+        modal.style.display = "block";
       }
 
       $(document).ready(function() {
@@ -174,7 +178,7 @@ $row2=mysqli_fetch_array($result2);
     </section>
     <section class="tell_friends_section">
       <br>
-      <span id="tell_friends_div">Don't forget to tell your friends&nbsp;&nbsp;</span><button type="" name="button" onclick="message_to_friends()">MESSAGE</button></h1>
+      <span id="tell_friends_div">Don't forget to tell your friends&nbsp;&nbsp;</span><button type="" name="button" id="myBtn_1">MESSAGE</button></h1>
     </section>
     <section class="section_handpicked">
       <br>
@@ -274,14 +278,7 @@ $row2=mysqli_fetch_array($result2);
     </section>
     <?php
       include "../lib/footer_in_folder.php";
-      include "../khy_modal/login_modal_in_folder.php";
-      if(!isset($_SESSION['no'])) {
-        ?>
-        <script>
-          auto_modal();
-        </script>
-        <?php
-      }
+      include "../message/send_message_modal_in_folder.php";
     ?>
   </body>
 </html>
