@@ -18,9 +18,9 @@ a:hover {
 }
 
 #header {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin:auto;
   margin-bottom:5px;
+  max-width: 1200px;
 
 }
 section{
@@ -368,7 +368,7 @@ button:hover{
 }
 #text_category_text_div{
   background-image: url("../img/indexbarlogo.png");
-  height: 300px;
+  height: 400px;
   width:100%;
   background-repeat: no-repeat;
 }
