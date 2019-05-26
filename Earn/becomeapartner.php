@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/becomeapartner.css">
     <link rel="stylesheet" href="../css/footer.css">
     <style media="screen">
-  
+
     </style>
   </head>
   <body>
@@ -19,7 +19,7 @@
       <div id="become_section1">
         <img src="../img/become_section1.png" alt="">
         <p id="apply_text">  Apply to become an affilate partner</p>
-        <p>Earn up to 10% every purchase for an entire tear from all new customers you refer.</p>
+        <p>Reduce to 10%p every purchase for an entire tear from all new customers you refer.</p>
         <button type="button" name="button">Become a Partner</button>
       </div>
 

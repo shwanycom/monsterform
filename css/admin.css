@@ -175,6 +175,7 @@ input.switch_check:checked:after {
 .admin_member_table_tr1{
   background-color: rgb(127,127,127,120);
   color:rgb(245,245,244,230);
+  border-bottom:1px solid black;
 
 }
 #admin_member_table td{

@@ -19,11 +19,11 @@ if(isset($_GET['mode'])){
 }
 
 if($mode == "allmessage"){
-    $sql = "select * from message where send_email='$id' or rece_email='$id' order by regist_day asc;";
+    $sql = "select * from message where send_email='$id' or rece_email='$id' order by regist_day desc;";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }else{
-    $sql = "select * from message where rece_email='$id' and rece_status='n' order by regist_day asc;";
+    $sql = "select * from message where rece_email='$id' and rece_status='n' order by regist_day desc;";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }
@@ -64,50 +64,14 @@ $number=$total_record- $start_row;
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/footer_2.css">
   <link rel="stylesheet" href="../css/admin.css">
-
   <title></title>
-
-  <style media="screen">
-
-
-
-  </style>
-  <script type="text/javascript">
-    // function message_form() {
-    //   var popupX = (window.screen.width / 2) - (600 / 2);
-    //   var popupY = (window.screen.height / 2) - (350 / 2);
-    //   window.open('./send_message_form.php', '', 'left=' + popupX + ',top=' + popupY + ', width=500, height=400, status=no, scrollbars=no');
-    // }
-  </script>
 </head>
-
 <body>
   <?php
     include "../lib/header_in_folder.php";
+
   ?>
   <!-- The Modal -->
-  <div id="myModal_1" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content_1">
-      <span class="close_1">&times;</span>
-      <form class="" action="./check_message.php" method="post">
-        <div class="form_div">
-          <div id="head">
-            <h1 id="title_h1">Send a Private Message</h1>
-          </div>
-          <div class="email_div">
-            <input type="text" id="write_id" value="" name="receive_id" placeholder="Name">
-          </div>
-          <div class="message_div">
-            <textarea rows="8" cols="50" id="write_message" name="message" placeholder="Message"></textarea>
-          </div>
-          <button type="submit" name="button" id="send_button"><span> Send Message </span></button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-
   <section id="section_write">
     <div id="message_div">
       <h1 id="message_h1">Message</h1>
@@ -143,8 +107,8 @@ $number=$total_record- $start_row;
         </a>
         <div id="list_message4"><?=$date?></div>
         <div id="list_message5"><a href="./delete_message.php?num=<?=$num?>"><span id="cancel_span">X</span> </a> </div>
-      </div>
-      <!--end of list_item -->
+      </div><!--end of list_message -->
+
       <?php
            $number--;
          }//end of for
@@ -178,35 +142,14 @@ $number=$total_record- $start_row;
                echo "<a id='next_block' href='message.php?mode=$mode&page=$go_page'> >> </a>";
               }
             ?>
-      </div>
-    </div>
-    <!--end of list_content -->
-    </div>
+      </div><!--end of page_box -->
+    </div><!--end of list_content -->
   </section>
-  <?php include "../lib/footer_in_folder.php"; ?>
 
-  <script type="text/javascript">
-    var modal = document.getElementById('myModal_1');
-
-    var btn = document.getElementById("myBtn_1");
-
-    var span = document.getElementsByClassName("close_1")[0];
-
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-
+  <?php
+    include "../lib/footer_in_folder.php";
+    include "./send_message_modal.php";
+  ?>
 </body>
 
 </html>
