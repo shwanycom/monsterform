@@ -15,6 +15,7 @@
   // }
   create_table($conn, "products"); //가입인사 게시판 테이블 생성
   $mode="insert";
+  $big_data="";
   ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +88,27 @@
 
   <script>
   var val="";
+  var big_data="";
   $(document).ready(function(){
+    $("#shop_write_select").change(function() {
+      big_data = $("#shop_write_select option:selected").val();
+      console.log("셀렉트 값 변경감지 : " + big_data);
+      $("#big_data").val(big_data);
+      var check = $("#big_data").val();
+      console.log("히든 값 :" + check);
+      switch (check) {
+        case "Photos" : console.log("포토선택케이스");
+                        $("#ttf_file").remove();
+                        break;
+        case "Graphics" : console.log("그래픽선택케이스");
+                          $("#ttf_file").remove();
+                          break;
+        case "Fonts" : console.log("폰트선택케이스");
+                       $("#shop_write_upload").append('<input type="file" name="font_file" id="ttf_file">');
+                       break;
+        default: break;
+      }
+    });
     $("#free_check").click(function(){
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) {
@@ -122,26 +143,17 @@
     function save_product(){
       var hidden="";
       var i;
+      //=========================해쉬태크문자열만들기============================
       // console.log("제출버튼 클릭됨");
       var tags = document.getElementsByClassName("s_v_tags");
-
-      // console.log("getElementsByClassName=" + tags[0].innerHTML);
-      // console.log("tags=" + tags);
-
       for (i in tags) {
         if(tags[i].innerHTML){
           hidden += tags[i].innerHTML;
         }
       }
       document.getElementById("hash_tag").value=hidden;
-      // console.log("hidden=" + hidden);
-      // console.log(document.getElementById("hash_tag").value);
-      //=========================해쉬태크문자열완성============================
 
-      var big_data=$("#shop_write_select option:selected").val();
-      $("#big_data").val(big_data);
-
-      // document.getElementById("shop_write_form").submit();
+      document.getElementById("shop_write_form").submit();
     }
   </script>
 
@@ -152,7 +164,8 @@
   ?>
   <!--============================================================================== -->
   <div class="shop_write_wrap">
-    <form name="shop_write_form" action="shop_dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
+    <form name="shop_write_form" id="shop_write_form" action="shop_dml_board.php?mode=<?=$mode?>"
+      method="post" enctype="multipart/form-data">
     <div class="shop_write_category">
       <input class="shop_write_text" type="text" name="subject" placeholder="Add Title..." id="shop_write_title"><br>
       <span><i>by </i></span><span style="font-size:1.2em"><b>Kaka Laws </b></span><span> in
@@ -178,22 +191,22 @@
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(1)" id="shop_write_mini1">
-            <input type="file" name="upfile" accept="image/*" onchange="loadFile1(event)">
+            <input type="file" name="img_file" accept="image/*" onchange="loadFile1(event)">
           </div>
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(2)" id="shop_write_mini2">
-            <input type="file" name="upfile" accept="image/*" onchange="loadFile2(event)" >
+            <input type="file" name="img_file" accept="image/*" onchange="loadFile2(event)" >
           </div>
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(3)" id="shop_write_mini3">
-            <input type="file" name="upfile" accept="image/*" onchange="loadFile3(event)">
+            <input type="file" name="img_file" accept="image/*" onchange="loadFile3(event)">
           </div>
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(4)" id="shop_write_mini4">
-            <input type="file" name="upfile" accept="image/*" onchange="loadFile4(event)">
+            <input type="file" name="img_file" accept="image/*" onchange="loadFile4(event)">
           </div>
         </div>
       </div><!-- end of div1 -->
@@ -217,8 +230,8 @@
     </div><!-- end of container -->
 
     <div class="shop_write_narrow">
-      <div class="shop_write_upload">
-        <input type="file" name="upfile" placeholder="upload" value="">
+      <div class="shop_write_upload" id="shop_write_upload">
+        <input type="file" name="zip_file" placeholder="upload">
       </div>
       <div class="shop_write_sticky">
         <div class="shop_write_sticky_outter" id="shop_write_sticky_product_info">

@@ -5,7 +5,7 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 <meta charset="utf-8">
 <?php
 $content= $q_content = $sql= $result = $userid="";
-$memeber_no = $_SESSION['no'];
+$member_no = $_SESSION['no'];
 $member_email = $_SESSION['email'];
 $memeber_username = $_SESSION['username'];
 $member_mon = $_SESSION['mon'];
@@ -30,26 +30,40 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     //include 파일업로드기능
     include "./lib/shop_file_upload.php";
 
-    //파일에 실제명과
-    $sql="INSERT INTO `free` VALUES (null,'$q_userid','$username','$usernick','$q_subject','$q_content','$regist_day',0,'$is_html','$upfile_name','$copied_file_name','$type[0]');";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('5.Error: ' . mysqli_error($conn));
-      //die('Error: ' . mysqli_error($conn));
-    }
+    var_export($q_memeber_no); echo "<br>";
+    var_export($q_memeber_username); echo "<br>";
+    var_export($q_member_email); echo "<br>";
+    var_export($subject); echo "<br>";
+    var_export($content); echo "<br>";
+    var_export($regist_day); echo "<br>";
+    var_export($price); echo "<br>";
+    var_export($big_data); echo "<br>";
+    var_export($hash_tag); echo "<br>";
+    var_export($freegoods_agree); echo "<br>";
+    var_export($file_type); echo "<br>";
+    var_export($zip_file_tmp_name); echo "<br>";
+    var_export($uploaded_zip_file); echo "<br>";
 
-    //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num를 찾아서 전달
-    $sql="SELECT num from `free` where id ='$userid' order by num desc limit 1;";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('6.Error: ' . mysqli_error($conn));
-      //die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $num=$row['num'];
-
-    mysqli_close($conn);
-    echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
+    // //파일에 실제명과
+    // $sql="INSERT INTO `free` VALUES (null,'$q_userid','$username','$usernick','$q_subject','$q_content','$regist_day',0,'$is_html','$upfile_name','$copied_file_name','$type[0]');";
+    // $result = mysqli_query($conn,$sql);
+    // if (!$result) {
+    //   alert_back('5.Error: ' . mysqli_error($conn));
+    //   //die('Error: ' . mysqli_error($conn));
+    // }
+    //
+    // //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num를 찾아서 전달
+    // $sql="SELECT num from `free` where id ='$userid' order by num desc limit 1;";
+    // $result = mysqli_query($conn,$sql);
+    // if (!$result) {
+    //   alert_back('6.Error: ' . mysqli_error($conn));
+    //   //die('Error: ' . mysqli_error($conn));
+    // }
+    // $row=mysqli_fetch_array($result);
+    // $num=$row['num'];
+    //
+    // mysqli_close($conn);
+    // echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $num = test_input($_GET["num"]);
@@ -184,6 +198,21 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
    echo "<script> location.href='./view.php?num=$q_parent&page=$page&hit=$hit';</script>"; //script 이용 방법
    // Header("Location:../index.php"); Header 이용 방법
  }
+}else if (isset($_GET["mode"])&&$_GET["mode"]=='delete_ripple'){
+  $page=  test_input($_GET["page"]);
+  $hit=  test_input($_GET["hit"]);
+  $num = test_input($_POST["num"]);
+  $parent = test_input($_POST["parent"]);
+  $q_num = mysqli_real_escape_string($conn,$num);
+
+  $sql="DELETE FROM `free_ripple` WHERE num=$q_num";
+  $result = mysqli_query($conn,$sql);
+
+  if (!$result) {
+    die('Error: ' . mysqli_error($conn));
+  }
+  mysqli_close($conn);
+  echo "<script> location.href='./view.php?num=$parent&page=$page&hit=$hit';</script>";
 }else if (isset($_GET["mode"])&&$_GET["mode"]=='delete_ripple'){
   $page=  test_input($_GET["page"]);
   $hit=  test_input($_GET["hit"]);
