@@ -1,21 +1,21 @@
 <?php
 
-session_start();
-
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
-// include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+
 if(!isset($_SESSION['email'])){
-  echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-  exit;
+echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+exit;
 }
+
+
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
   $point1 = $_SESSION['mon'];
+  $username = $_SESSION['username'];
 }
-$username = $_SESSION['username'];
 
-create_table($conn, "member");
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -25,17 +25,18 @@ create_table($conn, "member");
     <link rel="stylesheet" href="../css/common.css?ver=1">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/gift.css?">
+
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
     function fnRadioName(){
-          var mon = $('input[name="mon"]:checked').val();
-          document.getElementById('money_kaka').value = mon;
-          document.getElementById("select_price").innerHTML = mon;
-      }
+        var mon = $('input[name="mon"]:checked').val();
+        document.getElementById('money_kaka').value = mon;
+        document.getElementById("select_price").innerHTML = mon;
+    }
 
-      function check_input(){
-          document.buy.action="./payment.php";
-          document.buy.submit();
+    function check_input1(){
+        document.buy.action="./payment.php";
+        document.buy.submit();
     }
 
     function input(){
@@ -85,10 +86,7 @@ create_table($conn, "member");
         alert(" 받는분의 이메일을 작성해주세요"); emailPattern.focus(); emailPattern.value="";
          return false;
     }
-    if(rec_message.value.length===0){
-      // var money=document.getElementById("send_message").innerHTML = "<?=$email?>님께서 몬을 선물 하셨습니다.";
-      // document.getElementById('gift_message').value = money;
-    }
+
 
     if(document.getElementById("payment_list").style.display =="block"){
         document.getElementById("showHide").style.display ='block';
@@ -108,7 +106,6 @@ create_table($conn, "member");
   </head>
   <body>
     <?php include "../lib/header_in_folder.php";?>
-
     <div class="gift_main">
       <div class="gift_center_div">
         <div class="main_title">
@@ -152,13 +149,14 @@ create_table($conn, "member");
                 <input type="hidden" name="totalPrice" id="money_kaka" value="50000">
                 <input type="hidden" name="name" id="gift_name" value="">
                 <input type="hidden" name="message" id="gift_message" value="">
-                <input type="submit" id="btn_amount" value="결제" onclick="check_input()" >
+                <input type="submit" id="btn_amount" value="결제" onclick="check_input1()" >
             </form>
         </div>
       </div>
     </div>
     <?php
     include "../lib/footer_in_folder.php";
- ?>
+    ?>
+    
   </body>
 </html>
