@@ -342,3 +342,7 @@ figure.snip1368.hover figcaption {
   list-style: none;
   display: inline-block;
 }
+
+#product_write_button button{
+  radius: 5px;
+}

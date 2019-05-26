@@ -243,7 +243,6 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       window.location.href = location;
     }
 
-
     $(document).ready(function() {
       $("#big_data_select").change(function(event) {
         var big_data = $("#big_data_select").val();
@@ -258,7 +257,6 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         window.location.href = location;
       });
     });
-
 
     function read_more(){
       var big_data = $("#big_data_select").val();
@@ -289,12 +287,26 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       });
     }
 
-    // $(document).ready(function() {
-    //
-    //   $("#read_more_button").click(function(event) {
-    //
-    //   });
-    // });
+    function go_free_goods_func(num){
+      var result = confirm("freegoods할래여??");
+      if(result){
+        var num_num=num;
+       $.ajax({
+         url: './like_dml.php?mode=go_free', // 데이터 보내서 작업되어질 url
+         type: 'POST', // get 또는 post로 data를 보냄
+         data: {num: num_num}
+       })
+       .done(function(result_ajax) {
+         console.log("success");
+       })
+       .fail(function() {
+         console.log("error");
+       })
+       .always(function() {
+         console.log("complete");
+       });
+      }
+    }
 
 	</script>
 </head>
@@ -342,6 +354,13 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
 			$item_date = substr($item_date, 0, 10);
 			$item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
 
+      $item_freegoods=$row["freegoods"];
+      if($item_freegoods=='y'){
+        $freegoods_img="../img/like.png";
+      }else{
+        $freegoods_img="../img/hover_like.png";
+      }
+
 			// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
 			if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
 					$main_img = $img_copy_name0;
@@ -372,7 +391,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
           </div>
           <figcaption>
             <div class="icons">
-              <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Like</span> <br>
+              <a href="#"><img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;" class="checkimg" onclick="go_free_goods_func('<?=$item_num?>')"></a><span>Like</span> <br>
               <a href="#"><img src="../img/logo.png" alt="" style="width:50px; height:20px;" class="checkimg"></a><span>Save</span>
             </div>
           </figcaption>

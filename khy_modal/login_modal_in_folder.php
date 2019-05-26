@@ -146,6 +146,7 @@ function sendToDml(type){
     <!-- <p>Some text in the Modal..</p> -->
   </div>
 </div>
+</div>
 <script>
 var flag = true;
 var gloginBtn = document.getElementById("gloginBtn");
