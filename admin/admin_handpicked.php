@@ -244,15 +244,6 @@ $number=$total_record- $start_row;
                 in&nbsp;<a href="#" class="">'.$big_data.'</a>
             </div>
           </div>
-          <figcaption>
-            <div class="icons">
-              <a href="#">
-              <img src="../img/hover_like.png" alt="" style="width:20px; height:20px;" class="checkimg">
-              </a><span>&nbsp;&nbsp;Like</span><br>
-              <a href="#"><img src="../img/hover_collection.png" alt="" style="width:20px; height:20px;" class="checkimg">
-              </a><span>&nbsp;Save</span>
-            </div>
-          </figcaption>
         </figure>
         </div>
       ';
@@ -277,28 +268,28 @@ $number=$total_record- $start_row;
               #----------------이전블럭 존재시 링크------------------#
               if($start_page > $pages_scale){
                  $go_page= $start_page - $pages_scale;
-                 echo "<a id='before_block' href='message.php?mode=$mode&page=$go_page'> << </a>";
+                 echo "<a id='before_block' href='admin_handpicked.php?page=$go_page'> << </a>";
               }
               #----------------이전페이지 존재시 링크------------------#
               if($pre_page){
-                  echo "<a id='before_page' href='message.php?mode=$mode&page=$pre_page'> < </a>";
+                  echo "<a id='before_page' href='admin_handpicked.php?page=$pre_page'> < </a>";
               }
                #--------------바로이동하는 페이지를 나열---------------#
               for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
                  if($dest_page == $page){
                       echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
                   }else{
-                      echo "<a id='move_page' href='message.php?mode=$mode&page=$dest_page'>$dest_page</a>";
+                      echo "<a id='move_page' href='admin_handpicked.php?page=$dest_page'>$dest_page</a>";
                   }
                }
                #----------------이전페이지 존재시 링크------------------#
                if($next_page){
-                   echo "<a id='next_page' href='message.php?mode=$mode&page=$next_page'> > </a>";
+                   echo "<a id='next_page' href='admin_handpicked.php?page=$next_page'> > </a>";
                }
                #---------------다음페이지를 링크------------------#
               if($total_pages >= $start_page+ $pages_scale){
                 $go_page= $start_page+ $pages_scale;
-                echo "<a id='next_block' href='message.php?mode=$mode&page=$go_page'> >> </a>";
+                echo "<a id='next_block' href='admin_handpicked.php?page=$go_page'> >> </a>";
               }
      ?>
     </div>

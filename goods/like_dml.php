@@ -6,7 +6,6 @@ if($member_no == ''){
   echo '<script> alert("로그인 후 이용하세요"); history.go(-1); </script>';
   exit;
 }
-
 if(isset($_GET["mode"]) && $_GET["mode"]=='go_like'){
   $post_num=$_POST["num"];
   $post_liv=$_POST["liv"];
@@ -28,7 +27,6 @@ if(isset($_GET["mode"]) && $_GET["mode"]=='go_like'){
       die('Error: DELETE(LIKES y) ERROR' . mysqli_error($conn));
     }
   }
-
   mysqli_close($conn);
 }
 ?>

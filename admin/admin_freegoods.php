@@ -117,7 +117,7 @@ else if(empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort
     $sql="select * from products as p where p.big_data='$sort_kind'";
   }
 }
-var_dump($sql);
+
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
 // 페이지 당 글수, 블럭당 페이지 수
@@ -261,15 +261,6 @@ $number=$total_record- $start_row;
                 in&nbsp;<a href="#" class="">'.$big_data.'</a>
             </div>
           </div>
-          <figcaption>
-            <div class="icons">
-              <a href="#">
-              <img src="../img/hover_like.png" alt="" style="width:20px; height:20px;" class="checkimg">
-              </a><span>&nbsp;&nbsp;Like</span><br>
-              <a href="#"><img src="../img/hover_collection.png" alt="" style="width:20px; height:20px;" class="checkimg">
-              </a><span>&nbsp;Save</span>
-            </div>
-          </figcaption>
         </figure>
         </div>
       ';
@@ -290,36 +281,44 @@ $number=$total_record- $start_row;
       </a>
     </div>
     <div id="admin_member_next_prev_div">
+
     <?PHP
               #----------------이전블럭 존재시 링크------------------#
               if($start_page > $pages_scale){
                  $go_page= $start_page - $pages_scale;
-                 echo "<a id='before_block' href='message.php?mode=$mode&page=$go_page'> << </a>";
+                 echo "<a id='before_block' href='admin_freegoods.php?page=$go_page'> << </a>";
               }
               #----------------이전페이지 존재시 링크------------------#
               if($pre_page){
-                  echo "<a id='before_page' href='message.php?mode=$mode&page=$pre_page'> < </a>";
+                  echo "<a id='before_page' href='admin_freegoods.php?page=$pre_page'> < </a>";
               }
                #--------------바로이동하는 페이지를 나열---------------#
               for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
                  if($dest_page == $page){
                       echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
                   }else{
-                      echo "<a id='move_page' href='message.php?mode=$mode&page=$dest_page'>$dest_page</a>";
+                      echo "<a id='move_page' href='admin_freegoods.php?page=$dest_page'>$dest_page</a>";
                   }
                }
                #----------------이전페이지 존재시 링크------------------#
                if($next_page){
-                   echo "<a id='next_page' href='message.php?mode=$mode&page=$next_page'> > </a>";
+                   echo "<a id='next_page' href='admin_freegoods.php?page=$next_page'> > </a>";
                }
                #---------------다음페이지를 링크------------------#
               if($total_pages >= $start_page+ $pages_scale){
                 $go_page= $start_page+ $pages_scale;
-                echo "<a id='next_block' href='message.php?mode=$mode&page=$go_page'> >> </a>";
+                echo "<a id='next_block' href='admin_freegoods.php?page=$go_page'> >> </a>";
               }
      ?>
     </div>
     <br><br>
+    <div class="form_pick_date_div">
+      <label id="pick_date_label" for="">EXPIRATION DATE</label>
+      <input id="pick_date" type="datetime-local" name="pick_date" value="">
+        <input id="pick_date_submit" type="submit" name="" value="CONFIRM">
+        <form class="" action="admin_freegoods_dml.php?mode=date" method="post">
+      </form>
+    </div>
     </section>
     <?php
       include "./admin_main_in_folder.php";
