@@ -28,7 +28,7 @@
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
         <ul id="header_logout_form_div1_1_ul">
-          <li class="header_logout_form_div1_1_ul_li"><a href="#">Get Free Goods&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="../goods/freegoods.php">Get Free Goods&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="../earn/becomeapartner.php">Become a Partner&nbsp;&nbsp;</a></li>
           <li class="header_logout_form_div1_1_ul_li"><a href="../discussion/list.php">Discussions&nbsp;&nbsp;</a></li>
           <?php
@@ -67,7 +67,7 @@
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
-                  <a href="#">
+                  <a href="../message/message.php">
                     <div id="header_logout_form_div1_2_ul_li_div3">
                       <div id="header_logout_form_div1_2_ul_li_div3_div">
                         <button id="header_logout_form_div1_2_ul_li_div3_div_button" type="button" name="button">

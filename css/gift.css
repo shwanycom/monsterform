@@ -1,0 +1,102 @@
+
+/*메인 타이틀*/
+#sub_p{
+  font-size: 20pt;
+  text-align: center;
+
+}
+.gift_center_div{
+  background-color: rgb(245,245,244,230);
+}
+.gift_main{
+    padding-bottom: 20px;
+}
+.payment_list{
+  border: 1px solid #c6c5c3;
+  border-radius: 4px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgb(245,245,244,230);
+
+}
+.check_money{
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input_field{
+  width: 300px;
+}
+.gift_point{
+  border: 1px solid #c6c5c3;
+  border-radius: 4px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+#send_message{
+  width: 250px;
+  min-height: 34px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  color: #504e4b;
+  background: #fbfdfb;
+  font-size: 12px;
+  border: none;
+  border-radius: 2px;
+    outline: none;
+  /* text부분 라인 보여주는 부분*/
+  box-shadow: inset 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 1px rgba(93,89,83,.2), 0 -1px 0 0 rgba(0,0,0,.06);
+}
+.text_input{
+  width: 250px;
+  min-height: 20px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  color: #504e4b;
+  background: #fbfdfb;
+  font-size: 12px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  box-shadow: inset 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 1px rgba(93,89,83,.2), 0 -1px 0 0 rgba(0,0,0,.06);
+}
+
+
+.input_size_div{
+  width: 300px;
+  margin: 0 auto;
+
+}
+#btn_back{
+  margin-right: 200px;
+  margin-bottom: 10px;
+  background-color: rgb(245,245,244,230);
+  border-radius: 2px;
+  color: rgba(151, 177, 98, 129);
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+.btn_div{
+  margin: 0 auto;
+  width: 300px;
+  display: inline;
+}
+
+#btn_amount{
+  background-color: rgba(151, 177, 98, 129);
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 270px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+.amount_span{
+  font-size: 15px;
+}

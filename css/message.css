@@ -1,6 +1,6 @@
 #section_write {
   width: 960px;
-  height: auto;
+  height: 500px;
   margin-left: 20%;
   margin-right: 10%;
   margin-bottom: 50px;
@@ -223,12 +223,13 @@
 }
 
 /* send_message_form css */
-.modal {
+#myModal_1 {
   display: none;
   position: fixed;
   z-index: 1;
+  padding:0;
+  margin:0;
   left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -239,10 +240,12 @@
 /* Modal Content/Box */
 .modal-content_1 {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin:auto;
+  margin-top:100px;
   padding: 10px;
   border: 1px solid #888;
-  width: 25%;
+  width: 40%;
+  height:450px;
 }
 
 /* The Close Button */

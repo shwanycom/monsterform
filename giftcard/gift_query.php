@@ -3,7 +3,6 @@ session_start();
 
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 $email = $_SESSION['email'];
-$point1 = $_SESSION['mon'];
 $regist_day = date("Y-m-d (H:i)");
 $message=$_GET['message'];
 $rece_email=$_GET['reemail'];
@@ -22,16 +21,14 @@ if($mon==5000){
 }else if($mon==500000){
   $mon=5500;
 }
-var_dump($email);
-var_dump($message);
-var_dump($rece_email);
-var_dump($mon);
+
+if($message==null){
+  $message= $email."님께서 ".$mon."mon을 선물 하였습니다.";
+}
 
 if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
       $email = test_input($email);
       $mon=test_input($mon);
-
-
       $sql = "update member set point_mon=point_mon+$mon where email = '$rece_email';";
       $result = mysqli_query($conn,$sql);
       $sql = "insert into message (rece_email,send_email,msg,regist_day)";
@@ -42,7 +39,7 @@ if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
         die('Error: ' . mysqli_error($conn));
       }
 
-  echo "<script> location.href='./gift_view.php';</script>";
+  echo "<script> location.href='../index.php';</script>";
 
 }
 

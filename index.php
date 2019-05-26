@@ -9,7 +9,19 @@ if(isset($_SESSION['no'])){
   $member_mon = $_SESSION['mon'];
   $member_partner = $_SESSION['partner'];
 }
-
+create_table($conn, 'member');
+create_table($conn, 'cart');
+create_table($conn, 'collections');
+create_table($conn, 'discussion');
+create_table($conn, 'discussion_ripple');
+create_table($conn, 'follow');
+create_table($conn, 'likes');
+create_table($conn, 'products');
+create_table($conn, 'freegoods_date');
+create_table($conn, 'report');
+create_table($conn, 'sales');
+create_table($conn, 'message');
+create_table($conn, 'message_ripple');
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">

@@ -51,8 +51,9 @@ border-radius: 5px;
 background-color: rgb(245,245,244,230);
 }
 
-figure.snip1368 * {
-/* transition: all 0.4s ease; */
+.section_freegoods figure.snip1368:hover{
+  box-shadow: 8px 13px 20px rgba(30, 30, 30, 35);
+  border-radius: 2px;
 }
 
 figure.snip1368 figcaption {
@@ -129,6 +130,7 @@ transition: all 0.5s ease;
 .go_free_goods_img_class:hover{
   cursor: pointer;
 }
+
 /*--------------------------------------------------------------------------------*/
 .section_freegoods h1, .section_freegoods h2{
   margin:0;
@@ -151,6 +153,10 @@ transition: all 0.5s ease;
   font-size: 15pt;
 }
 /*--------------------------------*/
+.section_handpicked figure.snip1368:hover{
+  box-shadow: 8px 13px 20px rgba(192, 192, 191, 180);
+  border-radius: 2px;
+}
 .tell_friends_section{
   background-color: rgba(54,59,63,55);
   height:80px;
@@ -195,4 +201,15 @@ transition: all 0.5s ease;
   margin:0;
   color:rgb(127,127,127,120);
   font-size: 24pt;
+}
+.more_handpicked_section{
+  text-align: center;
+  font-size: 13pt;
+  font-weight: bold;
+}
+.more_handpicked_section a:hover{
+  color:rgb(107,107,107,100);
+}
+.checkimg:hover{
+  cursor: pointer;
 }
