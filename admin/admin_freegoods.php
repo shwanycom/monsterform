@@ -29,11 +29,33 @@ if(isset($_POST['freegoods_sort_allow'])){
 }else{
   $freegoods_sort_allow_check="";
 }
-
+$selected_all="";
+$selected_fonts="";
+$selected_photos="";
+$selected_graphics="";
 if(isset($_POST['freegoods_search_kind'])){
   $freegoods_search_kind_check=$_POST['freegoods_search_kind'];
-}else{
-  $freegoods_search_kind_check="photos";
+  if($freegoods_search_kind_check=="photos"){
+    $selected_photos="selected";
+    $selected_graphics="";
+    $selected_fonts="";
+    $selected_all="";
+  }else if($freegoods_search_kind_check=="graphics"){
+    $selected_graphics="selected";
+    $selected_photos="";
+    $selected_fonts="";
+    $selected_all="";
+  }else if($freegoods_search_kind_check=="fonts"){
+    $selected_fonts="selected";
+    $selected_photos="";
+    $selected_graphics="";
+    $selected_all="";
+  }else{
+    $selected_all="selected";
+    $selected_fonts="";
+    $selected_photos="";
+    $selected_graphics="";
+  }
 }
 if(isset($_POST['freegoods_search_value'])){
   $freegoods_search_value_check=$_POST['freegoods_search_value'];
@@ -43,20 +65,16 @@ if(isset($_POST['freegoods_search_value'])){
 
 
 
-// if(){
-//
-// }
+
 if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="photos"){
   $sort_kind="photos";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
 }else if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="graphics"){
   $sort_kind="graphics";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
-
 }else if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="fonts"){
   $sort_kind="fonts";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
-
 }else if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="All"){
   $sort_kind="all";
   $sort_kind_sql= "";
@@ -74,7 +92,7 @@ $sql="select * from products as p inner join member as m on p.no=m.no where m.pa
  and p.freegoods_agree='y' $sort_kind_sql and p.subject like '%$freegoods_search_value%'";
 }
 else if(empty($_POST['freegoods_search_value']) && isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
-$sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' and p.freegoods_agree='y'";
+$sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' and p.freegoods_agree='y' $sort_kind_sql";
 }
 else if(!empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
 $sql="select * from products where freegoods_agree='y' $sort_kind_sql and subject like '%$freegoods_search_value%'";
@@ -84,18 +102,22 @@ $sql="select * from products as p inner join member as m on p.no=m.no where m.pa
  $sort_kind_sql and p.subject like '%$freegoods_search_value%'";
 }
 else if(empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
-$sql="select * from products where freegoods_agree='y'";
+$sql="select * from products where freegoods_agree='y' $sort_kind_sql";
 }
 else if(!empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
-$sql="select * from `products` where subject like '%$freegoods_search_value%' $sort_kind_sql";
+$sql="select * from `products` as p where subject like '%$freegoods_search_value%' $sort_kind_sql";
 }
 else if(empty($_POST['freegoods_search_value']) && isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
-  $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y'";
+  $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' $sort_kind_sql";
 }
 else if(empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
-  $sql="select * from products";
+  if($sort_kind=="all"){
+    $sql="select * from `products`";
+  }else{
+    $sql="select * from products as p where p.big_data='$sort_kind'";
+  }
 }
-
+var_dump($sql);
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
 // 페이지 당 글수, 블럭당 페이지 수
@@ -174,10 +196,10 @@ $number=$total_record- $start_row;
             <form action="./admin_freegoods.php?mode=search" method="post" id="freegoods_search_form" name="freegoods_search_form">
               <div id="freegoods_search_form_div1">
                 <select id="freegoods_search_kind" name="freegoods_search_kind">
-                <option value="All">All</option>
-                <option value="photos">photos</option>
-                <option value="graphics">graphics</option>
-                <option value="fonts">fonts</option>
+                <option value="All" <?=$selected_all?>>All</option>
+                <option value="photos" <?=$selected_photos?>>photos</option>
+                <option value="graphics" <?=$selected_graphics?>>graphics</option>
+                <option value="fonts" <?=$selected_fonts?>>fonts</option>
                 </select>
                 <input type="text" id="admin_freegoods_search_text" name="freegoods_search_value" value=<?=$freegoods_search_value_check?>>
               </div>
@@ -251,6 +273,9 @@ $number=$total_record- $start_row;
         </figure>
         </div>
       ';
+      if($i%3==2){
+        echo '<br>';
+      }
     }
     ?>
     </div>

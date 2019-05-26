@@ -278,8 +278,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           if(isset($_SESSION['username'])){
             echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp';
             echo '<a href="../shop/shop_write_form.php"><button type="button" name="button">Open My Shop</button></a>';
+          }else{
+            echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp;';
           }
-          echo '<a href="./list.php?big_data='.$big_data.'"><button type="button" name="button">Reset List</button></a>&nbsp;';
           ?>
         </div> <!-- end of button -->
       </div>

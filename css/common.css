@@ -18,10 +18,10 @@ a:hover {
 }
 
 #header {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin:auto;
   margin-bottom:5px;
-  border-bottom:1px solid lightgray;
+  max-width: 1200px;
+
 }
 section{
   background: #f5f5f4;
@@ -213,7 +213,7 @@ section{
 #header_logout_form_div1_2_ul_li_div5:hover #header_logout_form_div1_2_ul_li_div5_div{
   margin-top:2px;
   width:65px;
-  height:150px;
+  height:130px;
   z-index: 1;
   border-radius: 5px;
   font-size: 10pt;
@@ -368,16 +368,18 @@ button:hover{
 }
 #text_category_text_div{
   background-image: url("../img/indexbarlogo.png");
-  height: 300px;
+  height: 400px;
   width:100%;
   background-repeat: no-repeat;
 }
 
 /* ------------------------------템플릿 추가 부분 ------------------------------------------------------ */
 #categories_section {
-  height: 250px;
+  height: 270px;
   border-bottom: 1px solid rgb(185, 185, 185);
   border-top: 1px solid rgb(185, 185, 185);
+  margin-left: 10%;
+  margin-right:10%;
 }
 .featured_title {
   font-size: 14pt;

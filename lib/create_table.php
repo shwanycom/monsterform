@@ -141,13 +141,25 @@ function create_table($conn, $table_name){
       break;
       case 'message':
       $sql = "CREATE TABLE `message` (
-                `send_no` int(11) NOT NULL,
-                `rece_no` int(11) NOT NULL,
+                `num` int(11) NOT NULL AUTO_INCREMENT,
+                `send_email` varchar(100) NOT NULL,
+                `rece_email` varchar(100) NOT NULL,
                 `msg` text NOT NULL,
                 `rece_status` varchar(100) DEFAULT 'n',
-                `regist_day` date NOT NULL
-              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+                `regist_day` date NOT NULL,
+                PRIMARY KEY (`num`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
       break;
+      case 'message_ripple':
+      $sql = "CREATE TABLE `message_ripple` (
+                `num` int(11) NOT NULL AUTO_INCREMENT,
+                `parent` int(11) NOT NULL,
+                `email` varchar(20) NOT NULL,
+                `ripple_content` text NOT NULL,
+                `regist_day` date NOT NULL,
+                PRIMARY KEY (`num`)
+              ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
+
       default:
       echo '<script >alert("해당 테이블명이 없습니다.");</script>';
       break;

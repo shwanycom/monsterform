@@ -9,8 +9,12 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 
 <?php
 if(isset($_GET['mode'])){
-  $handpicked_search_value = $_POST['handpicked_search_value'];
-  $handpicked_search_kind = $_POST['handpicked_search_kind'];
+  if(isset($_POST['handpicked_search_value'])){
+    $handpicked_search_value = $_POST['handpicked_search_value'];
+  }
+  if(isset($_POST['handpicked_search_kind'])){
+    $handpicked_search_kind = $_POST['handpicked_search_kind'];
+  }
 }
 if(isset($_POST['handpicked_sort_partner'])){
   $handpicked_sort_partner_check="checked";
@@ -19,10 +23,33 @@ if(isset($_POST['handpicked_sort_partner'])){
 }
 
 
+$selected_all="";
+$selected_fonts="";
+$selected_photos="";
+$selected_graphics="";
 if(isset($_POST['handpicked_search_kind'])){
   $handpicked_search_kind_check=$_POST['handpicked_search_kind'];
-}else{
-  $handpicked_search_kind_check="photos";
+  if($handpicked_search_kind_check=="photos"){
+    $selected_photos="selected";
+    $selected_graphics="";
+    $selected_fonts="";
+    $selected_all="";
+  }else if($handpicked_search_kind_check=="graphics"){
+    $selected_graphics="selected";
+    $selected_photos="";
+    $selected_fonts="";
+    $selected_all="";
+  }else if($handpicked_search_kind_check=="fonts"){
+    $selected_fonts="selected";
+    $selected_photos="";
+    $selected_graphics="";
+    $selected_all="";
+  }else{
+    $selected_all="selected";
+    $selected_fonts="";
+    $selected_photos="";
+    $selected_graphics="";
+  }
 }
 if(isset($_POST['handpicked_search_value'])){
   $handpicked_search_value_check=$_POST['handpicked_search_value'];
@@ -31,19 +58,20 @@ if(isset($_POST['handpicked_search_value'])){
 }
 
 
-if(isset($_POST['search_kind']) && $_POST['search_kind']=="photos"){
+if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="photos"){
   $sort_kind="photos";
-  $sort_kind_sql= "and p.big_data=".$handpicked_search_kind;
-}else if(isset($_POST['search_kind']) && $_POST['search_kind']=="graphics"){
+  $sort_kind_sql= "and p.big_data='$handpicked_search_kind'";
+}else if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="graphics"){
   $sort_kind="graphics";
-  $sort_kind_sql= "and p.big_data=".$handpicked_search_kind;
-}else if(isset($_POST['search_kind']) && $_POST['search_kind']=="fonts"){
+  $sort_kind_sql= "and p.big_data='$handpicked_search_kind'";
+}else if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="fonts"){
   $sort_kind="fonts";
-  $sort_kind_sql= "and p.big_data=".$handpicked_search_kind;
-}else if(isset($_POST['search_kind']) && $_POST['search_kind']=="All"){
+  $sort_kind_sql= "and p.big_data='$handpicked_search_kind'";
+}else if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="All"){
   $sort_kind="all";
   $sort_kind_sql= "";
 }
+
 if(!isset($_GET['mode'])){
 $sql="select * from products order by sell_count/hit desc";
 }
@@ -55,13 +83,20 @@ else if(!empty($_POST['handpicked_search_value']) && isset($_POST['handpicked_so
 $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y'
  $sort_kind_sql and p.subject like '%$handpicked_search_value%' order by sell_count/hit desc";
 }
+else if(!empty($_POST['handpicked_search_value']) && !isset($_POST['handpicked_sort_partner'])){
+ $sql="select * from products as p where p.subject like '%$handpicked_search_value%' $sort_kind_sql order by sell_count/hit desc";
+}
 else if(empty($_POST['handpicked_search_value']) && isset($_POST['handpicked_sort_partner'])){
-  $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' order by sell_count/hit desc";
+  $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' $sort_kind_sql order by sell_count/hit desc";
 }
 else if(empty($_POST['handpicked_search_value']) && !isset($_POST['handpicked_sort_partner'])){
-  $sql="select * from products order by sell_count/hit desc";
+  if($sort_kind=="all"){
+    $sql="select * from products order by sell_count/hit desc";
+  }else{
+    $sql="select * from products where big_data='$sort_kind' order by sell_count/hit desc";
+  }
 }
-
+var_dump($sql);
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
 // 페이지 당 글수, 블럭당 페이지 수
@@ -144,21 +179,19 @@ $number=$total_record- $start_row;
     <section id="admin_handpicked_section">
       <div id="admin_member_section_search_div">
         <h1>Select Handpicked / TOTAL : <?=$total_record?></h1>
-            <form action="./admin_test.php?mode=search" method="post" id="handpicked_search_form" name="handpicked_search_form">
+            <form action="./admin_handpicked.php?mode=search" method="post" id="handpicked_search_form" name="handpicked_search_form">
               <div id="handpicked_search_form_div1">
                 <select id="handpicked_search_kind" name="handpicked_search_kind">
-                <option value="All">All</option>
-                <option value="photos">photos</option>
-                <option value="graphics">graphics</option>
-                <option value="fonts">fonts</option>
+                <option value="All" <?=$selected_all?>>All</option>
+                <option value="photos" <?=$selected_photos?>>photos</option>
+                <option value="graphics" <?=$selected_graphics?>>graphics</option>
+                <option value="fonts" <?=$selected_fonts?>>fonts</option>
                 </select>
                 <input type="text" id="admin_handpicked_search_text" name="handpicked_search_value" value=<?=$handpicked_search_value_check?>>
               </div>
               <div id="handpicked_search_form_div2">
                 <label for="">PARTNER</label>
                 <input class="switch_check" type="checkbox" value="handpicked_sort_partner" name="handpicked_sort_partner" <?=$handpicked_sort_partner_check?>>
-                <label for="">ALLOW</label>
-                <input class="switch_check" type="checkbox" value="handpicked_sort_allow" name="handpicked_sort_allow">
                 <input type="submit" value="Search" id="search_submit">
               </div>
             </form>
@@ -223,6 +256,9 @@ $number=$total_record- $start_row;
         </figure>
         </div>
       ';
+      if($i%3==2){
+        echo '<br>';
+      }
     }
     ?>
     </div>
@@ -232,7 +268,7 @@ $number=$total_record- $start_row;
       <a href='admin_handpicked.php'>
         <button id="admin_handpicked_button_list" type="button" name="button">LIST</button>
       </a>
-      <a href='admin_member.php?mode=view_handpicked'>
+      <a href='admin_handpicked.php?mode=view_handpicked'>
         <button id="admin_handpicked_button_list" type="button" name="button">VIEW HANDPICKED</button>
       </a>
     </div>

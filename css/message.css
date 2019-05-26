@@ -1,0 +1,272 @@
+#section_write {
+  width: 960px;
+  height: auto;
+  margin-left: 20%;
+  margin-right: 10%;
+  margin-bottom: 50px;
+}
+
+#message_div {
+  border-bottom: 1px solid #e0dedb;
+}
+
+.send_div {
+  float: right;
+  border-radius: 4px;
+  background-color: rgba(151, 177, 98, 129);
+  background-color: rgba(151, 177, 98, 129);
+  color: #7d7b78;
+  font-size: 10pt;
+  padding: 4px;
+}
+
+.list_div {
+  font-size: 16px;
+  border: 1px solid black;
+  /* padding: 22px 20px 21px; */
+  width: 100%;
+  height: 50px;
+  background: #d9d9d7;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+
+#list_content {
+  border-top: 1px solid #e0dedb;
+  margin-top: 30px;
+}
+
+#list_message {
+  border-bottom: 1px solid #e0dedb;
+  padding: 19px 9px;
+  height: 50px;
+  position: relative;
+  padding-top: 35px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+#list_message1 {
+  float: left;
+}
+
+#list_message2 {
+  padding-right: 50px;
+  float: left;
+}
+
+#list_message3 {
+  float: left;
+}
+
+#list_message4 {
+  width: 10%;
+  float: right;
+  margin-right: 10px;
+}
+
+#list_message5 {
+  float: right;
+  width: 5%;
+}
+
+/* #list_message5:hover{
+    color:red;
+} */
+.select_div {
+  padding-top: 15px;
+}
+
+.select_a {
+  font-weight: 700;
+  color: #615f5c;
+}
+
+.message_h1 {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+/* 여기까지 message.php css */
+.write_form_img {
+  padding: 20px;
+}
+
+#write_form {
+  border-bottom: 0.5px solid #444444;
+}
+
+.write_form_2 {
+  padding-top: 15px;
+  width: 200px;
+  display: inline-block;
+}
+
+.write_form_3 {
+  width: 150px;
+}
+
+.write_form_4 {
+  width: 150px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.write_form_5 {
+  width: 150px;
+}
+
+.message_pro {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+#subject_span {
+  color: #444444;
+  font-size: 20pt;
+}
+
+#send_span {
+  transition: color .25s;
+  color: #8ba753;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+#date_span {
+  color: #c7c6c5;
+  font-size: 12px;
+}
+
+.view_boder {
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
+#msg_h1 {
+  border-bottom: 1px solid #444444;
+  height: 60px;
+}
+
+#ripple {
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 100px;
+}
+
+#re_button {
+  background-color: rgba(151, 177, 98, 129);
+  color: rgb(245, 245, 244, 230);
+  border: none;
+  width: 30px;
+}
+
+.ripple_button {
+  left: 100px;
+  width: 100px;
+  border: 1px slid black;
+  background-color: rgba(151, 177, 98, 129);
+  border-radius: 2px;
+  list-style: none;
+  border: 0;
+  outline: 0;
+}
+
+#ripple_insert {
+  display: inline;
+}
+
+#ripple_textarea {
+  width: 400px;
+  display: inline;
+}
+
+#ripple_save_form {
+  padding: 20px;
+  width: 600px;
+}
+
+/* 여기 까지 view.php csss */
+.form_div {
+  text-align: center;
+}
+
+#title_h1 {
+  margin: 20px;
+  font-size: 16pt;
+  text-align: center;
+  color: #2b2927;
+}
+
+#write_id {
+  width: 69%;
+}
+
+#write_message {
+  width: 69%;
+  height: 220px;
+  margin-top: 20px;
+}
+
+#send_button {
+  background-color: rgba(151, 177, 98, 129);
+  margin-top: 20px;
+  padding: 10px;
+  width: 70%;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+
+/* send_message_form css */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+.modal-content_1 {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 25%;
+}
+
+/* The Close Button */
+.close_1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close_1:hover,
+.close_1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#myBtn_1 {
+  background-color: rgba(151, 177, 98, 129);
+  padding: 2px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+
+/* modal css*/

@@ -40,6 +40,13 @@ height:250px;
 /*   width: 100%; */
 color: black;
 line-height: 1.4em;
+border:2px solid white;
+border-radius: 5px;
+background-color: rgb(245,245,244,230);
+}
+figure.snip1368:hover{
+  box-shadow: 8px 13px 20px rgba(192, 192, 191, 180);
+  border-radius: 2px;
 }
 
 figure.snip1368 * {
@@ -168,13 +175,13 @@ transition: all 0.5s ease;
   margin-left:5px;
 }
 #admin_freegoods_search_text{
-  height:30px;
+  height:36px;
   width:250px;
   border:2px solid lightgray;
   outline: none;
 }
 #admin_freegoods_search_text:focus{
-  height:30px;
+  height:36px;
   width:300px;
   outline: none;
   background-color: #eeeeee;
@@ -197,4 +204,7 @@ transition: all 0.5s ease;
 }
 .list_title_div_span_bold{
   text-align: none;
+}
+.list_title_div div{
+  text-align: left;
 }
