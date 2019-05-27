@@ -5,21 +5,23 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 <meta charset="utf-8">
 <?php
 $content= $q_content = $sql= $result = $userid="";
-$member_no = $_SESSION['no'];
-$member_email = $_SESSION['email'];
-$memeber_username = $_SESSION['username'];
-$member_mon = $_SESSION['mon'];
-$member_partner = $_SESSION['partner'];
+// $member_no = $_SESSION['no'];
+// $member_email = $_SESSION['email'];
+// $memeber_username = $_SESSION['username'];
+// $member_mon = $_SESSION['mon'];
+// $member_partner = $_SESSION['partner'];
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
-    $q_memeber_no = mysqli_real_escape_string($conn, $memeber_no);
-    $q_memeber_username = mysqli_real_escape_string($conn, $memeber_username);
+    $q_memeber_no = mysqli_real_escape_string($conn, $member_no);
+    $q_memeber_username = mysqli_real_escape_string($conn, $member_username);
     $q_member_email = mysqli_real_escape_string($conn, $member_email);
     $subject = trim($_POST["subject"]);
     $content = trim($_POST["content"]);
     $regist_day=date("Y-m-d");
     $price = $_POST["setted_mon"]*100;
     $big_data=$_POST["big_data"];
+
+
     $hash_tag = $_POST["hash_tag"];
 
     $freegoods_agree = $_POST["freegoods_agree"];
@@ -29,7 +31,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
     //include 파일업로드기능
     include "./lib/shop_file_upload.php";
-
     var_export($q_memeber_no); echo "<br>";
     var_export($q_memeber_username); echo "<br>";
     var_export($q_member_email); echo "<br>";
@@ -41,30 +42,52 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     var_export($hash_tag); echo "<br>";
     var_export($freegoods_agree); echo "<br>";
     var_export($file_type); echo "<br>";
-    var_export($zip_file_tmp_name); echo "<br>";
-    var_export($uploaded_zip_file); echo "<br>";
 
-    // //파일에 실제명과
-    // $sql="INSERT INTO `free` VALUES (null,'$q_userid','$username','$usernick','$q_subject','$q_content','$regist_day',0,'$is_html','$upfile_name','$copied_file_name','$type[0]');";
-    // $result = mysqli_query($conn,$sql);
-    // if (!$result) {
-    //   alert_back('5.Error: ' . mysqli_error($conn));
-    //   //die('Error: ' . mysqli_error($conn));
-    // }
-    //
-    // //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num를 찾아서 전달
-    // $sql="SELECT num from `free` where id ='$userid' order by num desc limit 1;";
-    // $result = mysqli_query($conn,$sql);
-    // if (!$result) {
-    //   alert_back('6.Error: ' . mysqli_error($conn));
-    //   //die('Error: ' . mysqli_error($conn));
-    // }
-    // $row=mysqli_fetch_array($result);
-    // $num=$row['num'];
-    //
-    // mysqli_close($conn);
-    // echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
+    var_export("zip : ".$zip_file_name); echo "<br>";
+    var_export($copied_zip_file_name); echo "<br>";
+    var_export($type[0]); echo "<br>";
 
+    var_export("img1 : ".$img_file_name[0]); echo "<br>";
+    var_export($copied_img_file_name[0]); echo "<br>";
+    var_export($img_type[0][0]); echo "<br>";
+    var_export("img2 : ".$img_file_name[1]); echo "<br>";
+    var_export($copied_img_file_name[1]); echo "<br>";
+    var_export($img_type[1][0]); echo "<br>";
+    var_export("img3 : ".$img_file_name[2]); echo "<br>";
+    var_export($copied_img_file_name[2]); echo "<br>";
+    var_export($img_type[2][0]); echo "<br>";
+    var_export("img4 : ".$img_file_name[3]); echo "<br>";
+    var_export($copied_img_file_name[3]); echo "<br>";
+    var_export($img_type[3][0]); echo "<br>";
+    var_export("font : ".$font_file_name); echo "<br>";
+    var_export($copied_font_file_name); echo "<br>";
+    var_export($font_type[0]); echo "<br>";
+
+
+
+    //파일에 실제명과
+    $sql="INSERT INTO `products` ";
+    $sql .="VALUES ($q_memeber_no,null,'$q_memeber_username','$q_member_email',";
+    $sql .="'$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$big_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',";
+    $sql .="'$copied_img_file_name[0]','$copied_img_file_name[1]','$copied_img_file_name[2]','$copied_img_file_name[3]','$zip_file_name','$copied_zip_file_name','$type[0]','$font_file_name','$copied_font_file_name','$font_type[0]','$freegoods_agree','$file_type');";
+    $result = mysqli_query($conn,$sql);
+    if (!$result) {
+      alert_back('5.Error: ' . mysqli_error($conn));
+      //die('Error: ' . mysqli_error($conn));
+    }
+
+    //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num를 찾아서 전달
+    $sql="SELECT num from `products` where email ='$q_member_email' order by num desc limit 1;";
+    $result = mysqli_query($conn,$sql);
+    if (!$result) {
+      alert_back('6.Error: ' . mysqli_error($conn));
+      //die('Error: ' . mysqli_error($conn));
+    }
+    $row=mysqli_fetch_array($result);
+    $num=$row['num'];
+
+    mysqli_close($conn);
+    echo "<script>location.href='./shop_view.php?num=$num';</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $num = test_input($_GET["num"]);
     $q_num = mysqli_real_escape_string($conn, $num);

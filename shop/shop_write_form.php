@@ -191,22 +191,22 @@
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(1)" id="shop_write_mini1">
-            <input type="file" name="img_file" accept="image/*" onchange="loadFile1(event)">
+            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile1(event)">
           </div>
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(2)" id="shop_write_mini2">
-            <input type="file" name="img_file" accept="image/*" onchange="loadFile2(event)" >
+            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile2(event)" >
           </div>
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(3)" id="shop_write_mini3">
-            <input type="file" name="img_file" accept="image/*" onchange="loadFile3(event)">
+            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile3(event)">
           </div>
           <div class="shop_write_minigal">
             <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(4)" id="shop_write_mini4">
-            <input type="file" name="img_file" accept="image/*" onchange="loadFile4(event)">
+            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile4(event)">
           </div>
         </div>
       </div><!-- end of div1 -->
@@ -267,7 +267,7 @@
                 placeholder="Type a tag and press enter!" id="shop_write_input_tag">
             </div>
           </div>
-          <div class="shop_write_sticky_inner" id="shop_write_tags" >
+          <div class="shop_write_sticky_inner" id="shop_write_tags">
             <input type="hidden" name="hash_tag" id="hash_tag">
           </div>
 
