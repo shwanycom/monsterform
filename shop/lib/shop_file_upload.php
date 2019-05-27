@@ -51,12 +51,12 @@ if ($type[0]=='application'){
     alert_back('2.zip파일사이즈가 10MB이상입니다.');
   }
 }else {
-  alert_back('zip파일이 아닙니다');
+  //alert_back('zip파일이 아닙니다');
 }
 
 //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
 if(!move_uploaded_file($zip_file_tmp_name, $uploaded_zip_file)){
-  alert_back('4.서버 전송에러');
+  alert_back('4.서버 전송에러 zip');
 }
 //=================================img_file========================================
 $img_files=$_FILES["img_file"];
@@ -103,7 +103,7 @@ for($i=0; $i<$count; $i++){
 
   //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
   if(!move_uploaded_file($img_file_tmp_name[$i], $uploaded_img_file[$i])){
-    //alert_back('4.서버 전송에러');
+    //alert_back('4.서버 전송에러 img');
   }
 }//end of for
 
@@ -146,7 +146,7 @@ if($big_data=="Fonts"){
 
   //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
   if(!move_uploaded_file($font_file_tmp_name, $uploaded_font_file)){
-    alert_back('4.서버 전송에러');
+    alert_back('4.서버 전송에러 font');
   }
 }
 

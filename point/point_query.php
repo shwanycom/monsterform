@@ -60,7 +60,7 @@ if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
         die('Error: ' . mysqli_error($conn));
       }
 
-  echo "<script> location.href='./point_main.php';</script>";
+  echo "<script> location.href='../index.php';</script>";
 
 }
 

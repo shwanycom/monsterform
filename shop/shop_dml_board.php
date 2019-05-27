@@ -5,6 +5,7 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 <meta charset="utf-8">
 <?php
 $content= $q_content = $sql= $result = $userid="";
+$font_file_name=$copied_font_file_name=$font_type[0]="";
 // $member_no = $_SESSION['no'];
 // $member_email = $_SESSION['email'];
 // $memeber_username = $_SESSION['username'];
@@ -85,6 +86,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     }
     $row=mysqli_fetch_array($result);
     $num=$row['num'];
+
 
     mysqli_close($conn);
     echo "<script>location.href='./shop_view.php?num=$num';</script>";
