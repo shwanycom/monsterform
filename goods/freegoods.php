@@ -1,8 +1,6 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
-if(!isset($_SESSION['username'])){
-  echo "<script> alert('no permission'); history.go(-1); </script>";
-}
+
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 $sql="select * from `products` where `freegoods`='y'";
 $result = mysqli_query($conn, $sql);
@@ -283,6 +281,14 @@ $row2=mysqli_fetch_array($result2);
     <?php
       include "../lib/footer_in_folder.php";
       include "../message/send_message_modal_in_folder.php";
+      include "../khy_modal/login_modal_in_folder.php";
+      if(!isset($_SESSION['no'])) {
+        ?>
+        <script>
+          auto_modal();
+        </script>
+        <?php
+      }
     ?>
   </body>
 </html>

@@ -19,20 +19,20 @@
   </div>
 </div>
 <script>
-  var modal = document.getElementById('myModal_1');
-  var btn = document.getElementById("myBtn_1");
-  var span = document.getElementsByClassName("close_1")[0];
-  btn.onclick = function() {
-    modal.style.display = "block";
+  var modal1 = document.getElementById('myModal_1');
+  var btn1 = document.getElementById("myBtn_1");
+  var span1 = document.getElementsByClassName("close_1")[0];
+  btn1.onclick = function() {
+    modal1.style.display = "block";
   }
 
-  span.onclick = function() {
-    modal.style.display = "none";
+  span1.onclick = function() {
+    modal1.style.display = "none";
   }
 
   window.onclick = function(event) {
     if (event.target == modal) {
-      modal.style.display = "none";
+      modal1.style.display = "none";
     }
   }
 </script>

@@ -4,20 +4,20 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
 
-if(!isset($_SESSION['email'])){
-echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-exit;
-}
+// if(!isset($_SESSION['email'])){
+// echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+// exit;
+// }
 $mode="";
 $no=$_SESSION['no'];
-var_dump($no);
+
 
 	$sql="select * from cart where no='$no';";
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
 
 
-  $rows_scale=50;
+  $rows_scale=4;
   $pages_scale=3;
 
   $total_pages= ceil($total_record/$rows_scale);
@@ -57,7 +57,7 @@ var_dump($no);
     <div class="shop_main">
       <div class="center_shop_div">
       <div class="Shopping_cart">
-        <span>Your Cart</span>
+        <span style="font-size:20pt;">Your Cart</span>
       </div>
       <div class="cart_total">
 
@@ -74,7 +74,7 @@ var_dump($no);
                     $num = $row["num"];
                     $price = $row["price"];
                     $cart_img_name = $row["cart_img_name"];
-
+                    $regist_day = date("F d, Y");
 
 
                     // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
@@ -102,14 +102,11 @@ var_dump($no);
             </div>
             <div class="cart_list4">
               <div class="">
-                <input type="text" name="" value="1" style="width:30px; text-align:center;"><span> seats</span>
-              </div>
-              <div class="">
                 <a href="#">remove</a>
               </div>
             </div>
             <div class="cart_list5">
-                \<?=$price?>
+                \가격
             </div>
           </div>
           <?php
@@ -121,19 +118,54 @@ var_dump($no);
       </div>
       <div class="payment_list">
         <div class="total_amount">
-          total: sdf
+        <span id="total_price_span">Total  Mon <br>  \20000 </span>
         </div>
-        아이디/
-        날짜/
+        <div class="id_regist_div">
+          <span class="id_regist_span">By ID</span>
+
+        </div>
+        <div class="id_regist_div">
+          <span class="id_regist_span">Date : <?=$regist_day?></span>
+        </div>
         <div class="purchase_kakao">
             <input type="submit" id="cart_payment" value="결제" onclick="check_input1()" >
         </div>
       </div>
+      <div id='page_box' style="text-align: center;">
+        <?PHP
+        #----------------이전블럭 존재시 링크------------------#
+        if($start_page > $pages_scale){
+          $go_page= $start_page - $pages_scale;
+          echo "<a id='before_block' href='cart.php?mode=$mode&page=$go_page'> << </a>";
+        }
+        #----------------이전페이지 존재시 링크------------------#
+        if($pre_page){
+          echo "<a id='before_page' href='cart.php?mode=$mode&page=$pre_page'> < </a>";
+        }
+        #--------------바로이동하는 페이지를 나열---------------#
+        for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
+          if($dest_page == $page){
+            echo( "&nbsp;<b id='present_page'>&nbsp;&nbsp;$dest_page&nbsp;&nbsp;</b>&nbsp" );
+          }else{
+            echo "<a id='move_page' href='cart.php?mode=$mode&page=$dest_page'>&nbsp;&nbsp;$dest_page&nbsp;&nbsp;</a>";
+          }
+        }
+        #----------------이전페이지 존재시 링크------------------#
+        if($next_page){
+          echo "<a id='next_page' href='cart.php?mode=$mode&page=$next_page'> > </a>";
+        }
+        #---------------다음페이지를 링크------------------#
+        if($total_pages >= $start_page+ $pages_scale){
+          $go_page= $start_page+ $pages_scale;
+          echo "<a id='next_block' href='cart.php?mode=$mode&page=$go_page'> >> </a>";
+        }
+        ?>
+      </div>
         </div>
         </div>
     </div>
-     <?php
-    include "../lib/footer_in_folder.php";
-    ?>
+    <?php
+   include "../lib/footer_in_folder.php";
+   ?>
   </body>
 </html>

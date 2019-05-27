@@ -210,14 +210,13 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       var popular = 'n';
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#freegoods";
       }else{
-        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#freegoods";
       }
-
       window.location.href = location;
-      $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
     }
+
 
     function check_handpicked(){
       var freegoods = 'n';
@@ -225,12 +224,12 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       var popular = 'n';
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#handpicked";
       }else{
-        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#handpicked";
       }
       window.location.href = location;
-      $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
+
     }
 
     function check_popular(){
@@ -239,12 +238,12 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       var popular = 'y';
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#popular";
       }else{
-        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#popular";
       }
       window.location.href = location;
-      $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
+
     }
 
     $(document).ready(function() {
@@ -345,9 +344,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
      </ul>
      <br>
      <ul id="select_ul">
-       <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="check_popular()" value="" id="popular" <?=$popular_bold?>>Popular</a></li>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="#" onclick="check_handpicked()" value="" id="handpicked" <?=$handpicked_bold?>>Handpicked</a></li>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a  href="#" onclick="check_freegoods()" value="" id="freegoods" <?=$freegoods_bold?>>FreeGoods</a></li>
+       <li onclick="check_popular()" value="" id="popular" <?=$popular_bold?>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popular</li>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li onclick="check_handpicked()" value="" id="handpicked" <?=$handpicked_bold?>>Handpicked</li>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li onclick="check_freegoods()" value="" id="freegoods" <?=$freegoods_bold?>>FreeGoods</li>
        <li id="select_ul_li_float_right">
          <select class="" id="big_data_select">
           <option value="none" <?=$selected1?>>All Categories</option>
@@ -393,6 +392,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       }else{
         $freegoods_img="./img/free_partner_logo.png";
       }
+
       if(!isset($member_no)){
         $likes_img = '';
       }else{
@@ -400,7 +400,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         $result_likes = mysqli_query($conn, $sql_likes);
         $total_record_likes = mysqli_num_rows($result_likes);
 
-        $likes_img = "../img/hover_like.png";
+        $likes_img = "./img/hover_like.png";
         $likes_img_value = "n";
 
         for($j=0;$j<$total_record_likes;$j++){
@@ -408,7 +408,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
           $row_likes = mysqli_fetch_array($result_likes);
           $likes = $row_likes['product_num'];
           if($likes == $item_num){
-            $likes_img = "../img/like.png";
+            $likes_img = "./img/like.png";
             $likes_img_value = "y";
             break;
           }
