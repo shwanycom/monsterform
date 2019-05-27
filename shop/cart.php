@@ -107,17 +107,16 @@ if(isset($_SESSION['email'])){
             </div>
             <div class="cart_list4">
               <div class="">
-                <a href="#"><span >x</span>
+                <a href="#"><span>x</span>
               </div>
             </div>
             <div class="cart_list5">
-            <span>    <?=$price?>  Mon</span>
+            <span><?=$price?>  Mon</span>
             </div>
           </div>
           <?php
              $number --;
          }
-
          ?>
       </div>
       <div class="payment_list">
@@ -131,7 +130,7 @@ if(isset($_SESSION['email'])){
           <span class="id_regist_span">Date : <?=$regist_day?></span>
         </div>
         <div class="purchase_kakao">
-            <input type="submit" id="cart_payment" value="결제" onclick="check_input1()" >
+            <input type="submit" id="cart_payment" value="Finish Purchase" onclick="check_input1()" >
         </div>
       </div>
       <div id='page_box' style="text-align: center;">
