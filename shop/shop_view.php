@@ -95,13 +95,21 @@
       dots[slideIndex-1].className += " w3-opacity-off";
     }
   </script>
+  <script>
+    function send_to_dml(mode, from){
+      var action = "../cart_report/cart_report_dml.php?mode=" + mode + "&from=" + from;
+      document.getElementById("shop_view_form").action = action;
+      document.getElementById("shop_view_form").submit();
+    }
+  </script>
 </head>
 <body>
   <?php
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
-  <form class="" action="../shop/cart_dml.php" method="post">
+  <form class="" action="../shop/cart_report_dml.php" method="post"
+    id = "shop_view_form">
   <div class="shop_view_wrap">
     <div class="shop_view_category">
       <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
@@ -209,18 +217,23 @@
           </div>
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
             <div class="shop_view_sticky_inner_btn" style="height:30%;">
-              <button type="button" style="background-color:#70a330; color:white;" ><b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
+              <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
+                <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
             </div>
             <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
               OR
             </div>
             <div class="shop_view_sticky_inner_btn" style="height:30%;">
-              <button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button>
+              <button type="button" style="background-color:white; color:#70a330;" onclick="send_to_dml('add_cart','');">
+                <b> Add to Cart</b></button>
             </div>
           </div>
         </div><!-- end of shop_view_sticky_purchase -->
       </div><!-- end of shop_view_sticky -->
     </div><!-- end of shop_view_narrow -->
+    <input type="hidden" name="product_num" value="<?=$i_num?>">
+    <input type="hidden" name="mon" value="<?=$mon?>">
+    <input type="hidden" name="cart_img_name" value="<?=$img_file_copied1?>">
     </form>
   </div><!-- end of wrap -->
 
