@@ -101,6 +101,7 @@
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
+  <form class="" action="../shop/cart_dml.php" method="post">
   <div class="shop_view_wrap">
     <div class="shop_view_category">
       <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
@@ -214,13 +215,13 @@
               OR
             </div>
             <div class="shop_view_sticky_inner_btn" style="height:30%;">
-              <a href="./shop/"><button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button></a>
+              <button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button>
             </div>
           </div>
         </div><!-- end of shop_view_sticky_purchase -->
-
       </div><!-- end of shop_view_sticky -->
     </div><!-- end of shop_view_narrow -->
+    </form>
   </div><!-- end of wrap -->
 
   <!--============================================================================== -->
