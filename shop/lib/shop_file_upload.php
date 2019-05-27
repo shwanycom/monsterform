@@ -51,7 +51,7 @@ if ($type[0]=='application'){
     alert_back('2.zip파일사이즈가 10MB이상입니다.');
   }
 }else {
-  alert_back('zip파일이 아닙니다');
+  //alert_back('zip파일이 아닙니다');
 }
 
 //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
