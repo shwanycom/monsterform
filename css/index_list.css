@@ -26,6 +26,11 @@
 #select_ul li{
 vertical-align: middle;
 }
+#select_ul li:hover{
+vertical-align: middle;
+cursor: pointer;
+
+}
 
 #select_ul_li_float_right{
   float: right;

@@ -182,27 +182,27 @@ var span = document.getElementsByClassName("close")[0];
 
 <script>
 // When the user clicks the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-  flag = false;
-  sign_man();
-  init();
+if(btn){
+  btn.onclick = function() {
+    modal.style.display = "block";
+    flag = false;
+    sign_man();
+    init();
+  }
+  btn2.onclick = function(){
+    modal.style.display = "block";
+    flag = true;
+    sign_man();
+    init();
+  }
+  signup_btn.onclick = function(){
+    check_input();
+  }
+  login.onclick = function(){
+    check_login();
+  }
 }
 
-btn2.onclick = function(){
-  modal.style.display = "block";
-  flag = true;
-  sign_man();
-  init();
-}
-
-signup_btn.onclick = function(){
-  check_input();
-}
-
-login.onclick = function(){
-  check_login();
-}
 
 function memform(){
   email_address.setAttribute("type","email");
@@ -277,9 +277,7 @@ function auto_modal(){
   sign_man();
   init();
   span.onclick = function() {
-    reset_member_form();
-    reset_login_form();
-    modal.style.display = "block";
+    document.location.href="../index.php";
   }
   window.onclick = function(event) {
     if (event.target == modal) {
