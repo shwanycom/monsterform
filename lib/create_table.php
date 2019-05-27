@@ -42,13 +42,6 @@ function create_table($conn, $table_name){
                 PRIMARY KEY (`num`)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
-      case 'collections' :
-        $sql = "CREATE TABLE `collections` (
-                `no` int(11) NOT NULL,
-                `folder_name` varchar(100) NOT NULL DEFAULT '...',
-                `product_num` int(11) NOT NULL
-              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-      break;
       case 'discussion':
         $sql = "CREATE TABLE `discussion` (
                 `no` int(11) NOT NULL,

@@ -13,6 +13,7 @@ $popular_default = 'n';
 $partner_checked = '';
 $handpicked_checked = '';
 $popular_checked = '';
+$q_search = '';
 
 if(isset($_GET["big_data"])){
   $big_data=$_GET["big_data"];
@@ -31,7 +32,11 @@ if(isset($_GET["popular"])){
 }
 
 if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
+  if(isset($_GET["search_text"])){
     $search = test_input($_GET["search_text"]);
+  }else{
+    $search = '';
+  }
     $q_search = mysqli_real_escape_string($conn, $search);
 
     if($partner=='n' && $handpicked=='n' && $popular=='n'){

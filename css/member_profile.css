@@ -167,4 +167,10 @@ figure.snip1368 {
 #main_img_likes{
   width : 250px;
   height : 200px;
+  margin: 0;
+  padding: 0;
+}
+
+#usemf_table td{
+  text-align: left;
 }

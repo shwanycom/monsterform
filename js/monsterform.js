@@ -328,3 +328,21 @@ function big_data_check(){
     });
   });
 }
+
+function check_update_setting() {
+  if($("#profession").val() == 'none'){
+    alert("Profession을 선택해주세요"); $("#profession_other").focus();
+    return false;
+  }
+
+  if($("#profession").val() == 'other'){
+    if($("#profession_other").val()==''){
+      alert("Profession을 입력해주세요"); $("#profession_other").focus();
+      return false;
+    }
+  }
+
+  $("#use_mf").val($("#full_time_job").val()+'/'+$("#freelance_work").val()+'/'+$("#part_time_side").val()+'/'+$("#non_profit").val()+'/'+$("#school").val()+'/'+$("#personal_projects").val());
+
+  document.profile_update_form.submit();
+}
