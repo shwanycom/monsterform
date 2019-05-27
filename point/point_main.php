@@ -3,6 +3,11 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
+if(!isset($_SESSION['email'])){
+echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+exit;
+}
+
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
   $point1 = $_SESSION['mon'];
@@ -32,7 +37,7 @@ create_table($conn, "member");
       money=document.getElementById("money_span").innerHTML = text;
       document.getElementById('money_kaka').value = money;
     }
-      function check_input(){
+      function check_input2(){
           document.buy.action="./kakaopay.php";
           document.buy.submit();
     }
@@ -115,7 +120,7 @@ create_table($conn, "member");
                 <span class="credit_span">Buy Credit :</span>
                 <span id="money_span"><?=$selected?></span>
                 <span class="credit_span">won</span> <br>
-                <input type="image" onclick="check_input()" value="결제하기" src="../img/kakaopay.png" style="padding-top:9px; width: 60px;">
+                <input type="image" onclick="check_input2()" value="결제하기" src="../img/kakaopay.png" style="padding-top:9px; width: 60px;">
                 <!-- <input type="button" name="" onclick="check_input()" value="결제하기" src="../img/logo.png"> -->
               </div>
           </form>
@@ -124,15 +129,7 @@ create_table($conn, "member");
     </section>
     <?php
     include "../lib/footer_in_folder.php";
-    include "../khy_modal/login_modal_in_folder.php";
-    // session_start();
-    if(!isset($_SESSION['no'])) {
-      ?>
-      <script>
-        auto_modal();
-      </script>
-      <?php
-    }
+
     ?>
   </body>
 </html>
