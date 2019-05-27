@@ -3,7 +3,7 @@ session_start();
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 if(isset($_SESSION['no'])){
-  $memeber_no = $_SESSION['no'];
+  $member_no = $_SESSION['no'];
   $member_email = $_SESSION['email'];
   $member_username = $_SESSION['username'];
   $member_mon = $_SESSION['mon'];
@@ -22,6 +22,7 @@ create_table($conn, 'report');
 create_table($conn, 'sales');
 create_table($conn, 'message');
 create_table($conn, 'message_ripple');
+
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -45,7 +46,9 @@ create_table($conn, 'message_ripple');
       include "./lib/section_text_category.php";
     }
 
+
     include "./lib/section_categories_section.php";
+    include "./index_list/index_list.php";
     include './lib/footer_2.php';
     if(isset($_SESSION['username']) && $_SESSION['username']=='admin'){
       include "./admin/admin_main.php";

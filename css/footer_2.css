@@ -2,6 +2,11 @@
   color: #444444;
   height:380px;
   background-color:rgb(245,245,244,230);
+  border-top: 1px solid lightgray;
+}
+#section_earn h2{
+  margin-top:0;
+  margin-bottom:0;
 }
 #section_earn a{
   text-decoration: none;

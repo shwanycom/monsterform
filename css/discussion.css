@@ -7,25 +7,29 @@
 }
 
 #discussion_div button{
-  background-color: #ff6d70;
   border : none;
-  width : 60px;
+  width : 70px;
   height : 20px;
-  color : rgb(245,245,244,230);
   opacity: 1;
+  background-color: rgba(151, 177, 98, 129);
+  padding: 2px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
 }
 
 #discussion_div button:hover{
-  background-color: #ff6d70;
+  color: #fff;
   border : none;
-  width : 60px;
+  width : 70px;
   height : 20px;
-  color : rgb(245,245,244,230);
+  background-color: rgba(151, 177, 98, 129);
   opacity: 0.8;
 }
 
 #write_save_button{
-  background-color: #ff6d70;
+  background-color: rgba(151, 177, 98, 129);
   border : none;
   width : 60px;
   height : 20px;
@@ -35,7 +39,7 @@
 }
 
 #write_save_button:hover{
-  background-color: #ff6d70;
+  background-color: rgba(151, 177, 98, 129);
   border : none;
   width : 60px;
   height : 20px;
@@ -53,9 +57,9 @@
 }
 
 #discussion_title_div1{
-  font-size: 2em;
+  font-size: 30pt;
+  font-family: 'nina';
   text-align: center;
-  width : 180px;
   float: left;
 }
 
@@ -70,7 +74,7 @@
 }
 
 #list_item ul{
-  border-bottom: 0.5px dotted #ff6d70;
+  border-bottom: 0.1px solid #e0dedb;
   margin-top : 2px;
 }
 
@@ -80,9 +84,11 @@
 }
 
 #general_ul{
+  width: 95%;
   float : left;
   margin : 0;
   padding-left: 20px;
+  padding: 15px;
 }
 
 #general_ul li{
@@ -92,8 +98,8 @@
 
 #discussion_write_button{
   text-align: right;
-}
 
+}
 #list_top_title ul{
   margin:0;
   padding:0;
@@ -102,23 +108,23 @@
 #list_top_title ul li{
   font-family: 'nina';
   list-style: none;
-  font-size: 20pt;
-  font-weight: bold;
-  background-color: #ff6d70;
-  color: rgb(245,245,244,230);
+  font-size: 25pt;
+  background-color: rgb(245,245,244,230);
+  color: #444444;
+  border-bottom: 0.5px solid #e0dedb;
   padding-top: 7px;
   padding-bottom: 7px;
 }
 
 #topics_title{
-  font-family: 'nina';
-  list-style: none;
-  font-size: 20pt;
-  font-weight: bold;
-  background-color: #ff6d70;
-  color: rgb(245,245,244,230);
-  padding-top: 7px;
-  padding-bottom: 7px;
+
+      list-style: none;
+      font-size: 25pt;
+      background-color: rgb(245,245,244,230);
+      color: #444444;
+      border-bottom: 0.5px solid #e0dedb;
+      padding-top: 7px;
+      padding-bottom: 7px;
 }
 
 #page_num{
@@ -165,12 +171,11 @@
 #write_form_table{
   border-collapse: collapse;
   border: 1px solid #ff6d70;
-  width : 100%;
   text-align: center;
 }
 
 #write_form_table tr, #write_form_table td{
-  border: 1px solid #ff6d70;
+  border: 1px solid #e0dedb;
   text-align: center;
 }
 

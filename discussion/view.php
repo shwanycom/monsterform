@@ -164,10 +164,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>&nbsp;';
-                     echo '<a href="./write_edit_form.php"><button type="button" name="button">글작성</button></a>';
+                     echo '<a href="./list.php"><button type="button" name="button">list</button></a>&nbsp;';
+                     echo '<a href="./write_edit_form.php"><button type="button" name="button">write</button></a>';
                    }
-                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>';
+                     echo '<a href="./list.php"><button type="button" name="button">list</button></a>';
                    ?>
                  </div> <!-- end of button -->
               </div> <!-- end of list_content -->
@@ -188,7 +188,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
              ?>
              <table id="view_main_table">
                <tr>
-                 <th id="topics_title">&nbsp;&nbsp;&nbsp;<?=$topic?></th>
+                 <th id="topics_title"><?=$topic?></th>
                </tr>
                <tr>
                  <td id="subject_column"><?=$subject?></td>
@@ -207,8 +207,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
              <?php
               if($email==$_SESSION['email']){
                 echo '<div style="float: right">
-                  <button type="button" id="write_button" onclick="open_modal()">수정</button>&nbsp;
-                  <a href="./discussion_dml.php?mode=delete&num='.$num.'"><button type="button">삭제</button></a>
+                  <button type="button" id="write_button" onclick="open_modal()">Modified</button>&nbsp;
+                  <a href="./discussion_dml.php?mode=delete&num='.$num.'"><button type="button">remove</button></a>
                 </div><br>';
               }
               ?>
@@ -290,8 +290,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                         <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"><?=$write_content?></textarea></td>
                       </tr>
                     </table>
-                    <a href="./view.php?num=<?=$write_num?>"><button type="button">취소</button></a>&nbsp;
-                    <a href="#"><input type="button" id="write_save_button" value="수정" onclick="check_write_discussion()"></a>
+                    <a href="./view.php?num=<?=$write_num?>"><button type="button">cancel</button></a>&nbsp;
+                    <a href="#"><input type="button" id="write_save_button" value="Modified" onclick="check_write_discussion()"></a>
                   </form>
 
                   <!-- <p>Some text in the Modal..</p> -->
@@ -305,7 +305,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================댓글================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;Ripples</li>
+                <li id=list_title1>Ripples</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -337,7 +337,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   </table>
                   <?php
                   if($email1==$_SESSION['email']){
-                    echo '<input id="write_save_button" type="submit" name="" value="삭제" style="float:right">';
+                    echo '<input id="write_save_button" type="submit" name="" value="remove" style="float:right">';
                   }
                    ?>
                  </form>
@@ -369,11 +369,11 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                         <td colspan="2"><textarea name="ripple_content" id="ripple_content" rows="8" cols="135"></textarea></td>
                       </tr>
                     </table>
-                    <a href="./list.php"><button type="button" name="button">목록</button></a>
-                    &nbsp;<button type="submit" name="" onclick="check_ripple_discussion()">등록</button></a>
+                    <a href="./list.php"><button type="button" name="button">list</button></a>
+                    &nbsp;<button type="submit" name="" onclick="check_ripple_discussion()">regist</button></a>
                     </form>';
                    }else{
-                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>';
+                     echo '<a href="./list.php"><button type="button" name="button">list</button></a>';
                    }
 
 

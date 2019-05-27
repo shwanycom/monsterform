@@ -19,11 +19,11 @@ if(isset($_GET['mode'])){
 }
 
 if($mode == "allmessage"){
-    $sql = "select * from message where send_email='$id' or rece_email='$id' order by regist_day desc;";
+    $sql = "select * from message where send_email='$id' or rece_email='$id' order by num desc;";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }else{
-    $sql = "select * from message where rece_email='$id' and rece_status='n' order by regist_day desc;";
+    $sql = "select * from message where rece_email='$id' and rece_status='n' order by num desc;";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }

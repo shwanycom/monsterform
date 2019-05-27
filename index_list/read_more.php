@@ -8,7 +8,7 @@ $(document).ready(function() {
     console.log(num_num);
     console.log(likes_img_value);
      $.ajax({
-       url: './like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
+       url: '../lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
        type: 'POST', // get 또는 post로 data를 보냄
        data: {num: num_num, liv : likes_img_value}
      })

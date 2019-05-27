@@ -24,7 +24,7 @@ if(isset($_POST['message'])){
 
   <script type="text/javascript">
   	IMP.init('imp80551079'); //아이디 만들었음
-  IMP.request_pay({
+    IMP.request_pay({
     pg : 'kakaopay',
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
@@ -37,9 +37,7 @@ if(isset($_POST['message'])){
     buyer_postcode : '123-456'
 }, function(rsp) {
     if ( rsp.success ) {
-
     	$.ajax({
-
 
     	}).done(function(data) {
 

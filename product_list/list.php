@@ -268,7 +268,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
              }else{
                $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
-              }
+            }
               console.log($(".likes_img_class:eq("+n+")").attr("src"));
             if($(".likes_img_value:eq("+n+")").val()=='y'){
               $(".likes_img_value:eq("+n+")").val('n');
@@ -365,21 +365,25 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
            $freegoods_img="../img/free_partner_logo.png";
          }
 
-         $sql_likes = "SELECT product_num from likes where no = '$member_no';";
-         $result_likes = mysqli_query($conn, $sql_likes);
-         $total_record_likes = mysqli_num_rows($result_likes);
+         if(!isset($member_no)){
+           $likes_img = '';
+         }else{
+           $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+           $result_likes = mysqli_query($conn, $sql_likes);
+           $total_record_likes = mysqli_num_rows($result_likes);
 
-         $likes_img = "../img/hover_like.png";
-         $likes_img_value = "n";
+           $likes_img = "../img/hover_like.png";
+           $likes_img_value = "n";
 
-         for($j=0;$j<$total_record_likes;$j++){
-           mysqli_data_seek($result_likes, $j);
-           $row_likes = mysqli_fetch_array($result_likes);
-           $likes = $row_likes['product_num'];
-           if($likes == $item_num){
-             $likes_img = "../img/like.png";
-             $likes_img_value = "y";
-             break;
+           for($j=0;$j<$total_record_likes;$j++){
+             mysqli_data_seek($result_likes, $j);
+             $row_likes = mysqli_fetch_array($result_likes);
+             $likes = $row_likes['product_num'];
+             if($likes == $item_num){
+               $likes_img = "../img/like.png";
+               $likes_img_value = "y";
+               break;
+             }
            }
          }
 

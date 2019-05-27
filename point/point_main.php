@@ -2,7 +2,7 @@
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
-// include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
   $point1 = $_SESSION['mon'];
@@ -125,7 +125,7 @@ create_table($conn, "member");
     <?php
     include "../lib/footer_in_folder.php";
     include "../khy_modal/login_modal_in_folder.php";
-    session_start();
+    // session_start();
     if(!isset($_SESSION['no'])) {
       ?>
       <script>
