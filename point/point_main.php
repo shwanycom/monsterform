@@ -3,10 +3,10 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
-if(!isset($_SESSION['email'])){
-echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-exit;
-}
+// if(!isset($_SESSION['email'])){
+// echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+// exit;
+// }
 
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
@@ -37,6 +37,7 @@ create_table($conn, "member");
       money=document.getElementById("money_span").innerHTML = text;
       document.getElementById('money_kaka').value = money;
     }
+
       function check_input2(){
           document.buy.action="./kakaopay.php";
           document.buy.submit();
@@ -129,7 +130,14 @@ create_table($conn, "member");
     </section>
     <?php
     include "../lib/footer_in_folder.php";
-
+    include "../khy_modal/login_modal_in_folder.php";
+    if(!isset($_SESSION['no'])) {
+      ?>
+      <script>
+        auto_modal();
+      </script>
+      <?php
+    }
     ?>
   </body>
 </html>

@@ -4,15 +4,21 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
 
-// if(!isset($_SESSION['email'])){
-// echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-// exit;
-// }
-$mode="";
-$no=$_SESSION['no'];
+if(!isset($_SESSION['email'])){
+echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+exit;
+}
+if(isset($_SESSION['email'])){
+  $email = $_SESSION['email'];
+  $point1 = $_SESSION['mon'];
+	$no=$_SESSION['no'];
+	$member_username = $_SESSION['username'];
+}
+	$regist_day = date("F d, Y");
+	$total_price=$mode="";
 
 
-	$sql="select * from cart where no='$no';";
+	$sql="select * from cart c inner join products p on c.product_num=p.product_num where c.no=$no;";
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
 
@@ -62,6 +68,7 @@ $no=$_SESSION['no'];
       <div class="cart_total">
 
       <div class="list_cart">
+
         <?php
 
     			// 모든 레코드를 가져오는 로직
@@ -72,27 +79,25 @@ $no=$_SESSION['no'];
                  // 하나 레코드 가져오기
                     $row = mysqli_fetch_array($result);
                     $num = $row["num"];
+                    $username = $row["username"];
+                    $subject = $row["subject"];
                     $price = $row["price"];
                     $cart_img_name = $row["cart_img_name"];
                     $regist_day = date("F d, Y");
 
+										$total_price=$total_price+$price;
 
-                    // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
-                    if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
-                        $main_img = $img_copy_name0;
-
-                    }
                     ?>
           <div class="list_set">
             <div class="cart_list1">
-              <img src="./data/<?=$cart_img_name?>" alt="" id="cart_img">
+              <img src="../data/img/<?=$cart_img_name?>" alt="" id="cart_img">
             </div>
             <div class="cart_list2">
               <div class="">
-              <span>Mogan Font + Extras </span>
+              <span><?=$subject?></span>
               </div>
               <div class="">
-              <span>by</span>
+              <span>by <?=$username?></span>
               </div>
             </div>
             <div class="cart_list3">
@@ -102,33 +107,30 @@ $no=$_SESSION['no'];
             </div>
             <div class="cart_list4">
               <div class="">
-                <a href="#">remove</a>
+                <a href="#"><span>x</span>
               </div>
             </div>
             <div class="cart_list5">
-                \가격
+            <span><?=$price?>  Mon</span>
             </div>
           </div>
           <?php
              $number --;
-
          }
          ?>
-
       </div>
       <div class="payment_list">
         <div class="total_amount">
-        <span id="total_price_span">Total  Mon <br>  \20000 </span>
+        <span id="total_price_span">Total  Mon <br> <?=$total_price?> </span>
         </div>
         <div class="id_regist_div">
-          <span class="id_regist_span">By ID</span>
-
+          <span class="id_regist_span"> <?=$member_username?></span>
         </div>
         <div class="id_regist_div">
           <span class="id_regist_span">Date : <?=$regist_day?></span>
         </div>
         <div class="purchase_kakao">
-            <input type="submit" id="cart_payment" value="결제" onclick="check_input1()" >
+            <input type="submit" id="cart_payment" value="Finish Purchase" onclick="check_input1()" >
         </div>
       </div>
       <div id='page_box' style="text-align: center;">

@@ -392,10 +392,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       }else{
         $freegoods_img="./img/free_partner_logo.png";
       }
-
-      if(!isset($member_no)){
-        $likes_img = '';
-      }else{
+      if(isset($member_no)){
         $sql_likes = "SELECT product_num from likes where no = '$member_no';";
         $result_likes = mysqli_query($conn, $sql_likes);
         $total_record_likes = mysqli_num_rows($result_likes);
@@ -414,6 +411,8 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
           }
         }
       }
+
+
 
 			// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
 			if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
@@ -442,13 +441,19 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
                 in&nbsp;<a href="#" class=""><?=$big_data?></a>
             </div>
           </div>
-          <figcaption>
-            <div class="icons">
-              <input type="hidden" class="hidden_num" value="<?=$item_num?>">
-              <img class="likes_img_class" src="<?=$likes_img?>" alt="" style="width:25px; height:25px;" ><br>
-              <input type="hidden" class="likes_img_value" value="<?=$likes_img_value?>">
-            </div>
-          </figcaption>
+          <?php
+            if(isset($_SESSION['no'])){
+              echo '
+              <figcaption>
+                <div class="icons">
+                  <input type="hidden" class="hidden_num" value="'.$item_num.'"">
+                      <img class="likes_img_class" src="'.$likes_img.'" alt="" style="width:25px; height:25px;" ><br>
+                  <input type="hidden" class="likes_img_value" value="'.$likes_img_value.'">
+                </div>
+              </figcaption>
+              ';
+            }
+          ?>
         </figure>
       </div>
       <?php

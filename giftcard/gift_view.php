@@ -3,10 +3,10 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
-if(!isset($_SESSION['email'])){
-  echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-  exit;
-}
+// if(!isset($_SESSION['email'])){
+//   echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+//   exit;
+// }
 
 
 if(isset($_SESSION['email'])){
@@ -60,7 +60,7 @@ if(isset($_SESSION['email'])){
     	    }
     	})
     });
-    
+
     function showHide(){
       var rec_name=document.getElementById("name_input");
       var rec_email1= document.getElementById("email_name");
@@ -152,6 +152,14 @@ if(isset($_SESSION['email'])){
     </div>
     <?php
     include "../lib/footer_in_folder.php";
+    include "../khy_modal/login_modal_in_folder.php";
+    if(!isset($_SESSION['no'])) {
+      ?>
+      <script>
+        auto_modal();
+      </script>
+      <?php
+    }
     ?>
   </body>
 </html>

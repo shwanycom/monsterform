@@ -227,10 +227,10 @@ $row2=mysqli_fetch_array($result2);
               break;
             }
           }
-        echo '<div class="img_div">
+        echo '<a href="../shop/shop_view.php?num='.$num3.'"><div class="img_div">
         <input type="hidden" class="hidden_num" value="'.$num3.'">
             <figure class="snip1368">
-              <a href="#">
+              <a href="../shop/shop_view.php?num='.$num3.'">
                 <img id="main_img" src="../img/'.$img_file_copied1_3.'" alt="sample30" />
               </a>
               <div class="hover_img" id="hover_img_id">
@@ -257,7 +257,7 @@ $row2=mysqli_fetch_array($result2);
                 </div>
               </figcaption>
             </figure>
-            </div>
+            </div><a>
           ';
           if($i%4==3){
             echo '<br>';
