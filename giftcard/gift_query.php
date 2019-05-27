@@ -38,7 +38,6 @@ if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
       if (!$result) {
         die('Error: ' . mysqli_error($conn));
       }
-
   echo "<script> location.href='../index.php';</script>";
 
 }

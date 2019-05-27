@@ -137,7 +137,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
            <!--===============================검색결과================================= -->
           <div id="list_top_title">
             <ul>
-              <li id=list_title1>&nbsp;&nbsp;&nbsp;<?=$title?></li>
+              <li id=list_title1><?=$title?></li>
             </ul>
           </div> <!-- end of list_top_title -->
             <div id="list_content">
@@ -201,10 +201,11 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<a href="./list.php"><button type="button" name="button">목록</button></a>&nbsp;';
-                     echo '<button type="button" id="write_button" onclick="open_modal()">글작성</button>';
-                   }
-                   echo '<a href="./list.php"><button type="button" name="button">목록</button></a>&nbsp;';
+                     echo '<a href="./list.php"><button type="button" name="button">list</button></a>&nbsp;';
+                     echo '<button type="button" id="write_button" onclick="open_modal()">New Post</button>';
+                    }else{
+                     echo '<a href="./list.php"><button type="button" name="button">list</button></a>&nbsp;';
+                    }
                    ?>
                  </div> <!-- end of button -->
               </div> <!-- end of list_content -->
@@ -214,7 +215,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================일반================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;general</li>
+                <li id=list_title1>general</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -251,12 +252,12 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=general">더 보기...</a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=general"><span style="color: #8ba753;"> More from General Topics →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<button type="button" id="write_button" onclick="open_modal()">글작성</button>';
+                     echo '<button type="button" id="write_button" onclick="open_modal()">New Post</button>';
                    }
                    ?>
                  </div> <!-- end of button -->
@@ -266,7 +267,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================제품요청================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;request</li>
+                <li id=list_title1>request</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -298,17 +299,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <?php
                   $number2--;
                   }//end of for
-                  mysqli_close($conn);
+                  // mysqli_close($conn);
                  ?>
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=request">더 보기...</a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=request"><span style="color: #8ba753;">More from Request a Product →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<button type="button" id="write_button" onclick="open_modal()">글작성</button>';
+                     echo '<button type="button" id="write_button" onclick="open_modal()">New Post</button>';
                    }
                    ?>
                  </div> <!-- end of button -->
@@ -317,7 +318,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================피드백요청================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;feedback</li>
+                <li id=list_title1>feedback</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -349,17 +350,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <?php
                   $number3--;
                   }//end of for
-                  mysqli_close($conn);
+                  // mysqli_close($conn);
                  ?>
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=feedback">더 보기...</a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=feedback"><span style="color: #8ba753;">More from feedback →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<button type="button" id="write_button" onclick="open_modal()">글작성</button>';
+                     echo '<button type="button" id="write_button" onclick="open_modal()">New Post</button>';
                    }
                    ?>
                  </div> <!-- end of button -->
@@ -369,7 +370,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             <!--===============================제품후기================================= -->
             <div id="list_top_title">
               <ul>
-                <li id=list_title1>&nbsp;&nbsp;&nbsp;review</li>
+                <li id=list_title1>review</li>
               </ul>
             </div> <!-- end of list_top_title -->
               <div id="list_content">
@@ -401,17 +402,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <?php
                   $number4--;
                   }//end of for
-                  mysqli_close($conn);
+                  // mysqli_close($conn);
                  ?>
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=review">더 보기...</a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=review"><span style="color: #8ba753;">More from review →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
                    if(isset($_SESSION['username'])){
-                     echo '<button type="button" id="write_button" onclick="open_modal()">글작성</button>';
+                     echo '<button type="button" id="write_button" onclick="open_modal()">New Post</button>';
                    }
                    ?>
                  </div> <!-- end of button -->
@@ -471,7 +472,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"></textarea></td>
                 </tr>
               </table>
-              <a href="#"><input type="button" id="write_save_button" value="등록" onclick="check_write_discussion()"></a>
+              <a href="#"><input type="button" id="write_save_button" value="regist" onclick="check_write_discussion()"></a>
             </form>
 
             <!-- <p>Some text in the Modal..</p> -->

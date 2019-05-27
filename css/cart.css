@@ -1,0 +1,93 @@
+
+  .shop_main{
+    border: 1px solid black;
+    height: 500px;
+    padding-top: 30px;
+
+  }
+  .center_shop_div{
+    margin-left: 300px;
+    margin-right: 200px;
+
+  }
+  .Shopping_cart{
+    width: 940px;
+
+  }
+  .list_cart{
+    width: auto;
+    min-height: 291px;
+    float: left;
+    border: 1px solid #d9d9d7;
+  }
+  .list_set{
+    border-bottom: : 1px solid #d9d9d7;
+    width: 700px;
+    height: 70px;
+  }
+  .cart_total{
+    width: 950px;
+    height: auto;
+  }
+  .cart_list1{
+      width: 100px;
+      float: left;
+      margin-left: 20px;
+      display: inline;
+  }
+  #cart_img{
+    width: 96px;
+    height: 66px;
+  }
+  .cart_list2{
+      width: 171px;
+      float: left;
+      height: 58px;
+      margin-left: 20px;
+      padding-top: 12px;
+      vertical-align: middle;
+  }
+  .cart_list3{
+      width: 184px;
+      float: left;
+      height: 48px;
+      margin-left: 20px;
+      padding-top: 20px;
+      align-self: center;
+
+  }
+  .cart_list4{
+    width: 76px;
+    float: left;
+    height: 48px;
+    margin-left: 20px;
+    padding-top: 20px;
+    align-self: center;
+  }
+  .cart_list5{
+    width: 30px;
+    float: right;
+    height: 48px;
+    margin-right: 40px;
+    padding-top: 20px;
+    align-self: center;
+  }
+  .payment_list{
+    width: 240px;
+    height: 290px;
+    float: left;
+      border: 1px solid #d9d9d7;
+  }
+  #cart_payment{
+    background-color: rgba(151, 177, 98, 129);
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 240px;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+  }
+  .total_amount{
+    border: 1px solid #444444;
+  }
