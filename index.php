@@ -11,7 +11,6 @@ if(isset($_SESSION['no'])){
 }
 create_table($conn, 'member');
 create_table($conn, 'cart');
-create_table($conn, 'collections');
 create_table($conn, 'discussion');
 create_table($conn, 'discussion_ripple');
 create_table($conn, 'follow');

@@ -6,14 +6,14 @@ body{
 #member_profile{
   margin-right : 20%;
   margin-left : 20%;
-  border : 1px solid red;
+  /* border : 1px solid red; */
   width : auto;
-  height: 100vh;
+  height: 100%;
 }
 
 #member_profile_left{
   /* border : 1px solid red; */
-  width : 70%;
+  width : 75%;
   height : 100%;
   float: left;
   margin : 0;
@@ -32,7 +32,7 @@ body{
 }
 
 #member_profile_right{
-  width : 28%;
+  width : 25%;
   height : 100%;
   float:right;
   margin : 0;
@@ -151,4 +151,20 @@ body{
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+figure.snip1368 {
+  position: relative;
+  overflow: hidden;
+  margin: 7.1px;
+  min-width: 250px;
+  max-width: 400px;
+  /*   width: 100%; */
+  color: #ffffff;
+  line-height: 1.4em;
+}
+
+#main_img_likes{
+  width : 250px;
+  height : 200px;
 }

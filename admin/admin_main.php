@@ -8,7 +8,7 @@
 </div>
 
 <div id="admin_chart_div" class="admin_div">
-<a href="#"><img src="./img/admin_sales.png" alt=""><p>Revenue Chart</p></a>
+<a href="./admin/admin_sales.php"><img src="./img/admin_sales.png" alt=""><p>Revenue Chart</p></a>
 </div>
 
 <div id="admin_handpicked_div" class="admin_div">
