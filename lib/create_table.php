@@ -130,7 +130,7 @@ function create_table($conn, $table_name){
       case 'report':
       $sql = "CREATE TABLE `report` (
                 `product_num` int(11) NOT NULL,
-                `price` int(11) NOT NULL,
+                `report_price` int(11) NOT NULL,
                 `regist_day` date NOT NULL,
                 `no` int(11) NOT NULL
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
