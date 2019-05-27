@@ -44,20 +44,17 @@
     $big_data = $row['big_data'];
     $small_data = $row['small_data'];
     $hash_tag = $row['hash_tag'];
-    $img_file_name1 = $row['img_file_name1'];
-    $img_file_name2 = $row['img_file_name2'];
-    $img_file_name3 = $row['img_file_name3'];
-    $img_file_name4 = $row['img_file_name4'];
+    // $img_file_name1 = $row['img_file_cop1'];
+    // $img_file_name2 = $row['img_file_name2'];
+    // $img_file_name3 = $row['img_file_name3'];
+    // $img_file_name4 = $row['img_file_name4'];
     $img_file_copied1 = $row['img_file_copied1'];
     $img_file_copied2 = $row['img_file_copied2'];
     $img_file_copied3 = $row['img_file_copied3'];
     $img_file_copied4 = $row['img_file_copied4'];
-    $zip_file_name = $row['zip_file_name'];
+    // $zip_file_name = $row['zip_file_name'];
     $zip_file_copied = $row['zip_file_copied'];
-    $file_size=round(filesize("./data/$zip_file_copied")/1000000,2);
-    $pro_img_named = $row['pro_img_named'];
-    $zip_file_type = $row['zip_file_type'];
-    $pro_img_copied = $row['pro_img_copied'];
+    $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
     $file_type = $row['file_type'];
 
     // $subject=htmlspecialchars($row['subject']);
@@ -112,27 +109,27 @@
     <div class="shop_view_container">
       <div id="shop_view_div1">
         <div class="shop_view_gal">
-          <img class="shop_view_mySlides" src="./data/<?=$img_file_copied1?>" style="width:100%; ">
-          <img class="shop_view_mySlides" src="./data/<?=$img_file_copied2?>" style="width:100%; display:none">
-          <img class="shop_view_mySlides" src="./data/<?=$img_file_copied3?>" style="width:100%; display:none">
-          <img class="shop_view_mySlides" src="./data/<?=$img_file_copied4?>" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied1?>" style="width:100%; ">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied2?>" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied3?>" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied4?>" style="width:100%; display:none">
         </div>
 
         <div class="shop_view_minigal_set">
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/<?=$img_file_copied1?>"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="../data/img/<?=$img_file_copied1?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(1)">
           </div>
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/<?=$img_file_copied2?>"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="../data/img/<?=$img_file_copied2?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(2)">
           </div>
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/<?=$img_file_copied3?>"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="../data/img/<?=$img_file_copied3?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(3)">
           </div>
           <div class="shop_view_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/<?=$img_file_copied4?>"
+            <img class="demo w3-opacity w3-hover-opacity-off" src="../data/img/<?=$img_file_copied4?>"
             style="width:100%;cursor:pointer" onclick="currentDiv(4)">
           </div>
         </div>
@@ -217,7 +214,7 @@
               OR
             </div>
             <div class="shop_view_sticky_inner_btn" style="height:30%;">
-              <button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button>
+              <a href="./shop/"><button type="button" style="background-color:white; color:#70a330;"><b> Add to Cart</b></button></a>
             </div>
           </div>
         </div><!-- end of shop_view_sticky_purchase -->

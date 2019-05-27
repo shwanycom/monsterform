@@ -76,6 +76,7 @@ div.shop_view_sticky_inner_btn button{
   height: 100%;
   font-size: 1.05em;
   border: 1.5px solid #70a330;
+  outline: none;
 }
 div.shop_view_sticky_inner p{
   margin: 0;
