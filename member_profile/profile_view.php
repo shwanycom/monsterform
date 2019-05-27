@@ -14,7 +14,7 @@ if(empty($member_username)){
   exit;
 }
 
-define('SCALE', 4);
+define('SCALE', 6);
 
 $likes_bold = '';
 $collections_bold = '';
@@ -66,12 +66,12 @@ $number = $total_record - $start;
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/member_profile.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/product_list.css">
     <link rel="stylesheet" href="../css/photo.css">
+    <link rel="stylesheet" href="../css/product_list.css">
     <link rel="stylesheet" href="../css/keyframe.css">
     <link rel="stylesheet" href="../css/index_list.css">
+    <link rel="stylesheet" href="../css/member_profile.css">
     <script type="text/javascript" src="../js/monsterform.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
@@ -155,6 +155,7 @@ $number = $total_record - $start;
               $item_no = $row_likes_product['no'];
               $item_num = $row_likes_product["num"];
          			$item_name = $row_likes_product["username"];
+              $item_big_data = $row_likes_product["big_data"];
          			$price = $row_likes_product["price"];
               $item_price = $price/100;
               $item_email = $row_likes_product["email"];
@@ -176,21 +177,25 @@ $number = $total_record - $start;
                 $freegoods_img="../img/free_partner_logo.png";
               }
 
-              $sql_likes = "SELECT product_num from likes where no = '$member_no';";
-              $result_likes = mysqli_query($conn, $sql_likes);
-              $total_record_likes = mysqli_num_rows($result_likes);
+              if(!isset($member_no)){
+                $likes_img = '';
+              }else{
+                $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+                $result_likes = mysqli_query($conn, $sql_likes);
+                $total_record_likes = mysqli_num_rows($result_likes);
 
-              $likes_img = "../img/hover_like.png";
-              $likes_img_value = "n";
+                $likes_img = "../img/hover_like.png";
+                $likes_img_value = "n";
 
-              for($k=0;$k<$total_record_likes;$k++){
-                mysqli_data_seek($result_likes, $k);
-                $row_likes = mysqli_fetch_array($result_likes);
-                $likes = $row_likes['product_num'];
-                if($likes == $item_num){
-                  $likes_img = "../img/like.png";
-                  $likes_img_value = "y";
-                  break;
+                for($k=0;$k<$total_record_likes;$k++){
+                  mysqli_data_seek($result_likes, $k);
+                  $row_likes = mysqli_fetch_array($result_likes);
+                  $likes = $row_likes['product_num'];
+                  if($likes == $item_num){
+                    $likes_img = "../img/like.png";
+                    $likes_img_value = "y";
+                    break;
+                  }
                 }
               }
 
@@ -199,12 +204,11 @@ $number = $total_record - $start;
                   $main_img = $img_copy_name0;
               }
 
-
             ?>
             <div class="img_div">
               <figure class="snip1368">
                 <a href="#">
-                  <img id="main_img" src="../img/openmarket.png" alt="sample30" />
+                  <img id="main_img_likes" src="../img/openmarket.png" alt="sample30" />
                 </a>
                 <div class="hover_img">
                   <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -215,12 +219,12 @@ $number = $total_record - $start;
                       <span class="list_title_div_span_bold"><?=$item_subject?></span>
                     </a>
                     <a href="#" class="list_title_div_a_float_right">
-                      M&nbsp; <?=$item_price?>
+                       <?=$item_price?>&nbsp;M
                     </a>
                   </div>
                   <div class="">
                       by&nbsp;<a href="#" class=""><?=$item_email?></a>
-                      in&nbsp;<a href="#" class=""><?=$big_data?></a>
+                      in&nbsp;<a href="#" class=""><?=$item_big_data?></a>
                   </div>
                 </div>
                 <figcaption>

@@ -34,11 +34,10 @@ function create_table($conn, $table_name){
       case 'cart' :
         $sql = "CREATE TABLE `cart` (
                 `no` int(11) NOT NULL,
-                `num` int(11) NOT NULL,
+                `num` int(11) NOT NULL AUTO_INCREMENT,
                 `product_num` int(11) NOT NULL,
                 `price` int(11) NOT NULL,
                 `cart_img_name` varchar(100) NOT NULL,
-                `checked` varchar(100) NOT NULL DEFAULT 'n',
                 PRIMARY KEY (`num`)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
@@ -130,7 +129,7 @@ function create_table($conn, $table_name){
       case 'report':
       $sql = "CREATE TABLE `report` (
                 `product_num` int(11) NOT NULL,
-                `price` int(11) NOT NULL,
+                `report_price` int(11) NOT NULL,
                 `regist_day` date NOT NULL,
                 `no` int(11) NOT NULL
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";

@@ -1,8 +1,6 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
-if(!isset($_SESSION['username'])){
-  echo "<script> alert('no permission'); history.go(-1); </script>";
-}
+
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 $sql="select * from `products` where `freegoods`='y'";
 $result = mysqli_query($conn, $sql);
@@ -229,10 +227,10 @@ $row2=mysqli_fetch_array($result2);
               break;
             }
           }
-        echo '<div class="img_div">
+        echo '<a href="../shop/shop_view.php?num='.$num3.'"><div class="img_div">
         <input type="hidden" class="hidden_num" value="'.$num3.'">
             <figure class="snip1368">
-              <a href="#">
+              <a href="../shop/shop_view.php?num='.$num3.'">
                 <img id="main_img" src="../img/'.$img_file_copied1_3.'" alt="sample30" />
               </a>
               <div class="hover_img" id="hover_img_id">
@@ -259,7 +257,7 @@ $row2=mysqli_fetch_array($result2);
                 </div>
               </figcaption>
             </figure>
-            </div>
+            </div><a>
           ';
           if($i%4==3){
             echo '<br>';
@@ -283,6 +281,14 @@ $row2=mysqli_fetch_array($result2);
     <?php
       include "../lib/footer_in_folder.php";
       include "../message/send_message_modal_in_folder.php";
+      include "../khy_modal/login_modal_in_folder.php";
+      if(!isset($_SESSION['no'])) {
+        ?>
+        <script>
+          auto_modal();
+        </script>
+        <?php
+      }
     ?>
   </body>
 </html>
