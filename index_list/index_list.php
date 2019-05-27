@@ -338,23 +338,25 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
 	</script>
 </head>
 <body>
+  <br><br>
    <div id="filter_div">
      <ul id="title_ul">
        <li id="title">&nbsp;&nbsp;&nbsp;Products</li>
      </ul>
+     <br>
      <ul id="select_ul">
        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="check_popular()" value="" id="popular" <?=$popular_bold?>>Popular</a></li>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="#" onclick="check_handpicked()" value="" id="handpicked" <?=$handpicked_bold?>>Handpicked</a></li>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a  href="#" onclick="check_freegoods()" value="" id="freegoods" <?=$freegoods_bold?>>FreeGoods</a></li>
+       <li id="select_ul_li_float_right">
+         <select class="" id="big_data_select">
+          <option value="none" <?=$selected1?>>All Categories</option>
+          <option value="photos" <?=$selected2?>>Photos</option>
+          <option value="graphics" <?=$selected3?>>Graphics</option>
+          <option value="fonts" <?=$selected4?>>Fonts</option>
+        </select>
+        </li>
      </ul>
-     <div class="">
-       <select class="" id="big_data_select">
-         <option value="none" <?=$selected1?>>All Categories</option>
-         <option value="photos" <?=$selected2?>>Photos</option>
-         <option value="graphics" <?=$selected3?>>Graphics</option>
-         <option value="fonts" <?=$selected4?>>Fonts</option>
-       </select>
-     </div>
     </div>
 
 	<div class="list_container">
