@@ -231,7 +231,7 @@
         </div><!-- end of shop_view_sticky_purchase -->
       </div><!-- end of shop_view_sticky -->
     </div><!-- end of shop_view_narrow -->
-    <input type="hidden" name="product_num" value="<?=$i_num?>">
+    <input type="hidden" name="product_num_set" value="/<?=$i_num?>">
     <input type="hidden" name="mon" value="<?=$mon?>">
     <input type="hidden" name="cart_img_name" value="<?=$img_file_copied1?>">
     </form>

@@ -22,7 +22,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $price = $_POST["setted_mon"]*100;
     $big_data=$_POST["big_data"];
 
-
     $hash_tag = $_POST["hash_tag"];
 
     $freegoods_agree = $_POST["freegoods_agree"];
@@ -91,77 +90,77 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     mysqli_close($conn);
     echo "<script>location.href='./shop_view.php?num=$num';</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
-    $num = test_input($_GET["num"]);
-    $q_num = mysqli_real_escape_string($conn, $num);
-    //삭제할 게시물의 이미지파일명을 가져와서 삭제한다.
-    $sql="SELECT `file_copied_0` from `free` where num ='$q_num';";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('6.Error: ' . mysqli_error($conn));
-      //die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $file_copied_0=$row['file_copied_0'];
-
-    if(!empty($file_copied_0)){
-      unlink("./data/".$file_copied_0);
-    }
-
-    $sql ="DELETE FROM `free` WHERE num=$q_num";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
-
-    $sql ="DELETE FROM `free_ripple` WHERE parent=$q_num";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
-
-    mysqli_close($conn);
-    echo "<script>location.href='./list.php?page=1';</script>";
+    // $num = test_input($_GET["num"]);
+    // $q_num = mysqli_real_escape_string($conn, $num);
+    // //삭제할 게시물의 이미지파일명을 가져와서 삭제한다.
+    // $sql="SELECT `file_copied_0` from `free` where num ='$q_num';";
+    // $result = mysqli_query($conn,$sql);
+    // if (!$result) {
+    //   alert_back('6.Error: ' . mysqli_error($conn));
+    //   //die('Error: ' . mysqli_error($conn));
+    // }
+    // $row=mysqli_fetch_array($result);
+    // $file_copied_0=$row['file_copied_0'];
+    //
+    // if(!empty($file_copied_0)){
+    //   unlink("./data/".$file_copied_0);
+    // }
+    //
+    // $sql ="DELETE FROM `free` WHERE num=$q_num";
+    // $result = mysqli_query($conn,$sql);
+    // if (!$result) {
+    //   die('Error: ' . mysqli_error($conn));
+    // }
+    //
+    // $sql ="DELETE FROM `free_ripple` WHERE parent=$q_num";
+    // $result = mysqli_query($conn,$sql);
+    // if (!$result) {
+    //   die('Error: ' . mysqli_error($conn));
+    // }
+    //
+    // mysqli_close($conn);
+    // echo "<script>location.href='./list.php?page=1';</script>";
 
 }else if(isset($_GET["mode"]) && $_GET["mode"] == "update"){
-  $content = trim($_POST["content"]);
-  $subject = trim($_POST["subject"]);
-  if(empty($content)||empty($subject)){
-    echo "<script>alert('내용이나제목입력요망!');history.go(-1);</script>";
-    exit;
-  }
-  $subject = test_input($_POST["subject"]);
-  $content = test_input($_POST["content"]);
-  $num = test_input($_POST["num"]);
-  $hit = test_input($_POST["hit"]);
-  $userid = test_input($userid);
-  $is_html=(isset($_POST["is_html"]))?('y'):('n');
-  $q_subject = mysqli_real_escape_string($conn, $subject);
-  $q_content = mysqli_real_escape_string($conn, $content);
-  $q_userid = mysqli_real_escape_string($conn, $userid);
-  $q_num = mysqli_real_escape_string($conn, $num);
-  $regist_day=date("Y-m-d (H:i)");
-
-  //파일 삭제만 체크
-  if (isset($_POST['del_file'])&&$_POST['del_file'] =='1') {
-    //삭제할 게시물의 이미지파일명을 가져와서 삭제한다.
-    $sql="SELECT `file_copied_0` from `free` where num ='$q_num';";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('6.Error: ' . mysqli_error($conn));
-      //die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $file_copied_0=$row['file_copied_0'];
-    if(!empty($file_copied_0)){
-      unlink("./data/".$file_copied_0);
-  }
-
-
-  $sql="UPDATE `free` SET `file_name_0`= '', `file_copied_0` = '',`file_type_0` = '' WHERE `num` = $q_num;";
-  $result = mysqli_query($conn,$sql);
-  if (!$result) {
-    die('Error: ' . mysqli_error($conn));
-  }
+  // $content = trim($_POST["content"]);
+  // $subject = trim($_POST["subject"]);
+  // if(empty($content)||empty($subject)){
+  //   echo "<script>alert('내용이나제목입력요망!');history.go(-1);</script>";
+  //   exit;
+  // }
+  // $subject = test_input($_POST["subject"]);
+  // $content = test_input($_POST["content"]);
+  // $num = test_input($_POST["num"]);
+  // $hit = test_input($_POST["hit"]);
+  // $userid = test_input($userid);
+  // $is_html=(isset($_POST["is_html"]))?('y'):('n');
+  // $q_subject = mysqli_real_escape_string($conn, $subject);
+  // $q_content = mysqli_real_escape_string($conn, $content);
+  // $q_userid = mysqli_real_escape_string($conn, $userid);
+  // $q_num = mysqli_real_escape_string($conn, $num);
+  // $regist_day=date("Y-m-d (H:i)");
+  //
+  // //파일 삭제만 체크
+  // if (isset($_POST['del_file'])&&$_POST['del_file'] =='1') {
+  //   //삭제할 게시물의 이미지파일명을 가져와서 삭제한다.
+  //   $sql="SELECT `file_copied_0` from `free` where num ='$q_num';";
+  //   $result = mysqli_query($conn,$sql);
+  //   if (!$result) {
+  //     alert_back('6.Error: ' . mysqli_error($conn));
+  //     //die('Error: ' . mysqli_error($conn));
+  //   }
+  //   $row=mysqli_fetch_array($result);
+  //   $file_copied_0=$row['file_copied_0'];
+  //   if(!empty($file_copied_0)){
+  //     unlink("./data/".$file_copied_0);
+  // }
+  //
+  //
+  // $sql="UPDATE `free` SET `file_name_0`= '', `file_copied_0` = '',`file_type_0` = '' WHERE `num` = $q_num;";
+  // $result = mysqli_query($conn,$sql);
+  // if (!$result) {
+  //   die('Error: ' . mysqli_error($conn));
+  // }
 }
 
     //내용 수정 하든 안하든 파일첨부하면 업데이트 한다.

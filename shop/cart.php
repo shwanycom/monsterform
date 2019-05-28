@@ -17,11 +17,9 @@ if(isset($_SESSION['email'])){
 	$regist_day = date("F d, Y");
 	$total_price=$mode="";
 
-
-	$sql="select * from cart c inner join products p on c.product_num=p.product_num where c.no=$no;";
+	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no=$no;";
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
-
 
   $rows_scale=4;
   $pages_scale=3;
@@ -70,7 +68,6 @@ if(isset($_SESSION['email'])){
       <div class="list_cart">
 
         <?php
-
     			// 모든 레코드를 가져오는 로직
     			for ($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
                  // 가져올 레코드 위치 이동
@@ -84,13 +81,11 @@ if(isset($_SESSION['email'])){
                     $price = $row["price"];
                     $cart_img_name = $row["cart_img_name"];
                     $regist_day = date("F d, Y");
-
 										$total_price=$total_price+$price;
-
                     ?>
           <div class="list_set">
             <div class="cart_list1">
-              <img src="../data/img/<?=$cart_img_name?>" alt="" id="cart_img">
+              <a href="./shop_view.php?num=<?=$num?>"><img src="../data/img/<?=$cart_img_name?>" alt="" id="cart_img"></a>
             </div>
             <div class="cart_list2">
               <div class="">
@@ -107,7 +102,7 @@ if(isset($_SESSION['email'])){
             </div>
             <div class="cart_list4">
               <div class="">
-                <a href="#"><span>x</span>
+                <a href="../cart_report/cart_report_dml.php?mode=delete&p_num=<?=$num?>"><span>x</span></a>
               </div>
             </div>
             <div class="cart_list5">
