@@ -41,17 +41,17 @@ if(isset($_GET['email'])){
     $shop_img_name = "../data/img/".$shop_img_name;
   }
 
-$follow_status_sql = "SELECT * from `follow` where following=$shop_no and follower=$member_no;";
+$follow_status_sql = "SELECT * from `follow` where following=$member_no and follower=$shop_no;";
 $follow_status_result = mysqli_query($conn, $follow_status_sql);
 if (!$follow_status_result) {
   die('Error: ' . mysqli_error($conn));
 }
 if($follow_status_num = mysqli_num_rows($follow_status_result)==1){
   $follow_status = 'y';
-  $follow_style = 'style="background-color: rgba(151, 177, 98, 129);"';
+  $follow_style = 'style = "background-color:lightgreen"';
 }else{
   $follow_status = 'n';
-  $follow_style = '';
+  $follow_style = 'style = "background-color:lightgray"';
 }
 
 define('SCALE', 6);
@@ -124,6 +124,7 @@ $number = $total_record - $start;
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
       var value="";
+
       function select(value){
       var text = ""+value;
       document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
@@ -136,6 +137,7 @@ $number = $total_record - $start;
       }
 
       $(document).ready(function() {
+        var followers = parseInt($("#hid_follower").val());
         $(".likes_img_class").click(function(event) {
           var n = $(".likes_img_class").index(this);
           var num_num = $(".hidden_num:eq("+n+")").val();
@@ -170,18 +172,28 @@ $number = $total_record - $start;
 
         $("#follow_button").click(function(event) {
           var shop_no = $("#shop_no_follow").val();
-          var status = $("#follow_status").val();
+          var status = $("#status_follow").val();
           $.ajax({
             url: './follow_dml.php',
             type: 'POST',
-            data: {shop_no: shop_no, status: status}
+            data: {"shop_no": ""+shop_no+"", "status": ""+status+""}
           })
           .done(function(result) {
             console.log("success");
             if(result=='fail'){
               alert("fail!!!!!!!!!!!!!!!!");
-            }else{
-              $("#follow_button").attr('attribute', 'value');
+            }else if(result=='insert'){
+              $("#follow_button").attr('style', 'background-color:lightgreen');
+              $("#status_follow").val('y');
+              $("#follow_button").val(' √ Following ');
+              followers += 1;
+              $("#followers_num").html(followers);
+            }else if(result=='delete'){
+              $("#follow_button").attr('style', 'background-color:lightgray');
+              $("#status_follow").val('n');
+              $("#follow_button").val(' + Follow ');
+              followers -= 1;
+              $("#followers_num").html(followers);
             }
           })
           .fail(function() {
@@ -241,7 +253,8 @@ $number = $total_record - $start;
                 $price = $row_likes_product["price"];
                 $item_price = $price/100;
                 $item_email = $row_likes_product["email"];
-                $img_copy_name0 = $row_likes_product["img_file_copied1"];
+                $img_copy_name1 = $row_likes_product["img_file_copied1"];
+                $img_copy_name1 = "../data/img/".$img_copy_name1;
                 $item_hit = $row_likes_product["hit"];
                 $item_date = $row_likes_product["regist_day"];
                 $item_date = substr($item_date, 0, 10);
@@ -289,8 +302,8 @@ $number = $total_record - $start;
               ?>
               <div class="img_div">
                 <figure class="snip1368">
-                  <a href="#">
-                    <img id="main_img_likes" src="../img/openmarket.png" alt="sample30" />
+                  <a href="../shop/shop_view.php?num=<?=$item_num?>">
+                    <img id="main_img_likes" src="<?=$img_copy_name1?>" alt="sample30" />
                   </a>
                   <div class="hover_img">
                     <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -378,7 +391,8 @@ $number = $total_record - $start;
               $price = $row["price"];
               $item_price = $price/100;
               $item_email = $row["email"];
-              $img_copy_name0 = $row["img_file_copied1"];
+              $img_copy_name1 = $row["img_file_copied1"];
+              $img_copy_name1 = "../data/img/".$img_copy_name1;
               $item_hit = $row["hit"];
               $item_date = $row["regist_day"];
               $item_date = substr($item_date, 0, 10);
@@ -427,8 +441,8 @@ $number = $total_record - $start;
             ?>
             <div class="img_div">
               <figure class="snip1368">
-                <a href="#">
-                  <img id="main_img_likes" src="../img/openmarket.png" alt="sample30" />
+                <a href="../shop/shop_view.php?num=<?=$item_num?>">
+                  <img id="main_img_likes" src="<?=$img_copy_name1?>" alt="sample30" />
                 </a>
                 <div class="hover_img">
                   <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -502,7 +516,8 @@ $number = $total_record - $start;
              $price = $row["price"];
              $item_price = $price/100;
              $item_email = $row["email"];
-             $img_copy_name0 = $row["img_file_copied1"];
+             $img_copy_name1 = $row["img_file_copied1"];
+             $img_copy_name1 = "../data/img/".$img_copy_name1;
              $item_hit = $row["hit"];
              $item_date = $row["regist_day"];
              $item_date = substr($item_date, 0, 10);
@@ -551,8 +566,8 @@ $number = $total_record - $start;
              ?>
              <div class="img_div">
                <figure class="snip1368">
-                 <a href="#">
-                   <img id="main_img_likes" src="../img/openmarket.png" alt="sample30" />
+                 <a href="../shop/shop_view.php?num=<?=$item_num?>">
+                   <img id="main_img_likes" src="<?=$img_copy_name1?>" alt="sample30" />
                  </a>
                  <div class="hover_img">
                    <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -632,20 +647,22 @@ $number = $total_record - $start;
                     ';
             }else{
               if($follow_status=='n'){
-                echo '<td><button type="button" id="follow_button" '.$follow_style.'> √ Following </button></td>';
+                echo '<td><input type="button" id="follow_button" value=" + Follow " '.$follow_style.'></td>';
               }else{
-                echo '<td><button type="button" id="follow_button" '.$follow_style.'> + Follow </button></td>';
+                echo '<td><input type="button" id="follow_button" value=" √ Following " '.$follow_style.'></td>';
               }
               echo '<td><button type="button" id="myBtn_1">Message</button></td>';
             }
              ?>
              <input type="hidden" name="" value="<?=$shop_email?>" id="write_id_shop_email">
              <input type="hidden" name="" value="<?=$shop_no?>" id="shop_no_follow">
-             <input type="hidden" name="" value="<?=$follow_status?>" id="shop_no_follow">
+             <input type="hidden" name="" value="<?=$follow_status?>" id="status_follow">
           </tr>
           <tr id="spe_tr1">
-            <td>Followers <?=$follower_num?></td>
+            <td>Followers <span id="followers_num"><?=$follower_num?></span></td>
             <td>Following <?=$following_num?></td>
+            <input type="hidden" name="" value="<?=$follower_num?>" id="hid_follower">
+
           </tr>
         </table>
       </div> <!--end of member_profile_right -->
