@@ -33,12 +33,18 @@ if($mon==5000){
 }else if($mon==50000){
   $mon=500;
 }else if($mon==100000){
-  $mon=1100;
+  $mon=1000;
 }else if($mon==200000){
-  $mon=2200;
+  $mon=2000;
 }else if($mon==500000){
-  $mon=5500;
+  $mon=5000;
 }
+
+$total_mon=$mon+$bonus;
+
+var_dump($total_mon);
+var_dump($mon);
+var_dump($bonus);
 
 
 if($message==null){
@@ -48,7 +54,7 @@ if($message==null){
 if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
       $email = test_input($email);
       $mon=test_input($mon);
-      $sql = "update member set point_mon=point_mon+$mon where email = '$rece_email';";
+      $sql = "update member set point_mon=point_mon+$total_mon where email = '$rece_email';";
       $result = mysqli_query($conn,$sql);
 
       $sql="insert into `sales` values($won,$bonus,$mon,$no,'$regist_day');";
@@ -62,7 +68,6 @@ if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
         die('Error: ' . mysqli_error($conn));
       }
   echo "<script> location.href='../index.php';</script>";
-
 }
 
 ?>

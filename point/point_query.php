@@ -22,8 +22,6 @@ if($price_won==5000){
   $bonus_won=500;
 }
 
-
-
 $mon=(int)$_GET['price'];
 if($mon==5000){
   $mon=50;
@@ -32,27 +30,21 @@ if($mon==5000){
 }else if($mon==50000){
   $mon=500;
 }else if($mon==100000){
-  $mon=1100;
+  $mon=1000;
 }else if($mon==200000){
-  $mon=2200;
+  $mon=2000;
 }else if($mon==500000){
-  $mon=5500;
+  $mon=5000;
 }
 
+$total_mon=$bonus_won+$mon;
 
 
-var_dump($price_won);
-var_dump($bonus_won);
-var_dump($mon);
-var_dump($no);
-var_dump($regist_day);
-
-if (isset($_GET["mode"])&& $_GET["mode"]=='update') {
+if (isset($_GET["mode"])&& $_GET["mode"]=='update'){
       $email = test_input($email);
       $mon=test_input($mon);
 
-
-      $sql = "update member set point_mon=point_mon+$mon where email = '$email';";
+      $sql = "update member set point_mon=point_mon+$total_mon where email = '$email';";
       $result = mysqli_query($conn,$sql);
       $sql="INSERT INTO `sales` VALUES($price_won,$bonus_won,$mon,$no,'$regist_day');";
       $result = mysqli_query($conn,$sql);
