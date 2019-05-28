@@ -193,7 +193,6 @@ $number=$total_record- $start_row;
     <?php
       include "../lib/header_in_folder.php";
     ?>
-
     <section id="admin_freegoods_section">
       <div id="admin_member_section_search_div">
         <h1>Select Free Goods / TOTAL : <?=$total_record?></h1>

@@ -19,9 +19,9 @@
   </div>
 </div>
 <script>
-  var modal1 = document.getElementById('myModal_1');
-  var btn1 = document.getElementById("myBtn_1");
-  var span1 = document.getElementsByClassName("close_1")[0];
+  var modal1 = document.getElementById('myModal_1'); // 불러지는 모달 id,변수명
+  var btn1 = document.getElementById("myBtn_1"); // 불르는 버튼 id, 변수명
+  var span1 = document.getElementsByClassName("close_1")[0]; // 닫기버튼(x) 클래스, 변수명
   btn1.onclick = function() {
     modal1.style.display = "block";
   }
