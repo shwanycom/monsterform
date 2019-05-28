@@ -2,9 +2,9 @@
 <html lang="ko" dir="ltr">
 <head>
   <?php
+  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
-  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
   create_table($conn, "products");
   ?>
   <?php
@@ -52,7 +52,7 @@
     $img_file_copied2 = $row['img_file_copied2'];
     $img_file_copied3 = $row['img_file_copied3'];
     $img_file_copied4 = $row['img_file_copied4'];
-    // $zip_file_name = $row['zip_file_name'];
+    $zip_file_name = $row['zip_file_name'];
     $zip_file_copied = $row['zip_file_copied'];
     $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
     $file_type = $row['file_type'];
@@ -64,23 +64,25 @@
     // $content=str_replace(" ", "&nbsp;",$content);
     // $content=str_replace("\n", "<br>",$content);
 
-    $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$i_num;";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('5.Error: '.mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    if($row){
-      $type="added";
-    }
-    $sql="SELECT * from `report` where `no`=$member_no && `product_num`=$i_num;";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('5.Error: '.mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    if($row){
-      $type="purchased";
+    if($member_no){
+      $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$i_num;";
+      $result = mysqli_query($conn,$sql);
+      if (!$result) {
+        alert_back('5.Error: '.mysqli_error($conn));
+      }
+      $row=mysqli_fetch_array($result);
+      if($row){
+        $type="added";
+      }
+      $sql="SELECT * from `report` where `no`=$member_no && `product_num`=$i_num;";
+      $result = mysqli_query($conn,$sql);
+      if (!$result) {
+        alert_back('5.Error: '.mysqli_error($conn));
+      }
+      $row=mysqli_fetch_array($result);
+      if($row){
+        $type="purchased";
+      }
     }
     mysqli_close($conn);
   }
@@ -244,9 +246,25 @@
             <?php
             }else if(($type=="purchased")){
             ?>
+
+              <div class="shop_view_sticky_inner_btn" style="height:50%;">
+                <a href="./shop_download.php??num=<?=$i_num?>">
+                  <script>
+                    var con_test = confirm("어떤 값이 나올까요. 확인을 눌러보세요.");
+                    document.write(con_test);
+                  </script>
+                  </script>
+                  <button type="button" style="background-color:#70a330; color:white;" onclick="">
+                  <b>Download </b></button><a>
+              </div>
               <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
-                  <b>Download </b></button>
+                <?php
+                //파일이 있으면 -> 파일명,파일사이즈,실제위치정보 확인
+                if(!empty($zip_file_copied)){
+                  $file_path = "../data/zip/$zip_file_copied";
+                  $file_size = filesize($file_path);
+                }
+                ?>
               </div>
             <?php
             }else{
