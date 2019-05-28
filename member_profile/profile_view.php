@@ -14,6 +14,24 @@ if(empty($member_username)){
   exit;
 }
 
+  $sql = "SELECT * from `member` where no = $member_no;";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($result);
+  $img_name = $row['pro_img_copied'];
+  $shop_img_name = $row['shop_img_copied'];
+
+  if($img_name==''){
+    $img_name = "../data/img/no_profile.png";
+  }else{
+    $img_name = "../data/img/".$img_name;
+  }
+
+  if($shop_img_name==''){
+    $shop_img_name = "../data/img/no_shop.png";
+  }else{
+    $shop_img_name = "../data/img/".$shop_img_name;
+  }
+
 define('SCALE', 6);
 
 $likes_bold = '';
@@ -136,9 +154,14 @@ $number = $total_record - $start;
      ?>
     <!--============================================================================== -->
     <div id="member_profile">
+      <div id="shop_img">
+        <img src="<?=$shop_img_name?>" alt="" width="1140px;" height="250px;" id="shop_main_img"><br>
+      </div>
+      <div class="clear"></div>
+
       <div id="member_profile_left">
         <ul>
-          <li id="title">&nbsp;&nbsp;&nbsp;<?=$member_username?></li>
+          <li id="title"><img src="<?=$img_name?>" alt="" width="80px" height="80px" id="img_view">&nbsp;&nbsp;&nbsp;<?=$member_username?></li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_view.php?mode=likes" <?=$likes_bold?>>Likes</a></li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_view.php?mode=collections" <?=$collections_bold?>>Collections</a></li>
         </ul>
@@ -279,7 +302,7 @@ $number = $total_record - $start;
 
                   ?>
 
-                  <br>
+                  <br><br>
                </div> <!-- end of page_num -->
           <?php
         }else if(isset($_GET['mode']) && $_GET['mode'] == 'collections'){
@@ -386,7 +409,7 @@ $number = $total_record - $start;
           </tr>
           <tr>
             <td><a href="./profile_edit.php?mode=profile_info"><button type="button" name="button">Edit Profile</button></a></td>
-            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td><a href="./profile_edit.php?mode=requests"><button type="button" name="button">Requests</button></a></td>
           </tr>
           <tr id="spe_tr1">
             <td>Followers <?=$follower_num?></td>
