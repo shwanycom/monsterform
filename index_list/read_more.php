@@ -176,7 +176,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
 
   echo '<div class="img_div">
     <figure class="snip1368">
-      <a href="#">
+      <a href="./shop/shop_view.php?num='.$item_num.'">
         <img id="main_img" src="./img/openmarket.png" alt="sample30" />
       </a>
       <div class="hover_img">
