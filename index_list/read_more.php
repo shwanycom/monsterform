@@ -132,7 +132,8 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
      $price = $row["price"];
      $item_price = $price/100;
      $item_email = $row["email"];
-     $img_copy_name0 = $row["img_file_copied1"];
+     $img_copy_name1 = $row["img_file_copied1"];
+     $img_copy_name1 = "./data/img/".$img_copy_name1;
      $item_hit = $row["hit"];
      $item_date = $row["regist_day"];
      $item_date = substr($item_date, 0, 10);
@@ -177,7 +178,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
   echo '<div class="img_div">
     <figure class="snip1368">
       <a href="./shop/shop_view.php?num='.$item_num.'">
-        <img id="main_img" src="./img/openmarket.png" alt="sample30" />
+        <img id="main_img" src="'.$img_copy_name1.'" alt="sample30" />
       </a>
       <div class="hover_img">
         <img src="'.$freegoods_img.'" alt="" style="width:25px; height:25px;">
