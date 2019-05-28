@@ -78,9 +78,8 @@ if( isset($_GET['mode']) ) {
         }
       }//end of repeat for
       //=======================================구매모드를 눌렀던 곳으로 리다이렉션=============================================
-      var_export("view로 돌아갈 num : ".$product_num); echo "<br>";
       if($_GET['from']=="view"){
-        echo "<script>location.href='../shop/shop_view?num=".$product_num."';</script>";
+        echo "<script>location.href='../shop/shop_view.php?num=".$product_num."';</script>";
       }else if($_GET['from']=="cart"){
         echo "<script>location.href='../member_profile/profile_view.php?mode=collections';</script>";
       }
