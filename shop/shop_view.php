@@ -108,8 +108,7 @@
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
-  <form class="" action="../shop/cart_report_dml.php" method="post"
-    id = "shop_view_form">
+  <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
   <div class="shop_view_wrap">
     <div class="shop_view_category">
       <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>

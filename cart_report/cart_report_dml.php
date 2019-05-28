@@ -25,7 +25,9 @@ if( isset($_GET['mode']) ) {
     $product_num_array = explode("/", $product_num_set);
     $repeat_purchase = sizeof($product_num_array);
     $mon = $_POST['mon'];
-    $cart_img_name = $_POST['cart_img_name'];
+    if($_GET['mode']=="add_cart"){
+      $cart_img_name = $_POST['cart_img_name'];
+    }
     $regist_day = date("Y-m-d");
 
     var_export("product_num_set : ".$product_num_set); echo "<br>";
@@ -34,7 +36,7 @@ if( isset($_GET['mode']) ) {
     var_export("mon : ".$mon); echo "<br>";
     var_export("cart_img_name : ".$cart_img_name); echo "<br>";
     var_export("regist_day : ".$regist_day); echo "<br>";
-    var_export("member_no : ".$member_no); echo "<br><br>";
+    var_export("member_no : ".$member_no); echo "<br><br>"; 
 
     if($_GET['mode']=="add_cart"){
       $product_num=$product_num_array[1];
