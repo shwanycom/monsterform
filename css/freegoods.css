@@ -145,12 +145,24 @@ transition: all 0.5s ease;
   font-size: 15pt;
 }
 #counter{
+  text-decoration: none;
   border:1px solid rgba(82,92,97,84);
   background-color: rgba(82,92,97,84);
   color: black;
   text-align: center;
   width:300px;
   font-size: 15pt;
+  outline: none;
+}
+#counter:focus{
+  text-decoration: none;
+  border:1px solid rgba(82,92,97,84);
+  background-color: rgba(82,92,97,84);
+  color: black;
+  text-align: center;
+  width:300px;
+  font-size: 15pt;
+  outline: none;
 }
 /*--------------------------------*/
 .section_handpicked figure.snip1368:hover{

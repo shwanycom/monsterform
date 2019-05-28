@@ -123,9 +123,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           </div> <!--end of title-->
           <br><br><br>
           <div id="discussion_search_div1">
-            <form name="discussion_search_form" action="./list.php?mode=search" method="post">
-              <label id="discussion_search_label"><img src="../img/zoom.png" id="discussion_search_img" style="width:15px; height:15px; padding:1px;"><input type="text" name="search" placeholder="Search all Discussions"></label>
-              <button type="submit" name="button">search</button>
+            <form id="discussion_search_form" name="discussion_search_form" action="./list.php?mode=search" method="post">
+              <label id="discussion_search_label"><img src="../img/zoom.png" id="discussion_search_img"><input type="text" name="search" placeholder="Search all Discussions" id="search_input_text"></label>
+              <button type="submit" name="button">Search</button>
             </form>
           </div>
           <br><br>
@@ -160,8 +160,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <ul id="general_ul">
                   <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
                   <br>
-                  <li id="list_item3"><a href="../members/collections/<?=$email?>"><?=$id."($email)"?></a></li>
-                  <li id="list_item5"><?=$date?></li>
+                  <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                  <li id="list_item5"><><?=$date?></li>
                 </ul>
               </div> <!-- end of list_item -->
               <div class="clear"></div>
@@ -237,10 +237,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
-                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
+                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>"><?=$id."($email)"?></a></li>
-                    <li id="list_item5"><?=$date?></li>
+                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item5"><span class="date_span"> <?=$date?> </span></li>
                   </ul>
                 </div> <!-- end of list_item -->
                 <div class="clear"></div>
@@ -252,7 +252,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=general"><span style="color: #8ba753;"> More from General Topics →</span></a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=general"><span style="color: #8ba753; font-weight:bold;"> More from General Topics →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
@@ -284,15 +284,16 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     $subject = str_replace(" ", "&nbsp;", $subject);
                     $content = str_replace("\n", "<br>", $content);
                     $content= str_replace(" ", "&nbsp;", $content);
-                    $date = substr($row['regist_day'], 0, 10);
+                     $date = substr($row['regist_day'], 0, 10);
+
 
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
-                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
+                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>"><?=$id."($email)"?></a></li>
-                    <li id="list_item5"><?=$date?></li>
+                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item5"><span class="date_span"><?=$date?></span></li>
                   </ul>
                 </div> <!-- end of list_item -->
                 <div class="clear"></div>
@@ -304,7 +305,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=request"><span style="color: #8ba753;">More from Request a Product →</span></a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=request"><span style="color: #8ba753; font-weight:bold;">More from Request a Product →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
@@ -340,10 +341,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
-                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
+                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>"><?=$id."($email)"?></a></li>
-                    <li id="list_item5"><?=$date?></li>
+                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item5"><span class="date_span"><?=$date?></span></li>
                   </ul>
                 </div> <!-- end of list_item -->
                 <div class="clear"></div>
@@ -355,7 +356,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=feedback"><span style="color: #8ba753;">More from feedback →</span></a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=feedback"><span style="color: #8ba753; font-weight:bold;">More from feedback →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
@@ -392,10 +393,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
-                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
+                    <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>"><?=$id."($email)"?></a></li>
-                    <li id="list_item5"><?=$date?></li>
+                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item5"><span class="date_span"><?=$date?></span></li>
                   </ul>
                 </div> <!-- end of list_item -->
                 <div class="clear"></div>
@@ -407,7 +408,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <div class="clear"></div>
                  <div id="list_item">
                    <br>
-                   <a href="./list.php?mode=search&page=<?=$page?>&topic=review"><span style="color: #8ba753;">More from review →</span></a>
+                   <a href="./list.php?mode=search&page=<?=$page?>&topic=review"><span style="color: #8ba753; font-weight:bold;">More from review →</span></a>
                  </div>
                  <div id="discussion_write_button">
                    <?php //세션 아이디가 있으면 글쓰기 버튼을 보여줌.
@@ -432,14 +433,14 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           <!-- Modal content -->
           <?php
           date_default_timezone_set("Asia/Seoul");
-          $now = date("Y-m-d(H:i)");
+          $now = date("F d, Y");
           $selected = "selected";
           $selected1 = $selected2 = $selected3 = $selected4 = "";
           $write_mode = "insert";
           $write_username = $_SESSION['username'];
           $write_email = $_SESSION['email'];
 
-          mysqli_close($conn);
+          // mysqli_close($conn);
 
            ?>
           <div class="modal-content">
@@ -450,25 +451,23 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
               <table id="write_form_table">
                 <tr>
                   <td>
-                    <select class="" name="topic" id="write_topic">
-                      <option value="none" <?=$selected?>>선택하세요</option>
-                      <option value="general" <?=$selected1?>>일반</option>
-                      <option value="request" <?=$selected2?>>제품요청</option>
-                      <option value="feedback" <?=$selected3?>>피드백요청</option>
-                      <option value="review" <?=$selected4?>>제품후기</option>
+                    <select class="" name="topic" id="write_topic" class="td_size10">
+                      <option value="none" <?=$selected?>>Select</option>
+                      <option value="general" <?=$selected1?>>General request</option>
+                      <option value="request" <?=$selected2?>>Request product</option>
+                      <option value="feedback" <?=$selected3?>>Request Feedback</option>
+                      <option value="review" <?=$selected4?>>Product Reviews</option>
                     </select>
                   </td>
-                  <td>작성자 : <?=$write_username?>(<?=$write_email?>)</td>
-                  <td>
-                    날짜 : <?=$now?>
-                  </td>
+                  <td class="td_size10">Writer : <span> <?=$write_username?>(<?=$write_email?>)</span></td>
+                  <td class="td_size10"> Date : <?=$now?> </td>
                 </tr>
                 <tr>
-                  <td>제  목</td>
+                  <td class="td_size13">Title</td>
                   <td colspan="2"><input type="text" name="subject" id="write_subject" value="" size="90"></td>
                 </tr>
                 <tr>
-                  <td>본  문</td>
+                  <td class="td_size13">Content</td>
                   <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"></textarea></td>
                 </tr>
               </table>

@@ -1,5 +1,6 @@
     <section id="categories_section">
       <h2><span class="featured_title">FEATURED CATEGORIES</span></h2>
+      <br>
       <div class="container">
       <!--각각 템플릿-->
         <div class="category">

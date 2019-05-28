@@ -17,6 +17,31 @@ a:hover {
   cursor: pointer;
 }
 
+@font-face{
+  font-family:"UniNeue-HeavyItalic"; /*폰트 패밀리 이름 추가*/
+  src:url("../font/UniNeue-HeavyItalic.TTF"); /*폰트 파일 주소*/
+}
+@font-face{
+  font-family:"UniNeue-Light"; /*폰트 패밀리 이름 추가*/
+  src:url("../font/UniNeue-Light.TTF"); /*폰트 파일 주소*/
+}
+#header *{
+  font-family: "UniNeue-HeavyItalic";
+}
+body *{
+  font-family: "UniNeue-Light";
+  font-weight: bold;
+}
+section *{
+  font-family: "UniNeue-Light";
+  font-weight: bold;
+}
+h1{
+  font-family: "UniNeue-HeavyItalic";
+  font-weight: bold;
+}
+
+
 #header {
   margin:auto;
   margin-bottom:5px;
@@ -213,7 +238,7 @@ section{
 #header_logout_form_div1_2_ul_li_div5:hover #header_logout_form_div1_2_ul_li_div5_div{
   margin-top:2px;
   width:65px;
-  height:130px;
+  height:150px;
   z-index: 1;
   border-radius: 5px;
   font-size: 10pt;
@@ -396,7 +421,7 @@ button:hover{
   padding:15px;
 }
 .category img {
-  width: 110px;
+  width: 200px;
   border-radius: 2px;
   box-shadow: 3px 5px 12px rgba(192, 192, 191, 180);
 }

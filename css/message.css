@@ -1,9 +1,9 @@
 #section_write {
   width: 960px;
-  height: 500px;
+  height: auto;
   margin-left: 20%;
   margin-right: 10%;
-  margin-bottom: 50px;
+  margin-bottom: 15%;
 }
 
 #message_div {

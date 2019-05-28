@@ -8,6 +8,7 @@ if(!isset($_SESSION['email'])){
 echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
 exit;
 }
+
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
   $point1 = $_SESSION['mon'];
@@ -21,7 +22,7 @@ if(isset($_SESSION['email'])){
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
 
-  $rows_scale=4;
+  $rows_scale=50;
   $pages_scale=3;
 
   $total_pages= ceil($total_record/$rows_scale);
@@ -58,7 +59,7 @@ if(isset($_SESSION['email'])){
   </head>
   <body>
       <?php include "../lib/header_in_folder.php";?>
-    <div class="shop_main">
+    <section class="shop_main">
       <div class="center_shop_div">
       <div class="Shopping_cart">
         <span style="font-size:20pt;">Your Cart</span>
@@ -76,12 +77,13 @@ if(isset($_SESSION['email'])){
                  // 하나 레코드 가져오기
                     $row = mysqli_fetch_array($result);
                     $num = $row["num"];
+                    $product_num = $row["product_num"];
                     $username = $row["username"];
                     $subject = $row["subject"];
                     $price = $row["price"];
                     $cart_img_name = $row["cart_img_name"];
                     $regist_day = date("F d, Y");
-										$total_price=$total_price+$price;
+                    $total_price+=$price;
                     ?>
           <div class="list_set">
             <div class="cart_list1">
@@ -89,15 +91,13 @@ if(isset($_SESSION['email'])){
             </div>
             <div class="cart_list2">
               <div class="">
-              <span><?=$subject?></span>
+              <a href="#"><span id="subject_span"><?=$subject?></span></a>
               </div>
-              <div class="">
-              <span>by <?=$username?></span>
-              </div>
+
             </div>
             <div class="cart_list3">
-              <div class=""style="background-color:#eef0ef  ">
-                <span>ddd</span>
+              <div class="">
+                <span id="span_by">by</span> <a href="#"> <span id="span_name"> <?=$username?></span></a>
               </div>
             </div>
             <div class="cart_list4">
@@ -112,6 +112,7 @@ if(isset($_SESSION['email'])){
           <?php
              $number --;
          }
+
          ?>
       </div>
       <div class="payment_list">
@@ -128,41 +129,20 @@ if(isset($_SESSION['email'])){
             <input type="submit" id="cart_payment" value="Finish Purchase" onclick="check_input1()" >
         </div>
       </div>
-      <div id='page_box' style="text-align: center;">
-        <?PHP
-        #----------------이전블럭 존재시 링크------------------#
-        if($start_page > $pages_scale){
-          $go_page= $start_page - $pages_scale;
-          echo "<a id='before_block' href='cart.php?mode=$mode&page=$go_page'> << </a>";
-        }
-        #----------------이전페이지 존재시 링크------------------#
-        if($pre_page){
-          echo "<a id='before_page' href='cart.php?mode=$mode&page=$pre_page'> < </a>";
-        }
-        #--------------바로이동하는 페이지를 나열---------------#
-        for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
-          if($dest_page == $page){
-            echo( "&nbsp;<b id='present_page'>&nbsp;&nbsp;$dest_page&nbsp;&nbsp;</b>&nbsp" );
-          }else{
-            echo "<a id='move_page' href='cart.php?mode=$mode&page=$dest_page'>&nbsp;&nbsp;$dest_page&nbsp;&nbsp;</a>";
-          }
-        }
-        #----------------이전페이지 존재시 링크------------------#
-        if($next_page){
-          echo "<a id='next_page' href='cart.php?mode=$mode&page=$next_page'> > </a>";
-        }
-        #---------------다음페이지를 링크------------------#
-        if($total_pages >= $start_page+ $pages_scale){
-          $go_page= $start_page+ $pages_scale;
-          echo "<a id='next_block' href='cart.php?mode=$mode&page=$go_page'> >> </a>";
-        }
-        ?>
-      </div>
+    <!--페이지 박스 넣고싶으면 여기다 넣어야 된다.-->
         </div>
         </div>
-    </div>
+    </section>
     <?php
-   include "../lib/footer_in_folder.php";
-   ?>
+    include "../lib/footer_in_folder.php";
+    include "../khy_modal/login_modal_in_folder.php";
+    if(!isset($_SESSION['no'])) {
+      ?>
+      <script>
+        auto_modal();
+      </script>
+      <?php
+    }
+    ?>
   </body>
 </html>

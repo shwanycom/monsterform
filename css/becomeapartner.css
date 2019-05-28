@@ -20,7 +20,6 @@
 
 }
 #become_section button{
-  font-family: nina;
   font-size: 15pt;
   width:200px;
   height:40px;
@@ -41,14 +40,14 @@
   color: black;
   background-color: #91d4ef;
   text-align:center;
-font-family: nina;
+
   background: url('../img/1become_section02.png') no-repeat center center;
   height: 400px;
   padding:0;
   margin: 0;
 }
 #become_section3{
-  font-family: nina;
+
   color: black;
   background-color: #fac090;
   padding:0;
@@ -58,7 +57,7 @@ font-family: nina;
   height: 400px;
 }
 #become_section4{
-  font-family: nina;
+
   color: black;
   background-color: #74c3a6;
   padding:0;
@@ -68,7 +67,7 @@ font-family: nina;
   height: 400px;
 }
 #become_section5{
-  font-family: nina;
+
   color: black;
   background-color: #c7d5a2;
   padding:0;
@@ -83,7 +82,7 @@ font-family: nina;
   background-repeat: no-repeat;
   background-color: color:rgb(245,245,244,230);
   height: 200px;
-  font-family: nina;
+
   font-size: 35pt;
   margin: 0;
   padding: 0;
@@ -94,13 +93,13 @@ font-family: nina;
 #apply_text{
 margin: 0;
 padding: 0;
-font-family: sans-serif;
+
   font-size: 40pt;
   color: black;
 }
 
 #section2_p,#section3_p,#section4_p,#section5_p{
-  font-family: sans-serif;
+
   font-size: 35pt;
   margin: 0;
   padding: 0;

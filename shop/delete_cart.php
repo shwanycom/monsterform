@@ -2,9 +2,9 @@
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 
-$num = $_GET['num'];
+$product_num = $_GET['product_num'];
 
-$sql = "delete from cart where num = '$num'";
+$sql = "delete from cart where product_num = '$product_num'";
 mysqli_query($conn, $sql);
 
 mysqli_close($conn);

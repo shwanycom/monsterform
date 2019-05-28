@@ -1,22 +1,9 @@
-<style media="screen">
-@font-face{
-  font-family:"1Abraham"; /*폰트 패밀리 이름 추가*/
-  src:url("../font/1 Abraham.OTF"); /*폰트 파일 주소*/
-}
-@font-face{
-  font-family:"Hansief"; /*폰트 패밀리 이름 추가*/
-  src:url("../font/Hansief.OTF"); /*폰트 파일 주소*/
-}
-.footer_footer *{
-  font-family: "Hansief";
-}
-</style>
 <footer class="footer_footer">
   <div id="footer_main">
     <div id="footer_main_margin_left_right">
       <div id="footer_div1">
         <div id="footer_div1_div1">
-          <a href="../index.php"><img id="footer_logo"src="../img/logo.png"></a><br><br>
+          <a href="../index.php"><img id="footer_logo"src="../img/footer_logo.png"></a><br><br>
             MonsterForm is the world’s marketplace for
             <br>design. Bring your creative projects to life with
             <br>ready-to-use design assets from independent

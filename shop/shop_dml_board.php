@@ -66,10 +66,10 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
 
     //파일에 실제명과
-    $sql="INSERT INTO `products` ";
-    $sql .="VALUES ($q_memeber_no,null,'$q_memeber_username','$q_member_email',";
-    $sql .="'$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$big_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',";
-    $sql .="'$copied_img_file_name[0]','$copied_img_file_name[1]','$copied_img_file_name[2]','$copied_img_file_name[3]','$zip_file_name','$copied_zip_file_name','$type[0]','$font_file_name','$copied_font_file_name','$font_type[0]','$freegoods_agree','$file_type');";
+    $sql="INSERT INTO `products` VALUES
+ ($q_memeber_no,null,'$q_memeber_username','$q_member_email','$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$big_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',
+ '$copied_img_file_name[0]','$copied_img_file_name[1]','$copied_img_file_name[2]','$copied_img_file_name[3]','$zip_file_name','$copied_zip_file_name','$type[0]','$font_file_name','$copied_font_file_name','$font_type[0]','$freegoods_agree','$file_type');";
+  var_dump($sql);
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       alert_back('5.Error: ' . mysqli_error($conn));

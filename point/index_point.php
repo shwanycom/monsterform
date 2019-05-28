@@ -15,7 +15,7 @@ function check_input(){
       <a href="./point/point_main.php?selected=5000">
       <div class="point_2000">
           <div class="point_1"onclick="select('5000')" value="5000">
-            <h3 class="mon_h3">\5000 <p class="mon_p" >(50mon)</p></h3>
+            <h3 class="mon_h3">￦5,000<p class="mon_p" >(50mon)</p></h3>
             <p class="bonus_p">No Bonus</p>
             <div class="" >
               <p class="continue_p">Continue →</p>
@@ -27,7 +27,7 @@ function check_input(){
       <div class="point_2000">
         <div class="point_1"onclick="select('20000')" value="20000">
             <div id="b" onclick="bodercolor(b)">
-            <h3 class="mon_h3">\20000 <p class="mon_p" >(200mon)</p></h3>
+            <h3 class="mon_h3">￦20,000<p class="mon_p" >(200mon)</p></h3>
             <p class="bonus_p">No Bonus</p>
             <div class="" >
               <p class="continue_p">Continue →</p>
@@ -40,7 +40,7 @@ function check_input(){
       <div class="point_2000">
         <div class="point_1"onclick="select('50000')" value="50000">
           <div id="c" onclick="bodercolor(c)">
-            <h3 class="mon_h3">\50000 <p class="mon_p" >(500mon)</p></h3>
+            <h3 class="mon_h3">￦50,000<p class="mon_p" >(500mon)</p></h3>
             <p class="bonus_p">No Bonus</p>
             <div class=" ">
               <p class="continue_p">Continue →</p>
@@ -53,7 +53,7 @@ function check_input(){
       <div class="point_2000">
         <div class="point_1"onclick="select('100000')" value="110000">
           <div id="d" onclick="bodercolor(d)">
-            <h3 class="mon_h3">\100000 <p class="mon_p" >(1000mon)</p></h3>
+            <h3 class="mon_h3">￦100,000<p class="mon_p" >(1000mon)</p></h3>
             <p class="bonus_p_y">Bonus +100mon</p>
             <div class=" ">
               <p class="continue_center_p" >Continue →</p>
@@ -66,7 +66,7 @@ function check_input(){
       <div class="point_2000">
         <div class="point_1"onclick="select('200000')" value="200000">
           <div id="e" onclick="bodercolor(e)">
-            <h3 class="mon_h3">\200000 <p class="mon_p" >(2000mon)</p> </h3>
+            <h3 class="mon_h3">￦200,000<p class="mon_p" >(2000mon)</p> </h3>
             <p class="bonus_p_y">Bonus +200mon</p>
             <div class="">
               <p class="continue_p">Continue →</p>
@@ -79,7 +79,7 @@ function check_input(){
       <div class="point_2000">
         <div class="point_1"onclick="select('500000')" value="500000">
           <div id="f" onclick="bodercolor(f)">
-            <h3 class="mon_h3">\500000<p class="mon_p" >(5000mon)</p></h3>
+            <h3 class="mon_h3">￦500,000<p class="mon_p" >(5000mon)</p></h3>
             <p class="bonus_p_y">Bonus +500mon</p>
             <div class="" >
               <p class="continue_p">Continue →</p>

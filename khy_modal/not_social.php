@@ -1,7 +1,8 @@
 <?php
-session_start();
 include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/create_table.php";
+include $_SERVER['DOCUMENT_ROOT']."./monsterform/lib/session_call.php";
+
 create_table($conn, 'member');
 
 if($_GET["mode"]=="login"){
@@ -86,5 +87,55 @@ if($_GET["mode"]=="login"){
   }else{
     echo '[{"ok":"아이디와 비밀번호 불일치"},{"sign":"'.$row.'"}]';
   }
+}else if(isset($_GET["mode"]) && $_GET["mode"]=="update"){
+  $update_username = $_POST['username'];
+  $update_email = $_POST['email'];
+  $update_location = $_POST['location'];
+  $update_profession = $_POST['profession'];
+  $update_profession_other = $_POST['profession_other'];
+  $update_use_mf = $_POST['use_mf'];
+
+  include "../lib/file_upload.php";
+
+  if(!$_FILES['profile_image_div_right_file']['error']==4 && !$_FILES['shop_img_file']['error']==4){
+    if($update_profession!='other'){
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession', `use_mf`='$update_use_mf', `pro_img_named`='$upfile_name', `pro_img_copied`='$copied_file_name', `shop_img_named`='$shop_upfile_name', `shop_img_copied`='$shop_copied_file_name' where `no`=$member_no;";
+    }else{
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession_other', `use_mf`='$update_use_mf', `pro_img_named`='$upfile_name', `pro_img_copied`='$copied_file_name', `shop_img_named`='$shop_upfile_name', `shop_img_copied`='$shop_copied_file_name' where `no`=$member_no;";
+    }
+  }else if(!$_FILES['shop_img_file']['error']==4 && $_FILES['profile_image_div_right_file']['error']==4){
+    if($update_profession!='other'){
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession', `use_mf`='$update_use_mf', `shop_img_named`='$shop_upfile_name', `shop_img_copied`='$shop_copied_file_name' where `no`=$member_no;";
+    }else{
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession_other', `use_mf`='$update_use_mf', `shop_img_named`='$shop_upfile_name', `shop_img_copied`='$shop_copied_file_name' where `no`=$member_no;";
+    }
+  }else if($_FILES['shop_img_file']['error']==4 && !$_FILES['profile_image_div_right_file']['error']==4){
+    if($update_profession!='other'){
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession', `use_mf`='$update_use_mf', `pro_img_named`='$upfile_name', `pro_img_copied`='$copied_file_name' where `no`=$member_no;";
+    }else{
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession_other', `use_mf`='$update_use_mf', `pro_img_named`='$upfile_name', `pro_img_copied`='$copied_file_name' where `no`=$member_no;";
+    }
+  }else if($_FILES['shop_img_file']['error']==4 && $_FILES['profile_image_div_right_file']['error']==4){
+    if($update_profession!='other'){
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession', `use_mf`='$update_use_mf' where `no`=$member_no;";
+    }else{
+      $sql = "UPDATE `member` set `username`='$update_username', `location`='$update_location', `profession`='$update_profession_other', `use_mf`='$update_use_mf' where `no`=$member_no;";
+    }
+  }
+  $result = mysqli_query($conn, $sql);
+
+  echo "<script> alert('Update Setting Success!!');
+          document.location.href='../member_profile/profile_edit.php?mode=profile_info';
+        </script>";
+}else if(isset($_GET["mode"]) && $_GET["mode"]=="update_password"){
+  $update_password = $_POST['new_password'];
+
+  $sql = "UPDATE `member` set `password`='$update_password';";
+  $result = mysqli_query($conn, $sql);
+
+  echo "<script> alert('Change Password Success!!');
+          document.location.href='../member_profile/profile_edit.php?mode=profile_info';
+        </script>";
+
 }
 ?>

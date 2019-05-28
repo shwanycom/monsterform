@@ -23,6 +23,8 @@
   height: 350px;
   width:300px;
   display: inline-flex;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 .section_earn_div button{

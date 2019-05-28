@@ -1,3 +1,4 @@
+
 body{
   margin: 0;
   padding: 0;
@@ -167,4 +168,79 @@ figure.snip1368 {
 #main_img_likes{
   width : 250px;
   height : 200px;
+  margin: 0;
+  padding: 0;
+}
+
+#usemf_table td{
+  text-align: left;
+}
+
+#shop_img label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #5cb85c;
+  cursor: pointer;
+  border: 1px solid #4cae4c;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+#shop_img label:hover {
+  background-color: #6ed36e;
+}
+
+#shop_img label:active {
+  background-color: #367c36;
+}
+
+#shop_img input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#shop_img{
+  float: right;
+  text-align: right;
+}
+
+#change_password_div{
+  padding-left: 40%;
+}
+
+#pass_table{
+  width : 50%;
+  height : 100%;
+  border-collapse: collapse;
+  margin : 0;
+  padding : 0;
+}
+
+#pass_table tr, td{
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#pass_table tr, #pass_table tr:last-child{
+  padding-top: 10px;
+}
+
+#pass_title_tr{
+  border-bottom: 1px solid lightgray;
+}
+
+#pass_title_tr td{
+  height: 10%;
 }

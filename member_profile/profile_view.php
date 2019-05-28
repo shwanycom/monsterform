@@ -14,6 +14,24 @@ if(empty($member_username)){
   exit;
 }
 
+  $sql = "SELECT * from `member` where no = $member_no;";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($result);
+  $img_name = $row['pro_img_copied'];
+  $shop_img_name = $row['shop_img_copied'];
+
+  if($img_name==''){
+    $img_name = "../data/img/no_profile.png";
+  }else{
+    $img_name = "../data/img/".$img_name;
+  }
+
+  if($shop_img_name==''){
+    $shop_img_name = "../data/img/no_shop.png";
+  }else{
+    $shop_img_name = "../data/img/".$shop_img_name;
+  }
+
 define('SCALE', 6);
 
 $likes_bold = '';
@@ -33,16 +51,19 @@ if (!$follower_result) {
 }
 $follower_num = mysqli_num_rows($follower_result);
 
+
 if(isset($_GET['mode']) && $_GET['mode'] == 'likes'){
   $sql = "SELECT product_num from `likes` where no = $member_no;";
   $likes_bold = 'style = "font-size:25px"';
   $collections_bold = '';
   $mode = 'likes';
+
 }else if(isset($_GET['mode']) && $_GET['mode'] == 'collections'){
-  $sql = "SELECT * from `collections` where no=$member_no;";
+  $sql = "SELECT * from `report` where no=$member_no;";
   $collections_bold = 'style = "font-size:25px"';
   $likes_bold = '';
   $mode = 'collections';
+
 }
 
 $result = mysqli_query($conn, $sql);
@@ -59,6 +80,9 @@ if(empty($_GET["page"])){
 $start = ($page-1) * SCALE;
 
 $number = $total_record - $start;
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -130,16 +154,159 @@ $number = $total_record - $start;
      ?>
     <!--============================================================================== -->
     <div id="member_profile">
+      <div id="shop_img">
+        <img src="<?=$shop_img_name?>" alt="" width="1140px;" height="250px;" id="shop_main_img"><br>
+      </div>
+      <div class="clear"></div>
+
       <div id="member_profile_left">
         <ul>
-          <li id="title">&nbsp;&nbsp;&nbsp;<?=$member_username?></li>
+          <li id="title"><img src="<?=$img_name?>" alt="" width="80px" height="80px" id="img_view">&nbsp;&nbsp;&nbsp;<?=$member_username?></li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_view.php?mode=likes" <?=$likes_bold?>>Likes</a></li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_view.php?mode=collections" <?=$collections_bold?>>Collections</a></li>
         </ul>
 
-        <!--이동현꺼 불러오기할거임ㅇㅇ-->
         <div id="member_likes_div">
           <?php
+          if(isset($_GET['mode']) && $_GET['mode'] == 'likes'){
+
+            for($i=$start;$i<($start+SCALE) && $i < $total_record; $i++){
+              mysqli_data_seek($result, $i);
+              $row = mysqli_fetch_array($result);
+              $pnum = $row['product_num'];
+
+              $sql_likes_product = "SELECT * from `products` where num = $pnum;";
+              $result_likes_product = mysqli_query($conn, $sql_likes_product);
+              $total_record_likes_product = mysqli_num_rows($result_likes_product);
+
+              for($j=0;$j< $total_record_likes_product ; $j++){
+                mysqli_data_seek($result_likes_product, $j);
+                $row_likes_product = mysqli_fetch_array($result_likes_product);
+                $item_no = $row_likes_product['no'];
+                $item_num = $row_likes_product["num"];
+                $item_name = $row_likes_product["username"];
+                $item_big_data = $row_likes_product["big_data"];
+                $price = $row_likes_product["price"];
+                $item_price = $price/100;
+                $item_email = $row_likes_product["email"];
+                $img_copy_name0 = $row_likes_product["img_file_copied1"];
+                $item_hit = $row_likes_product["hit"];
+                $item_date = $row_likes_product["regist_day"];
+                $item_date = substr($item_date, 0, 10);
+                $item_subject = str_replace(" ", "&nbsp;", $row_likes_product["subject"]);
+                $item_freegoods=$row_likes_product["freegoods"];
+
+                $sql_partner = "SELECT partner from member where no = $item_no;";
+                $result_partner = mysqli_query($conn, $sql_partner);
+                $row_partner = mysqli_fetch_array($result_partner);
+                $partner = $row_partner['partner'];
+
+                if($partner=='n' && $item_freegoods=='n'){
+                  $freegoods_img="../img/hover_logo.png";
+                }else{
+                  $freegoods_img="../img/free_partner_logo.png";
+                }
+
+                if(!isset($member_no)){
+                  $likes_img = '';
+                }else{
+                  $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+                  $result_likes = mysqli_query($conn, $sql_likes);
+                  $total_record_likes = mysqli_num_rows($result_likes);
+
+                  $likes_img = "../img/hover_like.png";
+                  $likes_img_value = "n";
+
+                  for($k=0;$k<$total_record_likes;$k++){
+                    mysqli_data_seek($result_likes, $k);
+                    $row_likes = mysqli_fetch_array($result_likes);
+                    $likes = $row_likes['product_num'];
+                    if($likes == $item_num){
+                      $likes_img = "../img/like.png";
+                      $likes_img_value = "y";
+                      break;
+                    }
+                  }
+                }
+
+                // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
+                if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
+                    $main_img = $img_copy_name0;
+                }
+
+              ?>
+              <div class="img_div">
+                <figure class="snip1368">
+                  <a href="#">
+                    <img id="main_img_likes" src="../img/openmarket.png" alt="sample30" />
+                  </a>
+                  <div class="hover_img">
+                    <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
+                  </div>
+                  <div class="list_title_div">
+                    <div class="">
+                      <a href="#" class="">
+                        <span class="list_title_div_span_bold"><?=$item_subject?></span>
+                      </a>
+                      <a href="#" class="list_title_div_a_float_right">
+                         <?=$item_price?>&nbsp;M
+                      </a>
+                    </div>
+                    <div class="">
+                        by&nbsp;<a href="#" class=""><?=$item_email?></a>
+                        in&nbsp;<a href="#" class=""><?=$item_big_data?></a>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <div class="icons">
+                      <input type="hidden" class="hidden_num" value="<?=$item_num?>">
+                      <img class="likes_img_class" src="<?=$likes_img?>" alt="" style="width:25px; height:25px;"><br>
+                      <input type="hidden" class="likes_img_value" value="<?=$likes_img_value?>">
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+
+            <?php
+            }
+            $number --;
+          }
+             ?>
+             <br><br><br>
+             <div class="product_page_num">
+               <?php
+               if(!($page-1==0)){
+                 $go_page = $page-1;
+                 echo "<a href='./profile_view.php?mode=$mode&page=$go_page'><span class='page_button'>&nbsp;PREV </span>&nbsp;</a>";
+               }else{
+                 echo "";
+               }
+                 for($i=1;$i<=$total_page;$i++){
+                   if($page==$i){
+                     echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
+                   }else{
+                     echo "<a href='./profile_view.php?mode=$mode&page=$i'>$i</a>";
+                   }
+                 }
+
+                 if($total_record!=0){
+                   if($page==$total_page){
+                     echo "";
+                   }else{
+                     $go_page = $page+1;
+                     echo "<a href='./profile_view.php?mode=$mode&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
+                   }
+                 }else{
+                   echo "";
+                 }
+
+                  ?>
+
+                  <br><br>
+               </div> <!-- end of page_num -->
+          <?php
+        }else if(isset($_GET['mode']) && $_GET['mode'] == 'collections'){
+
           for($i=$start;$i<($start+SCALE) && $i < $total_record; $i++){
             mysqli_data_seek($result, $i);
             $row = mysqli_fetch_array($result);
@@ -154,56 +321,21 @@ $number = $total_record - $start;
               $row_likes_product = mysqli_fetch_array($result_likes_product);
               $item_no = $row_likes_product['no'];
               $item_num = $row_likes_product["num"];
-         			$item_name = $row_likes_product["username"];
+              $item_name = $row_likes_product["username"];
               $item_big_data = $row_likes_product["big_data"];
-         			$price = $row_likes_product["price"];
+              $price = $row_likes_product["price"];
               $item_price = $price/100;
               $item_email = $row_likes_product["email"];
-         			$img_copy_name0 = $row_likes_product["img_file_copied1"];
-         			$item_hit = $row_likes_product["hit"];
-         			$item_date = $row_likes_product["regist_day"];
-         			$item_date = substr($item_date, 0, 10);
-         			$item_subject = str_replace(" ", "&nbsp;", $row_likes_product["subject"]);
-              $item_freegoods=$row_likes_product["freegoods"];
-
-              $sql_partner = "SELECT partner from member where no = $item_no;";
-              $result_partner = mysqli_query($conn, $sql_partner);
-              $row_partner = mysqli_fetch_array($result_partner);
-              $partner = $row_partner['partner'];
-
-              if($partner=='n' && $item_freegoods=='n'){
-                $freegoods_img="../img/hover_logo.png";
-              }else{
-                $freegoods_img="../img/free_partner_logo.png";
-              }
-
-              if(!isset($member_no)){
-                $likes_img = '';
-              }else{
-                $sql_likes = "SELECT product_num from likes where no = '$member_no';";
-                $result_likes = mysqli_query($conn, $sql_likes);
-                $total_record_likes = mysqli_num_rows($result_likes);
-
-                $likes_img = "../img/hover_like.png";
-                $likes_img_value = "n";
-
-                for($k=0;$k<$total_record_likes;$k++){
-                  mysqli_data_seek($result_likes, $k);
-                  $row_likes = mysqli_fetch_array($result_likes);
-                  $likes = $row_likes['product_num'];
-                  if($likes == $item_num){
-                    $likes_img = "../img/like.png";
-                    $likes_img_value = "y";
-                    break;
-                  }
-                }
-              }
+              $img_copy_name0 = $row_likes_product["img_file_copied1"];
+              $item_hit = $row_likes_product["hit"];
+              $item_date = $row_likes_product["regist_day"];
+              $item_date = substr($item_date, 0, 10);
+              $item_subject = str_replace(" ", "&nbsp;", $row_likes_product["subject"]);
 
               // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
               if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
                   $main_img = $img_copy_name0;
               }
-
             ?>
             <div class="img_div">
               <figure class="snip1368">
@@ -211,7 +343,7 @@ $number = $total_record - $start;
                   <img id="main_img_likes" src="../img/openmarket.png" alt="sample30" />
                 </a>
                 <div class="hover_img">
-                  <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
+                  <img src="../img/logo.png" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
                 </div>
                 <div class="list_title_div">
                   <div class="">
@@ -227,20 +359,12 @@ $number = $total_record - $start;
                       in&nbsp;<a href="#" class=""><?=$item_big_data?></a>
                   </div>
                 </div>
-                <figcaption>
-                  <div class="icons">
-                    <input type="hidden" class="hidden_num" value="<?=$item_num?>">
-                    <img class="likes_img_class" src="<?=$likes_img?>" alt="" style="width:25px; height:25px;"><br>
-                    <input type="hidden" class="likes_img_value" value="<?=$likes_img_value?>">
-                  </div>
-                </figcaption>
               </figure>
             </div>
-
           <?php
           }
           $number --;
-        }
+          }
            ?>
            <br><br><br>
            <div class="product_page_num">
@@ -251,32 +375,30 @@ $number = $total_record - $start;
              }else{
                echo "";
              }
-               for($i=1;$i<=$total_page;$i++){
-                 if($page==$i){
-                   echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
-                 }else{
-                   echo "<a href='./profile_view.php?mode=$mode&page=$i'>$i</a>";
-                 }
-               }
-
-               if($total_record!=0){
-                 if($page==$total_page){
-                   echo "";
-                 }else{
-                   $go_page = $page+1;
-                   echo "<a href='./profile_view.php?mode=$mode&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
-                 }
+             for($i=1;$i<=$total_page;$i++){
+               if($page==$i){
+                 echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
                }else{
-                 echo "";
+                 echo "<a href='./profile_view.php?mode=$mode&page=$i'>$i</a>";
                }
-
+             }
+             if($total_record!=0){
+               if($page==$total_page){
+                 echo "";
+               }else{
+                 $go_page = $page+1;
+                 echo "<a href='./profile_view.php?mode=$mode&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
+               }
+             }else{
+               echo "";
+             }
                 ?>
-
                 <br>
              </div> <!-- end of page_num -->
-
-
-        </div>
+           <?php
+           } // end if else if
+           ?>
+        </div> <!-- end of member_likes_div -->
 
       </div>  <!--end of member_profile_left -->
       <div id="member_profile_right">
@@ -286,8 +408,8 @@ $number = $total_record - $start;
             <td id="spe_td1">&nbsp;&nbsp;&nbsp;</td>
           </tr>
           <tr>
-            <td><a href="./profile_edit.php"><button type="button" name="button">Edit Profile</button></a></td>
-            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td><a href="./profile_edit.php?mode=profile_info"><button type="button" name="button">Edit Profile</button></a></td>
+            <td><a href="./profile_edit.php?mode=requests"><button type="button" name="button">Requests</button></a></td>
           </tr>
           <tr id="spe_tr1">
             <td>Followers <?=$follower_num?></td>
@@ -296,12 +418,8 @@ $number = $total_record - $start;
         </table>
       </div> <!--end of member_profile_right -->
 
-
-
-
     </div> <!--end of member_profile -->
     <div class="clear"></div>
-
 
 <!--===============================섹션영역=================================== -->
 <?php

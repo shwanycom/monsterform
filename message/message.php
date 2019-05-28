@@ -99,7 +99,7 @@ $number=$total_record- $start_row;
        ?>
       <div id="list_message">
         <!-- <a href="#"><img src="./data/<?=$pro_img_copied?>" class="message_pro"></a> -->
-        <a href="#">
+        <a href="../member_profile/profile_view.php?<?=$send_email?>">
           <div id="list_message2"><?=$send_email?></div>
         </a>
         <a href="view.php?num=<?=$num?>">
