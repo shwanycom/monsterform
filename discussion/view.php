@@ -6,6 +6,7 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 
 create_table($conn, "discussion_ripple"); //가입인사 게시판 테이블 생성
 
+
 define('SCALE', 10);
 //**************************************************************
 $row = "";
@@ -86,8 +87,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
           </div> <!--end of title-->
           <br><br><br>
           <div id="discussion_search_div1">
-            <form name="discussion_search_form" action="./list.php?mode=search" method="post">
-              <label id="discussion_search_label"><img src="../img/zoom.png" id="discussion_search_img" style="width:15px; height:15px; padding:1px;"><input type="text" name="search" placeholder="Search all Discussions"></label>
+            <form  id="discussion_search_form" name="discussion_search_form" action="./list.php?mode=search" method="post">
+              <label id="discussion_search_label"><img src="../img/zoom.png" id="discussion_search_img" ><input type="text" name="search" placeholder="Search all Discussions" id="search_input_text"></label>
               <button type="submit" name="button">Search</button>
             </form>
           </div>
@@ -191,13 +192,13 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <th id="topics_title"><?=$topic?></th>
                </tr>
                <tr>
-                 <td id="subject_column"><?=$subject?></td>
+                 <td id="subject_column"> <?=$subject?> </td>
                </tr>
                <tr>
                  <td><?=$content?></td>
                </tr>
                <tr>
-                 <td id="id_td"><a href="#"><?=$email?></a></td>
+                 <td id="id_td"><a href="#"><span style="color:rgba(151, 177, 98, 129);"><?=$email?></span></a></td>
                </tr>
                <tr>
                  <td id="date_td"><?=$date?></td>
@@ -205,10 +206,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
              </table>
 
              <?php
-              if($email==$_SESSION['email']){
+              if(isset($_SESSION['email']) ) {
                 echo '<div style="float: right">
                   <button type="button" id="write_button" onclick="open_modal()">Modified</button>&nbsp;
-                  <a href="./discussion_dml.php?mode=delete&num='.$num.'"><button type="button">remove</button></a>
+                  <a href="./discussion_dml.php?mode=delete&num='.$num.'"><button type="button">Remove</button></a>
                 </div><br>';
               }
               ?>
@@ -268,30 +269,32 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     <table id="write_form_table">
                       <tr>
                         <td>
-                          <select class="" name="topic" id="write_topic">
-                            <option value="none" <?=$selected?>>선택하세요</option>
-                            <option value="general" <?=$selected1?>>일반</option>
-                            <option value="request" <?=$selected2?>>제품요청</option>
-                            <option value="feedback" <?=$selected3?>>피드백요청</option>
-                            <option value="review" <?=$selected4?>>제품후기</option>
+                          <select class="" name="topic" id="write_topic" class="td_size10">
+                            <option value="none" <?=$selected?>>Select</option>
+                            <option value="general" <?=$selected1?>>General request</option>
+                            <option value="request" <?=$selected2?>>Request product</option>
+                            <option value="feedback" <?=$selected3?>>Request Feedback</option>
+                            <option value="review" <?=$selected4?>>Product Reviews</option>
                           </select>
                         </td>
-                        <td>작성자 : <?=$write_username?>(<?=$write_email?>)</td>
-                        <td>
-                          날짜 : <?=$now?>
+                        <td class="td_size10">Writer : <?=$write_username?>(<?=$write_email?>)</td>
+                        <td class="td_size10">
+                          Date : <?=$now?>
                         </td>
                       </tr>
                       <tr>
-                        <td>제  목</td>
+                        <td class="td_size13">Title</td>
                         <td colspan="2"><input type="text" name="subject" id="write_subject" value="<?=$write_subject?>" size="90"></td>
                       </tr>
                       <tr>
-                        <td>본  문</td>
+                        <td class="td_size13">Content</td>
                         <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"><?=$write_content?></textarea></td>
                       </tr>
                     </table>
-                    <a href="./view.php?num=<?=$write_num?>"><button type="button">cancel</button></a>&nbsp;
+                    <div class="modified_in_button">
+                    <a href="./view.php?num=<?=$write_num?>" st><button type="button" id="cancel_button">cancel</button></a>&nbsp;
                     <a href="#"><input type="button" id="write_save_button" value="Modified" onclick="check_write_discussion()"></a>
+                    </div>
                   </form>
 
                   <!-- <p>Some text in the Modal..</p> -->
@@ -320,7 +323,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   $content1= str_replace(" ", "&nbsp;", $content1);
                   $date1 = substr($row1['regist_day'], 0, 10);
                   ?>
-                  <form class="" action="./discussion_dml.php?mode=ripple_delete" method="post">
+                  <form class="" action="./discussion_dml.php?mode=ripple_delete" method="post" id="ripples_form">
                     <input type="hidden" name="num" value="<?=$row1['num']?>">
                     <input type="hidden" name="parent" value="<?=$row1['parent']?>">
                   <table id="view_ripple_table">
@@ -328,23 +331,25 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                       <td colspan="2"><?=$content1?></td>
                     </tr>
                     <tr>
-                      <td id="id_td"><a href="#"><?=$email1?></a></td>
+                      <td id="id_td"><a href="#"><span style="color:rgba(151, 177, 98, 129);"><?=$email1?></span></a></td>
                     </tr>
                     <tr>
                       <td id="date_td"><?=$date1?></td>
                     </tr>
                     <br>
                   </table>
+                  <div class="view_remove_button_div">
                   <?php
-                  if($email1==$_SESSION['email']){
-                    echo '<input id="write_save_button" type="submit" name="" value="remove" style="float:right">';
+                  if(isset($_SESSION['email'])){
+                    echo '<input id="write_save_button" type="submit" name="" value="Remove">';
                   }
                    ?>
+                   </div>
                  </form>
                  <div class="clear"></div>
                 <?php
                 }
-                mysqli_close($conn)
+                // mysqli_close($conn) 잠시 끔
                  ?>
                  <br>
                  <div id="discussion_write_button">
@@ -355,25 +360,25 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                      $username = $_SESSION['username'];
                      $email = $_SESSION['email'];
                      // date("y-m-d h:i:sa");
-                    echo '<form name="ripple_form" action="discussion_dml.php?mode=insert_ripple" method="post">
+                    echo '<form name="ripple_form" action="discussion_dml.php?mode=insert_ripple" method="post" id="ripple_form_content">
                     <input type="hidden" name="now" value="'.$now.'">
                     <input type="hidden" name="parent" value="'.$num.'">
                     <input type="hidden" name="username" value="'.$username.'">
                     <input type="hidden" name="email" value="'.$email.'">
-                    <table id="view_ripple_table">
-                      <tr>
-                        <td><a href="#">'.$username.'('.$email.')</a></td>
-                        <td>'.$now.'</td>
+                    <table id="view_ripple_table_2" >
+                      <tr >
+                        <td style="width:100px; text-align:left;"><a href="#">'.$username.'('.$email.')</a></td>
+                        <td style="width:100px;"></td>
                       </tr>
                       <tr>
-                        <td colspan="2"><textarea name="ripple_content" id="ripple_content" rows="8" cols="135"></textarea></td>
+                        <td colspan="2"><textarea name="ripple_content" id="ripple_content" rows="8" cols="150"></textarea></td>
                       </tr>
                     </table>
-                    <a href="./list.php"><button type="button" name="button">list</button></a>
-                    &nbsp;<button type="submit" name="" onclick="check_ripple_discussion()">regist</button></a>
+                    <a href="./list.php"><button type="button" name="button">List</button></a>
+                    &nbsp;<button type="submit" name="" onclick="check_ripple_discussion()">Regist</button></a>
                     </form>';
                    }else{
-                     echo '<a href="./list.php"><button type="button" name="button">list</button></a>';
+                     echo '<a href="./list.php"><button type="button" name="button">List</button></a>';
                    }
 
 
@@ -396,7 +401,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
         <!--===============================섹션영역=================================== -->
         <?php
           include "../lib/footer_in_folder.php";
-          include "../khy_modal/login_modal.php";
-         ?>
+          include "../khy_modal/login_modal_in_folder.php";
+          ?>
    </body>
  </html>

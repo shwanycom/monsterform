@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../css/company_about.css">
     <link rel="stylesheet" href="../css/common.css?ver=1">
     <link rel="stylesheet" href="../css/footer.css">
+
+
   </head>
   <body>
     <?php include "../lib/header_in_folder.php";  ?>
@@ -27,7 +29,9 @@
                   <img src="../img/zo.png">
                 </div>
                 <div class="flip-box-back">
-                  <p>조건희</p>
+                  <p style="font-size:15pt; font-weight:bold">조건희</p>
+                    <br>
+                    zogunhee@naver.com
                 </div>
                 </div>
               </div>
@@ -40,7 +44,9 @@
                 <img src="../img/kim.png">
                 </div>
                 <div class="flip-box-back">
-                <p>김하영</p>
+                <p style="font-size:15pt; font-weight:bold">김하영</p>
+                  Email address
+                  <br>
                 </div>
                 </div>
               </div>
@@ -53,7 +59,11 @@
                   <img src="../img/lee.png">
                 </div>
                 <div class="flip-box-back">
-                  <p>이동현</p>
+                  <p style="font-size:15pt; font-weight:bold">이동현</p>
+
+                    <br>
+                    merong2969@gmail.com
+
                 </div>
                 </div>
               </div>
@@ -66,7 +76,9 @@
                   <img src="../img/jung.png">
                 </div>
                 <div class="flip-box-back">
-                  <p>정승환</p>
+                  <p style="font-size:15pt; font-weight:bold">정승환</p>
+                    Email address
+                    <br>
                 </div>
                 </div>
               </div>
@@ -79,6 +91,10 @@
                 </div>
                 <div class="flip-box-back">
                   <p>허정준</p>
+                     Email address
+                    <br>
+                    huhjungjun@gmail.com
+
                 </div>
                 </div>
               </div>
