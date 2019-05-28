@@ -50,7 +50,6 @@
                 </div>
               </div>
           </li>
-
           <li>
             <div class="flip-box">
               <div class="flip-box-inner">
@@ -59,15 +58,12 @@
                 </div>
                 <div class="flip-box-back">
                   <p style="font-size:15pt; font-weight:bold">이동현</p>
-
                     <br>
                     merong2969@gmail.com
-
                 </div>
                 </div>
               </div>
           </li>
-
           <li>
             <div class="flip-box">
               <div class="flip-box-inner">
@@ -90,15 +86,42 @@
                 </div>
                 <div class="flip-box-back">
                   <p>허정준</p>
-                     Email address
                     <br>
                     huhjungjun@gmail.com
-
                 </div>
                 </div>
               </div>
           </li>
         </ul>
+      </div>
+      <div class="" style="text-align:center; margin-top:50px;">
+
+      <h1>Company Location</h1>
+      <div id="map" style="width:500px;height:400px; margin: 0 auto; margin-bottom:30px;"></div>
+      <!--카카오 지도 api-->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4f11de79bc968943ee6954324e432e0b"></script>
+        <script>
+        //div id=map 부분에 지도를 표시
+          var container = document.getElementById('map');
+
+          var options = {
+            center: new daum.maps.LatLng(37.5623607,127.03486), //지도에 보일 좌표
+            level: 4 //줌기능
+          };
+          //화면에 해당 위치 생성
+           map = new daum.maps.Map(container, options);
+
+
+          var markerPosition  = new daum.maps.LatLng(37.5622700, 127.035176); //표시될 위치
+
+          // 마커 생성
+          var marker = new daum.maps.Marker({
+              position: markerPosition
+          });
+
+          // 마커가 지도 위에 표시되도록 설정합니다
+          marker.setMap(map);
+        </script>
       </div>
     </div>
     <?php
