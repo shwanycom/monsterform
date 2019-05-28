@@ -3,9 +3,9 @@
   border: 1px solid black;
   height: auto;
   padding-top: 30px;
+  padding-bottom: 115px;
 
 }
-
 .center_shop_div {
   margin-left: 300px;
   margin-right: 200px;
@@ -106,7 +106,7 @@
   font-size: 17pt;
   background-color: rgba(151, 177, 98, 129);
   border-radius: 2px;
-  padding: 27px;
+  padding: 24px;
   margin-bottom: 20px;
   width: 240px;
   color: #fff;

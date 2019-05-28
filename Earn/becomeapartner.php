@@ -1,6 +1,27 @@
 <?php
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+
+  // if(!isset($_SESSION['email'])){
+  // echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+  // exit;
+  // }
+
+  if(isset($_SESSION['email'])){
+    $email = $_SESSION['email'];
+  }
+  $now = date("Y-m-d(H:i)");
+
+
+  $sql="select * from member where partner_apply='y'";
+  $result = mysqli_query($conn, $sql);
+  $row=mysqli_fetch_array($result);
+  $partner=$row['partner_apply'];
+
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -12,6 +33,26 @@
     <style media="screen">
 
     </style>
+    <script type="text/javascript">
+
+    function confirm_check(){
+      var result=confirm("파트너를 신청하시겠습니까?");
+      if(result){
+        <?php
+        //
+        $sql="update member set partner_apply='y' where email='$email'";
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+        $sql="insert into message (rece_email,send_email,msg,regist_day) values('admin@gmail.com','$email','$email 님께서 파트너를 신청하셨습니다.','$now');";
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+      ?>
+          alert("파트너 신청이 완료 되었습니다.");
+      }else{
+          alert("파트너 신청이 취소 되었습니다.");
+      }
+    }
+
+    </script>
   </head>
   <body>
     <?php include "../lib/header_in_folder.php"; ?>
@@ -20,7 +61,7 @@
         <img src="../img/become_section1.png" alt="">
         <p id="apply_text">  Apply to become an affilate partner</p>
         <p>Reduce to 10%p every purchase for an entire tear from all new customers you refer.</p>
-        <button type="button" name="button">Become a Partner</button>
+        <a href=""> <button type="button" name="button" onclick="confirm_check()">Become a Partner</button></a>
       </div>
 
       <div id="become_section2">
@@ -46,11 +87,20 @@
 
       <div id="become_section6">
          <p>Apply today and start spreading the word.</p>
-        <button type="button" name="button">Become a Partner</button>
+        <button type="button" name="button" onclick="confirm_check()">Become a Partner</button>
       </div>
     </div>
 
     <?php include "../lib/footer_in_folder.php"; ?>
-    <?php include "../khy_modal/login_modal_in_folder.php"; ?>
+    <?php
+
+    include "../khy_modal/login_modal_in_folder.php";
+    if(!isset($_SESSION['no'])) {
+      ?>
+      <script>
+        auto_modal();
+      </script>
+      <?php
+    } ?>
   </body>
 </html>

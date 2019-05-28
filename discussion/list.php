@@ -468,7 +468,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 </tr>
                 <tr>
                   <td class="td_size13">Content</td>
-                  <td colspan="2"><textarea name="content" rows="26" cols="91" id="write_content"></textarea></td>
+                  <td colspan="2"><textarea name="content" rows="23" cols="91" id="write_content"></textarea></td>
                 </tr>
               </table>
               <a href="#"><input type="button" id="write_save_button" value="regist" onclick="check_write_discussion()"></a>

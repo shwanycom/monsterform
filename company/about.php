@@ -36,7 +36,6 @@
                 </div>
               </div>
           </li>
-
           <li>
             <div class="flip-box">
               <div class="flip-box-inner">
