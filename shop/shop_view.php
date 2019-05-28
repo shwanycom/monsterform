@@ -36,7 +36,7 @@
     $regist_day = $row['regist_day'];
     $date = date_create($regist_day);
     $regist_day = date_format($date,"F d, Y");
-    $mon = $row['price']/100;
+    $mon = $row['price'];
     $handpicked = $row['handpicked'];
     $freegoods = $row['freegoods'];
     $hit = $row['hit'];
@@ -63,6 +63,16 @@
     // $subject=str_replace("\n", "<br>",$subject);
     // $content=str_replace(" ", "&nbsp;",$content);
     // $content=str_replace("\n", "<br>",$content);
+
+    $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$i_num;";
+    $result = mysqli_query($conn,$sql);
+    if (!$result) {
+      alert_back('5.Error: '.mysqli_error($conn));
+    }
+    $row=mysqli_fetch_array($result);
+    if($row){
+      $type="added";
+    }
     mysqli_close($conn);
   }
   ?>
@@ -214,6 +224,7 @@
               <!-- <i class="fab fa-optin-monster" style="font-size:25px; color:#2f8f94;"></i> -->
             </div>
           </div>
+          
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
             <div class="shop_view_sticky_inner_btn" style="height:30%;">
               <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
