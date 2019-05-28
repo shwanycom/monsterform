@@ -7,12 +7,13 @@
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
   // session_start();
   // if(isset($_SESSION['no'])){
-  // $memeber_no = $_SESSION['no'];
+  // $member_no = $_SESSION['no'];
   // $member_email = $_SESSION['email'];
-  // $memeber_username = $_SESSION['username'];
+  // $member_username = $_SESSION['username'];
   // $member_mon = $_SESSION['mon'];
   // $member_partner = $_SESSION['partner'];
   // }
+
   create_table($conn, "products"); //가입인사 게시판 테이블 생성
   $mode="insert";
   $big_data="";
@@ -168,7 +169,7 @@
       method="post" enctype="multipart/form-data">
     <div class="shop_write_category">
       <input class="shop_write_text" type="text" name="subject" placeholder="Add Title..." id="shop_write_title"><br>
-      <span><i>by </i></span><span style="font-size:1.2em"><b>Kaka Laws </b></span><span> in
+      <span><i>by </i></span><span style="font-size:1.2em"><b> <?=$member_username?> </b></span><span> in
       <select class="shop_write_select" name="shop_write_select" id="shop_write_select">
         <option value="" disabled selected>Choose Category</option>
         <option value="Photos">Photos</option>

@@ -1,5 +1,5 @@
 <?php
-  session_start();
+session_start();
 if(isset($_SESSION['no'])){
   $member_no = $_SESSION['no'];
   $member_email = $_SESSION['email'];
