@@ -10,9 +10,7 @@
   function mouse_out(){
     document.getElementById('change_img').src="./img/down.png";
   }
-  </script><style media="screen">
-
-  </style>
+  </script>
 <header id="header">
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">

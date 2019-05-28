@@ -10,6 +10,7 @@ if(isset($_SESSION['username'])){
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 ?>
 <?php
+  //--라인차트 쿼리문(sales)--
   $year_half=date("y");
   $year="20".$year_half;
 
@@ -68,16 +69,37 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
   $row_result_sql_sales_11=mysqli_fetch_array($result_sql_sales_11);
   $sum_mon11 = $row_result_sql_sales_11['sum_mon'];
 
-  $sql_sales_12="select sum(point_mon) as sum_mon from sales where regist_day like '$year-12%'";
+  $sql_sales_12="SELECT sum(point_mon) as sum_mon from sales where regist_day like '$year-12%'";
   $result_sql_sales_12 = mysqli_query($conn, $sql_sales_12);
   $row_result_sql_sales_12=mysqli_fetch_array($result_sql_sales_12);
   $sum_mon12 = $row_result_sql_sales_12['sum_mon'];
+
+  var_dump($sum_mon12);
+  //--라인차트 쿼리문(report)--
+
+
+  //--파이차트 쿼리문--
+  $sql_photos_total = "select sum(report_price) as sum_ph from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='photos';";
+  $sql_graphics_total = "select sum(report_price) as sum_gr from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='graphics';";
+  $sql_fonts_total = "select sum(report_price) as sum_fo from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='fonts';";
+
+  $result_photo = mysqli_query($conn, $sql_photos_total);
+  $row_ph=mysqli_fetch_array($result_photo);
+  $sum_ph = $row_ph['sum_ph'];
+
+  $result_graphics = mysqli_query($conn, $sql_graphics_total);
+  $row_gr=mysqli_fetch_array($result_graphics);
+  $sum_gr=$row_gr['sum_gr'];
+
+  $result_fonts = mysqli_query($conn, $sql_fonts_total);
+  $row_fo=mysqli_fetch_array($result_fonts);
+  $sum_fo=$row_fo['sum_fo'];
 ?>
 <html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages': ['linechart']}); /*LINE차트를 사용하기 위한 준비  */
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
@@ -105,9 +127,33 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
       }
+
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart1);
+      function drawChart1() {
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            <?php
+            echo "['Photos',".$sum_ph."],";
+            echo "['Graphics',".$sum_gr."],";
+            echo "['Fonts',".$sum_fo."]";
+            ?>
+          ]);
+          var options = {
+            chart:{
+              title: 'sales'
+            },
+            width: 600,
+            height: 400,
+          };
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+      }
     </script>
   </head>
   <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
     <div id="curve_chart" style="width: 900px; height: 500px"></div>
   </body>
 </html>
