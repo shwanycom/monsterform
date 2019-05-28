@@ -1,3 +1,10 @@
+@font-face{
+  font-family:"UniNeue-HeavyItalic"; /*폰트 패밀리 이름 추가*/
+  src:url("../font/UniNeue-HeavyItalic.TTF"); /*폰트 파일 주소*/
+}
+.footer_footer *{
+  font-family: "UniNeue-HeavyItalic";
+}
 body{
   margin-left: 0;
   margin-right: 0;

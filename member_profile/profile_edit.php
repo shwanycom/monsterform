@@ -422,7 +422,13 @@ if(!isset($member_no)){
     }else if(isset($_GET['mode']) && $_GET['mode']=='change_password'){
       ?>
       <div id="change_password_info">
-
+        <div id="update_password_title">
+          <ul>
+            <li id="title_change_pw">&nbsp;&nbsp;&nbsp;Edit profile</li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=profile_info" <?=$profile_info_bold?>>Profile Info</a></li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=change_password" <?=$change_password_bold?>>Change Password</a></li>
+          </ul>
+        </div>  <!--end of member_profile_menu -->
       </div>
 
 

@@ -52,8 +52,8 @@
         Fonts
         <div id="font_child">
 
-          <p id="ninab">Hansief</p>
-          <p id="nina">1Abraham</p>
+          <p id="ninab">UniNeue-HeavyItalic</p>
+          <p id="nina">UniNeue-Light</p>
 
         </div>
       </div>

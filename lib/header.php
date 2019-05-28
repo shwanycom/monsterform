@@ -11,17 +11,7 @@
     document.getElementById('change_img').src="./img/down.png";
   }
   </script><style media="screen">
-  @font-face{
-    font-family:"1Abraham"; /*폰트 패밀리 이름 추가*/
-    src:url("./font/1 Abraham.OTF"); /*폰트 파일 주소*/
-  }
-  @font-face{
-    font-family:"Hansief"; /*폰트 패밀리 이름 추가*/
-    src:url("./font/Hansief.OTF"); /*폰트 파일 주소*/
-  }
-  #header *{
-      font-family: "Hansief";
-  }
+
   </style>
 <header id="header">
   <div id="header_logout_form_div1">
@@ -145,19 +135,15 @@
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Abstract</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Animals</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Architecture</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Arts &Entertainment</a></li>
+                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Arts</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Beauty & Fashion</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Business</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Education</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Food & Drink</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Health</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Holidays</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Industrial</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Nature</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">People</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Sports</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Technology</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Transportation</a></li>
               </ul>
             </li>
 

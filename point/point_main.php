@@ -56,7 +56,7 @@ create_table($conn, "member");
           <div class="point_2000">
               <div class="point_1"onclick="select('5000')" value="5000">
                 <div id="a" onclick="bodercolor('this')" >
-                <h3 class="mon_h3">\5000 <p class="mon_p" >(50mon)</p></h3>
+                <h3 class="mon_h3">￦5,000 <p class="mon_p" >(50mon)</p></h3>
                 <p class="bonus_p">No Bonus</p>
                 <div class="" style="border-top: 0.4px solid #444444;">
                   <p>Individual</p>
@@ -66,7 +66,7 @@ create_table($conn, "member");
           </div>
           <div class="point_2000">
             <div class="point_1"onclick="select('20000')" value="20000">
-                <h3 class="mon_h3">\20000 <p class="mon_p" >(200mon)</p></h3>
+                <h3 class="mon_h3">￦20,000 <p class="mon_p" >(200mon)</p></h3>
                 <p class="bonus_p">No Bonus</p>
                 <div class="" style="border-top: 0.4px solid #444444; ">
                   <p>Professional</p>
@@ -75,7 +75,7 @@ create_table($conn, "member");
           </div>
           <div class="point_2000">
             <div class="point_1"onclick="select('50000')" value="50000">
-                <h3 class="mon_h3">\50000 <p class="mon_p" >(500mon)</p></h3>
+                <h3 class="mon_h3">￦50,000 <p class="mon_p" >(500mon)</p></h3>
                 <p class="bonus_p">No Bonus</p>
                 <div class="" style="border-top: 0.4px solid #444444; ">
                   <p>Professional</p>
@@ -85,7 +85,7 @@ create_table($conn, "member");
           <div class="point_2000">
             <div class="point_1"onclick="select('100000')" value="110000">
 
-                <h3 class="mon_h3">\100000 <p class="mon_p" >(1000mon)</p></h3>
+                <h3 class="mon_h3">￦100,000 <p class="mon_p" >(1000mon)</p></h3>
                 <p class="bonus_p_y">Bonus +100mon</p>
                 <div class="" style="border-top: 0.4px solid #444444; ">
                   <p style="font-weight:bold;">Most Popular</p>
@@ -94,7 +94,7 @@ create_table($conn, "member");
           </div>
           <div class="point_2000">
             <div class="point_1"onclick="select('200000')" value="200000">
-                <h3 class="mon_h3">\200000 <p class="mon_p" >(2000mon)</p> </h3>
+                <h3 class="mon_h3">￦200,000 <p class="mon_p" >(2000mon)</p> </h3>
                 <p class="bonus_p_y">Bonus +200mon</p>
                 <div class="" style="border-top: 0.4px solid #444444; ">
                   <p>Big Bonus</p>
@@ -104,7 +104,7 @@ create_table($conn, "member");
           <div class="point_2000">
             <div class="point_1"onclick="select('500000')" value="500000">
 
-                <h3 class="mon_h3">\500000<p class="mon_p" >(5000mon)</p></h3>
+                <h3 class="mon_h3">￦500,000<p class="mon_p" >(5000mon)</p></h3>
                 <p class="bonus_p_y">Bonus +500mon</p>
                 <div class="" style="border-top: 0.4px solid #444444; ">
                   <p>Best Value</p>

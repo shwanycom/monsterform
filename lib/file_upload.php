@@ -28,6 +28,9 @@ if($upfile_size>5000000){
 //6. 업로드된 파일 확장자를 체크한다.  "image/jpg"
 $type = explode("/",$upfile_type);
 $file_type = $type[0];
+// var_dump($type[0]);
+// var_dump($type[1]);
+// exit;
 switch ($type[1]) {
   case 'gif':
   break;
@@ -35,8 +38,10 @@ switch ($type[1]) {
   break;
   case 'png':
   break;
+  case 'jpeg':
+  break;
   default:
-    alert_back('gif, jpeg, png, pjpeg 확장자만 가능합니다!');
+    alert_back('gif, jpg, png, jpeg 확장자만 가능합니다!');
     break;
 }
 //7. 임시 저장소에 있는 파일을 서버에 지정한 위치로 이동한다.

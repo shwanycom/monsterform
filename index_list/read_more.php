@@ -8,7 +8,7 @@ $(document).ready(function() {
     console.log(num_num);
     console.log(likes_img_value);
      $.ajax({
-       url: '../lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
+       url: './lib/like_dml.php?mode=go_like', // 데이터 보내서 작업되어질 url
        type: 'POST', // get 또는 post로 data를 보냄
        data: {num: num_num, liv : likes_img_value}
      })
@@ -19,10 +19,10 @@ $(document).ready(function() {
        if(result_ajax=='fail'){
          alert("로그인 후 이용하세요.");
        }else{
-         if($(".likes_img_class:eq("+n+")").attr("src")!="../img/hover_like.png"){
-           $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
+         if($(".likes_img_class:eq("+n+")").attr("src")!="./img/hover_like.png"){
+           $(".likes_img_class:eq("+n+")").attr("src", "./img/hover_like.png");
          }else{
-           $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
+           $(".likes_img_class:eq("+n+")").attr("src", "./img/like.png");
           }
           console.log($(".likes_img_class:eq("+n+")").attr("src"));
         if($(".likes_img_value:eq("+n+")").val()=='y'){
@@ -145,16 +145,16 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
      $partner = $row_partner['partner'];
 
      if($partner=='n' && $item_freegoods=='n'){
-       $freegoods_img="../img/hover_logo.png";
+       $freegoods_img="./img/hover_logo.png";
      }else{
-       $freegoods_img="../img/free_partner_logo.png";
+       $freegoods_img="./img/free_partner_logo.png";
      }
 
      $sql_likes = "SELECT product_num from likes where no = '$member_no';";
      $result_likes = mysqli_query($conn, $sql_likes);
      $total_record_likes = mysqli_num_rows($result_likes);
 
-     $likes_img = "../img/hover_like.png";
+     $likes_img = "./img/hover_like.png";
      $likes_img_value = "n";
 
      for($j=0;$j<$total_record_likes;$j++){
@@ -162,7 +162,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
        $row_likes = mysqli_fetch_array($result_likes);
        $likes = $row_likes['product_num'];
        if($likes == $item_num){
-         $likes_img = "../img/like.png";
+         $likes_img = "./img/like.png";
          $likes_img_value = "y";
          break;
        }
@@ -176,7 +176,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
   echo '<div class="img_div">
     <figure class="snip1368">
       <a href="#">
-        <img id="main_img" src="../img/openmarket.png" alt="sample30" />
+        <img id="main_img" src="./img/openmarket.png" alt="sample30" />
       </a>
       <div class="hover_img">
         <img src="'.$freegoods_img.'" alt="" style="width:25px; height:25px;">

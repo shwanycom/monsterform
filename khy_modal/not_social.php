@@ -108,5 +108,10 @@ if($_GET["mode"]=="login"){
   echo "<script> alert('Update Setting Success!!');
           document.location.href='../member_profile/profile_edit.php?mode=profile_info';
         </script>";
+}else if(isset($_GET["mode"]) && $_GET["mode"]=="update_password"){
+  $update_password = $_POST['password'];
+  
+
+
 }
 ?>
