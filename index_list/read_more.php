@@ -136,6 +136,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
      $item_hit = $row["hit"];
      $item_date = $row["regist_day"];
      $item_date = substr($item_date, 0, 10);
+     $item_big_data = $row["big_data"];
      $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
      $item_freegoods=$row["freegoods"];
 
@@ -191,8 +192,8 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
           </a>
         </div>
         <div class="">
-            by&nbsp;<a href="#" class="">'.$item_email.'</a>
-            in&nbsp;<a href="#" class="">'.$big_data.'</a>
+            by&nbsp;<a href="./member_profile/profile_view.php?mode=shop&email='.$item_email.'" class="">'.$item_email.'</a>
+            in&nbsp;<a href="./product_list/list.php?big_data='.$item_big_data.'" class="">'.$item_big_data.'</a>
         </div>
       </div>
       <figcaption>

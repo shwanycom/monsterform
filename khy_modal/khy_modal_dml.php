@@ -30,7 +30,7 @@ if($rowcount){
   // exit;
 }else{
   $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`,`partner`)";
-  $sql.=" VALUES (null,'$email','$username','ekguddldi',0,'n')";
+  $sql.=" VALUES (null,'$email','$username','12345',0,'n')";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
