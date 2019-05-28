@@ -73,6 +73,15 @@
     if($row){
       $type="added";
     }
+    $sql="SELECT * from `report` where `no`=$member_no && `product_num`=$i_num;";
+    $result = mysqli_query($conn,$sql);
+    if (!$result) {
+      alert_back('5.Error: '.mysqli_error($conn));
+    }
+    $row=mysqli_fetch_array($result);
+    if($row){
+      $type="purchased";
+    }
     mysqli_close($conn);
   }
   ?>
@@ -224,19 +233,38 @@
               <!-- <i class="fab fa-optin-monster" style="font-size:25px; color:#2f8f94;"></i> -->
             </div>
           </div>
-          
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
-            <div class="shop_view_sticky_inner_btn" style="height:30%;">
-              <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
+            <?php
+            if($type=="added"){
+            ?>
+              <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+                <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
                 <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
-            </div>
-            <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
-              OR
-            </div>
-            <div class="shop_view_sticky_inner_btn" style="height:30%;">
-              <button type="button" style="background-color:white; color:#70a330;" onclick="send_to_dml('add_cart','');">
-                <b> Add to Cart</b></button>
-            </div>
+              </div>
+            <?php
+            }else if(($type=="purchased")){
+            ?>
+              <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
+                  <b>Download </b></button>
+              </div>
+            <?php
+            }else{
+            ?>
+              <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
+                  <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
+              </div>
+              <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+                OR
+              </div>
+              <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                <button type="button" style="background-color:white; color:#70a330;" onclick="send_to_dml('add_cart','');">
+                  <b> Add to Cart</b></button>
+              </div>
+            <?php
+            }
+            ?>
           </div>
         </div><!-- end of shop_view_sticky_purchase -->
       </div><!-- end of shop_view_sticky -->
