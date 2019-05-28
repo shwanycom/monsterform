@@ -41,6 +41,19 @@ if(isset($_GET['email'])){
     $shop_img_name = "../data/img/".$shop_img_name;
   }
 
+$follow_status_sql = "SELECT * from `follow` where following=$shop_no and follower=$member_no;";
+$follow_status_result = mysqli_query($conn, $follow_status_sql);
+if (!$follow_status_result) {
+  die('Error: ' . mysqli_error($conn));
+}
+if($follow_status_num = mysqli_num_rows($follow_status_result)==1){
+  $follow_status = 'y';
+  $follow_style = 'style="background-color: rgba(151, 177, 98, 129);"';
+}else{
+  $follow_status = 'n';
+  $follow_style = '';
+}
+
 define('SCALE', 6);
 
 $likes_bold = '';
@@ -71,10 +84,6 @@ if(isset($_GET['mode']) && $_GET['mode'] == 'likes'){
   $sql = "SELECT * from `report` where no=$shop_no;";
   $collections_bold = 'style = "font-size:25px"';
   $mode = 'collections';
-  $row = mysqli_fetch_array($result);
-  $pnum = $row['product_num'];
-
-  $sql = "SELECT * from `products` where num= $pnum;";
 
 }else if(isset($_GET['mode']) && $_GET['mode'] == 'shop'){
   $sql = "SELECT * from `products` where no=$shop_no;";
@@ -109,8 +118,8 @@ $number = $total_record - $start;
     <link rel="stylesheet" href="../css/product_list.css">
     <link rel="stylesheet" href="../css/keyframe.css">
     <link rel="stylesheet" href="../css/index_list.css">
-    <link rel="stylesheet" href="../css/member_profile.css">
     <link rel="stylesheet" href="../css/message.css">
+    <link rel="stylesheet" href="../css/member_profile.css">
     <script type="text/javascript" src="../js/monsterform.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
@@ -157,6 +166,33 @@ $number = $total_record - $start;
              console.log("complete");
            });
         });
+
+
+        $("#follow_button").click(function(event) {
+          var shop_no = $("#shop_no_follow").val();
+          var status = $("#follow_status").val();
+          $.ajax({
+            url: './follow_dml.php',
+            type: 'POST',
+            data: {shop_no: shop_no, status: status}
+          })
+          .done(function(result) {
+            console.log("success");
+            if(result=='fail'){
+              alert("fail!!!!!!!!!!!!!!!!");
+            }else{
+              $("#follow_button").attr('attribute', 'value');
+            }
+          })
+          .fail(function() {
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+          });
+
+        });
+
       });
 
       </script>
@@ -325,50 +361,61 @@ $number = $total_record - $start;
 
           for($i=$start;$i<($start+SCALE) && $i < $total_record; $i++){
             mysqli_data_seek($result, $i);
-            $row = mysqli_fetch_array($result_collections);
-            $item_no = $row["no"];
-            $item_num = $row["num"];
-            $item_name = $row["username"];
-            $price = $row["price"];
-            $item_price = $price/100;
-            $item_email = $row["email"];
-            $img_copy_name0 = $row["img_file_copied1"];
-            $item_hit = $row["hit"];
-            $item_date = $row["regist_day"];
-            $item_date = substr($item_date, 0, 10);
-            $item_big_data = $row["big_data"];
-            $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
-            $item_freegoods=$row["freegoods"];
+            $row = mysqli_fetch_array($result);
+            $pnum = $row['product_num'];
 
-            $sql_partner = "SELECT partner from member where no = '$item_no';";
-            $result_partner = mysqli_query($conn, $sql_partner);
-            $row_partner = mysqli_fetch_array($result_partner);
-            $partner = $row_partner['partner'];
+            $sql_collections = "SELECT * from `products` where num = $pnum;";
+            $result_collections = mysqli_query($conn, $sql_collections);
 
-            if($partner=='n' && $item_freegoods=='n'){
-              $freegoods_img="../img/hover_logo.png";
-            }else{
-              $freegoods_img="../img/free_partner_logo.png";
-            }
+            $total_record_collections = mysqli_num_rows($result_collections);
 
-            if(!isset($member_no)){
-              $likes_img = '';
-            }else{
-              $sql_likes = "SELECT product_num from likes where no = '$member_no';";
-              $result_likes = mysqli_query($conn, $sql_likes);
-              $total_record_likes = mysqli_num_rows($result_likes);
+            for($k=0;$k<$total_record_collections;$k++){
+              mysqli_data_seek($result, $k);
+              $row = mysqli_fetch_array($result_collections);
+              $item_no = $row["no"];
+              $item_num = $row["num"];
+              $item_name = $row["username"];
+              $price = $row["price"];
+              $item_price = $price/100;
+              $item_email = $row["email"];
+              $img_copy_name0 = $row["img_file_copied1"];
+              $item_hit = $row["hit"];
+              $item_date = $row["regist_day"];
+              $item_date = substr($item_date, 0, 10);
+              $item_big_data = $row["big_data"];
+              $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+              $item_freegoods=$row["freegoods"];
 
-              $likes_img = "../img/hover_like.png";
-              $likes_img_value = "n";
+              $sql_partner = "SELECT partner from member where no = '$item_no';";
+              $result_partner = mysqli_query($conn, $sql_partner);
+              $row_partner = mysqli_fetch_array($result_partner);
+              $partner = $row_partner['partner'];
 
-              for($j=0;$j<$total_record_likes;$j++){
-                mysqli_data_seek($result_likes, $j);
-                $row_likes = mysqli_fetch_array($result_likes);
-                $likes = $row_likes['product_num'];
-                if($likes == $item_num){
-                  $likes_img = "../img/like.png";
-                  $likes_img_value = "y";
-                  break;
+              if($partner=='n' && $item_freegoods=='n'){
+                $freegoods_img="../img/hover_logo.png";
+              }else{
+                $freegoods_img="../img/free_partner_logo.png";
+              }
+
+              if(!isset($member_no)){
+                $likes_img = '';
+              }else{
+                $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+                $result_likes = mysqli_query($conn, $sql_likes);
+                $total_record_likes = mysqli_num_rows($result_likes);
+
+                $likes_img = "../img/hover_like.png";
+                $likes_img_value = "n";
+
+                for($j=0;$j<$total_record_likes;$j++){
+                  mysqli_data_seek($result_likes, $j);
+                  $row_likes = mysqli_fetch_array($result_likes);
+                  $likes = $row_likes['product_num'];
+                  if($likes == $item_num){
+                    $likes_img = "../img/like.png";
+                    $likes_img_value = "y";
+                    break;
+                  }
                 }
               }
             }
@@ -584,11 +631,17 @@ $number = $total_record - $start;
                     <td><a href="./profile_edit.php?mode=requests"><button type="button" name="button">Requests</button></a></td>
                     ';
             }else{
-              echo '<td><button type="button" id="follow_button"> + Follow </button></td>
-                    <td><button type="button" id="myBtn_1">Message</button></td>';
+              if($follow_status=='n'){
+                echo '<td><button type="button" id="follow_button" '.$follow_style.'> √ Following </button></td>';
+              }else{
+                echo '<td><button type="button" id="follow_button" '.$follow_style.'> + Follow </button></td>';
+              }
+              echo '<td><button type="button" id="myBtn_1">Message</button></td>';
             }
              ?>
              <input type="hidden" name="" value="<?=$shop_email?>" id="write_id_shop_email">
+             <input type="hidden" name="" value="<?=$shop_no?>" id="shop_no_follow">
+             <input type="hidden" name="" value="<?=$follow_status?>" id="shop_no_follow">
           </tr>
           <tr id="spe_tr1">
             <td>Followers <?=$follower_num?></td>
