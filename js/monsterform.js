@@ -342,7 +342,27 @@ function check_update_setting() {
     }
   }
 
-  $("#use_mf").val($("#full_time_job").val()+'/'+$("#freelance_work").val()+'/'+$("#part_time_side").val()+'/'+$("#non_profit").val()+'/'+$("#school").val()+'/'+$("#personal_projects").val());
+  var result = '';
+  if($("#full_time_job").is(":checked")){
+    result = result + $("#full_time_job").val() + '/';
+  }
+  if($("#freelance_work").is(":checked")){
+    result = result + $("#freelance_work").val() + '/';
+  }
+  if($("#part_time_side").is(":checked")){
+    result = result + $("#part_time_side").val() + '/';
+  }
+  if($("#non_profit").is(":checked")){
+    result = result + $("#non_profit").val() + '/';
+  }
+  if($("#school").is(":checked")){
+    result = result + $("#school").val() + '/';
+  }
+  if($("#personal_projects").is(":checked")){
+    result = result + $("#personal_projects").val() + '/';
+  }
+
+  $("#use_mf").val(result);
 
   document.profile_update_form.submit();
 }
