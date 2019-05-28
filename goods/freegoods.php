@@ -121,7 +121,7 @@ $row2=mysqli_fetch_array($result2);
     <section class="section_freegoods">
       <br><br><br>
       <h1>Free Goods of the Week</h1>
-      <h2>Download these 6 free goods before it's too late!<form id="timer" name=timer><label id="counter_label">EXPIRATION</label><input id="counter" name=counter></form></h2>
+      <h2>Download these 6 free goods before it's too late!<form id="timer" name=timer><label id="counter_label">EXPIRATION</label><input id="counter" name=counter disabled></form></h2>
       <br><br>
       <div class="board_div">
       <?php

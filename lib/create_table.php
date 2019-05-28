@@ -20,6 +20,7 @@ function create_table($conn, $table_name){
               `point_mon` int(11) NOT NULL DEFAULT '0',
               `hwan_mon` int(11) NOT NULL DEFAULT '0',
               `partner` varchar(100) NOT NULL DEFAULT 'n',
+              `partner_apply` varchar(100) NOT NULL DEFAULT 'n',
               `location` varchar(100) DEFAULT NULL,
               `profession` varchar(100) DEFAULT NULL,
               `use_mf` varchar(100) DEFAULT NULL,
@@ -123,7 +124,7 @@ function create_table($conn, $table_name){
       $sql = "CREATE TABLE `report` (
                 `product_num` int(11) NOT NULL,
                 `report_price` int(11) NOT NULL,
-                `regist_day` date NOT NULL,
+                `report_regist_day` date NOT NULL,
                 `no` int(11) NOT NULL
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
