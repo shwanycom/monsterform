@@ -22,7 +22,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $price = $_POST["setted_mon"]*100;
     $big_data=$_POST["big_data"];
 
-
     $hash_tag = $_POST["hash_tag"];
 
     $freegoods_agree = $_POST["freegoods_agree"];
@@ -63,8 +62,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     var_export("font : ".$font_file_name); echo "<br>";
     var_export($copied_font_file_name); echo "<br>";
     var_export($font_type[0]); echo "<br>";
-
-
 
     //파일에 실제명과
     $sql="INSERT INTO `products` VALUES

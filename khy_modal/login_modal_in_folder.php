@@ -32,7 +32,6 @@ function init(){
 <!-- google login script -->
 <script >
 function google_login(){
-  gauth.disconnect();
   gauth.signIn().then(function(){
     console.log('gauth.signIn()');
     sendToDml("google");
@@ -64,6 +63,7 @@ function sendToDml(type){
       document.getElementById("email").value=profile.getEmail();
       document.getElementById("username").value=profile.getName();
       document.getElementById("gklogin_form").submit();
+      gauth.disconnect();
     }
   }
   if (type=="kakao") {

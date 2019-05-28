@@ -19,6 +19,7 @@ function init(){
     window.gauth = gapi.auth2.init({
       client_id:'1080320778777-ek18ne6sdkqhvl39fj5vas0oicf7pc6j.apps.googleusercontent.com'
     });
+
     gauth.then(function(){
       console.log('googleAuth success');
     }, function(){
@@ -32,7 +33,6 @@ function init(){
 <!-- google login script -->
 <script >
 function google_login(){
-  gauth.disconnect();
   gauth.signIn().then(function(){
     console.log('gauth.signIn()');
     sendToDml("google");
@@ -64,6 +64,7 @@ function sendToDml(type){
       document.getElementById("email").value=profile.getEmail();
       document.getElementById("username").value=profile.getName();
       document.getElementById("gklogin_form").submit();
+      gauth.disconnect();
     }
   }
   if (type=="kakao") {

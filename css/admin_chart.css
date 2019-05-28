@@ -1,0 +1,11 @@
+#admin_chart_section{
+  margin-right: 10%;
+  margin-left: 10%;
+  padding-bottom:30px;
+}
+rect{
+  fill: rgba(245,245,244,230);
+}
+#piechart, #admin_chart_form, #admin_pie_chart_span{
+  display: inline-block;
+}

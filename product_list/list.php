@@ -350,9 +350,11 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
    			$item_num = $row["num"];
    			$item_name = $row["username"];
    			$price = $row["price"];
+        $item_big_data = $row["big_data"];
          $item_price = $price/100;
          $item_email = $row["email"];
-   			$img_copy_name0 = $row["img_file_copied1"];
+   			$img_copy_name1 = $row["img_file_copied1"];
+        $img_copy_name1 = "./data/img/".$img_copy_name1;
    			$item_hit = $row["hit"];
    			$item_date = $row["regist_day"];
    			$item_date = substr($item_date, 0, 10);
@@ -399,8 +401,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 			?>
       <div class="img_div">
         <figure class="snip1368">
-          <a href="#">
-            <img id="main_img" src="../img/openmarket.png" alt="sample30" />
+          <a href="../shop/shop_view.php?num=<?=$item_num?>">
+            <img id="main_img" src="<?=$img_copy_name1?>" alt="sample30" />
           </a>
           <div class="hover_img">
             <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -415,8 +417,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
               </a>
             </div>
             <div class="">
-                by&nbsp;<a href="#" class=""><?=$item_email?></a>
-                in&nbsp;<a href="#" class=""><?=$big_data?></a>
+                by&nbsp;<a href="../member_profile/profile_view.php?mode=shop&email=<?=$item_email?>" class=""><?=$item_email?></a>
+                in&nbsp;<a href="../product_list/list.php?big_data=<?=$item_big_data?>" class=""><?=$item_big_data?></a>
             </div>
           </div>
           <figcaption>
@@ -443,9 +445,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       }
         for($i=1;$i<=$total_page;$i++){
           if($page==$i){
-            echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
+            echo "<b>&nbsp;&nbsp;◁ $i ▷&nbsp;&nbsp;</b>";
           }else{
-            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$i'>$i</a>";
+            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$i'>&nbsp;$i&nbsp;</a>";
           }
         }
 

@@ -12,28 +12,80 @@ $member_no = $_SESSION['no'];
 // $member_partner = $_SESSION['partner'];
 
 if( isset($_GET['mode']) ) {
-  if($_GET['mode']=="add_cart"){
-    var_dump("add_cart 모드 진입"); echo"<br>";
-
-    $product_num = $_POST['product_num'];
-    $mon = $_POST['mon'];
-    $cart_img_name = $_POST['cart_img_name'];
-    var_dump("POST3개 완료"); echo"<br>";
-
-    $sql="INSERT INTO `cart` VALUES ($member_no,null,$product_num,$mon,'$cart_img_name');";
-    var_dump("SQL문 이상 없음"); echo"<br>";
-
+  if($_GET['mode']=="delete") {
+    $product_num = $_GET['p_num'];
+    $sql="DELETE from `cart` where `no`=$member_no && `product_num`=$product_num;";
     $result = mysqli_query($conn,$sql);
-    var_dump("result 실행 됨"); echo"<br>";
-
-    if (!$result) {
-      var_dump("result 에러"); echo"<br>";
+    if(!$result) {
       alert_back('5.Error: '.mysqli_error($conn));
-      //die('Error: ' . mysqli_error($conn));
     }
-    var_dump("result 에러없음"); echo"<br>";
     echo "<script>location.href='../shop/cart.php';</script>";
-    var_dump("location작동안됨"); echo"<br>";
+  }else{
+    $product_num_set = $_POST['product_num_set'];
+    $product_num_array = explode("/", $product_num_set);
+    $repeat_purchase = sizeof($product_num_array);
+    $mon = $_POST['mon'];
+    if($_GET['mode']=="add_cart"){
+      $cart_img_name = $_POST['cart_img_name'];
+    }
+    $regist_day = date("Y-m-d");
+
+    var_export("product_num_set : ".$product_num_set); echo "<br>";
+    var_export("product_num_array : ".$product_num_array); echo "<br>";
+    var_export("repeat_purchase : ".$repeat_purchase); echo "<br>";
+    var_export("mon : ".$mon); echo "<br>";
+    var_export("cart_img_name : ".$cart_img_name); echo "<br>";
+    var_export("regist_day : ".$regist_day); echo "<br>";
+    var_export("member_no : ".$member_no); echo "<br><br>"; 
+
+    if($_GET['mode']=="add_cart"){
+      $product_num=$product_num_array[1];
+      $sql="INSERT INTO `cart` VALUES ($member_no,null,$product_num,$mon,'$cart_img_name');";
+      $result = mysqli_query($conn,$sql);
+      if (!$result) {
+        alert_back('5.Error: '.mysqli_error($conn));
+      }
+      echo "<script>location.href='../shop/cart.php';</script>";
+    }else if ($_GET['mode']=="purchase") {
+      for($i=1 ; $i<$repeat_purchase; $i++){
+        $product_num=$product_num_array[$i];
+        var_export("product_num : ".$product_num); echo "<br>";
+        //===========================================1.구매내역등록=============================================
+        $sql="INSERT INTO `report` VALUES ($product_num,$mon,'$regist_day',$member_no);";
+        $result = mysqli_query($conn,$sql);
+        if (!$result) {
+          alert_back('5.Error: '.mysqli_error($conn));
+        }
+        var_export(" : ".$product_num); echo "<br>";
+        //===========================================2.Mon 차감================================================
+        $sql = "UPDATE `member` set `point_mon`=`point_mon`-$mon where `no` = $member_no;";
+        $result = mysqli_query($conn,$sql);
+        if (!$result) {
+          alert_back('5.Error: '.mysqli_error($conn));
+        }
+        //===========================================3.장바구니에서 제품번호검색=============================================
+        $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$product_num;";
+        $result = mysqli_query($conn,$sql);
+        if (!$result) {
+          alert_back('5.Error: '.mysqli_error($conn));
+        }
+        $row=mysqli_fetch_array($result);
+        //===========================================4.장바구니에 제품번호 있으면 삭제========================================
+        if($row){
+          $sql="DELETE from `cart` where `no`=$member_no && `product_num`=$product_num;";
+          $result = mysqli_query($conn,$sql);
+          if (!$result) {
+            alert_back('5.Error: '.mysqli_error($conn));
+          }
+        }
+      }//end of repeat for
+      //=======================================구매모드를 눌렀던 곳으로 리다이렉션=============================================
+      if($_GET['from']=="view"){
+        echo "<script>location.href='../shop/shop_view.php?num=".$product_num."';</script>";
+      }else if($_GET['from']=="cart"){
+        echo "<script>location.href='../member_profile/profile_view.php?mode=collections';</script>";
+      }
+    }
   }
 }else{
   alert_back("mode를 주세요");

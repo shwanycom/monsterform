@@ -25,15 +25,11 @@ if(!isset($member_no)){
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     $img_name = $row['pro_img_copied'];
+    $shop_img_name = $row['shop_img_copied'];
     $user_no = $row['no'];
     $user_email = $row['email'];
     $user_username = $row['username'];
     $user_password = $row['password'];
-    if($user_password==null){
-      echo '<script>
-      alert("소셜로그인시 비밀번호 변경은 불가합니다."); history.go(-1); </script>';
-      exit;
-    }
     $user_location = $row['location'];
     $user_profession = $row['profession'];
 
@@ -264,9 +260,15 @@ if(!isset($member_no)){
     }
 
     if($img_name==''){
-      $img_name = "../data/img/none.gif";
+      $img_name = "../data/img/no_profile.png";
     }else{
       $img_name = "../data/img/".$img_name;
+    }
+
+    if($shop_img_name==''){
+      $shop_img_name = "../data/img/no_shop.png";
+    }else{
+      $shop_img_name = "../data/img/".$shop_img_name;
     }
 
 }
@@ -305,9 +307,23 @@ if(!isset($member_no)){
         }
       }
 
+      function readURL_shop(input){
+        if (input.files && input.files[0]){
+          var reader = new FileReader();
+          reader.onload = function(e){
+            $('#shop_main_img').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
       $(document).ready(function() {
         $("#profile_image_div_right_file").change(function(){
           readURL(this);
+        });
+
+        $("#shop_img_file").change(function(){
+          readURL_shop(this);
         });
 
         $("#profession").change(function(event) {
@@ -326,11 +342,11 @@ if(!isset($member_no)){
   </head>
   <body>
     <?php
+    include "../khy_modal/login_modal_in_folder.php";
     include "../lib/header_in_folder.php";
      ?>
     <!--============================================================================== -->
     <div id="member_profile">
-
       <div id="member_profile_menu">
         <ul>
           <li id="title">&nbsp;&nbsp;&nbsp;Edit profile</li>
@@ -338,14 +354,19 @@ if(!isset($member_no)){
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=change_password" <?=$change_password_bold?>>Change Password</a></li>
         </ul>
       </div>  <!--end of member_profile_menu -->
-      <br><br>
       <?php
       if(isset($_GET['mode']) && $_GET['mode']=='profile_info'){
-      ?>
+        ?>
+      <form name="profile_update_form" action="../khy_modal/not_social.php?mode=update" method="post" enctype="multipart/form-data">
+      <div id="shop_img">
+        <img src="<?=$shop_img_name?>" alt="" width="1140px;" height="250px;" id="shop_main_img"><br>
+        <label for="shop_img_file">Update Shop Image</label>
+        <input type="file" name="shop_img_file" id="shop_img_file" value="">
+      </div>
+      <div class="clear"></div>
       <div id="member_profile_info">
-        <form name="profile_update_form" action="../khy_modal/not_social.php?mode=update" method="post" enctype="multipart/form-data">
         <ul>
-          <li id="">Profile Info</li>
+          <li id=""><h2>Profile Info</h2></li>
         </ul>
         <span>Avator:</span>
         <br>
@@ -390,7 +411,13 @@ if(!isset($member_no)){
               <option value="webdeveloper" <?=$selected10?>>Web Developer</option>
               <option value="other" <?=$selected11?>>Other</option>
             </select>
-            <input type="hidden" name="profession_other" value="<?=$user_profession?>" placeholder="Other" id="profession_other">
+            <?php
+            if($selected11=='selected'){
+              echo '<input type="text" name="profession_other" value="'.$user_profession.'" placeholder="Other" id="profession_other">';
+            }else{
+              echo '<input type="hidden" name="profession_other" value="'.$user_profession.'" placeholder="Other" id="profession_other">';
+            }
+             ?>
             <br><br>
             <span class="user_info_span">I use MonsterForm for</span>
             <br>
@@ -415,29 +442,54 @@ if(!isset($member_no)){
           </form>
         </div> <!-- end of user_info_div -->
       </div> <!--end of member_profile_info -->
-    </div> <!--end of member_profile -->
-    <div class="clear"></div>
-
       <?php
     }else if(isset($_GET['mode']) && $_GET['mode']=='change_password'){
+      if($user_password=='12345'){
+        echo '<script>
+        alert("소셜로그인시 비밀번호 변경은 불가합니다."); history.go(-1); </script>';
+        exit;
+      }
       ?>
-      <div id="change_password_info">
-        <div id="update_password_title">
-          <ul>
-            <li id="title_change_pw">&nbsp;&nbsp;&nbsp;Edit profile</li>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=profile_info" <?=$profile_info_bold?>>Profile Info</a></li>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=change_password" <?=$change_password_bold?>>Change Password</a></li>
-          </ul>
-        </div>  <!--end of member_profile_menu -->
+      <div id="change_password_div">
+        <form name="password_change_form" action="../khy_modal/not_social.php?mode=update_password" method="post">
+        <table id="pass_table">
+          <tr id="pass_title_tr">
+            <td colspan="2"><h3>Change Password</h3></td>
+          </tr>
+          <tr>
+            <td colspan="2">Old Password : </td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="password" name="old_password" id="old_password" value="" style="width: 300px;" ></td>
+            <input type="hidden" name="old_password_con" id="old_password_con" value="<?=$user_password?>">
+          </tr>
+          <tr>
+            <td colspan="2">New Password : </td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="password" name="new_password" id="new_password" value="" style="width: 300px;" placeholder="6 ~ 14 letters(numbers + alphas + specials)"></td>
+          </tr>
+          <tr>
+            <td colspan="2">Verify Password : </td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="password" name="veri_password" id="veri_password" value="" style="width: 300px;" placeholder="6 ~ 14 letters(numbers + alphas + specials)"></td>
+          </tr>
+          <tr><td></td></tr>
+          <tr>
+            <td colspan="2"><input type="button" name="" value="Change Password!" onclick="change_pass_check();"></td>
+          </tr>
+        </table>
+        </form>
       </div>
-
-
+      <br>
 
     <?php
     }
      ?>
 
-
+    </div> <!--end of member_profile -->
+    <div class="clear"></div>
 
 <!--===============================섹션영역=================================== -->
 <?php

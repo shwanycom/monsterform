@@ -10,6 +10,11 @@ if(isset($_SESSION['username'])){
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 ?>
 <?php
+if(isset($_POST['admin_submit_month'])){
+$month=$_POST['admin_submit_month'];
+
+}
+
 //--라인차트 쿼리문(sales)--
   $year_half=date("y");
   $year="20".$year_half;
@@ -120,37 +125,38 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 
   //--파이차트 쿼리문--
   if(!isset($_GET['mode'])){
-    $sql_photos_total = "select sum(report_price) as sum_ph from, count(report_price) as count_ph from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='photos';";
-    $sql_graphics_total = "select sum(report_price) as sum_gr from, count(report_price) as count_gr  `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='graphics';";
-    $sql_fonts_total = "select sum(report_price) as sum_fo from, count(report_price) as count_fo  `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='fonts';";
-    $result_photo = mysqli_query($conn, $sql_photos_total);
-    $row_ph=mysqli_fetch_array($result_photo);
-    $sum_ph = $row_ph['sum_ph'];
-
-    $result_graphics = mysqli_query($conn, $sql_graphics_total);
-    $row_gr=mysqli_fetch_array($result_graphics);
-    $sum_gr=$row_gr['sum_gr'];
-
-    $result_fonts = mysqli_query($conn, $sql_fonts_total);
-    $row_fo=mysqli_fetch_array($result_fonts);
-    $sum_fo=$row_fo['sum_fo'];
+    $filter_month="";
   }else{
     $month=$_POST['admin_submit_month'];
-    $sql_photos_total = "select sum(report_price) as sum_ph from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='photos' and r.report_regist_day like '$year-$month%';";
-    $sql_graphics_total = "select sum(report_price) as sum_gr from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='graphics' and r.report_regist_day like '$year-$month%';";
-    $sql_fonts_total = "select sum(report_price) as sum_fo from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='fonts' and like r.report_regist_day '$year-$month%';;";
+    $filter_month=" and r.report_regist_day like '$year-$month%'";
   }
+  $sql_photos_total = "select sum(report_price) as sum_ph, count(report_price) as count_ph  from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='photos'$filter_month;";
+  $sql_graphics_total = "select sum(report_price) as sum_gr, count(report_price) as count_gr from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='graphics'$filter_month;";
+  $sql_fonts_total = "select sum(report_price) as sum_fo, count(report_price) as count_fo from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='fonts'$filter_month;";
+
   $result_photo = mysqli_query($conn, $sql_photos_total);
   $row_ph=mysqli_fetch_array($result_photo);
   $sum_ph = $row_ph['sum_ph'];
+  $count_ph = $row_ph['count_ph'];
+  if($sum_ph==NULL){
+    $sum_ph=0;
+  }
 
   $result_graphics = mysqli_query($conn, $sql_graphics_total);
   $row_gr=mysqli_fetch_array($result_graphics);
   $sum_gr=$row_gr['sum_gr'];
+  $count_gr=$row_gr['count_gr'];
+  if($sum_gr==NULL){
+    $sum_gr=0;
+  }
 
   $result_fonts = mysqli_query($conn, $sql_fonts_total);
   $row_fo=mysqli_fetch_array($result_fonts);
   $sum_fo=$row_fo['sum_fo'];
+  $count_fo=$row_fo['count_fo'];
+  if($sum_fo==NULL){
+    $sum_fo=0;
+  }
 ?>
 <html>
   <head>
@@ -177,13 +183,17 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
         ?>
       ]);
       var options = {
-        title: 'Company Performance',
+        title: 'Purchase History',
         curveType: 'function',
-        legend: { position: 'bottom' }
+        legend: { position: 'bottom' },
+        height:500,
       };
       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
       chart.draw(data, options);
     }
+    <?php
+
+    ?>
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart1);
     function drawChart1() {
@@ -196,41 +206,62 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
           ?>
         ]);
         var options = {
-          chart:{
-            title: 'sales'
-          },
-          width: 600,
-          height: 400,
+          title: 'sales',
+          height:500,
+          width:500,
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
     }
-
     </script>
+    <link rel="stylesheet" href="../css/common.css?ver=1">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/footer_2.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/admin_chart.css">
   </head>
+
   <body>
-    <form class="" action="admin_sales.php?mode=piechart" method="post">
-      <select class="" name="admin_submit_month">
-        <option value=""><?=$year?></option>
-        <option value="">01</option>
-        <option value="">02</option>
-        <option value="">03</option>
-        <option value="">04</option>
-        <option value="">05</option>
-        <option value="">06</option>
-        <option value="">07</option>
-        <option value="">08</option>
-        <option value="">09</option>
-        <option value="">10</option>
-        <option value="">11</option>
-        <option value="">12</option>
-      </select>
-      <input type="submit" name="" value="">
-    </form>
-    <div class="">
-      <span></span>
-    </div>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <?php
+      include "../lib/header_in_folder.php";
+    ?>
+    <br><br>
+    <section id="admin_chart_section">
+
+
+      <div id="curve_chart"></div>
+      <div id="piechart" ></div>
+      <div id="admin_chart_form">
+        <form class="" action="admin_sales.php?mode=piechart" method="post">
+          <select class="" name="admin_submit_month">
+            <option value=""><?=$year?></option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <input type="submit" name="" value="선택">
+        </form>
+      </div>
+      <div id="admin_pie_chart_span">
+        <span>photos갯수 : <?=$count_ph?></span>
+        <span>graphics갯수 : <?=$count_gr?></span>
+        <span>fonts갯수 : <?=$count_fo?></span>
+      </div>
+    </section>
+
+    <?php
+      include "./admin_main_in_folder.php";
+      include "../lib/footer_in_folder.php";
+      include "../khy_modal/login_modal_in_folder.php";
+    ?>
   </body>
 </html>

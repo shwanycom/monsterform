@@ -36,7 +36,7 @@
     $regist_day = $row['regist_day'];
     $date = date_create($regist_day);
     $regist_day = date_format($date,"F d, Y");
-    $mon = $row['price']/100;
+    $mon = $row['price'];
     $handpicked = $row['handpicked'];
     $freegoods = $row['freegoods'];
     $hit = $row['hit'];
@@ -63,6 +63,16 @@
     // $subject=str_replace("\n", "<br>",$subject);
     // $content=str_replace(" ", "&nbsp;",$content);
     // $content=str_replace("\n", "<br>",$content);
+
+    $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$i_num;";
+    $result = mysqli_query($conn,$sql);
+    if (!$result) {
+      alert_back('5.Error: '.mysqli_error($conn));
+    }
+    $row=mysqli_fetch_array($result);
+    if($row){
+      $type="added";
+    }
     mysqli_close($conn);
   }
   ?>
@@ -108,8 +118,7 @@
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
-  <form class="" action="../shop/cart_report_dml.php" method="post"
-    id = "shop_view_form">
+  <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
   <div class="shop_view_wrap">
     <div class="shop_view_category">
       <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
@@ -215,6 +224,7 @@
               <!-- <i class="fab fa-optin-monster" style="font-size:25px; color:#2f8f94;"></i> -->
             </div>
           </div>
+          
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
             <div class="shop_view_sticky_inner_btn" style="height:30%;">
               <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
@@ -231,7 +241,7 @@
         </div><!-- end of shop_view_sticky_purchase -->
       </div><!-- end of shop_view_sticky -->
     </div><!-- end of shop_view_narrow -->
-    <input type="hidden" name="product_num" value="<?=$i_num?>">
+    <input type="hidden" name="product_num_set" value="/<?=$i_num?>">
     <input type="hidden" name="mon" value="<?=$mon?>">
     <input type="hidden" name="cart_img_name" value="<?=$img_file_copied1?>">
     </form>
