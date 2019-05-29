@@ -219,7 +219,8 @@
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_product_info">
           <div class="shop_view_sticky_inner" style="border-bottom:1px solid #c1bebe; padding-bottom:4%; height: 100%;">
-            <h2 style="text-align:left; font-size:1.9em"><?=$subject?> </h2>
+            <div class="" style="text-align:left; font-size:1.9em; word-break:break-all;"> <?=$subject?>    </div>
+            <!-- <h2 style="text-align:left; font-size:1.9em"> </h2> -->
             <p style="text-align:right;"><span style="color: #7d7b78;"><i>By</i> </span> <span><?=$username?></span></p>
             <p style="text-align:right; color: #7d7b78;"><i><?=$regist_day?></i></p>
           </div>
