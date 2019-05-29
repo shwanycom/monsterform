@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_get("Asia/Seoul");
+date_default_timezone_set("Asia/Seoul");
 $servername = "localhost";
 $username = "root";
 $password = "123456";
@@ -12,7 +12,7 @@ $sql = "show databases";
 $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
 while ($row = mysqli_fetch_row($result)) {
   if($row[0]==="monsterform_db"){
-    $dbflag="OK";    
+    $dbflag="OK";
   }
 }
 //$name=$sub1=$sub2=$sub3=$sub4=$sub5=$sum=$avg="";
