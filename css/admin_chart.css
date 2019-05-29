@@ -10,14 +10,43 @@ rect{
   fill: rgba(245,245,244,230);
 }
 
-.admin_chart_select, .admin_chart_span{
-  display: inline-block;
-}
 #admin_chart_form{
   width:1257px;
   display: flex;
   align-items: center;
 }
+.admin_chart_select_div, .admin_chart_span_div{
+
+}
 #piechart{
   margin:auto;
+}
+.admin_chart_select_span_div{
+  display: inline-block;
+}
+.admin_chart_select_div_form_select{
+  height:36px;
+  border:2px solid lightgray;
+  outline: none;
+  margin-left:0px;
+}
+
+#admin_chart_select_div_form_submit{
+  height:30px;
+  width:150px;
+  outline: none;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+#admin_chart_select_div_form_submit:hover{
+  cursor: pointer;
+  height:30px;
+  width:150px;
+  outline: none;
+  background-color: #bbbbbb;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+.admin_chart_span_div span{
+  font-size:20pt;
 }

@@ -19,7 +19,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $subject = trim($_POST["subject"]);
     $content = trim($_POST["content"]);
     $regist_day=date("Y-m-d");
-    $price = $_POST["setted_mon"]*100;
+    $price = $_POST["setted_mon"];
     $big_data=$_POST["big_data"];
 
     $hash_tag = $_POST["hash_tag"];
@@ -63,16 +63,11 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     var_export($copied_font_file_name); echo "<br>";
     var_export($font_type[0]); echo "<br>";
 
-    //파일에 실제명과
-    $sql="INSERT INTO `products` VALUES
- ($q_memeber_no,null,'$q_memeber_username','$q_member_email','$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$big_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',
- '$copied_img_file_name[0]','$copied_img_file_name[1]','$copied_img_file_name[2]','$copied_img_file_name[3]','$zip_file_name','$copied_zip_file_name','$type[0]','$font_file_name','$copied_font_file_name','$font_type[0]','$freegoods_agree','$file_type');";
-  var_dump($sql);
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      alert_back('5.Error: ' . mysqli_error($conn));
-      //die('Error: ' . mysqli_error($conn));
-    }
+$sql="INSERT INTO `products` VALUES
+($q_memeber_no,null,'$q_memeber_username','$q_member_email','$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$big_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',
+'$copied_img_file_name[0]','$copied_img_file_name[1]','$copied_img_file_name[2]','$copied_img_file_name[3]','$zip_file_name','$copied_zip_file_name','$type[0]','$font_file_name','$copied_font_file_name','$font_type[0]','$freegoods_agree','$file_type');";
+    //var_dump($sql);
+    $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
 
     //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num를 찾아서 전달
     $sql="SELECT num from `products` where email ='$q_member_email' order by num desc limit 1;";
@@ -83,7 +78,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     }
     $row=mysqli_fetch_array($result);
     $num=$row['num'];
-
 
     mysqli_close($conn);
     echo "<script>location.href='./shop_view.php?num=$num';</script>";

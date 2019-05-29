@@ -24,12 +24,16 @@ if(isset($_GET["hwan_mon"])){
 
 if(isset($_GET["mode"]) && $_GET["mode"]=='delete'){
   $q_no = mysqli_real_escape_string($conn, $get_no);
-  $sql="DELETE FROM `member` WHERE no='$q_no'";
+  $sql="UPDATE `member` set `location`='hell' WHERE no='$q_no'";
   $result = mysqli_query($conn, $sql);
   if (!$result) {
-    die('Error: DELETE ERROR' . mysqli_error($conn));
+    die('Error: BLOCK ERROR' . mysqli_error($conn));
   }
-  mysqli_close($conn);
+  $sql_del_products = "DELETE from `products` where no='$q_no'";
+  $result_del = mysqli_query($conn, $sql_del_products);
+  if (!$result_del) {
+    die('Error: PRODUCTS DEL ERROR' . mysqli_error($conn));
+  }
   echo "<script> location.href='./admin_member.php';</script>";
 }
 
