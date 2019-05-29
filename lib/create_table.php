@@ -172,8 +172,7 @@ function create_table($conn, $table_name){
               `pro_freegoods` varchar(100) NOT NULL DEFAULT 'n',
               `pro_hit` int(11) NOT NULL DEFAULT '0',
               `pro_big_data` varchar(100) NOT NULL,
-              `pro_img_file_copied` varchar(100) NOT NULL,
-              PRIMARY KEY (`num`)
+              `pro_img_file_copied` varchar(100) NOT NULL              
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
 
