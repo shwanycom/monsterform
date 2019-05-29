@@ -467,7 +467,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       <?php
       if($number!=0){
       ?>
-      <button type="button" id="read_more_button" onclick="read_more()">...Read More...</button>
+      <button type="button" id="read_more_button" onclick="read_more()">Load More Products</button>
       <?php
       }
        ?>
