@@ -245,7 +245,7 @@ $number=$total_record- $start_row;
         <input type="hidden" class="hidden_num" value="'.$num.'">
         <figure class="snip1368">
           <a href="#">
-            <img id="main_img" src="../img/'.$img_file_copied1.'" alt="sample30" />
+            <img id="main_img" src="../data/img/'.$img_file_copied1.'" alt="sample30" />
           </a>
           <div class="hover_img" id="hover_img_id">
             <img src="'.$freegoods_img.'" class="go_free_goods_img_class" name="go_free_goods_img"  style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -316,10 +316,10 @@ $number=$total_record- $start_row;
     </div>
     <br><br>
     <div class="form_pick_date_div">
+      <form class="" action="admin_freegoods_dml.php?mode=date" method="post">
       <label id="pick_date_label" for="">EXPIRATION DATE</label>
       <input id="pick_date" type="datetime-local" name="pick_date" value="">
         <input id="pick_date_submit" type="submit" name="" value="CONFIRM">
-        <form class="" action="admin_freegoods_dml.php?mode=date" method="post">
       </form>
     </div>
     <br><br>

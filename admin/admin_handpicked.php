@@ -228,7 +228,7 @@ $number=$total_record- $start_row;
         <input type="hidden" class="hidden_num" value="'.$num.'">
         <figure class="snip1368">
           <a href="#">
-            <img id="main_img" src="../img/'.$img_file_copied1.'" alt="sample30" />
+            <img id="main_img" src="../data/img/'.$img_file_copied1.'" alt="sample30" />
           </a>
           <div class="hover_img" id="hover_img_id">
             <img src="'.$handpicked_img.'" class="go_hand_picked_img_class" value="" name="go_hand_picked_img_class" style="width:25px; height:25px;"><!--가져다 댔을때-->
