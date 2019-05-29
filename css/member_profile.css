@@ -163,18 +163,22 @@ figure.snip1368 {
   position: relative;
   overflow: hidden;
   margin: 7.1px;
-  min-width: 250px;
+  min-width: 300px;
   max-width: 300px;
   /*   width: 100%; */
   color: #ffffff;
   line-height: 1.4em;
 }
-
+/* 수정 */
 #main_img_likes{
-  width : 25%;
+  /* width : 25%;
   height : 50%;
   margin: 0;
-  padding: 0;
+  padding: 0; */
+  width: 250px;
+  height: 200px;
+  border: 3px solid #fff;
+  border-radius: 10px;
 }
 
 #usemf_table td{
@@ -308,8 +312,41 @@ figure.snip1368 {
   font-size:18pt;
 }
 .title_h2{
-  
+
 text-align:left;
 font-size:27pt;
 border-bottom:1px solid lightgray;
+}
+#edit_btn{
+width: 110px;
+height: 30px;
+background-color: rgba(151,177,98,129);
+color: rgb(245,245,244,230);
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+#reque_btn{
+  width: 110px;
+  height: 30px;
+  background-color: rgba(151,177,98,129);
+  color: rgb(245,245,244,230);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.list_title_div{
+  text-align:left;
+  width: 250px;
+}
+#follow_button{
+  cursor: pointer;
+  background-color: #e5e5e4;
+  outline: none;
+  border: none;
+  color:#7d7b78;
+  width: 80px;
+  height: 30px;
+  border-radius: 3px;
 }

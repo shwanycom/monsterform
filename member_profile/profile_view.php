@@ -48,10 +48,10 @@ if (!$follow_status_result) {
 }
 if($follow_status_num = mysqli_num_rows($follow_status_result)==1){
   $follow_status = 'y';
-  $follow_style = 'style = "background-color:lightgreen"';
+  $follow_style = 'style = "background-color:rgba(151, 177, 98, 129)"';
 }else{
   $follow_status = 'n';
-  $follow_style = 'style = "background-color:lightgray"';
+  $follow_style = 'style = "background-color:#e5e5e4"';
 }
 
 define('SCALE', 6);
@@ -308,15 +308,15 @@ $number = $total_record - $start;
                     <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
                   </div>
                   <div class="list_title_div">
-                    <div class="">
+                    <div class="" style="">
                       <a href="#" class="">
-                        <span class="list_title_div_span_bold"><?=$item_subject?></span>
+                        <span class="list_title_div_span_bold" ><?=$item_subject?></span>
                       </a>
-                      <a href="#" class="list_title_div_a_float_right">
+                      <a href="#" class="list_title_div_a_float_right" >
                          <?=$item_price?>&nbsp;M
                       </a>
                     </div>
-                    <div class="">
+                    <div class="" >
                         by&nbsp;<a href="../member_profile/profile_view.php?mode=shop&email=<?=$item_email?>" class=""><?=$item_email?></a>
                         in&nbsp;<a href="../product_list/list.php?big_data=<?=$item_big_data?>" class=""><?=$item_big_data?></a>
                     </div>
@@ -639,8 +639,8 @@ $number = $total_record - $start;
           <tr>
             <?php
             if($member_email == $shop_email){
-              echo '<td><a href="./profile_edit.php?mode=profile_info"><button type="button" name="button">Edit Profile</button></a></td>
-                    <td><a href="./profile_edit.php?mode=requests"><button type="button" name="button">Requests</button></a></td>
+              echo '<td><a href="./profile_edit.php?mode=profile_info"><button type="button" name="button" id="edit_btn">Edit Profile</button></a></td>
+                    <td><a href="./profile_edit.php?mode=requests"><button type="button" name="button" id="reque_btn">Requests</button></a></td>
                     ';
             }else{
               if($follow_status=='n'){
