@@ -8,7 +8,7 @@
   create_table($conn, "products");
   ?>
   <?php
-  $row = "";
+  $row = $type = "";
   if(!isset($_GET['num']) || empty($_GET['num'])){
     echo "<script>alert('제품번호(num)을 주세용');
           history.go(-1);</script>";
@@ -74,7 +74,7 @@
       if($row){
         $type="added";
       }
-      $sql="SELECT * from `report` where `no`=$member_no && `product_num`=$i_num;";
+      $sql="SELECT * from `collections` where `buy_no`=$member_no && `pro_num`=$i_num;";
       $result = mysqli_query($conn,$sql);
       if (!$result) {
         alert_back('5.Error: '.mysqli_error($conn));
@@ -241,10 +241,10 @@
             if($user_no==$member_no){
             ?>
               <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <a href="./shop_write_form.php?num=<?=$i_num?>">
-                <button type="button" style="background-color:#70a330; color:white; "
+                <a href="./shop_dml_board.php?mode=delete&num=<?=$i_num?>">
+                <button type="button" style="background-color:#ff761f; border-color:#ff761f ; color:white;"
                 onclick="">
-                <b>Edit Product</b></button><a>
+                <b>Delte Product</b></button><a>
               </div>
             <?php
             }else if($type=="added"){

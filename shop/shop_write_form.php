@@ -1,131 +1,86 @@
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
-  <?php
-  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
-  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
-  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
-  // session_start();
-  // if(isset($_SESSION['no'])){
-  // $member_no = $_SESSION['no'];
-  // $member_email = $_SESSION['email'];
-  // $member_username = $_SESSION['username'];
-  // $member_mon = $_SESSION['mon'];
-  // $member_partner = $_SESSION['partner'];
-  // }
+<?php
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+// session_start();
+// if(isset($_SESSION['no'])){
+// $member_no = $_SESSION['no'];
+// $member_email = $_SESSION['email'];
+// $member_username = $_SESSION['username'];
+// $member_mon = $_SESSION['mon'];
+// $member_partner = $_SESSION['partner'];
+// }
+create_table($conn, "products"); //가입인사 게시판 테이블 생성
+  // $subject=htmlspecialchars($row['subject']);
+  // $content=htmlspecialchars($row['content']);
+  // $subject=str_replace(" ", "&nbsp;",$subject);
+  // $subject=str_replace("\n", "<br>",$subject);
+  // $content=str_replace(" ", "&nbsp;",$content);
+  // $content=str_replace("\n", "<br>",$content);
+  mysqli_close($conn);
+?>
 
-  create_table($conn, "products"); //가입인사 게시판 테이블 생성
-  if(!empty($_GET['num'])){
-    $num = $_GET['num'];
-    $mode = "update";
-  }else{
-    $mode="insert";
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/shop_write_form.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+  integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+  crossorigin="anonymous">
+<script type="text/javascript" src="../js/monsterform.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
   }
-  $big_data="";
-  if($mode=="update"){
-    $sql="SELECT `products`.*,`pro_img_named`,`pro_img_copied` from `products` inner join `member` ON `products`.`no`=`member`.`no` WHERE `num` = $num;";
-    $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-    $row = mysqli_fetch_array($result);
-    $user_no = $row['no'];
-    $username = $row['username'];
-    $email = $row['email'];
-    $subject = $row['subject'];
-    $content = $row['content'];
-    $content = str_replace("\n","<br>", $content);
-    $regist_day = $row['regist_day'];
-    $date = date_create($regist_day);
-    $regist_day = date_format($date,"F d, Y");
-    $mon = $row['price'];
-    $handpicked = $row['handpicked'];
-    $freegoods = $row['freegoods'];
-    $hit = $row['hit'];
-    $sell_count = $row['sell_count'];
-    $big_data = $row['big_data'];
-    $small_data = $row['small_data'];
-    $hash_tag = $row['hash_tag'];
-    // $img_file_name1 = $row['img_file_cop1'];
-    // $img_file_name2 = $row['img_file_name2'];
-    // $img_file_name3 = $row['img_file_name3'];
-    // $img_file_name4 = $row['img_file_name4'];
-    $img_file_copied1 = $row['img_file_copied1'];
-    $img_file_copied2 = $row['img_file_copied2'];
-    $img_file_copied3 = $row['img_file_copied3'];
-    $img_file_copied4 = $row['img_file_copied4'];
-    $zip_file_name = $row['zip_file_name'];
-    $zip_file_copied = $row['zip_file_copied'];
-    $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
-    $file_type = $row['file_type'];
-
-    // $subject=htmlspecialchars($row['subject']);
-    // $content=htmlspecialchars($row['content']);
-    // $subject=str_replace(" ", "&nbsp;",$subject);
-    // $subject=str_replace("\n", "<br>",$subject);
-    // $content=str_replace(" ", "&nbsp;",$content);
-    // $content=str_replace("\n", "<br>",$content);
-
-    mysqli_close($conn);
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("shop_write_mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+    }
+    x[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " w3-opacity-off";
   }
+</script>
 
-  ?>
+<script>
+  var loadFile1 = function(event) {
+    var mini = document.getElementById('shop_write_mini1');
+    var gal = document.getElementById('shop_write_gal1');
+    mini.src = URL.createObjectURL(event.target.files[0]);
+    gal.src = URL.createObjectURL(event.target.files[0]);
+  };
+  var loadFile2 = function(event) {
+    var mini = document.getElementById('shop_write_mini2');
+    var gal = document.getElementById('shop_write_gal2');
+    mini.src = URL.createObjectURL(event.target.files[0]);
+    gal.src = URL.createObjectURL(event.target.files[0]);
+  };
+  var loadFile3 = function(event) {
+    var mini = document.getElementById('shop_write_mini3');
+    var gal = document.getElementById('shop_write_gal3');
+    mini.src = URL.createObjectURL(event.target.files[0]);
+    gal.src = URL.createObjectURL(event.target.files[0]);
+  };
+  var loadFile4 = function(event) {
+    var output = document.getElementById('shop_write_mini4');
+    var gal = document.getElementById('shop_write_gal4');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    gal.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/shop_write_form.css">
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-   integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-   crossorigin="anonymous">
-  <script type="text/javascript" src="../js/monsterform.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
-  <script>
-    function currentDiv(n) {
-      showDivs(slideIndex = n);
-    }
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("shop_write_mySlides");
-      var dots = document.getElementsByClassName("demo");
-      if (n > x.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
-      }
-      x[slideIndex-1].style.display = "block";
-      dots[slideIndex-1].className += " w3-opacity-off";
-    }
-  </script>
-
-  <script>
-    var loadFile1 = function(event) {
-      var mini = document.getElementById('shop_write_mini1');
-      var gal = document.getElementById('shop_write_gal1');
-      mini.src = URL.createObjectURL(event.target.files[0]);
-      gal.src = URL.createObjectURL(event.target.files[0]);
-    };
-    var loadFile2 = function(event) {
-      var mini = document.getElementById('shop_write_mini2');
-      var gal = document.getElementById('shop_write_gal2');
-      mini.src = URL.createObjectURL(event.target.files[0]);
-      gal.src = URL.createObjectURL(event.target.files[0]);
-    };
-    var loadFile3 = function(event) {
-      var mini = document.getElementById('shop_write_mini3');
-      var gal = document.getElementById('shop_write_gal3');
-      mini.src = URL.createObjectURL(event.target.files[0]);
-      gal.src = URL.createObjectURL(event.target.files[0]);
-    };
-    var loadFile4 = function(event) {
-      var output = document.getElementById('shop_write_mini4');
-      var gal = document.getElementById('shop_write_gal4');
-      output.src = URL.createObjectURL(event.target.files[0]);
-      gal.src = URL.createObjectURL(event.target.files[0]);
-    };
-  </script>
   <!-- <script>
     $("mon_selector").on("keydown", function(e){
       if(!((e.keyCode > 95 && e.keyCode < 106)
@@ -136,76 +91,78 @@
     });
   </script> -->
 
-  <script>
-  var val="";
-  var big_data="";
-  $(document).ready(function(){
-    $("#shop_write_select").change(function() {
-      big_data = $("#shop_write_select option:selected").val();
-      console.log("셀렉트 값 변경감지 : " + big_data);
-      $("#big_data").val(big_data);
-      var check = $("#big_data").val();
-      console.log("히든 값 :" + check);
-      switch (check) {
-        case "Photos" : console.log("포토선택케이스");
+<script>
+var val="";
+var big_data="";
+$(document).ready(function(){
+  $("#shop_write_select").change(function() {
+    big_data = $("#shop_write_select option:selected").val();
+    console.log("셀렉트 값 변경감지 : " + big_data);
+    $("#big_data").val(big_data);
+    var check = $("#big_data").val();
+    console.log("히든 값 :" + check);
+    switch (check) {
+      case "Photos" : console.log("포토선택케이스");
+                      $("#ttf_file").remove();
+                      break;
+      case "Graphics" : console.log("그래픽선택케이스");
                         $("#ttf_file").remove();
                         break;
-        case "Graphics" : console.log("그래픽선택케이스");
-                          $("#ttf_file").remove();
-                          break;
-        case "Fonts" : console.log("폰트선택케이스");
-                       $("#shop_write_upload").append('<input type="file" name="font_file" id="ttf_file">');
-                       break;
-        default: break;
-      }
-    });
-    $("#free_check").click(function(){
-        var chk = $(this).is(":checked");//.attr('checked');
-        if(chk) {
-          console.log("췤");
-          // $("#mon_selector").val(0);
-          // $("#mon_selector").attr("disabled",true);
-          $("#free_check").val("y");
-        }else{
-          console.log("언췤");
-          // $("#mon_selector").val(10);
-          // $("#mon_selector").attr("disabled",false);
-          $("#free_check").val("n");
-        }
-        console.log($("#free_check").val());
-    });
-    $("#shop_write_input_tag").keyup(function(e){
-      if (e.keyCode == 13) {
-        var value = "#" + $(this).val();
-        console.log(value);
-        $("#shop_write_tags").append('<span class="s_v_tags">' + value + '</span>');
-        $(this).val("");
-      }
-    });
-    $(document).on('click','.s_v_tags',function(){
-      console.log("해쉬태그 클릭됨");
-      $(this).remove();
-    });
-  });
-  </script>
-
-  <script>
-    function save_product(){
-      var hidden="";
-      var i;
-      //=========================해쉬태크문자열만들기============================
-      // console.log("제출버튼 클릭됨");
-      var tags = document.getElementsByClassName("s_v_tags");
-      for (i in tags) {
-        if(tags[i].innerHTML){
-          hidden += tags[i].innerHTML;
-        }
-      }
-      document.getElementById("hash_tag").value=hidden;
-
-      document.getElementById("shop_write_form").submit();
+      case "Fonts" : console.log("폰트선택케이스");
+                      $("#shop_write_upload").append('<div id="shop_write_upload2"></div>');
+                      $("#shop_write_upload2").append('<label for="ttf_file" id="label1"> Upload font file </label>');                      
+                      $("#shop_write_upload").append('<input type="file" name="font_file" id="ttf_file">');
+                      break;
+      default: break;
     }
-  </script>
+  });
+  $("#free_check").click(function(){
+      var chk = $(this).is(":checked");//.attr('checked');
+      if(chk) {
+        console.log("췤");
+        // $("#mon_selector").val(0);
+        // $("#mon_selector").attr("disabled",true);
+        $("#free_check").val("y");
+      }else{
+        console.log("언췤");
+        // $("#mon_selector").val(10);
+        // $("#mon_selector").attr("disabled",false);
+        $("#free_check").val("n");
+      }
+      console.log($("#free_check").val());
+  });
+  $("#shop_write_input_tag").keyup(function(e){
+    if (e.keyCode == 13) {
+      var value = "#" + $(this).val();
+      console.log(value);
+      $("#shop_write_tags").append('<span class="s_v_tags">' + value + '</span>');
+      $(this).val("");
+    }
+  });
+  $(document).on('click','.s_v_tags',function(){
+    console.log("해쉬태그 클릭됨");
+    $(this).remove();
+  });
+});
+</script>
+
+<script>
+  function save_product(){
+    var hidden="";
+    var i;
+    //=========================해쉬태크문자열만들기============================
+    // console.log("제출버튼 클릭됨");
+    var tags = document.getElementsByClassName("s_v_tags");
+    for (i in tags) {
+      if(tags[i].innerHTML){
+        hidden += tags[i].innerHTML;
+      }
+    }
+    document.getElementById("hash_tag").value=hidden;
+
+    document.getElementById("shop_write_form").submit();
+  }
+</script>
 
 </head>
 <body>
@@ -214,7 +171,7 @@
   ?>
   <!--============================================================================== -->
   <div class="shop_write_wrap">
-    <form name="shop_write_form" id="shop_write_form" action="shop_dml_board.php?mode=<?=$mode?>"
+    <form name="shop_write_form" id="shop_write_form" action="shop_dml_board.php?mode=insert"
       method="post" enctype="multipart/form-data">
     <div class="shop_write_category">
       <input class="shop_write_text" type="text" name="subject" placeholder="Add Title..." id="shop_write_title"><br>
@@ -226,15 +183,23 @@
         <option value="Fonts">Fonts</option>
       </select>
       <input type="hidden" name="big_data" id="big_data">
+      <select class="shop_write_select" name="shop_write_select" id="shop_write_select2">
+
+        <option value="" disabled selected>Choose Category</option>
+        <option value="Photos">Photos</option>
+        <option value="Graphics">Graphics</option>
+        <option value="Fonts">Fonts</option>
+      </select>
+      <input type="hidden" name="small_data" id="small_data">
     </div>
 
     <div class="shop_write_container">
       <div id="shop_write_div1">
         <div class="shop_write_gal">
-          <img class="shop_write_mySlides" id="shop_write_gal1" src="./data/add_img.png" style="width:100%; ">
-          <img class="shop_write_mySlides" id="shop_write_gal2" src="./data/add_img.png" style="width:100%; display:none">
-          <img class="shop_write_mySlides" id="shop_write_gal3" src="./data/add_img.png" style="width:100%; display:none">
-          <img class="shop_write_mySlides" id="shop_write_gal4" src="./data/add_img.png" style="width:100%; display:none">
+          <img class="shop_write_mySlides" id="shop_write_gal1" src="../img/add_img.png" style="width:100%; ">
+          <img class="shop_write_mySlides" id="shop_write_gal2" src="../img/add_img.png" style="width:100%; display:none">
+          <img class="shop_write_mySlides" id="shop_write_gal3" src="../img/add_img.png" style="width:100%; display:none">
+          <img class="shop_write_mySlides" id="shop_write_gal4" src="../img/add_img.png" style="width:100%; display:none">
         </div>
 
         <!-- <div id="profile_image_div_right">
@@ -246,23 +211,23 @@
 
         <div class="shop_write_minigal_set">
           <div class="shop_write_minigal">
-            <label for="img_upfile1"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            <label for="img_upfile1"><img class="demo w3-opacity w3-hover-opacity-off" src="../img/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(1)" id="shop_write_mini1"></label>
             <!-- <label for="img_upfile1">Add Image</label> -->
             <input type="file" name="img_file[]" id="img_upfile1" accept="image/*" onchange="loadFile1(event)">
           </div>
           <div class="shop_write_minigal">
-            <label for="img_upfile2"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            <label for="img_upfile2"><img class="demo w3-opacity w3-hover-opacity-off" src="../img/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(2)" id="shop_write_mini2"></label>
             <input type="file" name="img_file[]" id="img_upfile2" accept="image/*" onchange="loadFile2(event)" >
           </div>
           <div class="shop_write_minigal">
-            <label for="img_upfile3"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            <label for="img_upfile3"><img class="demo w3-opacity w3-hover-opacity-off" src="../img/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(3)" id="shop_write_mini3"></label>
             <input type="file" name="img_file[]" id="img_upfile3" accept="image/*" onchange="loadFile3(event)">
           </div>
           <div class="shop_write_minigal">
-            <label for="img_upfile4"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            <label for="img_upfile4"><img class="demo w3-opacity w3-hover-opacity-off" src="../img/add_img.png"
             style="width:100%;cursor:pointer" onclick="currentDiv(4)" id="shop_write_mini4"></label>
             <input type="file" name="img_file[]" id="img_upfile4" accept="image/*" onchange="loadFile4(event)">
           </div>
