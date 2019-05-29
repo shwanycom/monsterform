@@ -33,7 +33,7 @@ $pro_img_copied=$row["pro_img_copied"];
 if($pro_img_copied!=null){
 	$pro_img_copied= $row["pro_img_copied"];
 }else{
-	$pro_img_copied= '2018_07_23_04_08_14_3.jpg';
+	$pro_img_copied= 'no_profile.png';
 }
 ?>
 
@@ -102,7 +102,7 @@ if($pro_img_copied!=null){
 					<div id="ripple_title">
 						<div id="write_form">
 							<div class="write_form_img">
-								<a href="#"><img src="./data/<?=$pro_img_copied?>" class="message_pro"></a>
+								<a href="#"><img src="../data/img/<?=$pro_img_copied?>" class="message_pro"></a>
 								<div class="write_form_2">
 									<div class="write_form_3">
 										<a href="#" style="text-decoration:none"><span id="send_span"><?=$ripple_email?></span></a>

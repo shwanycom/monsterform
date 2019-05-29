@@ -226,7 +226,7 @@ figure.snip1368 {
 }
 
 #change_password_div{
-  /* padding-left: 40%; */
+  padding-left: 40%;
 }
 
 #pass_table{
@@ -345,7 +345,18 @@ cursor: pointer;
   background-color: #e5e5e4;
   outline: none;
   border: none;
-  color:#7d7b78;
+  /* color:#7d7b78; */
+  font-weight: bold;
+  width: 80px;
+  height: 30px;
+  border-radius: 3px;
+}
+.message_btn{
+  cursor: pointer;
+  background-color: #e5e5e4;
+  outline: none;
+  border: none;
+  font-weight: bold;
   width: 80px;
   height: 30px;
   border-radius: 3px;
