@@ -253,9 +253,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         var handpicked = 'n';
         var popular = 'n';
         if(big_data=='none'){
-          var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+          var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#big_data_select";
         }else{
-          var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular;
+          var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#big_data_select";
         }
         window.location.href = location;
         $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
