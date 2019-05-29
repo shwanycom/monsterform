@@ -155,7 +155,7 @@ $number=$total_record- $start_row;
                   <td width='181.2'>LOCATION</td>
                   <td width='150'>PROFESSION</td>
                   <td width='181.2'>PURPOSE</td>
-                  <td width='90'>DEL</td>
+                  <td width='90'>BLOCK</td>
                   <td width='115'>PARTNER</td>
                   <td width='250'>EXCHANGE MON</td>
                   </tr>";
@@ -178,6 +178,11 @@ $number=$total_record- $start_row;
         $button_index="PARTNER";
       }
       $location=$row["location"];
+      if($location=='hell'){
+        $button_block="blocked";
+      }else{
+        $button_block="block";
+      }
       $profession=$row["profession"];
       $use_mf=$row["use_mf"];
       echo '<tr class="">
@@ -193,7 +198,7 @@ $number=$total_record- $start_row;
                   <td>'.$profession.'</td>
                   <td>'.$use_mf.'</td>
                   <td>
-                  <button type="button" class="button" id="button_delete" onclick="check_delete('.$no.')">DELETE</button>
+                  <button type="button" class="button" id="button_delete" onclick="check_delete('.$no.')">'.$button_block.'</button>
                   </td>
                   <td>
                   <button type="button" class="button" id="button_update" onclick="check_partner(\''.$no.'\',\''.$button_index.'\')">'.$button_index.'</button>
