@@ -68,14 +68,14 @@ function check_input(){
     $("#member_username").css("border","2px solid #cfcfcf");
     $("#member_username").attr("title","사용 가능한 닉네임 입니다");
   }
-  var password_pattern = /^[a-zA-Z0-9]{4,15}$/;
+  var password_pattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,14}$/;
   if(password.value.length===0){
     $("#member_password").css("border","2px solid #ff948a");
     $("#member_password").attr("title","비밀번호를 입력해주세요");
     return false;
   }else if(!password_pattern.test(password.value)){
     $("#member_password").css("border","2px solid #ff948a");
-    $("#member_password").attr("title","사용할 수 없는 비밀번호 입니다");
+    $("#member_password").attr("title","비밀번호는 영문+숫자+특수문자조합 6~14자입니다.");
     return false;
   }else{
     $("#member_password").css("border","2px solid #cfcfcf");
