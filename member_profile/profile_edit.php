@@ -520,7 +520,7 @@ if(!isset($member_no)){
              if($user_present_hwan_mon == 0){
                echo '<input type="button" name="" value="Request Mon" id="chang_pw_btn" onclick="hwan_mon_check();">';
              }else{
-               echo '<div id="request_status"> Present Request : '.$user_present_hwan_mon.' </div>';
+               echo '<div id="request_status"> Present Request : '.$user_present_hwan_mon.' Mon </div>';
              }
               ?>
            </td>

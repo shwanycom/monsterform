@@ -361,3 +361,12 @@ cursor: pointer;
   height: 30px;
   border-radius: 3px;
 }
+#member_likes_div{
+  padding-left: 6%;
+  margin-bottom: 50px;
+
+}
+.img_div1{
+  display: inline-block;
+  padding-left:30px;
+}
