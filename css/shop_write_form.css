@@ -41,7 +41,7 @@ div.shop_write_narrow{
 }
 div.shop_write_upload{
   width : 100%;
-  height: 100px;
+  max-height: 250px;
   color: #7d7b78;
   padding: 0;
   margin:2px;
@@ -204,7 +204,7 @@ div#shop_write_tags span{
   padding-top:5%;
   height: 50%;
 }
-#shop_write_upload1 span{
+#shop_write_upload span{
   font-size: 1.8em;
 }
 #shop_write_upload1 span:hover {
@@ -213,6 +213,14 @@ div#shop_write_tags span{
 }
 
 #shop_write_upload1 span:active {
+  background-color: #367c36;
+}
+#shop_write_upload2 span:hover {
+  background-color: #70a330;
+  color: white;
+}
+
+#shop_write_upload2 span:active {
   background-color: #367c36;
 }
 

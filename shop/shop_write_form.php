@@ -110,8 +110,8 @@ $(document).ready(function(){
                         break;
       case "Fonts" : console.log("폰트선택케이스");
                       $("#shop_write_upload").append('<div id="shop_write_upload2"></div>');
-                      $("#shop_write_upload2").append('<label for="ttf_file" id="label1"> Upload font file </label>');                      
                       $("#shop_write_upload").append('<input type="file" name="font_file" id="ttf_file">');
+                      $("#shop_write_upload2").html("<label for='ttf_file'><span>Upload font file</span></label>");
                       break;
       default: break;
     }
