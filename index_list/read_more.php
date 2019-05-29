@@ -151,22 +151,23 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
      }else{
        $freegoods_img="./img/free_partner_logo.png";
      }
+     if(isset($member_no)){
+       $sql_likes = "SELECT product_num from likes where no = '$member_no';";
+       $result_likes = mysqli_query($conn, $sql_likes);
+       $total_record_likes = mysqli_num_rows($result_likes);
 
-     $sql_likes = "SELECT product_num from likes where no = '$member_no';";
-     $result_likes = mysqli_query($conn, $sql_likes);
-     $total_record_likes = mysqli_num_rows($result_likes);
+       $likes_img = "./img/hover_like.png";
+       $likes_img_value = "n";
 
-     $likes_img = "./img/hover_like.png";
-     $likes_img_value = "n";
-
-     for($j=0;$j<$total_record_likes;$j++){
-       mysqli_data_seek($result_likes, $j);
-       $row_likes = mysqli_fetch_array($result_likes);
-       $likes = $row_likes['product_num'];
-       if($likes == $item_num){
-         $likes_img = "./img/like.png";
-         $likes_img_value = "y";
-         break;
+       for($j=0;$j<$total_record_likes;$j++){
+         mysqli_data_seek($result_likes, $j);
+         $row_likes = mysqli_fetch_array($result_likes);
+         $likes = $row_likes['product_num'];
+         if($likes == $item_num){
+           $likes_img = "./img/like.png";
+           $likes_img_value = "y";
+           break;
+         }
        }
      }
 

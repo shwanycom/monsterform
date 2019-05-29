@@ -5,18 +5,20 @@ body{
 }
 
 #member_profile{
-  margin-right : 12.1%;
-  margin-left : 12.1%;
+  margin-right : 10%;
+  margin-left : 10%;
   /* border : 1px solid red; */
   width : auto;
   min-width: 1000px;
   height: 100%;
-  min-height: 900px;
+  min-height: 700px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 #member_profile_left{
   /* border : 1px solid red; */
-  width : 75%;
+  width : 80%;
   height : 100%;
   float: left;
   margin : 0;
@@ -35,7 +37,7 @@ body{
 }
 
 #member_profile_right{
-  width : 25%;
+  width : 20%;
   height : 100%;
   float:right;
   margin : 0;
@@ -161,15 +163,15 @@ figure.snip1368 {
   overflow: hidden;
   margin: 7.1px;
   min-width: 250px;
-  max-width: 400px;
+  max-width: 300px;
   /*   width: 100%; */
   color: #ffffff;
   line-height: 1.4em;
 }
 
 #main_img_likes{
-  width : 250px;
-  height : 200px;
+  width : 25%;
+  height : 50%;
   margin: 0;
   padding: 0;
 }
@@ -213,8 +215,9 @@ figure.snip1368 {
 }
 
 #shop_img{
-  float: right;
+  float: left;
   text-align: right;
+  width: 100%;
 }
 
 #change_password_div{

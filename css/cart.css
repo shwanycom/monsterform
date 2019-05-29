@@ -2,7 +2,7 @@
 .shop_main {
   height: auto;
   padding-top: 30px;
-  padding-bottom: 115px;
+  min-height: 50vh;
   width: 1000px;
   margin: 0 auto;
 

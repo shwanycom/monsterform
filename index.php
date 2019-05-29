@@ -21,6 +21,7 @@ create_table($conn, 'report');
 create_table($conn, 'sales');
 create_table($conn, 'message');
 create_table($conn, 'message_ripple');
+create_table($conn, 'collections');
 
 ?>
 <!DOCTYPE html>

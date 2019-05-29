@@ -125,3 +125,17 @@ function change_pass_check(){
 
   document.password_change_form.submit();
 }
+
+function hwan_mon_check(){
+  if(parseInt($("#present_mon").val()) < parseInt($("#hope_mon").val())){
+    alert("현재 보유 Mon 보다 적은 Mon만 신청 가능합니다^^");
+    return false;
+  }
+
+  if(parseInt($("#hope_mon").val())%10 != 0){
+    alert("환전신청은 10Mon 단위로만 가능합니다^^");
+    return false;
+  }
+
+  document.hwan_mon_form.submit();
+}

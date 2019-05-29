@@ -92,3 +92,14 @@ opacity: 1;
 .likes_img_class:hover{
   cursor: pointer;
 }
+
+#read_more_button{
+  outline: none;
+  border: none;
+  width: 263px;
+  height:50px;
+  font-size: 13pt;
+  color: #7d7b78;
+  font-family: "UniNeue";
+  border-radius:5px;
+}

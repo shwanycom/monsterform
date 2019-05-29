@@ -11,6 +11,7 @@ if(!isset($member_no)){
 }else{
   $profile_info_bold = '';
   $change_password_bold = '';
+  $requests_bold = '';
 
   if(isset($_GET['mode']) && $_GET['mode']=='profile_info'){
     $sql = "SELECT * from `member` where no = $member_no;";
@@ -20,6 +21,10 @@ if(!isset($member_no)){
     $sql = "SELECT * from `member` where no = $member_no;";
     $change_password_bold = 'style = "font-size:25px"';
     $mode = 'change_password';
+  }else if(isset($_GET['mode']) && $_GET['mode']=='requests'){
+    $sql = "SELECT * from `member` where no = $member_no;";
+    $requests_bold = 'style = "font-size:25px"';
+    $mode = 'requests';
   }
 
     $result = mysqli_query($conn, $sql);
@@ -32,6 +37,8 @@ if(!isset($member_no)){
     $user_password = $row['password'];
     $user_location = $row['location'];
     $user_profession = $row['profession'];
+    $user_present_mon = $row['point_mon'];
+    $user_present_hwan_mon = $row['hwan_mon'];
 
     $user_use_mf = $row['use_mf'];
     $user_use_mf_ex = explode('/', $user_use_mf);
@@ -352,6 +359,7 @@ if(!isset($member_no)){
           <li id="title">&nbsp;&nbsp;&nbsp;Edit profile</li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=profile_info" <?=$profile_info_bold?>>Profile Info</a></li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=change_password" <?=$change_password_bold?>>Change Password</a></li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="./profile_edit.php?mode=requests" <?=$requests_bold?>>Requests</a></li>
         </ul>
       </div>  <!--end of member_profile_menu -->
       <?php
@@ -485,9 +493,45 @@ if(!isset($member_no)){
       <br>
 
     <?php
-    }
+  }else if(isset($_GET['mode']) && $_GET['mode']=='requests'){
      ?>
-
+     <div class="request_div">
+       <form name="hwan_mon_form" action="../khy_modal/not_social.php?mode=hwan_mon" method="post">
+       <table id="pass_table">
+         <tr id="pass_title_tr">
+           <td colspan="2"><h3>Request Mon</h3></td>
+         </tr>
+         <tr>
+           <td colspan="2">Present Mon : </td>
+         </tr>
+         <tr>
+           <td colspan="2"><input type="number" name="present_mon" id="present_mon" value="<?=$user_present_mon?>" readonly></td>
+         </tr>
+         <tr>
+           <td colspan="2">Hope Mon : </td>
+         </tr>
+         <tr>
+           <td colspan="2"><input type="number" name="hope_mon" id="hope_mon" value="" placeholder="Can 10Mon++"></td>
+         </tr>
+         <tr><td></td></tr>
+         <tr>
+           <td colspan="2">
+             <?php
+             if($user_present_hwan_mon == 0){
+               echo '<input type="button" name="" value="Request Mon!" onclick="hwan_mon_check();">';
+             }else{
+               echo '<div id="request_status"> Present Request : '.$user_present_hwan_mon.' </div>';
+             }
+              ?>
+           </td>
+         </tr>
+       </table>
+       </form>
+     </div>
+     <br>
+  <?php
+  }
+   ?>
     </div> <!--end of member_profile -->
     <div class="clear"></div>
 

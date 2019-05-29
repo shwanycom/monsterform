@@ -11,19 +11,16 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
-
 }else{
   $email="";
 }
 if(isset($_SESSION['no'])){
   $no = $_SESSION['no'];
-
 }else{
     $no="";
 }
 if(isset($_SESSION['username'])){
   $member_username = $_SESSION['username'];
-
 }else{
   $member_username="";
 }
@@ -31,12 +28,9 @@ if(isset($_SESSION['username'])){
 	$regist_day = date("F d, Y");
 	$total_price=$mode="";
 
-<<<<<<< HEAD
 
-	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no='$no';";
-=======
-	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no=$no;";
->>>>>>> e338ae7c5c1133057c305910ac1ef25d793090a0
+	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no='$no'";
+
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
 
@@ -128,7 +122,7 @@ if(isset($_SESSION['username'])){
          $number --;
          $product_num_set .= "/".$product_num;
          $mon += $price;
-         
+
      }
      ?>
     </div>
