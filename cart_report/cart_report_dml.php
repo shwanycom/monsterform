@@ -50,48 +50,59 @@ if( isset($_GET['mode']) ) {
     }else if ($_GET['mode']=="purchase") {
       for($i=1 ; $i<$repeat_purchase; $i++){
         $product_num=$product_num_array[$i];
-        //var_export("product_num : ".$product_num); echo "<br>";
-        //===========================================1.구매내역등록=============================================
-        $sql="INSERT INTO `report` VALUES ($product_num,$mon,'$regist_day',$member_no);";
-        $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-
-        //========================================== 1-1.collection등록 ===========================================
-        $sql="SELECT * from `products` where `num`=$product_num;";
+        $sql = "SELECT `products`.`price`,`member`.`point_mon` from `products` inner join `member` where `num`=$product_num && `member`.`no`=$member_no;";
         $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
-        $buy_no = $member_no;
-        $pro_no = $row['no'];
-        $pro_num = $product_num;
-        $pro_email = $row['email'];
-        $pro_subject = $row['subject'];
-        $date = date_create($regist_day);
-        $buy_regist_day = date_format($date,"Y-m-d");
-        $pro_price = $row['price'];
-        $pro_handpicked = $row['handpicked'];
-        $pro_freegoods = $row['freegoods'];
-        $pro_hit = $row['hit'];
-        $pro_big_data = $row['big_data'];
-        $pro_img_file_copied = $row['img_file_copied1'];
+        $price = $row['price'];
+        $user_mon = $row['point_mon'];
+        if($user_mon<$price){
+          echo "<script>alert('Mon이 부족합니다!');</script>";
+          echo "<script>location.href='../point/point_main.php';</script>";
+        }else{
+          //var_export("product_num : ".$product_num); echo "<br>";
+          //===========================================1.구매내역등록=============================================
+          $sql="INSERT INTO `report` VALUES ($product_num,$mon,'$regist_day',$member_no);";
+          $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+
+          //========================================== 1-1.collection등록 ===========================================
+          $sql="SELECT * from `products` where `num`=$product_num;";
+          $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+          $row = mysqli_fetch_array($result);
+          $buy_no = $member_no;
+          $pro_no = $row['no'];
+          $pro_num = $product_num;
+          $pro_email = $row['email'];
+          $pro_subject = $row['subject'];
+          $date = date_create($regist_day);
+          $buy_regist_day = date_format($date,"Y-m-d");
+          $pro_price = $row['price'];
+          $pro_handpicked = $row['handpicked'];
+          $pro_freegoods = $row['freegoods'];
+          $pro_hit = $row['hit'];
+          $pro_big_data = $row['big_data'];
+          $pro_img_file_copied = $row['img_file_copied1'];
 
 $sql="INSERT INTO `collections` VALUES (
 $buy_no,$pro_no,$pro_num,'$pro_email','$pro_subject','$buy_regist_day',$pro_price,'$pro_handpicked','$pro_freegoods',
 $pro_hit,'$pro_big_data','$pro_img_file_copied');";
-        $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-
-        //===========================================2.Mon 차감================================================
-        $sql = "UPDATE `member` set `point_mon`=`point_mon`-$mon where `no` = $member_no;";
-        $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-
-        //===========================================3.장바구니에서 제품번호검색=============================================
-        $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$product_num;";
-        $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-        $row=mysqli_fetch_array($result);
-        //===========================================4.장바구니에 제품번호 있으면 삭제========================================
-        if($row){
-          $sql="DELETE from `cart` where `no`=$member_no && `product_num`=$product_num;";
           $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+
+          //===========================================2.Mon 차감================================================
+          $sql = "UPDATE `member` set `point_mon`=`point_mon`-$mon where `no` = $member_no;";
+          $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+
+          //===========================================3.장바구니에서 제품번호검색=============================================
+          $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$product_num;";
+          $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+          $row=mysqli_fetch_array($result);
+          //===========================================4.장바구니에 제품번호 있으면 삭제========================================
+          if($row){
+            $sql="DELETE from `cart` where `no`=$member_no && `product_num`=$product_num;";
+            $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+          }
         }
       }//end of repeat for
+
       //=======================================구매모드를 눌렀던 곳으로 리다이렉션=============================================
       if($_GET['from']=="view"){
         echo "<script>location.href='../shop/shop_view.php?num=".$product_num."';</script>";
