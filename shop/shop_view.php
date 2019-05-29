@@ -237,7 +237,16 @@
           </div>
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
             <?php
-            if($type=="added"){
+            if($user_no==$member_no){
+            ?>
+              <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                <a href="./shop_write_form.php?num=<?=$i_num?>">
+                <button type="button" style="background-color:#70a330; color:white; "
+                onclick="">
+                <b>Edit Product</b></button><a>
+              </div>
+            <?php
+            }else if($type=="added"){
             ?>
               <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
                 <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
@@ -245,26 +254,15 @@
               </div>
             <?php
             }else if(($type=="purchased")){
+              if(empty($zip_file_copied)){
+                echo "<script>alert('서버에 파일이 없습니다...?');return;</script>";
+              }
             ?>
-
-              <div class="shop_view_sticky_inner_btn" style="height:50%;">
-                <a href="./shop_download.php??num=<?=$i_num?>">
-                  <script>
-                    var con_test = confirm("어떤 값이 나올까요. 확인을 눌러보세요.");
-                    document.write(con_test);
-                  </script>
-                  </script>
-                  <button type="button" style="background-color:#70a330; color:white;" onclick="">
-                  <b>Download </b></button><a>
-              </div>
               <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <?php
-                //파일이 있으면 -> 파일명,파일사이즈,실제위치정보 확인
-                if(!empty($zip_file_copied)){
-                  $file_path = "../data/zip/$zip_file_copied";
-                  $file_size = filesize($file_path);
-                }
-                ?>
+                <a href="./shop_download.php?num=<?=$i_num?>">
+                  <button type="button" style="background-color:#70a330; color:white;"
+                  onclick="">
+                  <b>Download it!</b></button><a>
               </div>
             <?php
             }else{
