@@ -6,7 +6,7 @@ create_table($conn, 'cart');
 create_table($conn, 'report');
 
 $member_no = $_SESSION['no'];
-// $member_email = $_SESSION['email'];
+$member_email = $_SESSION['email'];
 // $member_username = $_SESSION['username'];
 // $member_mon = $_SESSION['mon'];
 // $member_partner = $_SESSION['partner'];
@@ -36,7 +36,7 @@ if( isset($_GET['mode']) ) {
     var_export("mon : ".$mon); echo "<br>";
     var_export("cart_img_name : ".$cart_img_name); echo "<br>";
     var_export("regist_day : ".$regist_day); echo "<br>";
-    var_export("member_no : ".$member_no); echo "<br><br>"; 
+    var_export("member_no : ".$member_no); echo "<br><br>";
 
     if($_GET['mode']=="add_cart"){
       $product_num=$product_num_array[1];
@@ -83,7 +83,7 @@ if( isset($_GET['mode']) ) {
       if($_GET['from']=="view"){
         echo "<script>location.href='../shop/shop_view.php?num=".$product_num."';</script>";
       }else if($_GET['from']=="cart"){
-        echo "<script>location.href='../member_profile/profile_view.php?mode=collections';</script>";
+        echo "<script>location.href='../member_profile/profile_view.php?mode=collections&email=".$member_email."';</script>";
       }
     }
   }

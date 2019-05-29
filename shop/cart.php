@@ -4,21 +4,33 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
 
-if(!isset($_SESSION['email'])){
-echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-exit;
-}
+// if(!isset($_SESSION['email'])){
+// echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
+// exit;
+// }
 
 if(isset($_SESSION['email'])){
   $email = $_SESSION['email'];
-  $point1 = $_SESSION['mon'];
-	$no=$_SESSION['no'];
-	$member_username = $_SESSION['username'];
+}else{
+  $email="";
 }
+if(isset($_SESSION['no'])){
+  $no = $_SESSION['no'];
+}else{
+    $no="";
+}
+if(isset($_SESSION['username'])){
+  $member_username = $_SESSION['username'];
+}else{
+  $member_username="";
+}
+
 	$regist_day = date("F d, Y");
 	$total_price=$mode="";
 
-	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no=$no;";
+
+	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no='$no'";
+
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
 
@@ -110,7 +122,7 @@ if(isset($_SESSION['email'])){
          $number --;
          $product_num_set .= "/".$product_num;
          $mon += $price;
-         
+
      }
      ?>
     </div>

@@ -7,15 +7,65 @@
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
   // session_start();
   // if(isset($_SESSION['no'])){
-  // $memeber_no = $_SESSION['no'];
+  // $member_no = $_SESSION['no'];
   // $member_email = $_SESSION['email'];
-  // $memeber_username = $_SESSION['username'];
+  // $member_username = $_SESSION['username'];
   // $member_mon = $_SESSION['mon'];
   // $member_partner = $_SESSION['partner'];
   // }
+
   create_table($conn, "products"); //가입인사 게시판 테이블 생성
-  $mode="insert";
+  if(!empty($_GET['num'])){
+    $num = $_GET['num'];
+    $mode = "update";
+  }else{
+    $mode="insert";
+  }
   $big_data="";
+  if($mode=="update"){
+    $sql="SELECT `products`.*,`pro_img_named`,`pro_img_copied` from `products` inner join `member` ON `products`.`no`=`member`.`no` WHERE `num` = $num;";
+    $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+    $row = mysqli_fetch_array($result);
+    $user_no = $row['no'];
+    $username = $row['username'];
+    $email = $row['email'];
+    $subject = $row['subject'];
+    $content = $row['content'];
+    $content = str_replace("\n","<br>", $content);
+    $regist_day = $row['regist_day'];
+    $date = date_create($regist_day);
+    $regist_day = date_format($date,"F d, Y");
+    $mon = $row['price'];
+    $handpicked = $row['handpicked'];
+    $freegoods = $row['freegoods'];
+    $hit = $row['hit'];
+    $sell_count = $row['sell_count'];
+    $big_data = $row['big_data'];
+    $small_data = $row['small_data'];
+    $hash_tag = $row['hash_tag'];
+    // $img_file_name1 = $row['img_file_cop1'];
+    // $img_file_name2 = $row['img_file_name2'];
+    // $img_file_name3 = $row['img_file_name3'];
+    // $img_file_name4 = $row['img_file_name4'];
+    $img_file_copied1 = $row['img_file_copied1'];
+    $img_file_copied2 = $row['img_file_copied2'];
+    $img_file_copied3 = $row['img_file_copied3'];
+    $img_file_copied4 = $row['img_file_copied4'];
+    $zip_file_name = $row['zip_file_name'];
+    $zip_file_copied = $row['zip_file_copied'];
+    $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
+    $file_type = $row['file_type'];
+
+    // $subject=htmlspecialchars($row['subject']);
+    // $content=htmlspecialchars($row['content']);
+    // $subject=str_replace(" ", "&nbsp;",$subject);
+    // $subject=str_replace("\n", "<br>",$subject);
+    // $content=str_replace(" ", "&nbsp;",$content);
+    // $content=str_replace("\n", "<br>",$content);
+
+    mysqli_close($conn);
+  }
+
   ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -168,7 +218,7 @@
       method="post" enctype="multipart/form-data">
     <div class="shop_write_category">
       <input class="shop_write_text" type="text" name="subject" placeholder="Add Title..." id="shop_write_title"><br>
-      <span><i>by </i></span><span style="font-size:1.2em"><b>Kaka Laws </b></span><span> in
+      <span><i>by </i></span><span style="font-size:1.2em"><b> <?=$member_username?> </b></span><span> in
       <select class="shop_write_select" name="shop_write_select" id="shop_write_select">
         <option value="" disabled selected>Choose Category</option>
         <option value="Photos">Photos</option>
@@ -187,31 +237,39 @@
           <img class="shop_write_mySlides" id="shop_write_gal4" src="./data/add_img.png" style="width:100%; display:none">
         </div>
 
+        <!-- <div id="profile_image_div_right">
+          <label for="profile_image_div_right_file">Update Image</label>
+          <input type="file" name="profile_image_div_right_file" id="profile_image_div_right_file" value="">
+          <br><br>
+          <span>JPG, GIF, or PNG < 5MB</span>
+        </div> -->
+
         <div class="shop_write_minigal_set">
           <div class="shop_write_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
-            style="width:100%;cursor:pointer" onclick="currentDiv(1)" id="shop_write_mini1">
-            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile1(event)">
+            <label for="img_upfile1"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            style="width:100%;cursor:pointer" onclick="currentDiv(1)" id="shop_write_mini1"></label>
+            <!-- <label for="img_upfile1">Add Image</label> -->
+            <input type="file" name="img_file[]" id="img_upfile1" accept="image/*" onchange="loadFile1(event)">
           </div>
           <div class="shop_write_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
-            style="width:100%;cursor:pointer" onclick="currentDiv(2)" id="shop_write_mini2">
-            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile2(event)" >
+            <label for="img_upfile2"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            style="width:100%;cursor:pointer" onclick="currentDiv(2)" id="shop_write_mini2"></label>
+            <input type="file" name="img_file[]" id="img_upfile2" accept="image/*" onchange="loadFile2(event)" >
           </div>
           <div class="shop_write_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
-            style="width:100%;cursor:pointer" onclick="currentDiv(3)" id="shop_write_mini3">
-            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile3(event)">
+            <label for="img_upfile3"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            style="width:100%;cursor:pointer" onclick="currentDiv(3)" id="shop_write_mini3"></label>
+            <input type="file" name="img_file[]" id="img_upfile3" accept="image/*" onchange="loadFile3(event)">
           </div>
           <div class="shop_write_minigal">
-            <img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
-            style="width:100%;cursor:pointer" onclick="currentDiv(4)" id="shop_write_mini4">
-            <input type="file" name="img_file[]" accept="image/*" onchange="loadFile4(event)">
+            <label for="img_upfile4"><img class="demo w3-opacity w3-hover-opacity-off" src="./data/add_img.png"
+            style="width:100%;cursor:pointer" onclick="currentDiv(4)" id="shop_write_mini4"></label>
+            <input type="file" name="img_file[]" id="img_upfile4" accept="image/*" onchange="loadFile4(event)">
           </div>
         </div>
       </div><!-- end of div1 -->
       <div id="shop_write_div2" style="padding-bottom:35px;">
-        <h2 style="font-size:20px; color:#afaeae; text-align:left">File Type</h2>
+        <h2 style="color: #7d7b78; margin-top:30px; text-align:left">File Type</h2>
         <i class="far fa-file" style="font-size:50px; color:gray;"></i>&nbsp;&nbsp;
         <!-- <input class="shop_write_text" type="text" name="" style="font-size:20px; color:#797979"> -->
         <input class="shop_write_text" style="font-size:45px; color: #7d7b78; text-indent:5px;"
@@ -231,7 +289,11 @@
 
     <div class="shop_write_narrow">
       <div class="shop_write_upload" id="shop_write_upload">
-        <input type="file" name="zip_file" placeholder="upload">
+        <div id="shop_write_upload1">
+          <label for="zip_file"><span id="span1"><b>Upload your product...</b></span></label>
+        </div>
+        <span>Only zip file!</span>
+          <input type="file" name="zip_file" id="zip_file" placeholder="upload">
       </div>
       <div class="shop_write_sticky">
         <div class="shop_write_sticky_outter" id="shop_write_sticky_product_info">

@@ -34,6 +34,7 @@
 #list_content {
   border-top: 1px solid #e0dedb;
   margin-top: 30px;
+  min-height: 20vh;
 }
 
 #list_message {

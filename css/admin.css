@@ -93,19 +93,23 @@
   display: inline-block;
 }
 #search_kind{
-  height:30px;
+  height:36px;
   border:2px solid lightgray;
   outline: none;
   margin-left:5px;
 }
 #admin_member_search_text{
-  height:30px;
+  padding:0;
+  margin:0;
+  height:32px;
   width:300px;
   border:2px solid lightgray;
   outline: none;
 }
 #admin_member_search_text:focus{
-  height:30px;
+  padding:0;
+  margin:0;
+  height:32px;
   width:300px;
   outline: none;
   background-color: #eeeeee;

@@ -113,7 +113,7 @@ function create_table($conn, $table_name){
                 `freegoods_agree` varchar(100) DEFAULT 'n',
                 `file_type` varchar(100) NOT NULL,
                 PRIMARY KEY (`num`)
-              ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
       case 'freegoods_date':
       $sql = "CREATE TABLE `freegoods_date` (
@@ -146,7 +146,7 @@ function create_table($conn, $table_name){
                 `rece_status` varchar(100) DEFAULT 'n',
                 `regist_day` date NOT NULL,
                 PRIMARY KEY (`num`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       break;
       case 'message_ripple':
       $sql = "CREATE TABLE `message_ripple` (
@@ -156,7 +156,26 @@ function create_table($conn, $table_name){
                 `ripple_content` text NOT NULL,
                 `regist_day` date NOT NULL,
                 PRIMARY KEY (`num`)
-              ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;";
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      break;
+
+      case 'collections':
+      $sql = "CREATE TABLE `collections` (
+              `buy_no` int(11) NOT NULL,
+              `pro_no` int(11) NOT NULL,
+              `pro_num` int(11) NOT NULL,
+              `pro_email` varchar(100) NOT NULL,
+              `pro_subject` varchar(100) NOT NULL,
+              `buy_regist_day` date NOT NULL,
+              `pro_price` int(11) NOT NULL,
+              `pro_handpicked` varchar(100) NOT NULL DEFAULT 'n',
+              `pro_freegoods` varchar(100) NOT NULL DEFAULT 'n',
+              `pro_hit` int(11) NOT NULL DEFAULT '0',
+              `pro_big_data` varchar(100) NOT NULL,
+              `pro_img_file_copied` varchar(100) NOT NULL,
+              PRIMARY KEY (`num`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+      break;
 
       default:
       echo '<script >alert("해당 테이블명이 없습니다.");</script>';
@@ -164,7 +183,7 @@ function create_table($conn, $table_name){
     }//end of switch
     if(mysqli_query($conn,$sql)){
         echo '<script >
-          alert("member 테이블 생성되었습니다.");
+          alert("'.$table_name.'테이블 생성되었습니다.");
         </script>';
     }else{
       echo "실패원인".mysqli_query($conn);

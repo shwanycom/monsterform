@@ -139,11 +139,14 @@ div#shop_write_qna{
   margin-bottom: 40px;
 }
 
-input.shop_write_text{
+input[type=text]{
   border: 1px solid rgb(230,230,230,230);
   outline: none;
-  background-color: rgb(245,245,244,230);
+  background-color: rgb(250,250,250,230);
   margin: 2px;
+}
+input[type=text]:focus{
+  background-color: white;
 }
 input#shop_write_title{
   width: 100%;
@@ -163,7 +166,7 @@ select.shop_write_select{
 
 div#shop_write_tags{
   color: #7d7b78;
-  padding-top:7%;  
+  padding-top:7%;
 }
 
 
@@ -172,6 +175,56 @@ div#shop_write_tags span{
   border: 1px solid rgb(230,230,230,230);
   padding: 0px 5px;
   margin: 10px 5px;
+}
+#profile_image_div_right label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #5cb85c;
+  cursor: pointer;
+  border: 1px solid #4cae4c;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+
+#shop_write_upload{
+  max-width: 350px;
+  text-align: center;
+}
+#shop_write_upload:hover{
+  border: 4px solid #70a330;
+}
+
+#shop_write_upload1{
+  padding-top:5%;
+  height: 50%;
+}
+#shop_write_upload1 span{
+  font-size: 1.8em;
+}
+#shop_write_upload1 span:hover {
+  background-color: #70a330;
+  color: white;
+}
+
+#shop_write_upload1 span:active {
+  background-color: #367c36;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 /* div#shop_write_detail textarea{
