@@ -244,7 +244,7 @@ $number=$total_record- $start_row;
     echo '<div class="img_div">
         <input type="hidden" class="hidden_num" value="'.$num.'">
         <figure class="snip1368">
-          <a href="#">
+          <a href="../shop/shop_view.php?num='.$num.'">
             <img id="main_img" src="../data/img/'.$img_file_copied1.'" alt="sample30" />
           </a>
           <div class="hover_img" id="hover_img_id">
@@ -252,7 +252,7 @@ $number=$total_record- $start_row;
           </div>
           <div class="list_title_div">
             <div class="">
-              <a href="#" class="">
+              <a href="../shop/shop_view.php?num='.$num.'" class="">
                 <span class="list_title_div_span_bold">'.$subject.'</span>
               </a>
               <a href="#" class="list_title_div_a_float_right">
@@ -260,8 +260,8 @@ $number=$total_record- $start_row;
               </a>
             </div>
             <div class="">
-                by&nbsp;<a href="#" class="">'.$email.'</a>
-                in&nbsp;<a href="#" class="">'.$big_data.'</a>
+                by&nbsp;<a href="../member_profile/profile_view.php?mode=shop&email='.$email.'" class="">'.$email.'</a>
+                in&nbsp;<a href="../product_list/list.php?big_data='.$big_data.'" class="">'.$big_data.'</a>
             </div>
           </div>
         </figure>
