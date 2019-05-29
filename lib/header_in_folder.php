@@ -12,7 +12,7 @@
   }
   </script>
   <style media="screen">
-  
+
   </style>
 <header id="header">
   <div id="header_logout_form_div1">
@@ -33,7 +33,7 @@
             if(isset($member_email)){
               echo '<ul id="header_logout_form_div1_2_ul">
                 <li class="header_logout_form_div1_2_ul_li">
-                  <a href="#">
+                  <a href="../member_profile/profile_view.php?mode=likes&email='.$member_email.'">
                     <div id="header_logout_form_div1_2_ul_li_div1">
                       <div id="header_logout_form_div1_2_ul_li_div1_div">
                         <button id="header_logout_form_div1_2_ul_li_div1_div_button" type="button" name="button">
@@ -45,7 +45,7 @@
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
-                  <a href="#">
+                  <a href="../member_profile/profile_view.php?mode=shop&email='.$member_email.'">
                     <div id="header_logout_form_div1_2_ul_li_div2">
                       <div id="header_logout_form_div1_2_ul_li_div2_div">
                         <button id="header_logout_form_div1_2_ul_li_div2_div_button" type="button" name="button">
@@ -69,7 +69,7 @@
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
-                  <a href="#">
+                  <a href="../shop/cart.php">
                     <div id="header_logout_form_div1_2_ul_li_div4">
                     <div id="header_logout_form_div1_2_ul_li_div4_div">
                       <button id="header_logout_form_div1_2_ul_li_div4_div_button" type="button" name="button">
@@ -97,13 +97,13 @@
                 <div id="header_logout_form_div1_2_ul_li_div5">&nbsp;
                 <span style="font-weight:bold;">'.$member_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON</span>
                 <div id="header_logout_form_div1_2_ul_li_div5_div">
-                  <div><a href="#">&nbsp;Profile</a></div>
-                  <div><a href="#">&nbsp;Shop</a></div>
-                  <div><a href="#">&nbsp;Like</a></div>
-                  <div><a href="#">&nbsp;Chart</a></div>
-                  <div><a href="#">&nbsp;Cart</a></div>
-                  <div><a href="#">&nbsp;Message</a></div>
-                  <div><a href="#">&nbsp;Setting</a></div>
+                  <div><a href="../member_profile/profile_view.php?mode=shop&email='.$member_email.'">&nbsp;Profile</a></div>
+                  <div><a href="../member_profile/profile_view.php?mode=shop&email='.$member_email.'">&nbsp;Shop</a></div>
+                  <div><a href="../member_profile/profile_view.php?mode=likes&email='.$member_email.'">&nbsp;Like</a></div>
+                  <div><a href="../member_profile/profile_view.php?mode=collections&email='.$member_email.'">&nbsp;Collections</a></div>
+                  <div><a href="../shop/cart.php">&nbsp;Cart</a></div>
+                  <div><a href="../message/message.php">&nbsp;Message</a></div>
+                  <div><a href="../member_profile/profile_edit.php?mode=profile_info">&nbsp;Setting</a></div>
                   <div id="header_logout_form_div1_2_ul_li_div5_div_border_bottom"><a href="../lib/logout.php">&nbsp;Sign Out</a></div>
                 </div>
                 </div>
@@ -133,15 +133,11 @@
             <li class="header_logout_form_div2_ul1_li">
               <a class="header_logout_form_div2_ul1_li_a" href="../product_list/list.php?big_data=photos">Photos</a>
               <ul class="submenu">
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Abstract</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Animals</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Architecture</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Arts</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Beauty & Fashion</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Business</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Education</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Food & Drink</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Health</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Nature</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Sports</a></li>
                 <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Technology</a></li>

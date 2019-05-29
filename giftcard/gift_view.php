@@ -149,7 +149,7 @@ if(isset($_SESSION['email'])){
             </form>
         </div>
       </div>
-    </div>
+    </div><br><br>
     <?php
     include "../lib/footer_in_folder.php";
     include "../khy_modal/login_modal_in_folder.php";

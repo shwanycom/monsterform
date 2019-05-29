@@ -4,6 +4,7 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 $sql="select * from `products` where `freegoods`='y'";
 $result = mysqli_query($conn, $sql);
+$total_record1 = mysqli_num_rows($result);
 $sql2="select * from `freegoods_date`";
 $result2 = mysqli_query($conn, $sql2);
 $row2=mysqli_fetch_array($result2);
@@ -125,7 +126,10 @@ $row2=mysqli_fetch_array($result2);
       <br><br>
       <div class="board_div">
       <?php
-      for($i=0; $i<8; $i++){
+      for($i=0; $i<$total_record1; $i++){
+        if($total_record1==0){
+          break;
+        }
         //하나 레코드 가져오기
         $row=mysqli_fetch_array($result);
         $no=$row["no"];
@@ -148,7 +152,7 @@ $row2=mysqli_fetch_array($result2);
       echo '<div class="img_div">
           <figure class="snip1368">
             <a href="#">
-              <img id="main_img" src="../img/'.$img_file_copied1.'" alt="sample30" />
+              <img id="main_img" src="../data/img/'.$img_file_copied1.'" alt="sample30" />
             </a>
             <div class="hover_img" id="hover_img_id">
               <img src="'.$freegoods_img.'" class="go_free_goods_img_class" name="go_free_goods_img"  style="width:25px; height:25px;"><!--가져다 댔을때-->
@@ -192,7 +196,11 @@ $row2=mysqli_fetch_array($result2);
         $sql3="select * from `products` where `handpicked`='y'";
         $result3 = mysqli_query($conn, $sql3);
         $total_record3 = mysqli_num_rows($result3);
-        for($i=0; $i<16; $i++){
+
+        for($i=0; $i<$total_record3; $i++){
+          if($total_record3==0){
+            break;
+          }
           //하나 레코드 가져오기
           $row3=mysqli_fetch_array($result3);
           $no3=$row3["no"];
@@ -231,7 +239,7 @@ $row2=mysqli_fetch_array($result2);
         <input type="hidden" class="hidden_num" value="'.$num3.'">
             <figure class="snip1368">
               <a href="../shop/shop_view.php?num='.$num3.'">
-                <img id="main_img" src="../img/'.$img_file_copied1_3.'" alt="sample30" />
+                <img id="main_img" src="../data/img/'.$img_file_copied1_3.'" alt="sample30" />
               </a>
               <div class="hover_img" id="hover_img_id">
                 <img src="'.$handpicked_img.'" class="go_free_goods_img_class" name="go_free_goods_img"  style="width:25px; height:25px;"><!--가져다 댔을때-->

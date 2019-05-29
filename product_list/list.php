@@ -14,9 +14,14 @@ $partner_checked = '';
 $handpicked_checked = '';
 $popular_checked = '';
 $q_search = '';
+$small_data='';
 
 if(isset($_GET["big_data"])){
   $big_data=$_GET["big_data"];
+}
+
+if(isset($_GET["small_data"])){
+  $small_data=$_GET["small_data"];
 }
 
 if(isset($_GET["partner"])){
@@ -31,7 +36,7 @@ if(isset($_GET["popular"])){
   $popular=$_GET["popular"];
 }
 
-if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
+if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
   if(isset($_GET["search_text"])){
     $search = test_input($_GET["search_text"]);
   }else{
@@ -41,24 +46,24 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 
     if($partner=='n' && $handpicked=='n' && $popular=='n'){
       $sql = "SELECT * from `products` where big_data = '$big_data' and subject like '%$q_search%' order by num desc;";
-      $title = "Total";
+      $title = $big_data;
     }else if($partner=='n' && $handpicked=='y' && $popular=='n'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.handpicked='y' and p.subject like '%$q_search%' order by p.num desc;";
-      $title = "Result - HandPicked";
+      $title = $big_data." - HandPicked";
       $handpicked_checked = 'checked';
       $partner_default = 'n';
       $handpicked_default = 'y';
       $popular_default = 'n';
     }else if($partner=='n' && $handpicked=='n' && $popular=='y'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.subject like '%$q_search%' order by p.hit desc;";
-      $title = "Result - Popular";
+      $title = $big_data." - Popular";
       $popular_checked = 'checked';
       $partner_default = 'n';
       $handpicked_default = 'n';
       $popular_default = 'y';
     }else if($partner=='n' && $handpicked=='y' && $popular=='y'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
-      $title = "Result - Popular Handpicked";
+      $title = $big_data." - Popular Handpicked";
       $popular_checked = 'checked';
       $handpicked_checked = 'checked';
       $partner_default = 'n';
@@ -66,7 +71,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       $popular_default = 'y';
     }else if($partner=='y' && $handpicked=='y' && $popular=='y'){
       $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and m.partner = 'y' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
-      $title = "Result - Popular Handpicked of Partner's";
+      $title = $big_data." - Popular Handpicked of Partner's";
       $partner_checked = 'checked';
       $popular_checked = 'checked';
       $handpicked_checked = 'checked';
@@ -114,6 +119,92 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
     $start = ($page-1) * SCALE;
 
     $number = $total_record - $start;
+
+}else if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data!=''){
+
+  if(isset($_GET["search_text"])){
+    $search = test_input($_GET["search_text"]);
+  }else{
+    $search = '';
+  }
+    $q_search = mysqli_real_escape_string($conn, $search);
+
+    if($partner=='n' && $handpicked=='n' && $popular=='n'){
+      $sql = "SELECT * from `products` where big_data = '$big_data' and small_data = '$small_data' and subject like '%$q_search%' order by num desc;";
+      $title = $big_data;
+    }else if($partner=='n' && $handpicked=='y' && $popular=='n'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and p.handpicked='y' and p.subject like '%$q_search%' order by p.num desc;";
+      $title = $big_data." - HandPicked";
+      $handpicked_checked = 'checked';
+      $partner_default = 'n';
+      $handpicked_default = 'y';
+      $popular_default = 'n';
+    }else if($partner=='n' && $handpicked=='n' && $popular=='y'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and p.subject like '%$q_search%' order by p.hit desc;";
+      $title = $big_data." - Popular";
+      $popular_checked = 'checked';
+      $partner_default = 'n';
+      $handpicked_default = 'n';
+      $popular_default = 'y';
+    }else if($partner=='n' && $handpicked=='y' && $popular=='y'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
+      $title = $big_data." - Popular Handpicked";
+      $popular_checked = 'checked';
+      $handpicked_checked = 'checked';
+      $partner_default = 'n';
+      $handpicked_default = 'y';
+      $popular_default = 'y';
+    }else if($partner=='y' && $handpicked=='y' && $popular=='y'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and m.partner = 'y' and p.handpicked = 'y' and p.subject like '%$q_search%' order by p.hit desc;";
+      $title = $big_data." - Popular Handpicked of Partner's";
+      $partner_checked = 'checked';
+      $popular_checked = 'checked';
+      $handpicked_checked = 'checked';
+      $partner_default = 'y';
+      $handpicked_default = 'y';
+      $popular_default = 'y';
+    }else if($partner=='y' && $handpicked=='n' && $popular=='n'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and m.partner='y' and p.subject like '%$q_search%' order by p.num desc";
+      $title = "Result - Partner's";
+      $partner_checked = 'checked';
+      $partner_default = 'y';
+      $handpicked_default = 'n';
+      $popular_default = 'n';
+    }else if($partner=='y' && $handpicked=='n' && $popular=='y'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and m.partner='y' and p.subject like '%$q_search%' order by p.hit desc;";
+      $title = "Result - Popular of Partner's";
+      $partner_checked = 'checked';
+      $popular_checked = 'checked';
+      $partner_default = 'y';
+      $handpicked_default = 'n';
+      $popular_default = 'y';
+    }else if($partner=='y' && $handpicked=='y' && $popular=='n'){
+      $sql = "SELECT * from `products` p inner join `member` m on p.email=m.email where p.big_data = '$big_data' and p.small_data = '$small_data' and m.partner='y' and p.handpicked='y' and p.subject like '%$q_search%' order by p.num desc;";
+      $title = "Result - Partner's HandPicked";
+      $partner_checked = 'checked';
+      $handpicked_checked = 'checked';
+      $partner_default = 'y';
+      $handpicked_default = 'y';
+      $popular_default = 'n';
+    }else{
+      $sql = "SELECT * from `products` where big_data = '$big_data' and small_data = '$small_data' and subject like '%$q_search%' order by num desc;";
+      $title = "Result";
+    }
+    $result = mysqli_query($conn, $sql);
+    $total_record = mysqli_num_rows($result);
+
+    $total_page = ($total_record%SCALE==0)?(floor($total_record/SCALE)):(ceil($total_record/SCALE));
+
+    if(empty($_GET["page"])){
+      $page = 1;
+    }else{
+      $page = $_GET["page"];
+    }
+
+    $start = ($page-1) * SCALE;
+
+    $number = $total_record - $start;
+
 }else{
 
   $sql = "SELECT * from `products` where big_data = '$big_data'";
@@ -195,13 +286,19 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       var popular = document.getElementById('popular').value;
       var search_text = document.getElementById('products_search_text').value;
       var big_data = document.getElementById('big_data').value;
+      var small_data = document.getElementById('small_data').value;
 
       if(partner=='n'){
         partner='y';
       }else{
         partner='n';
       }
-      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+
+      if(small_data==''){
+        var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }else{
+        var location = "./list.php?big_data="+big_data+"&small_data="+small_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }
       window.location.href = location;
     }
 
@@ -211,13 +308,20 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       var popular = document.getElementById('popular').value;
       var search_text = document.getElementById('products_search_text').value;
       var big_data = document.getElementById('big_data').value;
+      var small_data = document.getElementById('small_data').value;
 
       if(handpicked=='n'){
         handpicked='y';
       }else{
         handpicked='n';
       }
-      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+
+      if(small_data==''){
+        var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }else{
+        var location = "./list.php?big_data="+big_data+"&small_data="+small_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }
+
       window.location.href = location;
     }
 
@@ -227,13 +331,20 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       var popular = document.getElementById('popular').value;
       var search_text = document.getElementById('products_search_text').value;
       var big_data = document.getElementById('big_data').value;
+      var small_data = document.getElementById('small_data').value;
 
       if(popular=='n'){
         popular='y';
       }else{
         popular='n';
       }
-      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+
+      if(small_data==''){
+        var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }else{
+        var location = "./list.php?big_data="+big_data+"&small_data="+small_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }
+
       window.location.href = location;
     }
 
@@ -243,8 +354,14 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
       var popular = document.getElementById('popular').value;
       var search_text = document.getElementById('products_search_text').value;
       var big_data = document.getElementById('big_data').value;
+      var small_data = document.getElementById('small_data').value;
 
-      var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      if(small_data==''){
+        var location = "./list.php?big_data="+big_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }else{
+        var location = "./list.php?big_data="+big_data+"&small_data="+small_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular+"&search_text="+search_text;
+      }
+
       window.location.href = location;
     }
 
@@ -290,8 +407,22 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
            console.log("complete");
          });
       });
-    });
 
+      $("#small_data_select").change(function(event) {
+        var small_data = $("#small_data_select").val();
+        var big_data = $("#big_data").val();
+        var partner = $("#partner").val();
+        var handpicked = $("#handpicked").val();
+        var popular = $("#popular").val();
+
+        if(big_data=='none'){
+          var location = "./list.php?big_data=none&small_data="+small_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular;
+        }else{
+          var location = "./list.php?big_data="+big_data+"&small_data="+small_data+"&mode=search&partner="+partner+"&handpicked="+handpicked+"&popular="+popular;
+        }
+        window.location.href = location;
+      });
+    });
 
 	</script>
 </head>
@@ -301,6 +432,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
    ?>
    <div id="filter_div">
      <input type="hidden" id="big_data" value="<?=$big_data?>">
+     <input type="hidden" id="small_data" value="<?=$small_data?>">
      <div class="filter_container">
        <div class="switch_div">
          <label>
@@ -337,7 +469,58 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
 
 	<div class="list_container">
 	  <div id="load_product">
-      <h1><?=$title?>(<?=$total_record?>)</h1>
+      <h1 style="display: inline-block;"><a href="./list.php?big_data=<?=$big_data?>"> <?=$big_data?></a>
+      <?php
+      if(isset($small_data) && $small_data != 'none'){
+        echo ' > '.$small_data;
+      }
+      ?> (<?=$total_record?>)
+        </h1>
+      <div class="" style="text-align:right; margin-right:25px;">
+        <?php
+        switch ($big_data) {
+          case 'photos':
+            echo '<select class="" name="" id="small_data_select">
+              <option value="none">'.$big_data.'</option>
+              <option value="arts">Arts</option>
+              <option value="nature">Nature</option>
+              <option value="animals">Animals</option>
+              <option value="beauty_fashion">Beauty & Fashion</option>
+              <option value="food_drink">Food & Drink</option>
+              <option value="sports">Sports</option>
+              <option value="business">Business</option>
+              <option value="technology">Technology</option>
+            </select>';
+            break;
+          case 'graphics':
+            echo '<select class="" name="" id="small_data_select">
+                    <option value="none">'.$big_data.'</option>
+                    <option value="icons">Icons</option>
+                    <option value="objects">Objects</option>
+                    <option value="illustrations">Illustrations</option>
+                    <option value="patterns">Patterns</option>
+                    <option value="web_elements">Web Elements</option>
+                    <option value="textures">Textures</option>
+                  </select>';
+            break;
+          case 'fonts':
+            echo '<select class="" name="" id="small_data_select">
+                    <option value="none">'.$big_data.'</option>
+                    <option value="blackletter">Blackletter</option>
+                    <option value="sans_serif">Sans Serif</option>
+                    <option value="slab_serif">Slab Serif</option>
+                    <option value="display">Display</option>
+                    <option value="script">Script</option>
+                    <option value="symbols">Symbols</option>
+                    <option value="non_western">Non Western</option>
+                    <option value="serif">Serif</option>
+                  </select>';
+            break;
+          default:
+            break;
+        }
+         ?>
+      </div>
 		<?php
 		// 모든 레코드를 가져오는 로직
 		for ($i=$start; ($i<$start+SCALE) && ($i< $total_record); $i++){
@@ -345,20 +528,20 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
    			mysqli_data_seek($result, $i);
 
    	 // 하나 레코드 가져오기
-   			$row = mysqli_fetch_array($result);
+   			 $row = mysqli_fetch_array($result);
          $item_no = $row["no"];
-   			$item_num = $row["num"];
-   			$item_name = $row["username"];
-   			$price = $row["price"];
-        $item_big_data = $row["big_data"];
+   			 $item_num = $row["num"];
+   			 $item_name = $row["username"];
+   			 $price = $row["price"];
+         $item_big_data = $row["big_data"];
          $item_price = $price/100;
          $item_email = $row["email"];
-   			$img_copy_name1 = $row["img_file_copied1"];
-        $img_copy_name1 = "./data/img/".$img_copy_name1;
-   			$item_hit = $row["hit"];
-   			$item_date = $row["regist_day"];
-   			$item_date = substr($item_date, 0, 10);
-   			$item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+   			 $img_copy_name1 = $row["img_file_copied1"];
+         $img_copy_name1 = "../data/img/".$img_copy_name1;
+   			 $item_hit = $row["hit"];
+   			 $item_date = $row["regist_day"];
+   			 $item_date = substr($item_date, 0, 10);
+   			 $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
          $item_freegoods=$row["freegoods"];
 
          $sql_partner = "SELECT partner from member where no = '$item_no';";

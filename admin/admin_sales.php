@@ -14,7 +14,12 @@ if(isset($_POST['admin_submit_month'])){
 $month=$_POST['admin_submit_month'];
 
 }
-
+  function nulltozero($value){
+    if($value==null){
+      $value=0;
+    }
+    return $value;
+  }
 //--라인차트 쿼리문(sales)--
   $year_half=date("y");
   $year="20".$year_half;
@@ -31,9 +36,9 @@ $month=$_POST['admin_submit_month'];
   $sql_sales.=" sum(CASE WHEN `regist_day` like '$year-10%' then point_mon end) as sum_sales_mon10,";
   $sql_sales.=" sum(CASE WHEN `regist_day` like '$year-11%' then point_mon end) as sum_sales_mon11,";
   $sql_sales.=" sum(CASE WHEN `regist_day` like '$year-12%' then point_mon end) as sum_sales_mon12 from `sales`;";
-
   $result_sales = mysqli_query($conn, $sql_sales);
   $row_sales=mysqli_fetch_array($result_sales);
+
 
   $sum_sales_mon1 = $row_sales['sum_sales_mon1'];
   $sum_sales_mon2 = $row_sales['sum_sales_mon2'];
@@ -48,20 +53,33 @@ $month=$_POST['admin_submit_month'];
   $sum_sales_mon11 = $row_sales['sum_sales_mon11'];
   $sum_sales_mon12 = $row_sales['sum_sales_mon12'];
 
+  $sum_sales_mon1=nulltozero($sum_sales_mon1);
+  $sum_sales_mon2=nulltozero($sum_sales_mon2);
+  $sum_sales_mon3=nulltozero($sum_sales_mon3);
+  $sum_sales_mon4=nulltozero($sum_sales_mon4);
+  $sum_sales_mon5=nulltozero($sum_sales_mon5);
+  $sum_sales_mon6=nulltozero($sum_sales_mon6);
+  $sum_sales_mon7=nulltozero($sum_sales_mon7);
+  $sum_sales_mon8=nulltozero($sum_sales_mon8);
+  $sum_sales_mon9=nulltozero($sum_sales_mon9);
+  $sum_sales_mon10=nulltozero($sum_sales_mon10);
+  $sum_sales_mon11=nulltozero($sum_sales_mon11);
+  $sum_sales_mon12=nulltozero($sum_sales_mon12);
+
   //--라인차트 쿼리문(report_admin(partner=y))--
-  $sql_report_admin_py="SELECT sum(CASE WHEN `report_regist_day` like '$year-01%' then point_mon end) as sum_report_admin_mon1_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-02%' then report_price end) as sum_report_admin_mon2_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-03%' then report_price end) as sum_report_admin_mon3_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-04%' then report_price end) as sum_report_admin_mon4_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-05%' then report_price end) as sum_report_admin_mon5_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-06%' then report_price end) as sum_report_admin_mon6_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-07%' then report_price end) as sum_report_admin_mon7_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-08%' then report_price end) as sum_report_admin_mon8_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-09%' then report_price end) as sum_report_admin_mon9_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-10%' then report_price end) as sum_report_admin_mon10_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-11%' then report_price end) as sum_report_admin_mon11_py,";
-  $sql_report_admin_py.=" sum(CASE WHEN `report_regist_day` like '$year-12%' then report_price end) as sum_report_admin_mon12_py from `report` as r";
-  $sql_report_admin_py.=" inner join `products` as p on p.num=r.product_num inner join member as m on m.no=p.no where m.partner='y';";
+  $sql_report_admin_py="SELECT sum(CASE WHEN `buy_regist_day` like '$year-01%' then pro_price end) as sum_report_admin_mon1_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-02%' then pro_price end) as sum_report_admin_mon2_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-03%' then pro_price end) as sum_report_admin_mon3_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-04%' then pro_price end) as sum_report_admin_mon4_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-05%' then pro_price end) as sum_report_admin_mon5_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-06%' then pro_price end) as sum_report_admin_mon6_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-07%' then pro_price end) as sum_report_admin_mon7_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-08%' then pro_price end) as sum_report_admin_mon8_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-09%' then pro_price end) as sum_report_admin_mon9_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-10%' then pro_price end) as sum_report_admin_mon10_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-11%' then pro_price end) as sum_report_admin_mon11_py,";
+  $sql_report_admin_py.=" sum(CASE WHEN `buy_regist_day` like '$year-12%' then pro_price end) as sum_report_admin_mon12_py from `collections` as c";
+  $sql_report_admin_py.=" inner join `member` as m on m.no=c.pro_no where m.partner='y';";
 
   $result_report_admin_py = mysqli_query($conn, $sql_report_admin_py);
   $row_report_admin_py=mysqli_fetch_array($result_report_admin_py);
@@ -78,20 +96,21 @@ $month=$_POST['admin_submit_month'];
   $sum_report_admin_mon11_py = $row_report_admin_py['sum_report_admin_mon11_py'];
   $sum_report_admin_mon12_py = $row_report_admin_py['sum_report_admin_mon12_py'];
 
+
   //--라인차트 쿼리문(report_admin(partner=n))--
-  $sql_report_admin_pn="SELECT sum(CASE WHEN `report_regist_day` like '$year-01%' then point_mon end) as sum_report_admin_mon1_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-02%' then report_price end) as sum_report_admin_mon2_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-03%' then report_price end) as sum_report_admin_mon3_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-04%' then report_price end) as sum_report_admin_mon4_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-05%' then report_price end) as sum_report_admin_mon5_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-06%' then report_price end) as sum_report_admin_mon6_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-07%' then report_price end) as sum_report_admin_mon7_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-08%' then report_price end) as sum_report_admin_mon8_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-09%' then report_price end) as sum_report_admin_mon9_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-10%' then report_price end) as sum_report_admin_mon10_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-11%' then report_price end) as sum_report_admin_mon11_pn,";
-  $sql_report_admin_pn.=" sum(CASE WHEN `report_regist_day` like '$year-12%' then report_price end) as sum_report_admin_mon12_pn from `report` as r";
-  $sql_report_admin_pn.=" inner join `products` as p on p.num=r.product_num inner join member as m on m.no=p.no where m.partner='n';";
+  $sql_report_admin_pn="SELECT sum(CASE WHEN `buy_regist_day` like '$year-01%' then point_mon end) as sum_report_admin_mon1_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-02%' then pro_price end) as sum_report_admin_mon2_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-03%' then pro_price end) as sum_report_admin_mon3_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-04%' then pro_price end) as sum_report_admin_mon4_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-05%' then pro_price end) as sum_report_admin_mon5_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-06%' then pro_price end) as sum_report_admin_mon6_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-07%' then pro_price end) as sum_report_admin_mon7_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-08%' then pro_price end) as sum_report_admin_mon8_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-09%' then pro_price end) as sum_report_admin_mon9_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-10%' then pro_price end) as sum_report_admin_mon10_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-11%' then pro_price end) as sum_report_admin_mon11_pn,";
+  $sql_report_admin_pn.=" sum(CASE WHEN `buy_regist_day` like '$year-12%' then pro_price end) as sum_report_admin_mon12_pn from `collections` as c";
+  $sql_report_admin_pn.=" inner join `member` as m on m.no=c.pro_no where m.partner='n';";
 
   $result_report_admin_pn = mysqli_query($conn, $sql_report_admin_pn);
   $row_report_admin_pn=mysqli_fetch_array($result_report_admin_pn);
@@ -128,11 +147,11 @@ $month=$_POST['admin_submit_month'];
     $filter_month="";
   }else{
     $month=$_POST['admin_submit_month'];
-    $filter_month=" and r.report_regist_day like '$year-$month%'";
+    $filter_month=" and buy_regist_day like '$year-$month%'";
   }
-  $sql_photos_total = "select sum(report_price) as sum_ph, count(report_price) as count_ph  from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='photos'$filter_month;";
-  $sql_graphics_total = "select sum(report_price) as sum_gr, count(report_price) as count_gr from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='graphics'$filter_month;";
-  $sql_fonts_total = "select sum(report_price) as sum_fo, count(report_price) as count_fo from `report` as r  inner join `products` as p on p.num=r.product_num where p.big_data='fonts'$filter_month;";
+  $sql_photos_total = "select sum(`pro_price`) as sum_ph, count(`pro_price`) as count_ph  from `collections` where pro_big_data='photos'$filter_month;";
+  $sql_graphics_total = "select sum(`pro_price`) as sum_gr, count(`pro_price`) as count_gr  from `collections` where pro_big_data='graphics'$filter_month;";
+  $sql_fonts_total = "select sum(`pro_price`) as sum_fo, count(`pro_price`) as count_fo  from `collections` where pro_big_data='fonts'$filter_month;";
 
   $result_photo = mysqli_query($conn, $sql_photos_total);
   $row_ph=mysqli_fetch_array($result_photo);

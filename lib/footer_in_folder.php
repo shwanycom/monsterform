@@ -13,7 +13,7 @@
           <div class="footer_div1_div2_div">
             Earn<br><br><br>
             <ul>
-              <li><a href="">Open a Shop</a></li>
+              <li><a href="../shop/shop_write_form.php">Open a Shop</a></li>
               <li><a href="../earn/becomeapartner.php">Become a Partner</a></li>
             </ul>
           </div>
@@ -21,8 +21,8 @@
               Resources<br><br><br>
               <ul>
                 <li><a href="../discussion/list.php">Discussions</a></li>
-                <li><a href="">Products</a></li>
-                <li><a href="">Collections</a></li>
+                <li><a href="../product_list/list.php?big_data=none">Products</a></li>
+                <li><a href="../member_profile/profile_view.php?mode=collections&eamil='.$member_email.'">Collections</a></li>
               </ul>
             </div>
             <div class="footer_div1_div2_div">
@@ -30,7 +30,7 @@
               <ul>
                 <li><a href="../goods/freegoods.php">Free Goods</a></li>
                 <li><a href="../point/point_main.php">Purchase Credits</a></li>
-                <li><a href="">Gift Cards</a></li>
+                <li><a href="../giftcard/gift_view.php">Gift Cards</a></li>
               </ul>
             </div>
             <div class="footer_div1_div2_div" id="footer_div1_div2_div5_id">
