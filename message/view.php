@@ -96,7 +96,7 @@ if($pro_img_copied!=null){
 							if($pro_img_copied!=null){
 								$pro_img_copied= $row["pro_img_copied"];
 							}else{
-								$pro_img_copied= '2018_07_23_04_08_14_3.jpg';
+								$pro_img_copied= 'no_profile.png';
 							}
 					?>
 					<div id="ripple_title">
@@ -124,7 +124,7 @@ if($pro_img_copied!=null){
 				<form name="ripple_form" action="dml_ripple.php?mode=insert_ripple" method="post" id="ripple_save_form">
 					<input type="hidden" name="parent" value="<?=$num?>">
 					<div id="ripple_insert">
-						<a href="#"><img src="./data/<?=$pro_img_copied?>" class="message_pro"></a>
+						<a href="#"><img src="../data/img/<?=$pro_img_copied?>" class="message_pro"></a>
 						<div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="50"></textarea></div>
 						<div class="ripple_button" style="margin-left:315px;"> <button type="submit" name="button" class="ripple_button"> <span id="re_button">reply</span></button> </div>
 					</div><!--end of ripple_insert  -->

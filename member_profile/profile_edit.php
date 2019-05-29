@@ -393,19 +393,19 @@ if(!isset($member_no)){
         <div class="user_info_div">
             <span class="user_info_span">Username</span>
             <br>
-            <input type="text" name="username"  id="username" value="<?=$user_username?>">
+            <input type="text" name="username"  id="username" class="input_text" value="<?=$user_username?>">
             <br><br>
             <span class="user_info_span">Email Address</span>
             <br>
-            <input type="text" name="email" id="email" value="<?=$user_email?>" readonly>
+            <input type="text" name="email" id="email" class="input_text" value="<?=$user_email?>" readonly>
             <br><br>
             <span class="user_info_span">Location</span>
             <br>
-            <input type="text" name="location" id="location" value="<?=$user_location?>" placeholder="City, State/Region, Country">
+            <input type="text" name="location" id="location" class="input_text" value="<?=$user_location?>" placeholder="City, State/Region, Country">
             <br><br>
             <span class="user_info_span">Profession</span>
             <br>
-            <select class="" id="profession" name="profession">
+            <select class="input_text" id="profession" name="profession" style="width:220px">
               <option value="none" <?=$selected?>>Please Select</option>
               <option value="freelancer/owner" <?=$selected1?>>Freelancer/Owner</option>
               <option value="graphic/branddesigner" <?=$selected2?>>Graphic/Brand Designer</option>
@@ -445,7 +445,7 @@ if(!isset($member_no)){
             </table>
             <input type="hidden" name="use_mf" id="use_mf" value="<?=$user_use_mf?>">
             <br>
-            <input type="button" name="button" value="Update Settings" onclick="check_update_setting()">
+            <input type="button" name="button" value="Update Settings" onclick="check_update_setting()" id="update_btn">
             <br><br>
           </form>
         </div> <!-- end of user_info_div -->
@@ -462,30 +462,30 @@ if(!isset($member_no)){
         <form name="password_change_form" action="../khy_modal/not_social.php?mode=update_password" method="post">
         <table id="pass_table">
           <tr id="pass_title_tr">
-            <td colspan="2"><h3>Change Password</h3></td>
+            <td colspan="2"><h2 class="title_h2">Change Password</h2></td>
           </tr>
           <tr>
-            <td colspan="2">Old Password : </td>
+            <td colspan="2"> <span class="pw_title_span"> Old Password  </span></td>
           </tr>
           <tr>
-            <td colspan="2"><input type="password" name="old_password" id="old_password" value="" style="width: 300px;" ></td>
+            <td colspan="2"><input type="password" name="old_password" id="old_password" class="change_pw_text" value="" ></td>
             <input type="hidden" name="old_password_con" id="old_password_con" value="<?=$user_password?>">
           </tr>
           <tr>
-            <td colspan="2">New Password : </td>
+            <td colspan="2"> <span class="pw_title_span"> New Password  </span></td>
           </tr>
           <tr>
-            <td colspan="2"><input type="password" name="new_password" id="new_password" value="" style="width: 300px;" placeholder="6 ~ 14 letters(numbers + alphas + specials)"></td>
+            <td colspan="2"><input type="password" name="new_password" id="new_password" value="" class="change_pw_text" placeholder="6 ~ 14 letters(numbers + alphas + specials)"></td>
           </tr>
           <tr>
-            <td colspan="2">Verify Password : </td>
+            <td colspan="2"><span class="pw_title_span">Verify Password  </span></td>
           </tr>
           <tr>
-            <td colspan="2"><input type="password" name="veri_password" id="veri_password" value="" style="width: 300px;" placeholder="6 ~ 14 letters(numbers + alphas + specials)"></td>
+            <td colspan="2"><input type="password" name="veri_password" id="veri_password" value="" class="change_pw_text" placeholder="6 ~ 14 letters(numbers + alphas + specials)"></td>
           </tr>
           <tr><td></td></tr>
           <tr>
-            <td colspan="2"><input type="button" name="" value="Change Password!" onclick="change_pass_check();"></td>
+            <td colspan="2"><input type="button" name="" value="Change Password" id="chang_pw_btn" onclick="change_pass_check();"></td>
           </tr>
         </table>
         </form>
@@ -499,26 +499,26 @@ if(!isset($member_no)){
        <form name="hwan_mon_form" action="../khy_modal/not_social.php?mode=hwan_mon" method="post">
        <table id="pass_table">
          <tr id="pass_title_tr">
-           <td colspan="2"><h3>Request Mon</h3></td>
+           <td colspan="2"><h2 class="title_h2" >Request Mon</h2></td>
          </tr>
          <tr>
-           <td colspan="2">Present Mon : </td>
+           <td colspan="2"><span class="pw_title_span"> Present Mon  </span></td>
          </tr>
          <tr>
-           <td colspan="2"><input type="number" name="present_mon" id="present_mon" value="<?=$user_present_mon?>" readonly></td>
+           <td colspan="2"><input type="number" name="present_mon" id="present_mon" class="change_pw_text" value="<?=$user_present_mon?>" readonly></td>
          </tr>
          <tr>
-           <td colspan="2">Hope Mon : </td>
+           <td colspan="2"><span class="pw_title_span">Hope Mon  </span></td>
          </tr>
          <tr>
-           <td colspan="2"><input type="number" name="hope_mon" id="hope_mon" value="" placeholder="Can 10Mon++"></td>
+           <td colspan="2"><input type="number" name="hope_mon" id="hope_mon" value="" class="change_pw_text" placeholder="Can 10Mon++"></td>
          </tr>
          <tr><td></td></tr>
          <tr>
            <td colspan="2">
              <?php
              if($user_present_hwan_mon == 0){
-               echo '<input type="button" name="" value="Request Mon!" onclick="hwan_mon_check();">';
+               echo '<input type="button" name="" value="Request Mon" id="chang_pw_btn" onclick="hwan_mon_check();">';
              }else{
                echo '<div id="request_status"> Present Request : '.$user_present_hwan_mon.' </div>';
              }
