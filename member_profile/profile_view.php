@@ -23,7 +23,7 @@ if(isset($_GET['email'])){
 }
 
 
-  $sql = "SELECT * from `member` where no = $shop_no;";
+  $sql = "SELECT * from `member` where no = '$shop_no';";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   $img_name = $row['pro_img_copied'];
@@ -48,7 +48,7 @@ if (!$follow_status_result) {
 }
 if($follow_status_num = mysqli_num_rows($follow_status_result)==1){
   $follow_status = 'y';
-  $follow_style = 'style = "background-color:rgba(151, 177, 98, 129)"';
+  $follow_style = 'style = "background-color:rgba(151, 177, 98, 129); color:#fff;"';
 }else{
   $follow_status = 'n';
   $follow_style = 'style = "background-color:#e5e5e4"';
@@ -183,13 +183,13 @@ $number = $total_record - $start;
             if(result=='fail'){
               alert("fail!!!!!!!!!!!!!!!!");
             }else if(result=='insert'){
-              $("#follow_button").attr('style', 'background-color:lightgreen');
+              $("#follow_button").attr('style', 'background-color:rgba(151, 177, 98, 129); color:#fff');
               $("#status_follow").val('y');
               $("#follow_button").val(' √ Following ');
               followers += 1;
               $("#followers_num").html(followers);
             }else if(result=='delete'){
-              $("#follow_button").attr('style', 'background-color:lightgray');
+              $("#follow_button").attr('style', 'background-color:#e5e5e4;');
               $("#status_follow").val('n');
               $("#follow_button").val(' + Follow ');
               followers -= 1;
@@ -308,15 +308,15 @@ $number = $total_record - $start;
                     <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
                   </div>
                   <div class="list_title_div">
-                    <div class="" style="">
+                    <div class="">
                       <a href="#" class="">
-                        <span class="list_title_div_span_bold" ><?=$item_subject?></span>
+                        <span class="list_title_div_span_bold" style="text-align:left;"><?=$item_subject?></span>
                       </a>
-                      <a href="#" class="list_title_div_a_float_right" >
+                      <a href="#" class="list_title_div_a_float_right" style="text-align:left;">
                          <?=$item_price?>&nbsp;M
                       </a>
                     </div>
-                    <div class="" >
+                    <div class="">
                         by&nbsp;<a href="../member_profile/profile_view.php?mode=shop&email=<?=$item_email?>" class=""><?=$item_email?></a>
                         in&nbsp;<a href="../product_list/list.php?big_data=<?=$item_big_data?>" class=""><?=$item_big_data?></a>
                     </div>
@@ -648,7 +648,7 @@ $number = $total_record - $start;
               }else{
                 echo '<td><input type="button" id="follow_button" value=" √ Following " '.$follow_style.'></td>';
               }
-              echo '<td><button type="button" id="myBtn_1">Message</button></td>';
+              echo '<td><button type="button" id="myBtn_1" class="message_btn">Message</button></td>';
             }
              ?>
              <input type="hidden" name="" value="<?=$shop_email?>" id="write_id_shop_email">

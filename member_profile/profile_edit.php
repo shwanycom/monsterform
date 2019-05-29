@@ -458,7 +458,7 @@ if(!isset($member_no)){
         exit;
       }
       ?>
-      <div id="change_password_div">
+      <div id="change_password_div"  style="padding-left: 33%;">
         <form name="password_change_form" action="../khy_modal/not_social.php?mode=update_password" method="post">
         <table id="pass_table">
           <tr id="pass_title_tr">
@@ -495,7 +495,7 @@ if(!isset($member_no)){
     <?php
   }else if(isset($_GET['mode']) && $_GET['mode']=='requests'){
      ?>
-     <div class="request_div">
+     <div class="request_div" style="padding-left: 33%;">
        <form name="hwan_mon_form" action="../khy_modal/not_social.php?mode=hwan_mon" method="post">
        <table id="pass_table">
          <tr id="pass_title_tr">
