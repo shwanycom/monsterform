@@ -216,10 +216,8 @@ $number = $total_record - $start;
     include "../lib/header_in_folder.php";
      ?>
     <!--============================================================================== -->
+    <img src="<?=$shop_img_name?>" alt="" width="100%;" height="400vh;" id="shop_main_img"><br>
     <div id="member_profile">
-      <div id="shop_img">
-        <img src="<?=$shop_img_name?>" alt="" width="1140px;" height="250px;" id="shop_main_img"><br>
-      </div>
       <div class="clear"></div>
 
       <div id="member_profile_left">
@@ -231,6 +229,7 @@ $number = $total_record - $start;
         </ul>
 
         <div id="member_likes_div">
+          <br><br>
           <?php
           if(isset($_GET['mode']) && $_GET['mode'] == 'likes'){
 
@@ -337,7 +336,7 @@ $number = $total_record - $start;
             $number --;
           }
              ?>
-             <br><br><br>
+             <br><br>
              <div class="product_page_num">
                <?php
                if(!($page-1==0)){
@@ -366,7 +365,6 @@ $number = $total_record - $start;
                  }
 
                   ?>
-
                   <br><br>
                </div> <!-- end of page_num -->
           <?php
@@ -475,7 +473,7 @@ $number = $total_record - $start;
           $number --;
           }
            ?>
-           <br><br><br>
+           <br><br>
            <div class="product_page_num">
              <?php
              if(!($page-1==0)){
@@ -502,7 +500,7 @@ $number = $total_record - $start;
                echo "";
              }
                 ?>
-                <br>
+                <br><br>
              </div> <!-- end of page_num -->
            <?php
          }else if(isset($_GET['mode']) && $_GET['mode'] == 'shop'){
@@ -599,7 +597,7 @@ $number = $total_record - $start;
            $number --;
            }
             ?>
-            <br><br><br>
+            <br><br>
             <div class="product_page_num">
               <?php
               if(!($page-1==0)){
@@ -626,7 +624,7 @@ $number = $total_record - $start;
                 echo "";
               }
                  ?>
-                 <br>
+                 <br><br>
               </div> <!-- end of page_num -->
           <?php
          } // end if else if
