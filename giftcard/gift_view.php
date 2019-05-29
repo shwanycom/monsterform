@@ -110,9 +110,9 @@ if(isset($_SESSION['email'])){
         <div class="payment_list"  id="payment_list" style="display:block">
           <b>Gift Card Amount</b>
           <div class="check_money">
-            <input type="radio" name="mon" id="mon" value="20000" onclick="fnRadioName();" ><span class="amount_span"> \20000 </span>
-            <input type="radio" name="mon" id="mon" value="50000" onclick="fnRadioName();" checked><span class="amount_span"> \50000 </span>
-            <input type="radio" name="mon" id="mon" value="100000" onclick="fnRadioName();" ><span class="amount_span"> \100000 </span>
+            <input type="radio" name="mon" id="mon" value="20000" onclick="fnRadioName();" ><span class="amount_span"> ￦20000 </span>
+            <input type="radio" name="mon" id="mon" value="50000" onclick="fnRadioName();" checked><span class="amount_span"> ￦50000 </span>
+            <input type="radio" name="mon" id="mon" value="100000" onclick="fnRadioName();" ><span class="amount_span"> ￦100000 </span>
           </div>
           <div class="input_size_div">
             <div class="input_field">
@@ -133,7 +133,7 @@ if(isset($_SESSION['email'])){
         <div class="gift_point" id="showHide" style="display:none">
           <div class="btn_div">
             <button type="button" name="button" id="btn_back"onclick=showd()>←Back</button>
-            <b style="font-size:12px;">Amount : \</b><span id="select_price" style="font-size:12px;">50000</span>
+            <b style="font-size:12px;">Amount : ￦</b><span id="select_price" style="font-size:12px;">50000</span>
           </div>
             <form method="post" name="buy">
               <div class="send_payment">

@@ -160,6 +160,11 @@ $month=$_POST['admin_submit_month'];
 ?>
 <html>
   <head>
+    <link rel="stylesheet" href="../css/common.css?ver=1">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/footer_2.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/admin_chart.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     google.charts.load('current', {'packages': ['linechart']}); /*LINE차트를 사용하기 위한 준비  */
@@ -185,11 +190,9 @@ $month=$_POST['admin_submit_month'];
       var options = {
         title: 'Purchase History',
         curveType: 'function',
-        legend: { position: 'bottom' },
-        height:500,
       };
       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-      chart.draw(data, options);
+      chart.draw(data, {width: '100%', height:600});
     }
     <?php
 
@@ -207,18 +210,29 @@ $month=$_POST['admin_submit_month'];
         ]);
         var options = {
           title: 'sales',
-          height:500,
-          width:500,
+          width:400,
+          height:400,
+          fontSize:20,
+          float:'none',
+          legend: 'none',
+          pieSliceText: 'label',
+          left:0,
+          top:0,
+          bottom:0,
+          right:0,
+          chartArea: {
+            left:"3%",
+            top:"3%",
+            bottom:"3%",
+            right:"3%",
+            width:"94%",
+            height:"94%"
+          }
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
     }
     </script>
-    <link rel="stylesheet" href="../css/common.css?ver=1">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/footer_2.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/admin_chart.css">
   </head>
 
   <body>
@@ -229,33 +243,39 @@ $month=$_POST['admin_submit_month'];
     <section id="admin_chart_section">
 
 
-      <div id="curve_chart"></div>
-      <div id="piechart" ></div>
+      <div id="curve_chart" align="center"></div>
+
       <div id="admin_chart_form">
-        <form class="" action="admin_sales.php?mode=piechart" method="post">
-          <select class="" name="admin_submit_month">
-            <option value=""><?=$year?></option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <input type="submit" name="" value="선택">
-        </form>
+        <div id="piechart" align="center"></div>
       </div>
-      <div id="admin_pie_chart_span">
-        <span>photos갯수 : <?=$count_ph?></span>
-        <span>graphics갯수 : <?=$count_gr?></span>
-        <span>fonts갯수 : <?=$count_fo?></span>
+      <div class="admin_chart_select_span">
+        <div class="admin_chart_select">
+          <form class="" action="admin_sales.php?mode=piechart" method="post">
+            <select class="" name="admin_submit_month">
+              <option value=""><?=$year?></option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <input type="submit" name="" value="선택">
+          </form>
+        </div>
+        <div class="admin_chart_span">
+          <span>photos갯수 : <?=$count_ph?></span>
+          <span>graphics갯수 : <?=$count_gr?></span>
+          <span>fonts갯수 : <?=$count_fo?></span>
+        </div>
       </div>
+
     </section>
 
     <?php

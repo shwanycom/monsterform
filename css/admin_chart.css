@@ -3,9 +3,21 @@
   margin-left: 10%;
   padding-bottom:30px;
 }
+/* *{
+  border:1px solid red;
+} */
 rect{
   fill: rgba(245,245,244,230);
 }
-#piechart, #admin_chart_form, #admin_pie_chart_span{
+
+.admin_chart_select, .admin_chart_span{
   display: inline-block;
+}
+#admin_chart_form{
+  width:1257px;
+  display: flex;
+  align-items: center;
+}
+#piechart{
+  margin:auto;
 }

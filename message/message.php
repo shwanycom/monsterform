@@ -6,14 +6,13 @@ include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 
 create_table($conn, "message");
 
-if(!isset($_SESSION['email'])){
-echo "<script> alert('회원만 이용 가능 합니다.'); history.go(-1); </script>";
-exit;
+if(isset($_SESSION['email'])){
+  $id = $_SESSION['email'];
+}else{
+  $id="";
 }
 
-$id = $_SESSION['email'];
 $mode = "allmessage";
-
 if(isset($_GET['mode'])){
     $mode = $_GET['mode'];
 }
@@ -149,6 +148,16 @@ $number=$total_record- $start_row;
   <?php
     include "../lib/footer_in_folder.php";
     include "./send_message_modal.php";
+  ?>
+  <?php
+  include "../khy_modal/login_modal_in_folder.php";
+  if(!isset($_SESSION['no'])) {
+    ?>
+    <script>
+      auto_modal();
+    </script>
+    <?php
+  }
   ?>
 </body>
 

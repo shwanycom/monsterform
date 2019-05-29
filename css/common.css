@@ -494,7 +494,6 @@ div#div_mem button.modal_text{
 #gloginBtn {
   background-color:#ff5e5e;
   color: white;
-
 }
 
 #kloginBtn {
@@ -516,17 +515,17 @@ hr{
   display: inline-block;
 }
 
-div#div_mem input{
+#div_mem input{
   border-radius: 5px;
   border: 2px solid #cfcfcf;
   outline: none;
   height: 30px;
 }
-div#div_mem input.modal_text{
+#div_mem input.modal_text{
   width : 90%;
   text-indent : 1.5em;
 }
-div#div_mem input.modal_btn{
+#div_mem input.modal_btn{
   width : 91%;
   height: 35px;
   padding: 1px 0px;
@@ -535,10 +534,10 @@ div#div_mem input.modal_btn{
   background-color: #67b57a;
   color : white;
 }
-div#div_mem input#email_btn{
+#div_mem input#email_btn{
   margin-bottom: 20px;
 }
-div#div_mem input#sign{
+#div_mem input#sign{
   float: left;
   border: none;
   background-color: white;
