@@ -375,7 +375,7 @@ $number = $total_record - $start;
             $row = mysqli_fetch_array($result);
             $pnum = $row['product_num'];
 
-            $sql_collections = "SELECT * from `products` where num = $pnum;";
+            $sql_collections = "SELECT * from `collections` where num = $pnum;";
             $result_collections = mysqli_query($conn, $sql_collections);
 
             $total_record_collections = mysqli_num_rows($result_collections);
@@ -383,20 +383,19 @@ $number = $total_record - $start;
             for($k=0;$k<$total_record_collections;$k++){
               mysqli_data_seek($result, $k);
               $row = mysqli_fetch_array($result_collections);
-              $item_no = $row["no"];
-              $item_num = $row["num"];
-              $item_name = $row["username"];
-              $price = $row["price"];
+              $item_no = $row["pro_no"];
+              $item_num = $row["pro_num"];
+              $price = $row["pro_price"];
               $item_price = $price/100;
-              $item_email = $row["email"];
-              $img_copy_name1 = $row["img_file_copied1"];
+              $item_email = $row["pro_email"];
+              $img_copy_name1 = $row["pro_img_file_copied"];
               $img_copy_name1 = "../data/img/".$img_copy_name1;
-              $item_hit = $row["hit"];
-              $item_date = $row["regist_day"];
+              $item_hit = $row["pro_hit"];
+              $item_date = $row["buy_regist_day"];
               $item_date = substr($item_date, 0, 10);
-              $item_big_data = $row["big_data"];
+              $item_big_data = $row["pro_big_data"];
               $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
-              $item_freegoods=$row["freegoods"];
+              $item_freegoods=$row["pro_freegoods"];
 
               $sql_partner = "SELECT partner from member where no = '$item_no';";
               $result_partner = mysqli_query($conn, $sql_partner);
