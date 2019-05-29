@@ -137,5 +137,20 @@ if($_GET["mode"]=="login"){
           document.location.href='../member_profile/profile_edit.php?mode=profile_info';
         </script>";
 
+}else if(isset($_GET["mode"]) && $_GET["mode"]=="hwan_mon"){
+  $update_hwan_mon = intval($_POST['hope_mon']);
+  $update_point_mon = intval($_POST['present_mon']);
+  $update_result = intval($update_point_mon) - intval($update_hwan_mon);
+
+  $sql = "UPDATE `member` set `hwan_mon`=$update_hwan_mon, `point_mon`= point_mon - $update_hwan_mon where no=$member_no;";
+  $result = mysqli_query($conn, $sql);
+  if (!$result) {
+    die('Error: 111111' . mysqli_error($conn));
+    exit;
+  }
+
+  echo "<script> alert('환전 신청 완료!!');
+          document.location.href='../member_profile/profile_edit.php?mode=requests';
+        </script>";
 }
 ?>
