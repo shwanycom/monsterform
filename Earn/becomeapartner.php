@@ -14,8 +14,6 @@
   $row=mysqli_fetch_array($result);
   $partner_apply=$row['partner_apply'];
   $partner=$row['partner'];
-  var_dump($partner);
-  var_dump($partner_apply);
 
 ?>
 

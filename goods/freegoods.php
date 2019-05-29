@@ -151,7 +151,7 @@ $row2=mysqli_fetch_array($result2);
         }
       echo '<div class="img_div">
           <figure class="snip1368">
-            <a href="#">
+            <a href="../shop/shop_view.php?num='.$num.'">
               <img id="main_img" src="../data/img/'.$img_file_copied1.'" alt="sample30" />
             </a>
             <div class="hover_img" id="hover_img_id">
@@ -167,8 +167,8 @@ $row2=mysqli_fetch_array($result2);
                 </a>
               </div>
               <div class="">
-                  by&nbsp;<a href="#" class="">'.$email.'</a>
-                  in&nbsp;<a href="#" class="">'.$big_data.'</a>
+                  by&nbsp;<a href="../member_profile/profile_view.php?mode=shop&email='.$email.'" class="">'.$email.'</a>
+                  in&nbsp;<a href="../product_list/list.php?big_data='.$big_data.'" class="">'.$big_data.'</a>
               </div>
             </div>
           </figure>
@@ -254,8 +254,8 @@ $row2=mysqli_fetch_array($result2);
                   </a>
                 </div>
                 <div class="">
-                    by&nbsp;<a href="#" class="">'.$email3.'</a>
-                    in&nbsp;<a href="#" class="">'.$big_data3.'</a>
+                    by&nbsp;<a href="../member_profile/profile_view.php?mode=shop&email='.$email.'" class="">'.$email3.'</a>
+                    in&nbsp;<a href="../product_list/list.php?big_data='.$big_data3.'" class="">'.$big_data3.'</a>
                 </div>
               </div>
               <figcaption>
@@ -281,9 +281,9 @@ $row2=mysqli_fetch_array($result2);
       <br><br>
     </section>
     <section class="more_handpicked_section">
-      <a href="product_list/list.php?big_data=photos&mode=search&partner=y&handpicked=n&popular=n&search_text=">More Handpicked Photos</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_list/list.php?big_data=graphics&mode=search&partner=y&handpicked=n&popular=n&search_text=">More Handpicked Graphics</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_list/list.php?big_data=fonts&mode=search&partner=y&handpicked=n&popular=n&search_text=">More Handpicked Fonts</a>
+      <a href="../product_list/list.php?big_data=photos&mode=search&partner=n&handpicked=y&popular=n&search_text=">More Handpicked Photos</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../product_list/list.php?big_data=graphics&mode=search&partner=n&handpicked=n&popular=n&search_text=">More Handpicked Graphics</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../product_list/list.php?big_data=fonts&mode=search&partner=n&handpicked=n&popular=n&search_text=">More Handpicked Fonts</a>
       <br><br>
     </section>
     <?php
