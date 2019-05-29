@@ -51,7 +51,8 @@ if ($type[0]=='application'){
     alert_back('2.zip파일사이즈가 10MB이상입니다.');
   }
 }else {
-  //alert_back('zip파일이 아닙니다');
+  // var_dump($type[0]); exit;
+  alert_back('zip파일이 아닙니다');
 }
 
 //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
@@ -98,12 +99,12 @@ for($i=0; $i<$count; $i++){
       alert_back('2.이미지 파일사이즈가 10MB이상입니다.');
     }
   }else {
-    alert_back('이미지파일이 아닙니다');
+    alert_back('이미지파일이 아닙니다!');
   }
 
   //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
   if(!move_uploaded_file($img_file_tmp_name[$i], $uploaded_img_file[$i])){
-    //alert_back('4.서버 전송에러 img');
+    alert_back('4.서버 전송에러 img');
   }
 }//end of for
 
@@ -140,8 +141,10 @@ if($big_data=="Fonts"){
   $font_type = explode("/", $font_file_type);
   if ($font_type[0]=='application'){
     if(!($font_type[1]=="x-font-ttf"||$font_type[1]=="octet-stream")){
-      alert_back('폰트 파일이 아닙니다');
+      alert_back('폰트 파일이 아닙니다! TTF or OTF');
     }
+  }else{
+    alert_back('폰트 파일이 아닙니다');
   }
 
   //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동시킨다.
