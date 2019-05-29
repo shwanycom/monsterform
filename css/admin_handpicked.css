@@ -174,13 +174,17 @@ transition: all 0.5s ease;
   margin-left:5px;
 }
 #admin_handpicked_search_text{
-  height:36px;
+  padding:0;
+  margin:0;
+  height:32px;
   width:250px;
   border:2px solid lightgray;
   outline: none;
 }
 #admin_handpicked_search_text:focus{
-  height:36px;
+  padding:0;
+  margin:0;
+  height:32px;
   width:300px;
   outline: none;
   background-color: #eeeeee;

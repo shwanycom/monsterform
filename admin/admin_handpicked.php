@@ -100,7 +100,6 @@ else if(empty($_POST['handpicked_search_value']) && !isset($_POST['handpicked_so
     $sql="select * from products where big_data='$sort_kind' order by sell_count/hit desc";
   }
 }
-var_dump($sql);
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
 // 페이지 당 글수, 블럭당 페이지 수

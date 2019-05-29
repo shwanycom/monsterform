@@ -322,6 +322,7 @@ $number=$total_record- $start_row;
         <form class="" action="admin_freegoods_dml.php?mode=date" method="post">
       </form>
     </div>
+    <br><br>
     </section>
     <?php
       include "./admin_main_in_folder.php";
