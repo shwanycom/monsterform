@@ -218,7 +218,7 @@
       method="post" enctype="multipart/form-data">
     <div class="shop_write_category">
       <input class="shop_write_text" type="text" name="subject" placeholder="Add Title..." id="shop_write_title"><br>
-      <span><i>by </i></span><span style="font-size:1.2em"><b> <?=$member_username?> </b></span><span> in
+      <span><i>by &nbsp;&nbsp;</i></span><span style="font-size:1.2em"><b> <?=$member_username?> &nbsp;&nbsp;&nbsp;</b></span><span> in &nbsp;&nbsp;<span>
       <select class="shop_write_select" name="shop_write_select" id="shop_write_select">
         <option value="" disabled selected>Choose Category</option>
         <option value="Photos">Photos</option>

@@ -52,10 +52,16 @@ if($_GET["mode"]=="login"){
 
     $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`,`partner`)";
     $sql.=" VALUES (null,'$email','$username','$password',0,'n')";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
+    $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+    
+    $sql="SELECT * from `member` where `email` = '$email'";
+    $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+    $row=mysqli_fetch_array($result);
+    $_SESSION['no'] = $row['no'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['mon'] = $row['point_mon'];
+    $_SESSION['partner'] = $row['partner'];
   }
   mysqli_close($conn);
   echo "<script>
