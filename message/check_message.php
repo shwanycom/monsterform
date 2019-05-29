@@ -15,7 +15,7 @@ $row=mysqli_fetch_array($result);
 if(mysqli_num_rows($result) == 0){
     echo "<script>
             alert('잘못된 아이디 입니다.');
-          
+
           </script>";
 }else if(empty($message)){
     echo "<script>

@@ -9,10 +9,13 @@
   }
 
   $now = date("Y-m-d(H:i)");
-  $sql="select partner_apply from member where email='$email';";
+  $sql="select partner_apply, partner from member where email='$email';";
   $result = mysqli_query($conn, $sql);
   $row=mysqli_fetch_array($result);
-  $partner=$row['partner_apply'];
+  $partner_apply=$row['partner_apply'];
+  $partner=$row['partner'];
+  var_dump($partner);
+  var_dump($partner_apply);
 
 ?>
 
@@ -33,18 +36,24 @@
       if(result){
         <?php
         if($partner=='n'){
-          // 파트너 신청시 partner_apply=n인 아이디는 y로 수정
-          $sql="update member set partner_apply='y' where email='$email'";
-          $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-          //파트너 신청시  관리자에게 메시지 보내기
-          $sql="insert into message (rece_email,send_email,msg,regist_day) values('admin@gmail.com','$email','[파트너 신청] $email 님께서 파트너를 신청하셨습니다.','$now');";
-          $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        ?>
-          alert("파트너 신청이 완료 되었습니다.");
-          <?php
-        }else{
+          if($partner_apply=='n'){
+            // 파트너 신청시 partner_apply=n인 아이디는 y로 수정
+            $sql="update member set partner_apply='y' where email='$email'";
+            $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+            //파트너 신청시  관리자에게 메시지 보내기
+            $sql="insert into message (rece_email,send_email,msg,regist_day) values('admin@gmail.com','$email','[파트너 신청] $email 님께서 파트너를 신청하셨습니다.','$now');";
+            $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
           ?>
-          alert("검토 중인 아이디 입니다.");
+            alert("파트너 신청이 완료 되었습니다.");
+            <?php
+          }else{
+            ?>
+            alert("검토 중인 아이디 입니다.");
+          <?php
+          }
+        }else{
+        ?>
+          alert("파트너 회원 입니다.");
         <?php
         }
         ?>
