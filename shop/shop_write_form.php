@@ -159,12 +159,12 @@ $(document).ready(function(){
     switch (check) {
       case "Photos" :   console.log("포토선택케이스");
                         $("#shop_write_upload2").remove();
-                        $('#shop_write_select2').html('<option value="" disabled selected>Choose Group</option><option value="animals">Animals</option><option value="arts">Arts</option><option value="beauty_Fasshion">Beauty&Fasshion</option><option value="business">Business</option><option value="food_Drink">Food&Drink</option><option value="nature">Nature</option><option value="sports">Sports</option><option value="technology">Technology</option>');
+                        $('#shop_write_select2').html('<option value="" disabled selected>Choose Group</option><option value="animals">Animals</option><option value="arts">Arts</option><option value="beauty_Fashion">Beauty&Fasshion</option><option value="business">Business</option><option value="food_drink">Food&Drink</option><option value="nature">Nature</option><option value="sports">Sports</option><option value="technology">Technology</option>');
                         break;
 
       case "Graphics" : console.log("그래픽선택케이스");
                         $("#shop_write_upload2").remove();
-                        $('#shop_write_select2').html('<option value="" disabled selected>Choose_Group</option><option value="icons">Icons</option><option value="illustrations">Illustrations</option><option value="web_Elements">Web_Elements</option><option value="objects">Objects</option><option value="patterns">Patterns</option><option value="textures">Textures</option>');
+                        $('#shop_write_select2').html('<option value="" disabled selected>Choose_Group</option><option value="icons">Icons</option><option value="illustrations">Illustrations</option><option value="web_elements">Web_Elements</option><option value="objects">Objects</option><option value="patterns">Patterns</option><option value="textures">Textures</option>');
                         break;
       case "Fonts" : console.log("폰트선택케이스");
                       $("#shop_write_upload").append('<div id="shop_write_upload2"></div>');
