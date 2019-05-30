@@ -5,6 +5,16 @@ if(isset($_SESSION['email'])){
   $result_mon = mysqli_query($conn, $sql_mon);
   $row_mon=mysqli_fetch_array($result_mon);
   $mem_mon=$row_mon['point_mon'];
+
+  $sql_nmessage = "select * from `message` where rece_email='$member_email' and rece_status='n'";
+  $result_nmessage = mysqli_query($conn, $sql_nmessage);
+  $total_nmessage_record = mysqli_num_rows($result_nmessage);
+  if($total_nmessage_record>0){
+    $flag_nm="../img/new_message.png";
+  }else{
+    $flag_nm="../img/message.png";
+  }
+
 }
 ?>
 <script type="text/javascript">
@@ -30,9 +40,9 @@ if(isset($_SESSION['email'])){
   <div id="header_logout_form_div1">
       <div id="header_logout_form_div1_1">
         <ul id="header_logout_form_div1_1_ul">
-          <li class="header_logout_form_div1_1_ul_li"><a href="../goods/freegoods.php">Get Free Goods&nbsp;&nbsp;</a></li>
-          <li class="header_logout_form_div1_1_ul_li"><a href="../earn/becomeapartner.php">Become a Partner&nbsp;&nbsp;</a></li>
-          <li class="header_logout_form_div1_1_ul_li"><a href="../discussion/list.php">Discussions&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="../goods/freegoods.php">Get Free Goods&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="../earn/becomeapartner.php">Become a Partner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+          <li class="header_logout_form_div1_1_ul_li"><a href="../discussion/list.php">Discussions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
           <?php
             if(isset($member_email)){
               echo '<li class="header_logout_form_div1_1_ul_li"><a href="../point/point_main.php">Free Bonus Credits&nbsp;&nbsp;</a></li>';
@@ -76,7 +86,7 @@ if(isset($_SESSION['email'])){
                         Message
                         </button>
                       </div>
-                      <img src="../img/message.png" alt="">
+                      <img src="'.$flag_nm.'" alt="">
                     </div>
                   </a>
                 </li>

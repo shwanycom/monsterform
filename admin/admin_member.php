@@ -99,13 +99,13 @@ $number=$total_record- $start_row;
     function check_accept(num ,rid) {
       var decision_accept= confirm("accept exchange? \n Either OK or Cancel");
       if(decision_accept){
-        window.location.href='admin_member_dml.php?mode=exchange_accept&no='+num+'remail='+rid;
+        window.location.href='admin_member_dml.php?mode=exchange_accept&no='+num+'&remail='+rid;
       }
     }
     function check_reject(num, mon, hwan_mon, rid) {
       var decision_reject= confirm("reject exchange? \n Either OK or Cancel");
       if(decision_reject){
-        window.location.href='admin_member_dml.php?mode=exchange_reject&no='+num+'&mon='+mon+'&hwan_mon='+hwan_mon+'remail='+rid;
+        window.location.href='admin_member_dml.php?mode=exchange_reject&no='+num+'&mon='+mon+'&hwan_mon='+hwan_mon+'&remail='+rid;
       }
     }
 

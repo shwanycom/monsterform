@@ -184,10 +184,11 @@ $number = $total_record - $start;
         $("#follow_button").click(function(event) {
           var shop_no = $("#shop_no_follow").val();
           var status = $("#status_follow").val();
+          var shop_email = $("#write_id_shop_email").val();
           $.ajax({
             url: './follow_dml.php',
             type: 'POST',
-            data: {"shop_no": ""+shop_no+"", "status": ""+status+""}
+            data: {"shop_no": ""+shop_no+"", "status": ""+status+"", "shop_email": ""+shop_email+""}
           })
           .done(function(result) {
             console.log("success");

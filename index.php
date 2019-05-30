@@ -41,6 +41,7 @@ create_table($conn, 'collections');
     <?php
     include "./lib/header.php";
     if(isset($_SESSION['username'])){
+      include "./lib/section_text_category.php";
       include "./point/index_point.php";
     }else{
       include "./lib/section_text_category.php";

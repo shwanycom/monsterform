@@ -129,8 +129,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
      $item_no = $row["no"];
      $item_num = $row["num"];
      $item_name = $row["username"];
-     $price = $row["price"];
-     $item_price = $price/100;
+     $item_price = $row["price"];
      $item_email = $row["email"];
      $img_copy_name1 = $row["img_file_copied1"];
      $img_copy_name1 = "./data/img/".$img_copy_name1;
@@ -151,6 +150,7 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
      }else{
        $freegoods_img="./img/free_partner_logo.png";
      }
+
      if(isset($member_no)){
        $sql_likes = "SELECT product_num from likes where no = '$member_no';";
        $result_likes = mysqli_query($conn, $sql_likes);
@@ -169,6 +169,9 @@ for($i=$plus;($i<$plus+SCALE) && $i<$total_record ; $i++){
            break;
          }
        }
+     }else{
+       $likes_img = "";
+       $likes_img_value = '';
      }
 
      // 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직

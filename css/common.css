@@ -387,9 +387,11 @@ button:hover{
   color:rgb(245,245,244,230);
 }
 #text_category_text_div_span1{
+  font-family:"UniNeue-HeavyItalic";
   font-size: 40pt;
 }
 #text_category_text_div_span2{
+    font-family:"UniNeue-Light";
   font-size: 25pt;
 }
 #text_category_text_div{
@@ -398,7 +400,6 @@ button:hover{
   width:100%;
   background-repeat: no-repeat;
 }
-
 /* ------------------------------템플릿 추가 부분 ------------------------------------------------------ */
 #categories_section {
   height: 270px;
