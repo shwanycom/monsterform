@@ -51,8 +51,14 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   $zip_file_name = $row['zip_file_name'];
   $zip_file_copied = $row['zip_file_copied'];
   $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
+  $ttf_file_name = $row['ttf_file_name'];
   $ttf_file_copied = $row['ttf_file_copied'];
   $file_type = $row['file_type'];
+
+  if($ttf_file_copied){
+    $font_src = "../data/font/$ttf_file_copied";
+    $font_family = $ttf_file_name;
+  }
 
   //Set Variables
   // $width_icon = '32px';
@@ -100,6 +106,17 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/monsterform.js"></script>
 
+  <style type="text/css">
+    @font-face {
+      font-family : "<?=$font_family?>"; /*폰트 패밀리 이름 추가*/
+      src : url('<?=$font_src?>'); /*폰트 파일 주소*/
+    }
+    input.font_face_output { font-family: "<?=$font_family?>"; }
+    /* #site-icon      { width: <?php echo $width_icon; ?>; }
+    #site-footer-icon   { width: <?php echo $width_icon; ?>; }
+    #comment-avatar     { width: <?php echo $width_icon; ?>; } */
+  </style>
+
 
 <script>
   function currentDiv(n) {
@@ -127,7 +144,7 @@ $(document).ready(function(e) {
   $("#font_face_input").keyup(function(e){
     var $val = $(this).val();
     console.log($val);
-    $("#font_face_output").val($val);
+    $(".font_face_output").val($val);
   });
 });
 </script>
@@ -201,10 +218,12 @@ $(document).ready(function(e) {
       ?>
       <div id="shop_view_div3">
         <div class="s_v_font_div" id="s_v_font_div1">
-          <input type="text" class="font_face" id="font_face_input" value="">
+          <input type="text" class="font_face" id="font_face_input" placeholder="write some text">
         </div>
         <div class="s_v_font_div" id="s_v_font_div2">
-          <input type="text" class="font_face" id="font_face_output" value="">
+          <input type="text" class="font_face_output" id="font_face_output1" placeholder="Sample Text 25px">
+          <input type="text" class="font_face_output" id="font_face_output2" placeholder="Sample Text 60px">
+          <input type="text" class="font_face_output" id="font_face_output3" placeholder="Sample Text 130px">
         </div>
       </div>
       <?php
