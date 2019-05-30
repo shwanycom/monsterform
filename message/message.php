@@ -104,8 +104,8 @@ $number=$total_record- $start_row;
 
        ?>
       <div id="list_message">
-        <!-- <a href="#"><img src="./data/<?=$pro_img_copied?>" class="message_pro"></a> -->
-        <a href="../member_profile/profile_view.php?<?=$send_email?>">
+        <!-- <a href="#"><img src="./data/$pro_img_copied" class="message_pro"></a> -->
+        <!-- <a href="../member_profile/profile_view.php?$send_email"> -->
            <?php
           if($id==$send_email){
             ?>
