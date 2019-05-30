@@ -60,7 +60,7 @@ if($pro_img_copied!=null){
 			<div id="write_form">
 				<span id="subject_span"><?=$message?></span>
 				<div class="write_form_img">
-					<a href="#"><img src="./data/<?=$pro_img_copied?>" class="message_pro"></a>
+					<a href="#"><img src="../data/img/<?=$pro_img_copied?>" class="message_pro"></a>
 					<div class="write_form_2">
 						<div class="write_form_3">
 							<a href="#" style="text-decoration:none"><span id="send_span"><?=$send_email?></span></a>
