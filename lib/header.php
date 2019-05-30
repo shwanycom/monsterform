@@ -1,3 +1,10 @@
+<?php
+  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+  $slq_mon = "select point_mon from member where email='$member_email'";
+  $result_mon = mysqli_query($conn, $slq_mon);
+  $row_mon=mysqli_fetch_array($result_mon);
+  $mem_mon=$row_mon['point_mon'];
+?>
 <script type="text/javascript">
   var value="";
   function index_select(value){
@@ -95,7 +102,7 @@
                 <li class="header_logout_form_div1_2_ul_li">
                 <a href="#">
                 <div id="header_logout_form_div1_2_ul_li_div5">&nbsp;
-                <span style="font-weight:bold;">'.$member_email.'&nbsp;&nbsp;'.$member_mon.'&nbsp;MON</span>
+                <span style="font-weight:bold;">'.$member_email.'&nbsp;&nbsp;'.$mem_mon.'&nbsp;MON</span>
                 <div id="header_logout_form_div1_2_ul_li_div5_div">
                   <div><a href="./member_profile/profile_view.php?mode=shop&email='.$member_email.'">&nbsp;Profile</a></div>
                   <div><a href="./member_profile/profile_view.php?mode=shop&email='.$member_email.'">&nbsp;Shop</a></div>
