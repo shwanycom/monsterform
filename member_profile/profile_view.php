@@ -385,7 +385,7 @@ $number = $total_record - $start;
             $row = mysqli_fetch_array($result);
             $pnum = $row['product_num'];
 
-            $sql_collections = "SELECT * from `collections` where num = $pnum;";
+            $sql_collections = "SELECT * from `collections` where pro_num = $pnum;";
             $result_collections = mysqli_query($conn, $sql_collections);
 
             $total_record_collections = mysqli_num_rows($result_collections);
@@ -403,7 +403,7 @@ $number = $total_record - $start;
               $item_date = $row["buy_regist_day"];
               $item_date = substr($item_date, 0, 10);
               $item_big_data = $row["pro_big_data"];
-              $item_subject = str_replace(" ", "&nbsp;", $row["subject"]);
+              $item_subject = str_replace(" ", "&nbsp;", $row["pro_subject"]);
               $item_freegoods=$row["pro_freegoods"];
 
               $sql_partner = "SELECT partner from member where no = '$item_no';";
