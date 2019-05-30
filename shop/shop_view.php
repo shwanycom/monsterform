@@ -117,6 +117,20 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
     }
   </script>
   <script>
+    $('#font_face_input').keyup(function(e){
+    }
+  });
+    $("#shop_write_input_tag").keyup(function(e){
+      if (e.keyCode == 13) {
+        var value = "#" + $(this).val();
+        console.log(value);
+        $("#shop_write_tags").append('<div class="s_v_tags">' + value + '</div>');
+        $(this).val("");
+      }
+    });
+
+  </script>
+  <script>
     function send_to_dml(mode, from){
       var action = "../cart_report/cart_report_dml.php?mode=" + mode + "&from=" + from;
       document.getElementById("shop_view_form").action = action;
@@ -183,8 +197,11 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
       <?php
       if($ttf_file_copied){
       ?>
-      <div id="s_v_font_div">
-        <input type="text" class="font_face_input" id="font_face_input" value="">
+      <div class="s_v_font_div" id="s_v_font_div1">
+        <input type="text" class="font_face" id="font_face_input" value="">
+      </div>
+      <div class="s_v_font_div" id="s_v_font_div2">
+        <input type="text" class="font_face" id="font_face_gal" value="">
       </div>
       <?php
       }
