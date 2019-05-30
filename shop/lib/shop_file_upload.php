@@ -46,6 +46,7 @@ if(!$zip_file_error){
 $type = explode("/", $zip_file_type);
 // application/x-rar-compressed, application/octet-stream
 // application/zip, application/octet-stream
+
 if ($type[0]=='application'){
   if($zip_file_size>10000000){
     alert_back('2.zip파일사이즈가 10MB이상입니다.');

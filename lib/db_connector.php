@@ -5,11 +5,14 @@ $servername = "192.168.0.174";
 $username = "monsterform";
 $password = "monster1!";
 
+<<<<<<< HEAD
 // $servername = "localhost";
 // $username = "root";
 // $password = "123456";
 
 
+=======
+>>>>>>> 280b41694d240813e831e0e0e9a73855b4007bfa
 
 $dbflag = "NO";
 $conn = mysqli_connect($servername, $username, $password);
