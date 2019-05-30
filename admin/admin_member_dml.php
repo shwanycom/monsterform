@@ -20,7 +20,10 @@ if(isset($_GET["mon"])){
 if(isset($_GET["hwan_mon"])){
   $get_hwan_mon=$_GET["hwan_mon"];
 }
-
+if(isset($_GET['remail'])){
+  $remail=$_GET["remail"];
+}
+$now = date("Y-m-d(H:i)");
 
 if(isset($_GET["mode"]) && $_GET["mode"]=='delete'){
   $q_no = mysqli_real_escape_string($conn, $get_no);
@@ -58,7 +61,12 @@ else if(isset($_GET["mode"]) && $_GET["mode"]=='exchange_accept'){
   $sql="UPDATE `member` set `hwan_mon`='0' WHERE no='$q_no'";
   $result = mysqli_query($conn, $sql);
   if (!$result) {
-    die('Error: EXCHANGE ACCEPT ERROR' . mysqli_error($conn));
+    die('Error: EXCHANGE ACCEPT ERROR1' . mysqli_error($conn));
+  }
+  $sql_accept="insert into message (rece_email, send_email, msg, regist_day) values('$remail', 'admin@gmail.com', '[admin] 환전이 완료 되었습니다.', '$now');";
+  $result_accept = mysqli_query($conn, $sql_accept);
+  if (!$result_accept) {
+    die('Error: EXCHANGE ACCEPT ERROR2' . mysqli_error($conn));
   }
   mysqli_close($conn);
   echo "<script> location.href='./admin_member.php';</script>";
@@ -71,6 +79,11 @@ else if(isset($_GET["mode"]) && $_GET["mode"]=='exchange_reject'){
   $result = mysqli_query($conn, $sql);
   if (!$result) {
     die('Error: EXCHANGE REJECT ERROR' . mysqli_error($conn));
+  }
+  $sql_reject="insert into message (rece_email, send_email, msg, regist_day) values('$remail', 'admin@gmail.com', '[admin] 환전이 거부 되었습니다..', '$now');";
+  $result_reject = mysqli_query($conn, $sql_reject);
+  if (!$result_reject) {
+    die('Error: EXCHANGE ACCEPT ERROR2' . mysqli_error($conn));
   }
   mysqli_close($conn);
   echo "<script> location.href='./admin_member.php';</script>";
