@@ -111,7 +111,7 @@ $number = $total_record - $start;
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/common.css?ver=1">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/photo.css">
     <link rel="stylesheet" href="../css/product_list.css">
@@ -196,7 +196,7 @@ $number = $total_record - $start;
             }else if(result=='insert'){
               $("#follow_button").attr('style', 'background-color:rgba(151, 177, 98, 129); color:#fff');
               $("#status_follow").val('y');
-              $("#follow_button").val(' √ Following ');
+              $("#follow_button").val(' ✔ Following ');
               followers += 1;
               $("#followers_num").html(followers);
             }else if(result=='delete'){
@@ -618,7 +618,7 @@ $number = $total_record - $start;
               }
               for($i=1;$i<=$total_page;$i++){
                 if($page==$i){
-                  echo "<b>&nbsp;&nbsp;◁ $i ▷&nbsp;&nbsp;</b>";
+                  echo "<b>&nbsp;&nbsp;- $i -&nbsp;&nbsp;</b>";
                 }else{
                   echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$i'>&nbsp;$i&nbsp;</a>";
                 }
@@ -644,8 +644,11 @@ $number = $total_record - $start;
       <div id="member_profile_right">
         <table>
           <tr>
-            <td id="username" style="padding-bottom:25px;"><?=$shop_email?></td>
-            <td id="spe_td1">&nbsp;&nbsp;&nbsp;</td>
+            <div class=""id="username" style="border:1px solid #dddddd; padding-bottom:50px;">
+                    <?=$shop_email?>
+            </div>
+            <!-- <td id="username" style="padding-bottom:25px; font-size:12pt;">shop_email</td> //위에 div로 바꿈
+            <td id="spe_td1">&nbsp;&nbsp;&nbsp;</td> -->
           </tr>
           <tr>
             <?php
@@ -657,7 +660,7 @@ $number = $total_record - $start;
               if($follow_status=='n'){
                 echo '<td><input type="button" id="follow_button" value=" ✚ Follow " '.$follow_style.'></td>';
               }else{
-                echo '<td><input type="button" id="follow_button" value=" √ Following " '.$follow_style.'></td>';
+                echo '<td><input type="button" id="follow_button" value=" ✔ Following " '.$follow_style.'></td>';
               }
               echo '<td><button type="button" id="myBtn_1"
               style="cursor: pointer;
@@ -669,7 +672,7 @@ $number = $total_record - $start;
               width: 80px;
               height: 30px;
               border-radius: 3px;
-              ">Message</button></td>';
+              ">✉ Message</button></td>';
             }
              ?>
              <input type="hidden" name="" value="<?=$shop_email?>" id="write_id_shop_email">
@@ -677,8 +680,9 @@ $number = $total_record - $start;
              <input type="hidden" name="" value="<?=$follow_status?>" id="status_follow">
           </tr>
           <tr id="spe_tr1">
-            <td>Followers <span id="followers_num"><?=$follower_num?></span></td>
-            <td>Following <?=$following_num?></td>
+            <td>Followers <br> <span id="followers_num"><?=$follower_num?></span></td>
+            <td>Following <br>
+              <?=$following_num?></td>
             <input type="hidden" name="" value="<?=$follower_num?>" id="hid_follower">
 
           </tr>

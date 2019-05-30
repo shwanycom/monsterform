@@ -1,3 +1,4 @@
+
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
@@ -17,8 +18,13 @@ if(isset($_GET['mode'])){
     $mode = $_GET['mode'];
 }
 
+
+$sql1 = "delete from message where rece_del='y' and send_del='y'";
+
+
+
 if($mode == "allmessage"){
-    $sql = "select * from message where send_email='$id' or rece_email='$id' order by num desc;";
+    $sql = "select * from message where send_email='$id'and send_del='n' or rece_email='$id'and rece_del='n' order by num desc;";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }else{
@@ -64,6 +70,7 @@ $number=$total_record- $start_row;
   <link rel="stylesheet" href="../css/footer_2.css">
   <link rel="stylesheet" href="../css/admin.css">
   <title></title>
+
 </head>
 <body>
   <?php
@@ -99,13 +106,33 @@ $number=$total_record- $start_row;
       <div id="list_message">
         <!-- <a href="#"><img src="./data/<?=$pro_img_copied?>" class="message_pro"></a> -->
         <a href="../member_profile/profile_view.php?<?=$send_email?>">
-          <div id="list_message2"><?=$send_email?></div>
+           <?php
+          if($id==$send_email){
+            ?>
+            <div id="list_message2"><?=$rece_email?></div>
+            <?php
+          }else{
+            ?>
+            <div id="list_message2"><?=$send_email?></div>
+            <?php
+          }
+           ?>
         </a>
         <a href="view.php?num=<?=$num?>">
           <div id="list_message3"><?=$message?></div>
         </a>
         <div id="list_message4"><?=$date?></div>
-        <div id="list_message5"><a href="./delete_message.php?num=<?=$num?>"><span id="cancel_span">X</span> </a> </div>
+        <?php
+          if($mode!="allmessage"){
+            ?>
+              <div id="list_message5"></div>
+            <?php
+          }else{
+            ?>
+            <div id="list_message5"><a href="./delete_message.php?num=<?=$num?>&email=<?=$send_email?>&email1=<?=$rece_email?>" onclick="del_chek(<?=$num?>,<?=$id?>)"><span id="cancel_span">X</span> </a> </div>
+        <?php
+          }
+         ?>
       </div><!--end of list_message -->
 
       <?php

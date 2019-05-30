@@ -1,8 +1,8 @@
 
-body{
+/* body{
   margin: 0;
   padding: 0;
-}
+} */
 
 #member_profile{
   /* margin-right : 10%;
@@ -29,7 +29,7 @@ body{
 #member_profile_left ul{
   margin : 0;
   padding: 0;
-  border-bottom: 1px solid #dddddd;
+  /* border-bottom: 1px solid #dddddd; */
 }
 
 #member_profile_left ul li{
@@ -163,7 +163,8 @@ figure.snip1368 {
   position: relative;
   overflow: hidden;
   margin: 7.1px;
-  min-width: 300px;
+  margin-right:41px;
+  min-width: 250px;
   max-width: 300px;
   /*   width: 100%; */
   color: #ffffff;
@@ -362,7 +363,8 @@ cursor: pointer;
   border-radius: 3px;
 }
 #member_likes_div{
-  padding-left: 6%;
+  padding-left: 5%;
+  padding-right:5%;
   margin-bottom: 50px;
 
 }
