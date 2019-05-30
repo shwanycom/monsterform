@@ -210,9 +210,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       var popular = 'n';
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#freegoods";
+        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
       }else{
-        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#freegoods";
+        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
       }
       window.location.href = location;
     }
@@ -224,9 +224,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       var popular = 'n';
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#handpicked";
+        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
       }else{
-        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#handpicked";
+        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
       }
       window.location.href = location;
 
@@ -238,9 +238,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       var popular = 'y';
       var big_data = $("#big_data_select").val();
       if(big_data!='none'){
-        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#popular";
+        var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
       }else{
-        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#popular";
+        var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
       }
       window.location.href = location;
 
@@ -253,9 +253,9 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
         var handpicked = 'n';
         var popular = 'n';
         if(big_data=='none'){
-          var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#big_data_select";
+          var location = "./index.php?big_data=none&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
         }else{
-          var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#big_data_select";
+          var location = "./index.php?big_data="+big_data+"&freegoods="+freegoods+"&handpicked="+handpicked+"&popular="+popular+"#title";
         }
         window.location.href = location;
         $('.window').animate( { scrollTop : $($("#filter_div")).offset().top }, 500 );
@@ -372,8 +372,7 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
       $item_no = $row["no"];
 			$item_num = $row["num"];
 			$item_name = $row["username"];
-			$price = $row["price"];
-      $item_price = $price/100;
+			$item_price = $row["price"];
       $item_email = $row["email"];
 			$img_copy_name1 = $row["img_file_copied1"];
       $img_copy_name1 = "./data/img/".$img_copy_name1;

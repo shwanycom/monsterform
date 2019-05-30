@@ -532,9 +532,8 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
          $item_no = $row["no"];
    			 $item_num = $row["num"];
    			 $item_name = $row["username"];
-   			 $price = $row["price"];
+   			 $item_price = $row["price"];
          $item_big_data = $row["big_data"];
-         $item_price = $price/100;
          $item_email = $row["email"];
    			 $img_copy_name1 = $row["img_file_copied1"];
          $img_copy_name1 = "../data/img/".$img_copy_name1;
