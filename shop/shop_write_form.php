@@ -121,8 +121,6 @@ crossorigin="anonymous">
     console.log(event.target.files[0].name);
   };
 </script>
-
-
   <!-- <script>
     $("mon_selector").on("keydown", function(e){
       if(!((e.keyCode > 95 && e.keyCode < 106)
@@ -132,7 +130,6 @@ crossorigin="anonymous">
       }
     });
   </script> -->
-
 <script>
 var input_change = function(event){
   var $changed_input=$(event.target);
