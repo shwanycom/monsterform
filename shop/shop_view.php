@@ -51,7 +51,7 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   $zip_file_name = $row['zip_file_name'];
   $zip_file_copied = $row['zip_file_copied'];
   $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
-  $zip_file_copied = $row['zip_file_copied'];
+  $ttf_file_copied = $row['ttf_file_copied'];
   $file_type = $row['file_type'];
 
   // $subject=htmlspecialchars($row['subject']);
@@ -163,9 +163,7 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
           </div>
         </div>
       </div><!-- end of div1 -->
-      <div id="s_v_font_div">
-        <input type="text" name="" value="">
-      </div>
+
       <div id="shop_view_div2">
         <div class="shop_view_file_info" id="file_type">
           <h2 style="font-size:20px; color:#afaeae;">File Type</h2>
@@ -182,7 +180,15 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
           </div>
         </div>
       </div><!-- end of div2 -->
-
+      <?php
+      if($ttf_file_copied){
+      ?>
+      <div id="s_v_font_div">
+        <input type="text" class="font_face_input" id="font_face_input" value="">
+      </div>
+      <?php
+      }
+      ?>
       <!-- end of div3 -->
 
       <!-- end of div4 -->

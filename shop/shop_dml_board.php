@@ -21,9 +21,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $regist_day=date("Y-m-d");
     $price = $_POST["setted_mon"];
     $big_data=$_POST["big_data"];
-
+    $small_data=$_POST["small_data"];
     $hash_tag = $_POST["hash_tag"];
-
     $freegoods_agree = $_POST["freegoods_agree"];
     $file_type = $_POST["file_type"];
 
@@ -39,6 +38,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     var_export($regist_day); echo "<br>";
     var_export($price); echo "<br>";
     var_export($big_data); echo "<br>";
+    var_export($small_data); echo "<br>";
     var_export($hash_tag); echo "<br>";
     var_export($freegoods_agree); echo "<br>";
     var_export($file_type); echo "<br>";
@@ -64,7 +64,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     var_export($font_type[0]); echo "<br>";
 
 $sql="INSERT INTO `products` VALUES
-($q_memeber_no,null,'$q_memeber_username','$q_member_email','$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$big_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',
+($q_memeber_no,null,'$q_memeber_username','$q_member_email','$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$small_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',
 '$copied_img_file_name[0]','$copied_img_file_name[1]','$copied_img_file_name[2]','$copied_img_file_name[3]','$zip_file_name','$copied_zip_file_name','$type[0]','$font_file_name','$copied_font_file_name','$font_type[0]','$freegoods_agree','$file_type');";
     //var_dump($sql);
     $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
