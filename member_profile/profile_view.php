@@ -315,7 +315,7 @@ $number = $total_record - $start;
                     <img id="main_img_likes" src="<?=$img_copy_name1?>" alt="sample30" />
                   </a>
                   <div class="hover_img">
-                    <img src="<?=$freegoods_img?>" alt="" style="width:35px; height:25px; margin-left: 6px;  margin-top: 3px;"><!--가져다 댔을때-->
+                    <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px; margin-left: 6px;  margin-top: 3px;"><!--가져다 댔을때-->
                   </div>
                   <div class="list_title_div">
                     <div class="">
