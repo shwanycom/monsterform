@@ -1,10 +1,11 @@
 <?php
-$member_email1 = $_SESSION['email'];
-$sql_mon = "select `point_mon` from `member` where email='$member_email1'";
-$result_mon = mysqli_query($conn, $sql_mon);
-$row_mon=mysqli_fetch_array($result_mon);
-$mem_mon=$row_mon['point_mon'];
-
+if(isset($_SESSION['email'])){
+  $member_email = $_SESSION['email'];
+  $sql_mon = "select `point_mon` from `member` where email='$member_email'";
+  $result_mon = mysqli_query($conn, $sql_mon);
+  $row_mon=mysqli_fetch_array($result_mon);
+  $mem_mon=$row_mon['point_mon'];
+}
 ?>
 <script type="text/javascript">
   var value="";

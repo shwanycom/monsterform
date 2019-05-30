@@ -96,16 +96,16 @@ $number=$total_record- $start_row;
         }
       }
     }
-    function check_accept(num) {
+    function check_accept(num ,rid) {
       var decision_accept= confirm("accept exchange? \n Either OK or Cancel");
       if(decision_accept){
-        window.location.href='admin_member_dml.php?mode=exchange_accept&no='+num;
+        window.location.href='admin_member_dml.php?mode=exchange_accept&no='+num+'remail='+rid;
       }
     }
-    function check_reject(num, mon, hwan_mon) {
+    function check_reject(num, mon, hwan_mon, rid) {
       var decision_reject= confirm("reject exchange? \n Either OK or Cancel");
       if(decision_reject){
-        window.location.href='admin_member_dml.php?mode=exchange_reject&no='+num+'&mon='+mon+'&hwan_mon='+hwan_mon;
+        window.location.href='admin_member_dml.php?mode=exchange_reject&no='+num+'&mon='+mon+'&hwan_mon='+hwan_mon+'remail='+rid;
       }
     }
 
@@ -204,8 +204,8 @@ $number=$total_record- $start_row;
                   <button type="button" class="button" id="button_update" onclick="check_partner(\''.$no.'\',\''.$button_index.'\')">'.$button_index.'</button>
                   </td>
                   <td>'.$hwan_mon.'<br>
-                  <button type="button" class="button" id="button_accept" onclick="check_accept('.$no.')">ACCEPT</button>
-                  <button type="button" class="button" id="button_reject" onclick="check_reject(\''.$no.'\',\''.$mon.'\',\''.$hwan_mon.'\')">REJECT</button></td>
+                  <button type="button" class="button" id="button_accept" onclick="check_accept(\''.$no.'\',\''.$email.'\')">ACCEPT</button>
+                  <button type="button" class="button" id="button_reject" onclick="check_reject(\''.$no.'\',\''.$mon.'\',\''.$hwan_mon.'\',\''.$email.'\')">REJECT</button></td>
                   </tr>';
       echo"  <tr></td></tr>";
     }

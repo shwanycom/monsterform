@@ -103,3 +103,6 @@ opacity: 1;
   font-family: "UniNeue";
   border-radius:5px;
 }
+.filter_container button{
+  border-radius: 3px;
+}
