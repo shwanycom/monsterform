@@ -1,9 +1,10 @@
 <?php
-  include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
-  $slq_mon = "select point_mon from member where email='$member_email'";
-  $result_mon = mysqli_query($conn, $slq_mon);
-  $row_mon=mysqli_fetch_array($result_mon);
-  $mem_mon=$row_mon['point_mon'];
+$member_email = $_SESSION['email'];
+$sql_mon = "select `point_mon` from `member` where email='$member_email'";
+$result_mon = mysqli_query($conn, $sql_mon);
+$row_mon=mysqli_fetch_array($result_mon);
+$mem_mon=$row_mon['point_mon'];
+var_dump($mem_mon);
 ?>
 <script type="text/javascript">
   var value="";
