@@ -161,14 +161,18 @@ $(document).ready(function(){
     console.log("히든 값 :" + check);
 
     switch (check) {
-      case "Photos" : console.log("포토선택케이스");
-                      $("#shop_write_upload2").remove();
-                      break;
+      case "Photos" :   console.log("포토선택케이스");
+                        $("#shop_write_upload2").remove();
+                        $('#shop_write_select2').html('<option value="" disabled selected>Choose Group</option><option value="Animals">Animals</option><option value="Arts">Arts</option><option value="Beauty&Fasshion">Beauty&Fasshion</option><option value="Business">Business</option><option value="Food&Drink">Food&Drink</option><option value="Nature">Nature</option><option value="Sports">Sports</option><option value="Technology">Technology</option>');
+                        break;
+
       case "Graphics" : console.log("그래픽선택케이스");
                         $("#shop_write_upload2").remove();
+                        $('#shop_write_select2').html('<option value="" disabled selected>Choose Group</option><option value="Icons">Icons</option><option value="Illustrations">Illustrations</option><option value="Web Elements">Web Elements</option><option value="Objects">Objects</option><option value="Patterns">Patterns</option><option value="Textures">Textures</option>');
                         break;
       case "Fonts" : console.log("폰트선택케이스");
                       $("#shop_write_upload").append('<div id="shop_write_upload2"></div>');
+                      $('#shop_write_select2').html('<option value="" disabled selected>Choose Group</option><option value="Blackletter">Blackletter</option><option value="Display">Display</option><option value="Non Western">Non Western</option><option value="Sans Serif">Sans Serif</option><option value="Script">Script</option><option value="Serif">Serif</option><option value="Slab Serif">Slab Serif</option><option value="Symbols">Symbols</option>');
                       $("#shop_write_upload2").html('<label for="ttf_file"><span class="s_w_upload_span"><b>Upload font file...</b></span></label><p class="s_w_font_alt" style="margin:0px;"><i class="fas fa-check" style="font-size:20px; color:#ff5e5e;"> TTF or OTF file! </i></p><input type="file" name="font_file" id="ttf_file" onchange="loadfont(event)">');
                       break;
       default: break;
@@ -188,19 +192,6 @@ $(document).ready(function(){
     var check2 = $("#small_data").val();
     console.log("히든 값 :" + check2);
 
-    switch (check2) {
-      case "Photos" : console.log("포토선택케이스");
-                      $("#shop_write_upload2").remove();
-                      break;
-      case "Graphics" : console.log("그래픽선택케이스");
-                        $("#shop_write_upload2").remove();
-                        break;
-      case "Fonts" : console.log("폰트선택케이스");
-                      $("#shop_write_upload").append('<div id="shop_write_upload2"></div>');
-                      $("#shop_write_upload2").html('<label for="ttf_file"><span class="s_w_upload_span"><b>Upload font file...</b></span></label><p class="s_w_font_alt" style="margin:0px;"><i class="fas fa-check" style="font-size:20px; color:#ff5e5e;"> TTF or OTF file! </i></p><input type="file" name="font_file" id="ttf_file" onchange="loadfont(event)">');
-                      break;
-      default: break;
-    }
     if(check2){
       $("#small_data").prev().css("color", "green");
     }else{
@@ -281,7 +272,7 @@ $(document).ready(function(){
 <body>
   <?php
   include "../lib/header_in_folder.php";
-  ?>
+  ?><br><br>
   <!--============================================================================== -->
   <div class="shop_write_wrap">
     <form name="shop_write_form" id="shop_write_form" action="shop_dml_board.php?mode=insert"
@@ -299,9 +290,6 @@ $(document).ready(function(){
       <input class="should_have_inputted" type="hidden" name="small_data" id="small_data" onchange="input_change(event)">
       <select class="shop_write_select" name="shop_write_select" id="shop_write_select2">
         <option value="" disabled selected>Choose Category</option>
-        <option value="Photos">Photos</option>
-        <option value="Graphics">Graphics</option>
-        <option value="Fonts">Fonts</option>
       </select>
     </div>
 
