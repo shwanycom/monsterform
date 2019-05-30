@@ -6,29 +6,6 @@ $servername = "192.168.0.174";
 $username = "monsterform";
 $password = "monster1!";
 
-// $servername = "localhost";
-// $username = "root";
-// $password = "123456";
-=======
-<<<<<<< HEAD
-$servername = "192.168.0.174";
-$username = "monsterform";
-$password = "monster1!";
-
-// $servername = "localhost";
-// $username = "root";
-// $password = "123456";
-=======
-// $servername = "192.168.0.174";
-// $username = "monsterform";
-// $password = "monster1!";
-
-$servername = "localhost";
-$username = "root";
-$password = "123456";
->>>>>>> 83670dff746f91d7f87da139ee21adff88feacc6
->>>>>>> d5836fbc5d46bacc57ca941e663eb510b07b0105
-
 
 $dbflag = "NO";
 $conn = mysqli_connect($servername, $username, $password);
