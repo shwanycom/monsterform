@@ -4,7 +4,7 @@ $sql_mon = "select `point_mon` from `member` where email='$member_email'";
 $result_mon = mysqli_query($conn, $sql_mon);
 $row_mon=mysqli_fetch_array($result_mon);
 $mem_mon=$row_mon['point_mon'];
-var_dump($mem_mon);
+
 ?>
 <script type="text/javascript">
   var value="";
