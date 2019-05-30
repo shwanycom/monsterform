@@ -10,6 +10,9 @@
   function mouse_out(){
     document.getElementById('change_img').src="../img/down.png";
   }
+  function chart_show(){
+    window.open("../member_profile/member_chart.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=200,left=200,width=1000,height=450");
+  }
   </script>
   <style media="screen">
 
@@ -81,14 +84,14 @@
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
-                  <a href="#">
-                    <div id="header_logout_form_div1_2_ul_li_div6">
+                  <a href="">
+                    <div id="header_logout_form_div1_2_ul_li_div6" >
                     <div id="header_logout_form_div1_2_ul_li_div6_div">
-                      <button id="header_logout_form_div1_2_ul_li_div6_div_button" type="button" name="button">
+                      <button id="header_logout_form_div1_2_ul_li_div6_div_button" type="button" name="button" onclick="chart_show()">
                       Chart
                       </button>
                     </div>
-                      <img src="../img/chart_top.png" alt="">
+                      <img src="../img/chart_top.png" alt="" onclick="chart_show()">
                     </div>
                   </a>
                 </li>
