@@ -429,7 +429,15 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
 <body>
 	<?php
   include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/header_in_folder.php";
+  if($big_data=='photos'){
+    include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/section_photos_category.php";
+  }else if($big_data=='graphics'){
+      include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/section_graphics_category.php";
+  }else if($big_data=='fonts'){
+    include $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/section_fonts_category.php";
+  }
    ?>
+   <br><br>
    <div id="filter_div">
      <input type="hidden" id="big_data" value="<?=$big_data?>">
      <input type="hidden" id="small_data" value="<?=$small_data?>">
