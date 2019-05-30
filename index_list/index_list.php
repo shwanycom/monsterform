@@ -411,9 +411,10 @@ if(isset($_GET["big_data"]) && $_GET["big_data"]!='none'){
             break;
           }
         }
+      }else{
+        $likes_img = '';
+        $likes_img_value = '';
       }
-
-
 
 			// 첨부파일의 1번 2번 3번 순서에 따라서 썸네일을 만들어주는 로직
 			if(!empty($img_copy_name0)){ // 첫번째 이미지 파일이 있으면 1번 이미지를 보여줌
