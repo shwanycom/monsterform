@@ -100,6 +100,8 @@ for($i=0; $i<$count; $i++){
       alert_back('2.이미지 파일사이즈가 10MB이상입니다.');
     }
   }else {
+    var_dump($img_type[$i][0]);
+    exit;
     alert_back('이미지파일이 아닙니다!');
   }
 
