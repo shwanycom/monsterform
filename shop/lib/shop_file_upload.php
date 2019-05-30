@@ -48,7 +48,7 @@ $type = explode("/", $zip_file_type);
 // application/zip, application/octet-stream
 
 if ($type[0]=='application'){
-  if($zip_file_size>10000000){
+  if($zip_file_size>1000000000){
     alert_back('2.zip파일사이즈가 10MB이상입니다.');
   }
 }else {
@@ -96,7 +96,7 @@ for($i=0; $i<$count; $i++){
   // application/x-rar-compressed, application/octet-stream
   // application/zip, application/octet-stream
   if ($img_type[$i][0]=='image'){
-    if($img_file_size[$i]>10000000){
+    if($img_file_size[$i]>1000000000){
       alert_back('2.이미지 파일사이즈가 10MB이상입니다.');
     }
   }else {
