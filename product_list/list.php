@@ -443,7 +443,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
      <input type="hidden" id="small_data" value="<?=$small_data?>">
      <div class="filter_container">
        <div class="switch_div">
-         <label>
+         <label id="certified_label">
            <input class="switch_check" type="checkbox" id="partner" value="<?=$partner_default?>" name="partner" onclick="check_partner()" <?=$partner_checked?>>
            <span class="certified_span">Certified</span>
          </label>
