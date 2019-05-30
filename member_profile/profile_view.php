@@ -202,7 +202,7 @@ $number = $total_record - $start;
             }else if(result=='delete'){
               $("#follow_button").attr('style', 'background-color:#e5e5e4;');
               $("#status_follow").val('n');
-              $("#follow_button").val(' + Follow ');
+              $("#follow_button").val(' ✚ Follow ');
               followers -= 1;
               $("#followers_num").html(followers);
             }
@@ -655,7 +655,7 @@ $number = $total_record - $start;
                     ';
             }else{
               if($follow_status=='n'){
-                echo '<td><input type="button" id="follow_button" value=" + Follow " '.$follow_style.'></td>';
+                echo '<td><input type="button" id="follow_button" value=" ✚ Follow " '.$follow_style.'></td>';
               }else{
                 echo '<td><input type="button" id="follow_button" value=" √ Following " '.$follow_style.'></td>';
               }
