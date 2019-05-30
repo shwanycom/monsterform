@@ -5,6 +5,16 @@ if(isset($_SESSION['email'])){
   $result_mon = mysqli_query($conn, $sql_mon);
   $row_mon=mysqli_fetch_array($result_mon);
   $mem_mon=$row_mon['point_mon'];
+
+  $sql_nmessage = "select * from `message` where rece_email='$member_email' and rece_status='n'";
+  $result_nmessage = mysqli_query($conn, $sql_nmessage);
+  $total_nmessage_record = mysqli_num_rows($result_nmessage);
+  if($total_nmessage_record>0){
+    $flag_nm="./img/new_message.png";
+  }else{
+    $flag_nm="./img/message.png";
+  }
+
 }
 ?>
 <script type="text/javascript">
@@ -73,7 +83,7 @@ if(isset($_SESSION['email'])){
                         Message
                         </button>
                       </div>
-                      <img src="./img/message.png" alt="">
+                      <img src="'.$flag_nm.'" alt="">
                     </div>
                   </a>
                 </li>
