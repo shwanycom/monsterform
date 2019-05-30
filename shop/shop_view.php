@@ -34,7 +34,7 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   $mon = $row['price'];
   $handpicked = $row['handpicked'];
   $freegoods = $row['freegoods'];
-  if ($freegoods=='y') $mon = 0;
+  if ($freegoods=='y') {$mon = 0;}
   $hit = $row['hit'];
   $sell_count = $row['sell_count'];
   $big_data = $row['big_data'];
@@ -53,6 +53,10 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
   $ttf_file_copied = $row['ttf_file_copied'];
   $file_type = $row['file_type'];
+
+  //Set Variables
+  // $width_icon = '32px';
+  // $color_a = get_theme_mod('color_link');
 
   // $subject=htmlspecialchars($row['subject']);
   // $content=htmlspecialchars($row['content']);
@@ -86,7 +90,6 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/shop_view.css">
@@ -94,49 +97,48 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
    crossorigin="anonymous">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/monsterform.js"></script>
-  <script>
-    function currentDiv(n) {
-      showDivs(slideIndex = n);
-    }
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("shop_view_mySlides");
-      var dots = document.getElementsByClassName("demo");
-      if (n > x.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
-      }
-      x[slideIndex-1].style.display = "block";
-      dots[slideIndex-1].className += " w3-opacity-off";
-    }
-  </script>
-  <script>
-    $('#font_face_input').keyup(function(e){
-    }
-  });
-    $("#shop_write_input_tag").keyup(function(e){
-      if (e.keyCode == 13) {
-        var value = "#" + $(this).val();
-        console.log(value);
-        $("#shop_write_tags").append('<div class="s_v_tags">' + value + '</div>');
-        $(this).val("");
-      }
-    });
 
-  </script>
-  <script>
-    function send_to_dml(mode, from){
-      var action = "../cart_report/cart_report_dml.php?mode=" + mode + "&from=" + from;
-      document.getElementById("shop_view_form").action = action;
-      document.getElementById("shop_view_form").submit();
+
+<script>
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
+  }
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("shop_view_mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
     }
-  </script>
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+    }
+    x[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " w3-opacity-off";
+  }
+</script>
+
+<script>
+$(document).ready(function(e) {
+  $("#font_face_input").keyup(function(e){
+    var $val = $(this).val();
+    console.log($val);
+    $("#font_face_output").val($val);
+  });
+});
+</script>
+
+<script>
+  function send_to_dml(mode, from){
+    var action = "../cart_report/cart_report_dml.php?mode=" + mode + "&from=" + from;
+    document.getElementById("shop_view_form").action = action;
+    document.getElementById("shop_view_form").submit();
+  }
+</script>
 </head>
 <body>
   <?php
@@ -197,11 +199,13 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
       <?php
       if($ttf_file_copied){
       ?>
-      <div class="s_v_font_div" id="s_v_font_div1">
-        <input type="text" class="font_face" id="font_face_input" value="">
-      </div>
-      <div class="s_v_font_div" id="s_v_font_div2">
-        <input type="text" class="font_face" id="font_face_gal" value="">
+      <div id="shop_view_div3">
+        <div class="s_v_font_div" id="s_v_font_div1">
+          <input type="text" class="font_face" id="font_face_input" value="">
+        </div>
+        <div class="s_v_font_div" id="s_v_font_div2">
+          <input type="text" class="font_face" id="font_face_output" value="">
+        </div>
       </div>
       <?php
       }
