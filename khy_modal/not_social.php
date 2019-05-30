@@ -52,7 +52,7 @@ if($_GET["mode"]=="login"){
     $sql="INSERT INTO `member` (`no`,`email`,`username`,`password`,`point_mon`,`partner`)";
     $sql.=" VALUES (null,'$email','$username','$password',0,'n')";
     $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-    
+
     $sql="SELECT * from `member` where `email` = '$email'";
     $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
     $row=mysqli_fetch_array($result);
@@ -80,18 +80,10 @@ if($_GET["mode"]=="login"){
 }else if(isset($_GET["mode"]) && $_GET["mode"]=="pw_ajax") {
   $email=$_POST["email"];
   $password=$_POST["password"];
-  if (!preg_match(
-    "/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/",$email)) {
-    echo '[{"ok":"이메일 형식이 올바르지 않습니다."},{"sign":"1"}]';
-  }
-  if (!preg_match(
-    "/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,14}$/",$password)) {
-    echo 'alert("비밀번호는 영문+숫자+특수문자 조합 6~14자 입니다."); hisroty.go(-1);';
-  }
-  $sql = "SELECT * FROM `member` where `email` = '$email'&&`password` = '$password';";
+  $sql = "SELECT password FROM `member` where `email` = '$email';";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_num_rows($result);
-  if($row){
+  if($password == $row['password']){
     echo '[{"ok":"아이디와 비밀번호 일치"},{"sign":"'.$row.'"}]';
   }else{
     echo '[{"ok":"아이디와 비밀번호 불일치"},{"sign":"'.$row.'"}]';
@@ -150,11 +142,21 @@ if($_GET["mode"]=="login"){
   $update_hwan_mon = intval($_POST['hope_mon']);
   $update_point_mon = intval($_POST['present_mon']);
   $update_result = intval($update_point_mon) - intval($update_hwan_mon);
+  $regist_day = date("Y-m-d (H:i)");
 
   $sql = "UPDATE `member` set `hwan_mon`=$update_hwan_mon, `point_mon`= point_mon - $update_hwan_mon where no=$member_no;";
   $result = mysqli_query($conn, $sql);
   if (!$result) {
     die('Error: 111111' . mysqli_error($conn));
+    exit;
+  }
+
+  $send_email = $_SESSION['email'];
+
+  $sql = "INSERT into `message` (`num`,`send_email`,`rece_email`,`msg`,`regist_day`)VALUES(null,'$send_email', 'admin@gmail.com', '[환전 신청] $send_email 님께서 $update_hwan_mon Mon을 환전신청 하셨습니다.', '$regist_day');";
+  $result = mysqli_query($conn, $sql);
+  if (!$result) {
+    die('Error: 222222' . mysqli_error($conn));
     exit;
   }
 
