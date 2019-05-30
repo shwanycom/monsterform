@@ -50,10 +50,12 @@ if( isset($_GET['mode']) ) {
     }else if ($_GET['mode']=="purchase") {
       for($i=1 ; $i<$repeat_purchase; $i++){
         $product_num=$product_num_array[$i];
-        $sql = "SELECT `products`.`price`,`member`.`point_mon` from `products` inner join `member` where `num`=$product_num && `member`.`no`=$member_no;";
+        $sql = "SELECT `products`.`price`,`freegoods`,`member`.`point_mon` from `products` inner join `member` where `num`=$product_num && `member`.`no`=$member_no;";
         $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
         $row = mysqli_fetch_array($result);
         $price = $row['price'];
+        $freegoods = $row['freegoods'];
+        if($freegoods=="y") $price=0;
         $user_mon = $row['point_mon'];
         if($user_mon<$price){
           echo "<script>alert('Mon이 부족합니다!');</script>";

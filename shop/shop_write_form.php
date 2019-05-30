@@ -19,8 +19,7 @@ create_table($conn, "products"); //가입인사 게시판 테이블 생성
   // $subject=str_replace(" ", "&nbsp;",$subject);
   // $subject=str_replace("\n", "<br>",$subject);
   // $content=str_replace(" ", "&nbsp;",$content);
-  // $content=str_replace("\n", "<br>",$content);
-  mysqli_close($conn);
+  // $content=str_replace("\n", "<br>",$content);  
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

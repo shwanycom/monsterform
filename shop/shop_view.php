@@ -34,6 +34,7 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   $mon = $row['price'];
   $handpicked = $row['handpicked'];
   $freegoods = $row['freegoods'];
+  if ($freegoods=='y') $mon = 0;
   $hit = $row['hit'];
   $sell_count = $row['sell_count'];
   $big_data = $row['big_data'];
@@ -128,8 +129,8 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
-  <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
   <div class="shop_view_wrap">
+    <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
     <div class="shop_view_category">
       <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
     </div>
@@ -162,6 +163,9 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
           </div>
         </div>
       </div><!-- end of div1 -->
+      <div id="s_v_font_div">
+        <input type="text" name="" value="">
+      </div>
       <div id="shop_view_div2">
         <div class="shop_view_file_info" id="file_type">
           <h2 style="font-size:20px; color:#afaeae;">File Type</h2>
@@ -254,7 +258,7 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
                 <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
               </div>
             <?php
-            }else if(($type=="purchased")){
+            }else if($type=="purchased"){
               if(empty($zip_file_copied)){
                 echo "<script>alert('서버에 파일이 없습니다...?');return;</script>";
               }

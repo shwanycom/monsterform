@@ -1,6 +1,8 @@
 div.shop_view_wrap{
+  margin: 0 auto;
+  max-width: 1440px;
   margin-left: 10%;
-  margin-right: 10%;
+  display: inline-block;
 }
 
 div.shop_view_category{
@@ -15,7 +17,8 @@ div.shop_view_category{
 div.shop_view_container{
   width : 66%;
   float: left;
-  height: 2000px;
+  display: inline-block;
+  word-break: break-all;
   /* border:1px solid blue; */
 }
 
