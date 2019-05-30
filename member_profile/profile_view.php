@@ -19,11 +19,10 @@ if(isset($_GET['email'])){
   $sql = "SELECT no from `member` where email = '$shop_email';";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
-  $shop_no = $row['no'];
+  $shop_no = intval($row['no']);
 }
 
-
-  $sql = "SELECT * from `member` where no = '$shop_no';";
+  $sql = "SELECT * from `member` where no = $shop_no;";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   $img_name = $row['pro_img_copied'];
@@ -139,6 +138,7 @@ $number = $total_record - $start;
       $(document).ready(function() {
         var followers = parseInt($("#hid_follower").val());
         $(".likes_img_class").click(function(event) {
+          var shop_email = $("#write_id_shop_email").val();
           var n = $(".likes_img_class").index(this);
           var num_num = $(".hidden_num:eq("+n+")").val();
           var likes_img_value = $(".likes_img_value:eq("+n+")").val();
@@ -157,7 +157,18 @@ $number = $total_record - $start;
              if(result_ajax=='fail'){
                alert("로그인 후 이용하세요.");
              }else{
-              window.location.href = "./profile_view.php?mode=likes";
+               if($(".likes_img_class:eq("+n+")").attr("src")!="../img/hover_like.png"){
+                 $(".likes_img_class:eq("+n+")").attr("src", "../img/hover_like.png");
+               }else{
+                 $(".likes_img_class:eq("+n+")").attr("src", "../img/like.png");
+                }
+                console.log($(".likes_img_class:eq("+n+")").attr("src"));
+              if($(".likes_img_value:eq("+n+")").val()=='y'){
+                $(".likes_img_value:eq("+n+")").val('n');
+              }else{
+                $(".likes_img_value:eq("+n+")").val('y');
+              }
+              location.reload();
              }
 
            })
@@ -191,7 +202,7 @@ $number = $total_record - $start;
             }else if(result=='delete'){
               $("#follow_button").attr('style', 'background-color:#e5e5e4;');
               $("#status_follow").val('n');
-              $("#follow_button").val(' + Follow ');
+              $("#follow_button").val(' ✚ Follow ');
               followers -= 1;
               $("#followers_num").html(followers);
             }
@@ -633,7 +644,7 @@ $number = $total_record - $start;
       <div id="member_profile_right">
         <table>
           <tr>
-            <td id="username"><?=$shop_email?></td>
+            <td id="username" style="padding-bottom:25px;"><?=$shop_email?></td>
             <td id="spe_td1">&nbsp;&nbsp;&nbsp;</td>
           </tr>
           <tr>
@@ -644,11 +655,21 @@ $number = $total_record - $start;
                     ';
             }else{
               if($follow_status=='n'){
-                echo '<td><input type="button" id="follow_button" value=" + Follow " '.$follow_style.'></td>';
+                echo '<td><input type="button" id="follow_button" value=" ✚ Follow " '.$follow_style.'></td>';
               }else{
                 echo '<td><input type="button" id="follow_button" value=" √ Following " '.$follow_style.'></td>';
               }
-              echo '<td><button type="button" id="myBtn_1" class="message_btn">Message</button></td>';
+              echo '<td><button type="button" id="myBtn_1"
+              style="cursor: pointer;
+              background-color: #e5e5e4;
+              color:black;
+              outline: none;
+              border: none;
+              font-weight: bold;
+              width: 80px;
+              height: 30px;
+              border-radius: 3px;
+              ">Message</button></td>';
             }
              ?>
              <input type="hidden" name="" value="<?=$shop_email?>" id="write_id_shop_email">
