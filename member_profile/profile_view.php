@@ -315,7 +315,7 @@ $number = $total_record - $start;
                     <img id="main_img_likes" src="<?=$img_copy_name1?>" alt="sample30" />
                   </a>
                   <div class="hover_img">
-                    <img src="<?=$freegoods_img?>" alt="" style="width:25px; height:25px;"><!--가져다 댔을때-->
+                    <img src="<?=$freegoods_img?>" alt="" style="width:35px; height:25px; margin-left: 6px;  margin-top: 3px;"><!--가져다 댔을때-->
                   </div>
                   <div class="list_title_div">
                     <div class="">
@@ -357,7 +357,7 @@ $number = $total_record - $start;
                }
                for($i=1;$i<=$total_page;$i++){
                  if($page==$i){
-                   echo "<b>&nbsp;&nbsp;◁ $i ▷&nbsp;&nbsp;</b>";
+                   echo "<b>&nbsp;&nbsp;- $i -&nbsp;&nbsp;</b>";
                  }else{
                    echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$i'>&nbsp;$i&nbsp;</a>";
                  }
@@ -492,7 +492,7 @@ $number = $total_record - $start;
              }
              for($i=1;$i<=$total_page;$i++){
                if($page==$i){
-                 echo "<b>&nbsp;&nbsp;◁ $i ▷&nbsp;&nbsp;</b>";
+                 echo "<b>&nbsp;&nbsp;- $i -&nbsp;&nbsp;</b>";
                }else{
                  echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$i'>&nbsp;$i&nbsp;</a>";
                }
@@ -641,11 +641,8 @@ $number = $total_record - $start;
       <div id="member_profile_right">
         <table>
           <tr>
-            <div class=""id="username" style="border:1px solid #dddddd; padding-bottom:50px;">
-                    <?=$shop_email?>
+            <div class=""id="username" style="border-bottom:1px solid #dddddd; padding-bottom:70px;">
             </div>
-            <!-- <td id="username" style="padding-bottom:25px; font-size:12pt;">shop_email</td> //위에 div로 바꿈
-            <td id="spe_td1">&nbsp;&nbsp;&nbsp;</td> -->
           </tr>
           <tr>
             <?php
@@ -666,10 +663,10 @@ $number = $total_record - $start;
               outline: none;
               border: none;
               font-weight: bold;
-              width: 80px;
+              width: 90px;
               height: 30px;
               border-radius: 3px;
-              ">✉ Message</button></td>';
+              "> ✉ Message</button></td>';
             }
              ?>
              <input type="hidden" name="" value="<?=$shop_email?>" id="write_id_shop_email">
