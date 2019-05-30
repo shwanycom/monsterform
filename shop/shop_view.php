@@ -55,6 +55,7 @@
     $zip_file_name = $row['zip_file_name'];
     $zip_file_copied = $row['zip_file_copied'];
     $file_size=round(filesize("../data/zip/$zip_file_copied")/1000000,2);
+    $zip_file_copied = $row['zip_file_copied'];
     $file_type = $row['file_type'];
 
     // $subject=htmlspecialchars($row['subject']);
@@ -221,7 +222,8 @@
           <div class="shop_view_sticky_inner" style="border-bottom:1px solid #c1bebe; padding-bottom:4%; height: 100%;">
             <div class="" style="text-align:left; font-size:1.9em; word-break:break-all;"> <?=$subject?>  </div>
             <!-- <h2 style="text-align:left; font-size:1.9em"> </h2> 위에 div로 다시 묶음 필요x-->
-            <p style="text-align:right;"><span style="color: #7d7b78;"><i>By</i> </span> <span><?=$username?></span></p>
+            <p style="text-align:right;"><span style="color: #7d7b78;"><i>By</i>
+            </span><a href='../member_profile/profile_view.php?mode=shop&email=<?=$email?>'><span><?=$username?></span></a> </p>
             <p style="text-align:right; color: #7d7b78;"><i><?=$regist_day?></i></p>
           </div>
         </div><!-- end of shop_view_sticky_product_info -->
