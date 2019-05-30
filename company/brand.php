@@ -1,4 +1,4 @@
-
+<?php include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php"; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

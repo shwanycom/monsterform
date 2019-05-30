@@ -11,7 +11,7 @@
     document.getElementById('change_img').src="../img/down.png";
   }
   function chart_show(){
-    window.open("../member_profile/member_chart.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=200,left=200,width=1000,height=450");
+    window.open("../member_profile/member_chart.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=200,left=200,width=1000,height=500");
   }
   </script>
   <style media="screen">
@@ -136,37 +136,37 @@
             <li class="header_logout_form_div2_ul1_li">
               <a class="header_logout_form_div2_ul1_li_a" href="../product_list/list.php?big_data=photos">Photos</a>
               <ul class="submenu">
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Animals</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Arts</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Beauty & Fashion</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Business</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Food & Drink</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Nature</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Sports</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Technology</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=animals&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Animals</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=arts&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Arts</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=beauty_fashion&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Beauty & Fashion</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=business&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Business</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=food_drink&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Food & Drink</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=nature&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Nature</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=sports&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Sports</a></li>
+                <li><a href="../product_list/list.php?big_data=photos&small_data=technology&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Technology</a></li>
               </ul>
             </li>
 
             <li class="header_logout_form_div2_ul1_li"> <a class="header_logout_form_div2_ul1_li_a" href="../product_list/list.php?big_data=graphics">Graphics</a>
               <ul class="submenu">
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Icons</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Illustrations</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Web Elements</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Objects</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Patterns</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Textures</a></li>
+                <li><a href="../product_list/list.php?big_data=graphics&small_data=icons&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Icons</a></li>
+                <li><a href="../product_list/list.php?big_data=graphics&small_data=illustrations&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Illustrations</a></li>
+                <li><a href="../product_list/list.php?big_data=graphics&small_data=web_elements&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Web Elements</a></li>
+                <li><a href="../product_list/list.php?big_data=graphics&small_data=objects&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Objects</a></li>
+                <li><a href="../product_list/list.php?big_data=graphics&small_data=patterns&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Patterns</a></li>
+                <li><a href="../product_list/list.php?big_data=graphics&small_data=textures&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Textures</a></li>
               </ul>
             </li>
             <li class="header_logout_form_div2_ul1_li"> <a class="header_logout_form_div2_ul1_li_a" href="../product_list/list.php?big_data=fonts">Fonts</a>
               <ul class="submenu">
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Blackletter</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Display</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Non Western</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Sans Serif</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Script</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Serif</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Slab Serif</a></li>
-                <li><a href="#" class="subheader_logout_form_div2_ul1_li_a">Symbols</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=blackletter&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Blackletter</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=display&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Display</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=non_western&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Non Western</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=sans_serif&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Sans Serif</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=script&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Script</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=serif&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Serif</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=slab_serif&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Slab Serif</a></li>
+                <li><a href="../product_list/list.php?big_data=fonts&small_data=symbols&mode=search&partner=n&handpicked=n&popular=n" class="subheader_logout_form_div2_ul1_li_a">Symbols</a></li>
               </ul>
             </li>
           </ul>

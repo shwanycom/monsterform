@@ -11,7 +11,7 @@
       </a>
   </div>
   <div class="section_earn_div" id="section_earn_div2_id">
-      <a href="">
+      <a href="./shop/shop_write_form.php">
         <img src="./img/openmarket.png" alt="">
         <h2>Sell Your Designs</h2>
         <p>Open your shop and reach millions of buyers.</p>

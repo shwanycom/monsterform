@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php"; ?>
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -44,7 +45,8 @@
                 </div>
                 <div class="flip-box-back">
                 <p style="font-size:15pt; font-weight:bold">김하영</p>
-                  Email address
+                <br>
+                  likeny@naver.com
                   <br>
                 </div>
                 </div>
@@ -72,7 +74,8 @@
                 </div>
                 <div class="flip-box-back">
                   <p style="font-size:15pt; font-weight:bold">정승환</p>
-                    Email address
+                  <br>
+                    shwanycom@gmail.com
                     <br>
                 </div>
                 </div>
