@@ -33,10 +33,10 @@ if(isset($_SESSION['email'])){
         document.getElementById("select_price").innerHTML = mon;
     }
 
-    function check_input1(){
-        document.buy.action="./payment.php";
-        document.buy.submit();
-    }
+    // function check_input1(){
+    //     document.buy.action="./payment.php";
+    //     document.buy.submit();
+    // }
 
     function input(){
         var input = document.getElementById("email_name").value;
@@ -49,7 +49,6 @@ if(isset($_SESSION['email'])){
     }
 
     $(function(){
-    //비밀번호 확인
     	$('#email_name2').blur(function(){
     	   if($('#email_name').val() != $('#email_name2').val()){
     	    	if($('#email_name2').val()!=''){
@@ -67,27 +66,28 @@ if(isset($_SESSION['email'])){
       var rec_email2=document.getElementById("email_name2");
       var rec_message=document.getElementById("send_message");
       var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    if(rec_name.value.length===0){
-        alert("받는분의 성함을 적어주세요"); rec_name.focus(); rec_name.value="";
-        return false;
-    }
-    if(rec_email1.value.length===0){
-        alert("받는분의 이메일을 작성해주세요"); rec_email1.focus(); rec_email1.value="";
-        return false;
-    }else if (!emailPattern.test(rec_email1.value)) {
-        alert("이메일 형식이 잘못 되었습니다.");
-        rec_email1.focus();
-        rec_email1.value = "";
-        return false;
-    }
+      if(rec_name.value.length===0){
+          alert("받는분의 성함을 적어주세요"); rec_name.focus(); rec_name.value="";
+          return false;
+      }
+      if(rec_email1.value.length===0){
+          alert("받는분의 이메일을 작성해주세요"); rec_email1.focus(); rec_email1.value="";
+          return false;
+      }else if (!emailPattern.test(rec_email1.value)){
+          alert("이메일 형식이 잘못 되었습니다.");
+          rec_email1.focus();
+          rec_email1.value = "";
+          return false;
+      }
+
       if(rec_email2.value.length===0){
-        alert(" 받는분의 이메일을 작성해주세요"); emailPattern.focus(); emailPattern.value="";
-         return false;
-    }
-    if(document.getElementById("payment_list").style.display =="block"){
-        document.getElementById("showHide").style.display ='block';
-        document.getElementById("payment_list").style.display ='none';
-    }
+          alert(" 받는분의 이메일을 작성해주세요"); emailPattern.focus(); emailPattern.value="";
+           return false;
+      }
+      if(document.getElementById("payment_list").style.display =="block"){
+          document.getElementById("showHide").style.display ='block';
+          document.getElementById("payment_list").style.display ='none';
+      }
     }
 
     function showd(){
@@ -105,7 +105,7 @@ if(isset($_SESSION['email'])){
     <div class="gift_main">
       <div class="gift_center_div">
         <div class="main_title">
-          <p id="sub_p">Send a Creative Market Gift Card</p>
+          <p id="sub_p">Send a MonsterForm Gift Card</p>
         </div>
         <div class="payment_list"  id="payment_list" style="display:block">
           <b>Gift Card Amount</b>
@@ -135,7 +135,7 @@ if(isset($_SESSION['email'])){
             <button type="button" name="button" id="btn_back"onclick=showd()>←Back</button>
             <b style="font-size:12px;">Amount : ￦</b><span id="select_price" style="font-size:12px;">50000</span>
           </div>
-            <form method="post" name="buy">
+            <form method="post" name="buy" action="./email_check.php">
               <div class="send_payment">
                 <input type="text" id="send_username" class="text_input" value="<?=$username?>">
               </div>
@@ -145,7 +145,8 @@ if(isset($_SESSION['email'])){
                 <input type="hidden" name="totalPrice" id="money_kaka" value="50000">
                 <input type="hidden" name="name" id="gift_name" value="">
                 <input type="hidden" name="message" id="gift_message" value="">
-                <input type="submit" id="btn_amount" value="결제" onclick="check_input1()" >
+                <input type="submit" id="btn_amount" value="결제"onclick="check_input1()">
+                <!--   -->
             </form>
         </div>
       </div>
