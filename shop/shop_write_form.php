@@ -5,6 +5,11 @@
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+if (empty($member_no)) {
+  echo "<script>alert('Login Please');
+        history.go(-1);</script>";
+  exit;
+}
 // session_start();
 // if(isset($_SESSION['no'])){
 // $member_no = $_SESSION['no'];

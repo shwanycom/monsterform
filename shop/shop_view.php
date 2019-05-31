@@ -165,7 +165,7 @@ $(document).ready(function(e) {
   <div class="shop_view_wrap">
     <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
     <div class="shop_view_category">
-      <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
+      <a href="#"><?=$big_data?></a> &nbsp;>&nbsp; <a href="#"><?=$small_data?></a>
     </div>
 
     <div class="shop_view_container">
