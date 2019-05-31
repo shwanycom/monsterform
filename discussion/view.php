@@ -114,6 +114,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   $email=$row['email'];
                   $subject=$row['subject'];
                   $content=$row['content'];
+
+                  $sql_mem = "SELECT pro_img_copied from `member` where email = '$email';";
+                  $result_mem = mysqli_query($conn, $sql_mem);
+                  $row_mem = mysqli_fetch_array($result_mem);
+                  $pro_img=$row_mem['pro_img_copied'];
+                  if($pro_img==null){
+                    $pro_img= "../data/img/no_profile.png";
+                  }else{
+                    $pro_img = "../data/img/".$pro_img;
+                  }
+
                   $subject = str_replace("\n", "<br>", $subject);
                   $subject = str_replace(" ", "&nbsp;", $subject);
                   $content = str_replace("\n", "<br>", $content);
@@ -122,9 +133,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 ?>
               <div id="list_item">
                 <ul id="general_ul">
+                  <li><img src="<?=$pro_img?>" alt="" width="50px;" height="50px;"></li>
                   <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
                   <br>
-                  <li id="list_item3"><a href="../members/collections/<?=$email?>"><?=$id."($email)"?></a></li>
+                  <li id="list_item3"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>"><?=$id."($email)"?></a></li>
                   <li id="list_item5"><?=$date?></li>
                 </ul>
               </div> <!-- end of list_item -->
@@ -181,6 +193,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
             $topic=$row['topic'];
             $subject=$row['subject'];
             $content=$row['content'];
+
+            $sql_mem = "SELECT pro_img_copied from `member` where email = '$email';";
+            $result_mem = mysqli_query($conn, $sql_mem);
+            $row_mem = mysqli_fetch_array($result_mem);
+            $pro_img=$row_mem['pro_img_copied'];
+            if($pro_img==null){
+              $pro_img= "../data/img/no_profile.png";
+            }else{
+              $pro_img = "../data/img/".$pro_img;
+            }
+
             $subject = str_replace("\n", "<br>", $subject);
             $subject = str_replace(" ", "&nbsp;", $subject);
             $content = str_replace("\n", "<br>", $content);
@@ -195,6 +218,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <td id="subject_column"> <?=$subject?> </td>
                </tr>
                <tr>
+                 <td rowspan="4" width="30px;"><img src="<?=$pro_img?>" alt="" width="100px;" height="100px;"></td>
+               </tr>
+               <tr>
                  <td><?=$content?></td>
                </tr>
                <tr>
@@ -206,7 +232,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
              </table>
 
              <?php
-              if(isset($_SESSION['email']) ) {
+              if($_SESSION['email'] == $email) {
                 echo '<div style="float: right">
                   <button type="button" id="write_button" onclick="open_modal()">Modified</button>&nbsp;
                   <a href="./discussion_dml.php?mode=delete&num='.$num.'"><button type="button">Remove</button></a>
@@ -259,7 +285,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   default:
                     break;
                 }
-                  mysqli_close($conn);
+
                  ?>
                 <div class="modal-content">
                   <span class="write_discussion_close">&times;</span>
@@ -319,6 +345,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   $username1=$row1['username'];
                   $email1=$row1['email'];
                   $content1=$row1['content'];
+
+                  $sql_mem = "SELECT pro_img_copied from `member` where email = '$email1';";
+                  $result_mem = mysqli_query($conn, $sql_mem);
+                  $row_mem = mysqli_fetch_array($result_mem);
+                  $pro_img=$row_mem['pro_img_copied'];
+                  if($pro_img==null){
+                    $pro_img= "../data/img/no_profile.png";
+                  }else{
+                    $pro_img = "../data/img/".$pro_img;
+                  }
+
                   $content1 = str_replace("\n", "<br>", $content1);
                   $content1= str_replace(" ", "&nbsp;", $content1);
                   $date1 = substr($row1['regist_day'], 0, 10);
@@ -327,6 +364,9 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     <input type="hidden" name="num" value="<?=$row1['num']?>">
                     <input type="hidden" name="parent" value="<?=$row1['parent']?>">
                   <table id="view_ripple_table">
+                    <tr>
+                      <td rowspan="4" width="30px;"><img src="<?=$pro_img?>" alt="" width="60px;" height="60px;"> </td>
+                    </tr>
                     <tr>
                       <td colspan="2"><?=$content1?></td>
                     </tr>
@@ -340,7 +380,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   </table>
                   <div class="view_remove_button_div">
                   <?php
-                  if(isset($_SESSION['email'])){
+                  if($_SESSION['email'] == $email1){
                     echo '<input id="write_save_button" type="submit" name="" value="Remove">';
                   }
                    ?>
