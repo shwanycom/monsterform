@@ -67,8 +67,10 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" href="../css/common.css?ver=1">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/cart.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-
+$('#cart_payment').click(function(event) {
+  $('#total_price').val();
   $.ajax({
     url: './khy_modal/not_social.php?mode=email_ajax',
     type: 'POST',
@@ -95,6 +97,9 @@ if(isset($_SESSION['username'])){
   .always(function() {
     console.log("complete");
   });
+});
+
+
 
 </script>
 </head>
@@ -172,7 +177,7 @@ if(isset($_SESSION['username'])){
       </div>
       </div>
       <input type="hidden" name="product_num_set" value="<?=$product_num_set?>">
-      <input type="hidden" name="mon" value="<?=$total_price?>">
+      <input type="hidden" name="mon" id="total_price"value="<?=$total_price?>">
       </form>
   </section>
   <?php
