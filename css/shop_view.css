@@ -7,7 +7,7 @@ div.shop_view_wrap{
 
 div.shop_view_category{
   width : 100%;
-  height: 30px;
+  height: 60px;
   color: #7d7b78;
   display: block;
   padding: 20px 0px 0px 0px;
@@ -178,4 +178,7 @@ div#shop_view_qna{
   height: 800px;
   border-bottom: 1px solid #c1bebe;
   margin-bottom: 40px;
+}
+div.shop_view_wrap div{
+  display: inline-block;
 }
