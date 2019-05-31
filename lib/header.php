@@ -112,7 +112,7 @@ if(isset($_SESSION['email'])){
                   </a>
                 </li>
                 <li class="header_logout_form_div1_2_ul_li">
-                <a href="#">
+                <a href="./member_profile/profile_view.php?mode=shop&email='.$member_email.'">
                 <div id="header_logout_form_div1_2_ul_li_div5">&nbsp;
                 <span style="font-weight:bold;">'.$member_email.'&nbsp;&nbsp;'.$mem_mon.'&nbsp;MON</span>
                 <div id="header_logout_form_div1_2_ul_li_div5_div">

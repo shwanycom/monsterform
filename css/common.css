@@ -295,7 +295,8 @@ section{
   display: block;
   width: 180px;
   font-size: 20px;
-
+  margin-top:20px;
+  margin-bottom:20px;
 }
 
 .header_logout_form_div2_ul1_li {
@@ -313,6 +314,7 @@ section{
 
 .submenu li {
   display: inline-block;
+  margin-left:20px;
 }
 
 .header_logout_form_div2_ul1_li:hover .submenu {  /* 값 변경 */
@@ -322,7 +324,7 @@ section{
   position: absolute;
   left: 0;
   top: 30px;
-  width: 600px;
+  width: 700px;
   background-color: rgb(245,245,244,230);
 }
 

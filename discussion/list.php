@@ -150,6 +150,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   $email=$row['email'];
                   $subject=$row['subject'];
                   $content=$row['content'];
+
+                  $sql_mem = "SELECT pro_img_copied from `member` where email = '$email'";
+                  $result_mem = mysqli_query($conn, $sql_mem);
+                  $row_mem = mysqli_fetch_array($result_mem);
+                  $pro_img=$row_mem['pro_img_copied'];
+                  if($pro_img==null){
+                    $pro_img= "../data/img/no_profile.png";
+                  }else{
+                    $pro_img = "../data/img/".$pro_img;
+                  }
+
                   $subject = str_replace("\n", "<br>", $subject);
                   $subject = str_replace(" ", "&nbsp;", $subject);
                   $content = str_replace("\n", "<br>", $content);
@@ -158,17 +169,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 ?>
               <div id="list_item">
                 <ul id="general_ul">
+                  <li><img src="<?=$pro_img?>" alt="" width="50px;" height="50px;"></li>
                   <li id="list_item2"><a href="./view.php?num=<?=$num?>"><b><?=$subject?></b></a></li>
                   <br>
-                  <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
-                  <li id="list_item5"><><?=$date?></li>
+                  <li id="list_item3"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                  <li id="list_item5"><?=$date?></li>
                 </ul>
               </div> <!-- end of list_item -->
               <div class="clear"></div>
               <?php
                 $number--;
                 }//end of for
-                mysqli_close($conn);
                ?>
                <div class="clear"></div>
                <br><br>
@@ -228,6 +239,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     $email=$row['email'];
                     $subject=$row['subject'];
                     $content=$row['content'];
+
+                    $sql_mem = "SELECT pro_img_copied from `member` where email = '$email'";
+                    $result_mem = mysqli_query($conn, $sql_mem);
+                    $row_mem = mysqli_fetch_array($result_mem);
+                    $pro_img=$row_mem['pro_img_copied'];
+                    if($pro_img==null){
+                      $pro_img= "../data/img/no_profile.png";
+                    }else{
+                      $pro_img = "../data/img/".$pro_img;
+                    }
+
                     $subject = str_replace("\n", "<br>", $subject);
                     $subject = str_replace(" ", "&nbsp;", $subject);
                     $content = str_replace("\n", "<br>", $content);
@@ -237,9 +259,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
+                    <li><img src="<?=$pro_img?>" alt="" width="50px;" height="50px;"></li>
                     <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item3"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
                     <li id="list_item5"><span class="date_span"> <?=$date?> </span></li>
                   </ul>
                 </div> <!-- end of list_item -->
@@ -247,7 +270,6 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <?php
                   $number1--;
                   }//end of for
-                  mysqli_close($conn);
                  ?>
                  <div class="clear"></div>
                  <div id="list_item">
@@ -280,19 +302,31 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     $email=$row['email'];
                     $subject=$row['subject'];
                     $content=$row['content'];
+
+                    $sql_mem = "SELECT pro_img_copied from `member` where email = '$email';";
+                    $result_mem = mysqli_query($conn, $sql_mem);
+                    $row_mem = mysqli_fetch_array($result_mem);
+                    $pro_img=$row_mem['pro_img_copied'];
+                    if($pro_img==null){
+                      $pro_img= "../data/img/no_profile.png";
+                    }else{
+                      $pro_img = "../data/img/".$pro_img;
+                    }
+
                     $subject = str_replace("\n", "<br>", $subject);
                     $subject = str_replace(" ", "&nbsp;", $subject);
                     $content = str_replace("\n", "<br>", $content);
                     $content= str_replace(" ", "&nbsp;", $content);
-                     $date = substr($row['regist_day'], 0, 10);
+                    $date = substr($row['regist_day'], 0, 10);
 
 
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
+                    <li><img src="<?=$pro_img?>" alt="" width="50px;" height="50px;"></li>
                     <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item3"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
                     <li id="list_item5"><span class="date_span"><?=$date?></span></li>
                   </ul>
                 </div> <!-- end of list_item -->
@@ -300,7 +334,6 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <?php
                   $number2--;
                   }//end of for
-                  // mysqli_close($conn);
                  ?>
                  <div class="clear"></div>
                  <div id="list_item">
@@ -332,6 +365,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     $email=$row['email'];
                     $subject=$row['subject'];
                     $content=$row['content'];
+
+                    $sql_mem = "SELECT pro_img_copied from `member` where email = '$email'";
+                    $result_mem = mysqli_query($conn, $sql_mem);
+                    $row_mem = mysqli_fetch_array($result_mem);
+                    $pro_img=$row_mem['pro_img_copied'];
+                    if($pro_img==null){
+                      $pro_img= "../data/img/no_profile.png";
+                    }else{
+                      $pro_img = "../data/img/".$pro_img;
+                    }
+
                     $subject = str_replace("\n", "<br>", $subject);
                     $subject = str_replace(" ", "&nbsp;", $subject);
                     $content = str_replace("\n", "<br>", $content);
@@ -341,9 +385,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
+                    <li><img src="<?=$pro_img?>" alt="" width="50px;" height="50px;"></li>
                     <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item3"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
                     <li id="list_item5"><span class="date_span"><?=$date?></span></li>
                   </ul>
                 </div> <!-- end of list_item -->
@@ -351,7 +396,6 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                 <?php
                   $number3--;
                   }//end of for
-                  // mysqli_close($conn);
                  ?>
                  <div class="clear"></div>
                  <div id="list_item">
@@ -384,6 +428,17 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                     $email=$row['email'];
                     $subject=$row['subject'];
                     $content=$row['content'];
+
+                    $sql_mem = "SELECT pro_img_copied from `member` where email = '$email';";
+                    $result_mem = mysqli_query($conn, $sql_mem);
+                    $row_mem = mysqli_fetch_array($result_mem);
+                    $pro_img=$row_mem['pro_img_copied'];
+                    if($pro_img==null){
+                      $pro_img= "../data/img/no_profile.png";
+                    }else{
+                      $pro_img = "../data/img/".$pro_img;
+                    }
+
                     $subject = str_replace("\n", "<br>", $subject);
                     $subject = str_replace(" ", "&nbsp;", $subject);
                     $content = str_replace("\n", "<br>", $content);
@@ -393,9 +448,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                   ?>
                 <div id="list_item">
                   <ul id="general_ul">
+                    <li><img src="<?=$pro_img?>" alt="" width="50px;" height="50px;"></li>
                     <li id="list_item2"><a href="./view.php?num=<?=$num?>"><span id="item2_subject_font"><?=$subject?></span></a></li>
                     <br>
-                    <li id="list_item3"><a href="../members/collections/<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
+                    <li id="list_item3"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>" id="item3_email_font"><?=$id."($email)"?></a></li>
                     <li id="list_item5"><span class="date_span"><?=$date?></span></li>
                   </ul>
                 </div> <!-- end of list_item -->

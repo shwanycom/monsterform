@@ -533,7 +533,7 @@ if(!isset($member_no)){
   }
    ?>
     </div> <!--end of member_profile -->
-    <div class="clear"></div>
+    <div class="clear"></div><br><br><br>
 
 <!--===============================섹션영역=================================== -->
 <?php
