@@ -394,13 +394,13 @@ $number = $total_record - $start;
                <?php
                if(!($page-1==0)){
                  $go_page = $page-1;
-                 echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$go_page'><span class='page_button'>&nbsp;PREV </span>&nbsp;</a>";
+                 echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$go_page'><span class='page_button2'>&nbsp;PREV </span>&nbsp;</a>";
                }else{
                  echo "";
                }
                for($i=1;$i<=$total_page;$i++){
                  if($page==$i){
-                   echo "<b>&nbsp;&nbsp;- $i -&nbsp;&nbsp;</b>";
+                   echo "<b id='page_num'>&nbsp;  $i  &nbsp;</b>";
                  }else{
                    echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$i'>&nbsp;$i&nbsp;</a>";
                  }
@@ -411,7 +411,7 @@ $number = $total_record - $start;
                      echo "";
                    }else{
                      $go_page = $page+1;
-                     echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
+                     echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$go_page'>&nbsp;<span class='page_button2' style='margin-left:10px;'> NEXT </span></a>";
                    }
                  }else{
                    echo "";

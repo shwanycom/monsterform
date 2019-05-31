@@ -454,6 +454,7 @@ h2{
 
 /* Modal Content */
 .modal-content {
+  border-radius: 10px;
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -593,8 +594,8 @@ hr{
   text-decoration: none;
   border:0px;
   background-color:rgb(245,245,244,230);;
-  float:right;
-  margin-top:8px;
+  vertical-align: top;
+  height: 28px;
 }
 #search_text:focus{
   text-decoration: none;

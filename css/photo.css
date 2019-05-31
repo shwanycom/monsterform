@@ -265,7 +265,7 @@ figure.snip1368.hover figcaption {
 
 .page_button {
   position: relative;
-  */ cursor: pointer;
+   cursor: pointer;
   outline: 0;
   border-radius: 2px;
   background-clip: padding-box;
