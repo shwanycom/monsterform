@@ -24,7 +24,7 @@ if(isset($_SESSION['email'])){
   function index_select(value){
     var text = value;
     document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
-    document.getElementById("big_data").value= text;
+    document.getElementById("big_data1").value= text;
   }
   function mouse_over(){
     document.getElementById('change_img').src="./img/up.png";
@@ -199,7 +199,7 @@ if(isset($_SESSION['email'])){
         <div class="header_logout_form_div5">
           <form class="" action="product_list/list.php?" method="GET">
           <div id="search_div">
-            <input type="hidden" name="big_data" id="big_data" value="">
+            <input type="hidden" name="big_data" id="big_data1" value="">
             <input type="hidden" name="mode" value="search">
             <input type="hidden" name="partner" value="n">
             <input type="hidden" name="handpicked" value="n">
