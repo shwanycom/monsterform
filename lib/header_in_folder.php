@@ -194,11 +194,11 @@ if(isset($_SESSION['email'])){
         <div class="header_logout_form_div5">
           <form class="" action="./list.php?" method="GET">
           <div id="search_div">
-            <input type="hidden" name="big_data" id="big_data" value="">
-            <input type="hidden" name="mode" value="search">
-            <input type="hidden" name="partner" value="n">
-            <input type="hidden" name="handpicked" value="n">
-            <input type="hidden" name="popular" value="n">
+            <input type="hidden" name="big_data1" id="big_data1" value="">
+            <input type="hidden" name="mode1" value="search">
+            <input type="hidden" name="partner1" value="n">
+            <input type="hidden" name="handpicked1" value="n">
+            <input type="hidden" name="popular1" value="n">
             <input type="text" id="search_text" name="search_text" placeholder="Search">
             <button type="submit"  style="width:30px; height:30px;  outline:none; border:none;"><img src="../img/zoom.png" id="search_img" style="width:17px; height:17px; padding:0;"></button>
           </div>
