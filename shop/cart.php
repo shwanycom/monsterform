@@ -72,12 +72,13 @@ if(isset($_SESSION['username'])){
 $(document).ready(function() {
   $('#cart_payment').click(function(event) {
     console.log("이벤트발동");
-    console.log($('#total_price').val());
-    console.log($('#user_mon').val());
-    $total_mon=$('#total_price').val();
-    $user_mon=$('#user_mon').val();
+    console.log("usermon : "+$('#user_mon').val());
+    console.log("totalmon : "+$('#total_price').val());
+
+    $user_mon=Number($('#user_mon').val());
+    $total_mon=Number($('#total_price').val());
     if($user_mon<$total_mon){
-      alert('Mon이 부족합니다!');
+      alert('Mon이 부족합니다!1');
       document.location.href='../point/point_main.php';
     }else{
       $('#cart_form').submit();

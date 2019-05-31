@@ -83,7 +83,6 @@ if( isset($_GET['mode']) ) {
           $pro_hit = $row['hit'];
           $pro_big_data = $row['big_data'];
           $pro_img_file_copied = $row['img_file_copied1'];
-          var_export($pro_price); exit;
 
 $sql="INSERT INTO `collections` VALUES (
 $buy_no,$pro_no,$pro_num,'$pro_email','$pro_subject','$buy_regist_day',$pro_price,'$pro_handpicked','$pro_freegoods',
