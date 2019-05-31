@@ -22,7 +22,7 @@
               <ul>
                 <li><a href="../discussion/list.php">Discussions</a></li>
                 <li><a href="../product_list/list.php?big_data=none">Products</a></li>
-                <li><a href="../member_profile/profile_view.php?mode=collections&eamil='.$member_email.'">Collections</a></li>
+                <li><a href="../member_profile/profile_view.php?mode=collections&email=<?=$member_email?>">Collections</a></li>
               </ul>
             </div>
             <div class="footer_div1_div2_div">
