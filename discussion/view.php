@@ -224,7 +224,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <td><?=$content?></td>
                </tr>
                <tr>
-                 <td id="id_td"><a href="#"><span style="color:rgba(151, 177, 98, 129);"><?=$email?></span></a></td>
+                 <td id="id_td"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email?>"><span style="color:rgba(151, 177, 98, 129);"><?=$email?></span></a></td>
                </tr>
                <tr>
                  <td id="date_td"><?=$date?></td>
@@ -371,7 +371,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                       <td colspan="2"><?=$content1?></td>
                     </tr>
                     <tr>
-                      <td id="id_td"><a href="#"><span style="color:rgba(151, 177, 98, 129);"><?=$email1?></span></a></td>
+                      <td id="id_td"><a href="../member_profile/profile_view.php?mode=shop&email=<?=$email1?>"><span style="color:rgba(151, 177, 98, 129);"><?=$email1?></span></a></td>
                     </tr>
                     <tr>
                       <td id="date_td"><?=$date1?></td>
