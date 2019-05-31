@@ -108,6 +108,8 @@ $sql="INSERT INTO `products` VALUES
 
       $sql ="DELETE FROM `cart` WHERE num='$num'";
       $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+      $sql ="DELETE FROM `likes` WHERE `product_num`='$num'";
+      $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
     }
     mysqli_close($conn);
     echo '<script>

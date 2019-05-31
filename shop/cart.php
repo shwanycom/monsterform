@@ -29,7 +29,7 @@ if(isset($_SESSION['username'])){
 	$total_price=$mode="";
   $mon="";
 
-	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no='$no'";
+	$sql="SELECT * from `cart` c inner join products p on c.`product_num`=p.`num` where c.`no`='$no'";
 
   $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $total_record = mysqli_num_rows($result); //전체 레코드 수
@@ -104,18 +104,20 @@ $(document).ready(function() {
 		// 모든 레코드를 가져오는 로직
 		for ($i=$start_row; ($i<$start_row+$rows_scale) && ($i< $total_record); $i++){
       // 가져올 레코드 위치 이동
-        mysqli_data_seek($result, $i);
+      mysqli_data_seek($result, $i);
       // 하나 레코드 가져오기
       $row = mysqli_fetch_array($result);
       $num = $row["num"];
       $product_num = $row["product_num"];
       $username = $row["username"];
       $subject = $row["subject"];
+      $freegoods = $row["freegoods"];
       $price = $row["price"];
+      if($freegoods=='y') $price=0;
       $cart_img_name = $row["cart_img_name"];
       $regist_day = date("F d, Y");
       $total_price+=$price;
-      $product_num_set .= "/".$product_num;
+      $product_num_set .= "/".$product_num;      
     ?>
       <div class="list_set">
         <div class="cart_list1">
