@@ -185,26 +185,53 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                <br><br>
                  <div id="page_num">
                    <?php
-                   if(!($page-1==0)){
-                     $go_page = $page-1;
-                     echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'><span class='page_button3'>PREV </span></a> &nbsp;&nbsp;";
-                   }else{
-                     echo "<span class='page_button3'>PREV </span>";
-                   }
-                     for($i=1;$i<=$total_page;$i++){
-                       if($page==$i){
-                         echo "<b id='page_num2'>&nbsp;&nbsp; $i &nbsp;&nbsp;</b>";
-                       }else{
-                         echo "<a href='./list.php?mode=search&page=$i&total_search=$q_search'> $i &nbsp;&nbsp; </a>";
-                       }
-                     }
+                   if(isset($_GET['topic'])){
+                     $topic = $_GET['topic'];
 
-                     if($page==$total_page){
-                       echo "<span class='page_button3'> NEXT </span>";
+                     if(!($page-1==0)){
+                       $go_page = $page-1;
+                       echo "<a href='./list.php?mode=search&page=$go_page&topic=$topic'><span class='page_button3'>PREV </span></a> &nbsp;&nbsp;";
                      }else{
-                       $go_page = $page+1;
-                       echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'><span class='page_button3'> NEXT </span></a>";
+                       echo "";
                      }
+                       for($i=1;$i<=$total_page;$i++){
+                         if($page==$i){
+                           echo "<b id='page_num2'>&nbsp;&nbsp; $i &nbsp;&nbsp;</b>";
+                         }else{
+                           echo "<a href='./list.php?mode=search&page=$i&topic=$topic'> $i &nbsp;&nbsp; </a>";
+                         }
+                       }
+
+                       if($page==$total_page){
+                         echo "";
+                       }else{
+                         $go_page = $page+1;
+                         echo "<a href='./list.php?mode=search&page=$go_page&topic=$topic'><span class='page_button3'> NEXT </span></a>";
+                       }
+
+                   }else{
+                     if(!($page-1==0)){
+                       $go_page = $page-1;
+                       echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'><span class='page_button3'>PREV </span></a> &nbsp;&nbsp;";
+                     }else{
+                       echo "";
+                     }
+                       for($i=1;$i<=$total_page;$i++){
+                         if($page==$i){
+                           echo "<b id='page_num2'>&nbsp;&nbsp; $i &nbsp;&nbsp;</b>";
+                         }else{
+                           echo "<a href='./list.php?mode=search&page=$i&total_search=$q_search'> $i &nbsp;&nbsp; </a>";
+                         }
+                       }
+
+                       if($page==$total_page){
+                         echo "";
+                       }else{
+                         $go_page = $page+1;
+                         echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'><span class='page_button3'> NEXT </span></a>";
+                       }
+                   }
+
                       ?>
 
                 <br><br><br>
