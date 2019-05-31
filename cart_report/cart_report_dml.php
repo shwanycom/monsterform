@@ -93,11 +93,17 @@ $pro_hit,'$pro_big_data','$pro_img_file_copied');";
           $sql = "UPDATE `member` set `point_mon`=`point_mon`-$mon where `no` = $member_no;";
           $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
 
-          //===========================================3.장바구니에서 제품번호검색=============================================
+          //===========================================3.Mon 추가================================================
+          
+
+
+
+          //===========================================4.장바구니에서 제품번호검색=============================================
           $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$product_num;";
           $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
           $row=mysqli_fetch_array($result);
-          //===========================================4.장바구니에 제품번호 있으면 삭제========================================
+
+          //===========================================5.장바구니에 제품번호 있으면 삭제========================================
           if($row){
             $sql="DELETE from `cart` where `no`=$member_no && `product_num`=$product_num;";
             $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));

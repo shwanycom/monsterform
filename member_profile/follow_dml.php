@@ -15,7 +15,7 @@ if(isset($_POST['shop_no']) && isset($_POST['status'])){
       die('Error: ' . mysqli_error($conn));
     }
 
-    $sql_mess = "INSERT into `message` (`num`,`send_email`,`rece_email`,`msg`,`regist_day`)VALUES(null,'$member_email', '$shop_email', '[Following♬] $member_email 님께서 당신을 Following 하였습니다.', '$regist_day');";
+    $sql_mess = "INSERT into `message` (`num`,`send_email`,`rece_email`,`msg`,`regist_day`)VALUES(null,'$member_email', '$shop_email', '[Following♬] $member_email 님께서 $shop_email 님을 Following 하였습니다.', '$regist_day');";
     $result_mess = mysqli_query($conn, $sql_mess);
     if (!$result) {
       die('Error: 222222' . mysqli_error($conn));
