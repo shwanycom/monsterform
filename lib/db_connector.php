@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set("Asia/Seoul");
 
-$servername = "192.168.43.220";
+$servername = "192.168.111.1";
 $username = "monsterform";
 $password = "monster1!";
 
