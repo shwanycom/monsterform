@@ -23,7 +23,11 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $big_data=$_POST["big_data"];
     $small_data=$_POST["small_data"];
     $hash_tag = $_POST["hash_tag"];
-    $freegoods_agree = $_POST["freegoods_agree"];
+    if(isset($_POST["freegoods_agree"])){
+      $freegoods_agree = $_POST["freegoods_agree"];
+    }else{
+      $freegoods_agree = 'n';
+    }
     $file_type = $_POST["file_type"];
 
     // $is_html=(isset($_POST["is_html"]))?('y'):('n');
