@@ -16,39 +16,45 @@ $checked_sort_partner="";
 $checked_sort_exchange="";
 
 if(isset($_GET['mode'])){
-  $search_value = $_POST['search_value'];
-  $search_kind = $_POST['search_kind'];
+  $search_value = $_GET['search_value'];
+  $search_kind = $_GET['search_kind'];
 }
-if(isset($_POST['search_kind']) && $_POST['search_kind']=="username"){
+if(isset($_GET['search_kind']) && $_GET['search_kind']=="username"){
   $sort_kind="username";
-}else if(isset($_POST['search_kind']) && $_POST['search_kind']=="email"){
+}else if(isset($_GET['search_kind']) && $_GET['search_kind']=="email"){
   $sort_kind="email";
 }
-if(isset($_POST['sort_partner']) && $_POST['sort_partner']=='sort_partner'){
+if(isset($_GET['sort_partner']) && $_GET['sort_partner']=='sort_partner'){
   $sort_partner="and `partner`='y'";
   $checked_sort_partner="checked";
+  $get_sort="sort_partner";
 }else{
   $sort_partner="";
   $checked_sort_partner="";
+  $get_sort="";
 }
-if(isset($_POST['sort_exchange']) && $_POST['sort_exchange']=='sort_exchange'){
+if(isset($_GET['sort_exchange']) && $_GET['sort_exchange']=='sort_exchange'){
   $sort_exchange="and `hwan_mon`!=0";
   $checked_sort_exchange="checked";
+  $get_exc="sort_exchange";
 }else{
   $sort_exchange="";
   $checked_sort_exchange="";
+  $get_exc="";
 }
 if(!isset($_GET['mode'])){
 $sql="select * from `member`";
+$url="./admin_member.php?";
 }else{
 $sql="select * from `member` where $sort_kind like '%$search_value%' $sort_partner $sort_exchange";
+$url="./admin_member.php?mode=search&search_kind=$sort_kind&search_value=$search_value&sort_partner=$get_sort&sort_exchange=$get_exc";
 }
-
+var_dump($sql);
 
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
 // 페이지 당 글수, 블럭당 페이지 수
-$rows_scale=15;
+$rows_scale=1;
 $pages_scale=5;
 // 전체 페이지 수 ($total_page) 계산
 $total_pages= ceil($total_record/$rows_scale);
@@ -123,7 +129,8 @@ $number=$total_record- $start_row;
     <section id="admin_member_section">
       <div id="admin_member_section_search_div">
         <h1>Member List / TOTAL : <?=$total_record?></h1>
-            <form action="./admin_member.php?mode=search" method="post" id="search_form" name="search_form">
+            <form action="./admin_member.php" method="get" id="search_form" name="search_form">
+              <input type="text" name="mode" value="search">
               <div id="search_form_div1">
                 <select id="search_kind" name="search_kind">
                 <option value="username">USERNAME</option>
@@ -218,28 +225,28 @@ $number=$total_record- $start_row;
               #----------------이전블럭 존재시 링크------------------#
               if($start_page > $pages_scale){
                  $go_page= $start_page - $pages_scale;
-                 echo "<a id='before_block' href='message.php?mode=$mode&page=$go_page'> << </a>";
+                 echo "<a id='before_block' href='$url&page=$go_page'> << </a>";
               }
               #----------------이전페이지 존재시 링크------------------#
               if($pre_page){
-                  echo "<a id='before_page' href='message.php?mode=$mode&page=$pre_page'> < </a>";
+                  echo "<a id='before_page' href='$url&page=$pre_page'> < </a>";
               }
                #--------------바로이동하는 페이지를 나열---------------#
               for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
                  if($dest_page == $page){
                       echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
                   }else{
-                      echo "<a id='move_page' href='message.php?mode=$mode&page=$dest_page'>$dest_page</a>";
+                      echo "<a id='move_page' href='$url&page=$dest_page'>$dest_page</a>";
                   }
                }
                #----------------이전페이지 존재시 링크------------------#
                if($next_page){
-                   echo "<a id='next_page' href='message.php?mode=$mode&page=$next_page'> > </a>";
+                   echo "<a id='next_page' href='$url&page=$next_page'> > </a>";
                }
                #---------------다음페이지를 링크------------------#
               if($total_pages >= $start_page+ $pages_scale){
                 $go_page= $start_page+ $pages_scale;
-                echo "<a id='next_block' href='message.php?mode=$mode&page=$go_page'> >> </a>";
+                echo "<a id='next_block' href='$url&page=$go_page'> >> </a>";
               }
      ?>
     </div>
