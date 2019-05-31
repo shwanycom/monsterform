@@ -10,15 +10,15 @@
 <body>
 
 <?php
-if(isset($_POST['totalPrice'])){
-    $totalPrice=$_POST['totalPrice'];
+if(isset($_GET['price'])){
+    $totalPrice=$_GET['price'];
 }
 
-if(isset($_POST['name'])){
-    $name=$_POST['name'];
+if(isset($_GET['payname'])){
+    $name=$_GET['payname'];
 }
-if(isset($_POST['message'])){
-    $message=$_POST['message'];
+if(isset($_GET['paymessage'])){
+    $message=$_GET['paymessage'];
 }
  ?>
 
@@ -31,7 +31,7 @@ if(isset($_POST['message'])){
     name : 'Monsterform:결제',
     amount : <?=$totalPrice?>,
     buyer_email : 'iamport@siot.do',
-    buyer_name : '<?=$name?>',
+    buyer_name : '이동현',
     buyer_tel : '12515',
     buyer_addr : '서울특별시 강남구 삼성동',
     buyer_postcode : '123-456'
