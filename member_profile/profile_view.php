@@ -119,6 +119,7 @@ $number = $total_record - $start;
     <link rel="stylesheet" href="../css/index_list.css">
     <link rel="stylesheet" href="../css/message.css">
     <link rel="stylesheet" href="../css/member_profile.css">
+
     <script type="text/javascript" src="../js/monsterform.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
@@ -216,6 +217,47 @@ $number = $total_record - $start;
           });
 
         });
+
+        $("#follower_view").click(function(event) {
+          var shop_no = $("#shop_no_follow").val();
+          $.ajax({
+            url: './follow_ajax.php',
+            type: 'POST',
+            data: {"shop_no": ""+shop_no+""}
+          })
+          .done(function(result) {
+            console.log("success");
+            console.log(result);
+            $("#follow_list").html(result);
+          })
+          .fail(function() {
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+          });
+        });
+
+        $("#following_view").click(function(event) {
+          var shop_no = $("#shop_no_follow").val();
+          $.ajax({
+            url: './follow_ajax.php',
+            type: 'POST',
+            data: {"shop_no1": ""+shop_no+""}
+          })
+          .done(function(result) {
+            console.log("success");
+            $("#follow_list").html(result);
+          })
+          .fail(function() {
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+          });
+
+        });
+
 
       });
 
@@ -675,13 +717,16 @@ $number = $total_record - $start;
              <input type="hidden" name="" value="<?=$follow_status?>" id="status_follow">
           </tr>
           <tr id="spe_tr1">
-            <td>Followers <br> <span id="followers_num"><?=$follower_num?></span></td>
-            <td>Following <br>
+            <td id="follower_view" style="cursor:pointer;"> Followers <br> <span id="followers_num"><?=$follower_num?></span></td>
+            <td id="following_view" style="cursor:pointer;">Following <br>
               <?=$following_num?></td>
             <input type="hidden" name="" value="<?=$follower_num?>" id="hid_follower">
 
           </tr>
         </table>
+        <div id="follow_list">
+
+        </div>
       </div> <!--end of member_profile_right -->
 
     </div> <!--end of member_profile -->
