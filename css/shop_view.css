@@ -129,7 +129,8 @@ div.shop_view_file_info#file_type{
 
 div#shop_view_div3{
   width: 98%;
-  border:1px solid #dfd8d8;
+  border:none;
+  background-color: rgb(250,250,250,230);
   word-break: break-all;
 }
 div.s_v_font_div{

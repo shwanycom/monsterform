@@ -218,12 +218,12 @@ $(document).ready(function(e) {
       ?>
       <div id="shop_view_div3">
         <div class="s_v_font_div" id="s_v_font_div1">
-          <input type="text" class="font_face" id="font_face_input" placeholder="write some text">
+          <input type="text" class="font_face" id="font_face_input" placeholder="write here!">
         </div>
         <div class="s_v_font_div" id="s_v_font_div2">
-          <input type="text" class="font_face_output" id="font_face_output1" placeholder="Sample Text 25px">
-          <input type="text" class="font_face_output" id="font_face_output2" placeholder="Sample Text 60px">
-          <input type="text" class="font_face_output" id="font_face_output3" placeholder="Sample Text 130px">
+          <input type="text" class="font_face_output" id="font_face_output1" placeholder="Sample 25px">
+          <input type="text" class="font_face_output" id="font_face_output2" placeholder="Sample 60px">
+          <input type="text" class="font_face_output" id="font_face_output3" placeholder="Sample 130px">
         </div>
       </div>
       <?php
