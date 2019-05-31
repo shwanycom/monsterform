@@ -80,7 +80,7 @@ $sql="INSERT INTO `products` VALUES
     $num=$row['num'];
 
     mysqli_close($conn);
-    echo "<script>location.href='./shop_view.php?num=$num';</script>";
+    echo '<script>location.href="../member_profile/profile_view.php?mode=shop&email='.$member_email.'";</script>';
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
   if(!empty($_GET["num"])){
     $num = mysqli_real_escape_string($conn, $_GET["num"]);
