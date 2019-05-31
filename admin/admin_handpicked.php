@@ -13,14 +13,14 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 
 <?php
 if(isset($_GET['mode'])){
-  if(isset($_POST['handpicked_search_value'])){
-    $handpicked_search_value = $_POST['handpicked_search_value'];
+  if(isset($_GET['handpicked_search_value'])){
+    $handpicked_search_value = $_GET['handpicked_search_value'];
   }
-  if(isset($_POST['handpicked_search_kind'])){
-    $handpicked_search_kind = $_POST['handpicked_search_kind'];
+  if(isset($_GET['handpicked_search_kind'])){
+    $handpicked_search_kind = $_GET['handpicked_search_kind'];
   }
 }
-if(isset($_POST['handpicked_sort_partner'])){
+if(isset($_GET['handpicked_sort_partner'])){
   $handpicked_sort_partner_check="checked";
 }else{
   $handpicked_sort_partner_check="";
@@ -31,8 +31,8 @@ $selected_all="";
 $selected_fonts="";
 $selected_photos="";
 $selected_graphics="";
-if(isset($_POST['handpicked_search_kind'])){
-  $handpicked_search_kind_check=$_POST['handpicked_search_kind'];
+if(isset($_GET['handpicked_search_kind'])){
+  $handpicked_search_kind_check=$_GET['handpicked_search_kind'];
   if($handpicked_search_kind_check=="photos"){
     $selected_photos="selected";
     $selected_graphics="";
@@ -55,49 +55,63 @@ if(isset($_POST['handpicked_search_kind'])){
     $selected_graphics="";
   }
 }
-if(isset($_POST['handpicked_search_value'])){
-  $handpicked_search_value_check=$_POST['handpicked_search_value'];
+if(isset($_GET['handpicked_search_value'])){
+  $handpicked_search_value_check=$_GET['handpicked_search_value'];
 }else{
   $handpicked_search_value_check="";
 }
 
 
-if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="photos"){
+if(isset($_GET['handpicked_search_kind']) && $_GET['handpicked_search_kind']=="photos"){
   $sort_kind="photos";
   $sort_kind_sql= "and p.big_data='$handpicked_search_kind'";
-}else if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="graphics"){
+}else if(isset($_GET['handpicked_search_kind']) && $_GET['handpicked_search_kind']=="graphics"){
   $sort_kind="graphics";
   $sort_kind_sql= "and p.big_data='$handpicked_search_kind'";
-}else if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="fonts"){
+}else if(isset($_GET['handpicked_search_kind']) && $_GET['handpicked_search_kind']=="fonts"){
   $sort_kind="fonts";
   $sort_kind_sql= "and p.big_data='$handpicked_search_kind'";
-}else if(isset($_POST['handpicked_search_kind']) && $_POST['handpicked_search_kind']=="All"){
+}else if(isset($_GET['handpicked_search_kind']) && $_GET['handpicked_search_kind']=="All"){
   $sort_kind="all";
   $sort_kind_sql= "";
 }
 
 if(!isset($_GET['mode'])){
 $sql="select * from products order by sell_count/hit desc";
+
+$url="./admin_handpicked.php?";
 }
 else if(isset($_GET['mode']) && $_GET['mode']=="view_handpicked"){
 $sql="select * from `products` where handpicked='y'";
+
+$url="./admin_handpicked.php?mode=view_handpicked";
 }
 
-else if(!empty($_POST['handpicked_search_value']) && isset($_POST['handpicked_sort_partner'])){
+else if(!empty($_GET['handpicked_search_value']) && isset($_GET['handpicked_sort_partner'])){
 $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y'
  $sort_kind_sql and p.subject like '%$handpicked_search_value%' order by sell_count/hit desc";
+
+ $url="./admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=$handpicked_search_value&handpicked_sort_partner=handpicked_sort_partner";
 }
-else if(!empty($_POST['handpicked_search_value']) && !isset($_POST['handpicked_sort_partner'])){
+else if(!empty($_GET['handpicked_search_value']) && !isset($_GET['handpicked_sort_partner'])){
  $sql="select * from products as p where p.subject like '%$handpicked_search_value%' $sort_kind_sql order by sell_count/hit desc";
+
+ $url="./admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=$handpicked_search_value";
 }
-else if(empty($_POST['handpicked_search_value']) && isset($_POST['handpicked_sort_partner'])){
+else if(empty($_GET['handpicked_search_value']) && isset($_GET['handpicked_sort_partner'])){
   $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' $sort_kind_sql order by sell_count/hit desc";
+
+  $url="/admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=&handpicked_sort_partner=handpicked_sort_partner";
 }
-else if(empty($_POST['handpicked_search_value']) && !isset($_POST['handpicked_sort_partner'])){
+else if(empty($_GET['handpicked_search_value']) && !isset($_GET['handpicked_sort_partner'])){
   if($sort_kind=="all"){
     $sql="select * from products order by sell_count/hit desc";
+
+    $url="/admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=";
   }else{
     $sql="select * from products where big_data='$sort_kind' order by sell_count/hit desc";
+
+    $url="/admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=";
   }
 }
 $result = mysqli_query($conn, $sql);
@@ -182,7 +196,8 @@ $number=$total_record- $start_row;
     <section id="admin_handpicked_section">
       <div id="admin_member_section_search_div">
         <h1>Select Handpicked / TOTAL : <?=$total_record?></h1>
-            <form action="./admin_handpicked.php?mode=search" method="post" id="handpicked_search_form" name="handpicked_search_form">
+            <form action="./admin_handpicked.php" method="get" id="handpicked_search_form" name="handpicked_search_form">
+              <input type="hidden" name="mode" value="search">
               <div id="handpicked_search_form_div1">
                 <select id="handpicked_search_kind" name="handpicked_search_kind">
                 <option value="All" <?=$selected_all?>>All</option>
@@ -271,28 +286,28 @@ $number=$total_record- $start_row;
               #----------------이전블럭 존재시 링크------------------#
               if($start_page > $pages_scale){
                  $go_page= $start_page - $pages_scale;
-                 echo "<a id='before_block' href='admin_handpicked.php?page=$go_page'> << </a>";
+                 echo "<a id='before_block' href='$url&page=$go_page'> << </a>";
               }
               #----------------이전페이지 존재시 링크------------------#
               if($pre_page){
-                  echo "<a id='before_page' href='admin_handpicked.php?page=$pre_page'> < </a>";
+                  echo "<a id='before_page' href='$url&page=$pre_page'> < </a>";
               }
                #--------------바로이동하는 페이지를 나열---------------#
               for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
                  if($dest_page == $page){
                       echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
                   }else{
-                      echo "<a id='move_page' href='admin_handpicked.php?page=$dest_page'>$dest_page</a>";
+                      echo "<a id='move_page' href='$url&page=$dest_page'>$dest_page</a>";
                   }
                }
                #----------------이전페이지 존재시 링크------------------#
                if($next_page){
-                   echo "<a id='next_page' href='admin_handpicked.php?page=$next_page'> > </a>";
+                   echo "<a id='next_page' href='$url&page=$next_page'> > </a>";
                }
                #---------------다음페이지를 링크------------------#
               if($total_pages >= $start_page+ $pages_scale){
                 $go_page= $start_page+ $pages_scale;
-                echo "<a id='next_block' href='admin_handpicked.php?page=$go_page'> >> </a>";
+                echo "<a id='next_block' href='$url&page=$go_page'> >> </a>";
               }
      ?>
     </div>

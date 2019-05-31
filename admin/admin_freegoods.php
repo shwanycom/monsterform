@@ -15,20 +15,20 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 $result_sen1="";
 $result_sen2="";
 if(isset($_GET['mode'])){
-  if(isset($_POST['freegoods_search_value']) && isset($_POST['freegoods_search_kind'])){
-    $freegoods_search_value = $_POST['freegoods_search_value'];
-    $freegoods_search_kind = $_POST['freegoods_search_kind'];
+  if(isset($_GET['freegoods_search_value']) && isset($_GET['freegoods_search_kind'])){
+    $freegoods_search_value = $_GET['freegoods_search_value'];
+    $freegoods_search_kind = $_GET['freegoods_search_kind'];
   }
 }
 
 
 
-if(isset($_POST['freegoods_sort_partner'])){
+if(isset($_GET['freegoods_sort_partner'])){
   $freegoods_sort_partner_check="checked";
 }else{
   $freegoods_sort_partner_check="";
 }
-if(isset($_POST['freegoods_sort_allow'])){
+if(isset($_GET['freegoods_sort_allow'])){
   $freegoods_sort_allow_check="checked";
 }else{
   $freegoods_sort_allow_check="";
@@ -37,8 +37,8 @@ $selected_all="";
 $selected_fonts="";
 $selected_photos="";
 $selected_graphics="";
-if(isset($_POST['freegoods_search_kind'])){
-  $freegoods_search_kind_check=$_POST['freegoods_search_kind'];
+if(isset($_GET['freegoods_search_kind'])){
+  $freegoods_search_kind_check=$_GET['freegoods_search_kind'];
   if($freegoods_search_kind_check=="photos"){
     $selected_photos="selected";
     $selected_graphics="";
@@ -61,8 +61,8 @@ if(isset($_POST['freegoods_search_kind'])){
     $selected_graphics="";
   }
 }
-if(isset($_POST['freegoods_search_value'])){
-  $freegoods_search_value_check=$_POST['freegoods_search_value'];
+if(isset($_GET['freegoods_search_value'])){
+  $freegoods_search_value_check=$_GET['freegoods_search_value'];
 }else{
   $freegoods_search_value_check="";
 }
@@ -70,16 +70,16 @@ if(isset($_POST['freegoods_search_value'])){
 
 
 
-if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="photos"){
+if(isset($_GET['freegoods_search_kind']) && $_GET['freegoods_search_kind']=="photos"){
   $sort_kind="photos";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
-}else if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="graphics"){
+}else if(isset($_GET['freegoods_search_kind']) && $_GET['freegoods_search_kind']=="graphics"){
   $sort_kind="graphics";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
-}else if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="fonts"){
+}else if(isset($_GET['freegoods_search_kind']) && $_GET['freegoods_search_kind']=="fonts"){
   $sort_kind="fonts";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
-}else if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="All"){
+}else if(isset($_GET['freegoods_search_kind']) && $_GET['freegoods_search_kind']=="All"){
   $sort_kind="all";
   $sort_kind_sql= "";
 }
@@ -87,40 +87,61 @@ if(isset($_POST['freegoods_search_kind']) && $_POST['freegoods_search_kind']=="p
 
 if(!isset($_GET['mode'])){
 $sql="select * from `products`";
+$url="./admin_freegoods.php?";
 }
 else if(isset($_GET['mode']) && $_GET['mode']=="view_freegoods"){
 $sql="select * from `products` where freegoods='y'";
+
+$url="./admin_freegoods.php?mode=view_freegoods";
 }
-else if(!empty($_POST['freegoods_search_value']) && isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
+else if(!empty($_GET['freegoods_search_value']) && isset($_GET['freegoods_sort_partner']) && isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y'
  and p.freegoods_agree='y' $sort_kind_sql and p.subject like '%$freegoods_search_value%'";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_partner=freegoods_sort_partner&freegoods_sort_allow=freegoods_sort_allow";
 }
-else if(empty($_POST['freegoods_search_value']) && isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
+else if(empty($_GET['freegoods_search_value']) && isset($_GET['freegoods_sort_partner']) && isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' and p.freegoods_agree='y' $sort_kind_sql";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_partner=freegoods_sort_partner&freegoods_sort_allow=freegoods_sort_allow";
 }
-else if(!empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
+else if(!empty($_GET['freegoods_search_value']) && !isset($_GET['freegoods_sort_partner']) && isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products where freegoods_agree='y' $sort_kind_sql and subject like '%$freegoods_search_value%'";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_partner=freegoods_sort_partner&freegoods_sort_allow=freegoods_sort_allow";
 }
-else if(!empty($_POST['freegoods_search_value']) && isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
+else if(!empty($_GET['freegoods_search_value']) && isset($_GET['freegoods_sort_partner']) && !isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y'
  $sort_kind_sql and p.subject like '%$freegoods_search_value%'";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_partner=freegoods_sort_partner";
 }
-else if(empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && isset($_POST['freegoods_sort_allow'])){
+else if(empty($_GET['freegoods_search_value']) && !isset($_GET['freegoods_sort_partner']) && isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products where freegoods_agree='y' $sort_kind_sql";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_allow=freegoods_sort_allow";
 }
-else if(!empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
+else if(!empty($_GET['freegoods_search_value']) && !isset($_GET['freegoods_sort_partner']) && !isset($_GET['freegoods_sort_allow'])){
 $sql="select * from `products` as p where subject like '%$freegoods_search_value%' $sort_kind_sql";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value";
 }
-else if(empty($_POST['freegoods_search_value']) && isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
+else if(empty($_GET['freegoods_search_value']) && isset($_GET['freegoods_sort_partner']) && !isset($_GET['freegoods_sort_allow'])){
   $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' $sort_kind_sql";
+
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_partner=freegoods_sort_partner";
 }
-else if(empty($_POST['freegoods_search_value']) && !isset($_POST['freegoods_sort_partner']) && !isset($_POST['freegoods_sort_allow'])){
+else if(empty($_GET['freegoods_search_value']) && !isset($_GET['freegoods_sort_partner']) && !isset($_GET['freegoods_sort_allow'])){
   if($sort_kind=="all"){
     $sql="select * from `products`";
+    $url="./admin_freegoods.php?";
   }else{
     $sql="select * from products as p where p.big_data='$sort_kind'";
+
+    $url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=";
   }
 }
+
 
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
@@ -182,6 +203,9 @@ $number=$total_record- $start_row;
         }
       });
     });
+    function page_trans(){
+      document.freegoods_search_form.submit;
+    }
     </script>
     <link rel="stylesheet" href="../css/common.css?ver=1">
     <link rel="stylesheet" href="../css/footer.css">
@@ -196,7 +220,8 @@ $number=$total_record- $start_row;
     <section id="admin_freegoods_section">
       <div id="admin_member_section_search_div">
         <h1>Select Free Goods / TOTAL : <?=$total_record?></h1>
-            <form action="./admin_freegoods.php?mode=search" method="post" id="freegoods_search_form" name="freegoods_search_form">
+            <form action="./admin_freegoods.php" method="get" id="freegoods_search_form" name="freegoods_search_form">
+              <input type="hidden" name="mode" value="y">
               <div id="freegoods_search_form_div1">
                 <select id="freegoods_search_kind" name="freegoods_search_kind">
                 <option value="All" <?=$selected_all?>>All</option>
@@ -286,32 +311,32 @@ $number=$total_record- $start_row;
     <div id="admin_member_next_prev_div">
 
     <?PHP
-              #----------------이전블럭 존재시 링크------------------#
-              if($start_page > $pages_scale){
-                 $go_page= $start_page - $pages_scale;
-                 echo "<a id='before_block' href='admin_freegoods.php?page=$go_page'> << </a>";
-              }
-              #----------------이전페이지 존재시 링크------------------#
-              if($pre_page){
-                  echo "<a id='before_page' href='admin_freegoods.php?page=$pre_page'> < </a>";
-              }
-               #--------------바로이동하는 페이지를 나열---------------#
-              for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
-                 if($dest_page == $page){
-                      echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
-                  }else{
-                      echo "<a id='move_page' href='admin_freegoods.php?page=$dest_page'>$dest_page</a>";
-                  }
-               }
-               #----------------이전페이지 존재시 링크------------------#
-               if($next_page){
-                   echo "<a id='next_page' href='admin_freegoods.php?page=$next_page'> > </a>";
-               }
-               #---------------다음페이지를 링크------------------#
-              if($total_pages >= $start_page+ $pages_scale){
-                $go_page= $start_page+ $pages_scale;
-                echo "<a id='next_block' href='admin_freegoods.php?page=$go_page'> >> </a>";
-              }
+      #----------------이전블럭 존재시 링크------------------#
+      if($start_page > $pages_scale){
+         $go_page= $start_page - $pages_scale;
+         echo "<a id='before_block' href='$url&page=$go_page'> << </a>";
+      }
+      #----------------이전페이지 존재시 링크------------------#
+      if($pre_page){
+          echo "<a id='before_page' href='$url&page=$pre_page'> < </a>";
+      }
+       #--------------바로이동하는 페이지를 나열---------------#
+      for($dest_page=$start_page;$dest_page <= $end_page;$dest_page++){
+         if($dest_page == $page){
+              echo( "&nbsp;<b id='present_page'>$dest_page</b>&nbsp" );
+          }else{
+              echo "<a id='move_page' href='$url&page=$dest_page'>$dest_page</a>";
+          }
+       }
+       #----------------이전페이지 존재시 링크------------------#
+       if($next_page){
+           echo "<a id='next_page' href='$url&page=$next_page'> > </a>";
+       }
+       #---------------다음페이지를 링크------------------#
+      if($total_pages >= $start_page+ $pages_scale){
+        $go_page= $start_page+ $pages_scale;
+        echo "<a id='next_block' href='$url&page=$go_page'> >> </a>";
+      }
      ?>
     </div>
     <br><br>
