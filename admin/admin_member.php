@@ -49,12 +49,11 @@ $url="./admin_member.php?";
 $sql="select * from `member` where $sort_kind like '%$search_value%' $sort_partner $sort_exchange";
 $url="./admin_member.php?mode=search&search_kind=$sort_kind&search_value=$search_value&sort_partner=$get_sort&sort_exchange=$get_exc";
 }
-var_dump($sql);
 
 $result = mysqli_query($conn, $sql);
 $total_record = mysqli_num_rows($result); //전체 레코드 수
 // 페이지 당 글수, 블럭당 페이지 수
-$rows_scale=1;
+$rows_scale=10;
 $pages_scale=5;
 // 전체 페이지 수 ($total_page) 계산
 $total_pages= ceil($total_record/$rows_scale);

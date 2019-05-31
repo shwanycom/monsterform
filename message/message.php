@@ -109,7 +109,7 @@ $number=$total_record- $start_row;
            <?php
           if($id==$send_email){
             ?>
-          <a href="../member_profile/profile_view.php?mode=shop&email=<?=$rece_email?>">  <div id="list_message2"><?=$rece_email?></div></a>
+            <a href="../member_profile/profile_view.php?mode=shop&email=<?=$rece_email?>">  <div id="list_message2"><?=$rece_email?></div></a>
             <?php
           }else{
             ?>
