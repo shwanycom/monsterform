@@ -20,8 +20,9 @@ if(isset($_SESSION['email'])){
 <script type="text/javascript">
   var value="";
   function index_select(value){
-  var text = ""+value;
-  document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
+    var text = value;
+    document.getElementById("header_logout_form_div2_3_span").innerHTML = text;
+    document.getElementById("big_data").value= text;
   }
   function mouse_over(){
     document.getElementById('change_img').src="../img/up.png";
@@ -191,21 +192,28 @@ if(isset($_SESSION['email'])){
           </ul>
         </div>
         <div class="header_logout_form_div5">
+          <form class="" action="./list.php?" method="GET">
           <div id="search_div">
-            <img src="../img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
+            <input type="hidden" name="big_data" id="big_data" value="">
+            <input type="hidden" name="mode" value="search">
+            <input type="hidden" name="partner" value="n">
+            <input type="hidden" name="handpicked" value="n">
+            <input type="hidden" name="popular" value="n">
+            <input type="text" id="search_text" name="search_text" placeholder="Search">
+            <button type="submit"  style="width:30px; height:30px;  outline:none; border:none;"><img src="../img/zoom.png" id="search_img" style="width:17px; height:17px; padding:0;"></button>
           </div>
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
-                <span id="header_logout_form_div2_3_span">All</span>
+                <span id="header_logout_form_div2_3_span">Select</span>
                 <img id="change_img" src="../img/down.png" style="width:15px; height:15px;"/>&nbsp;&nbsp;&nbsp;
               </a>
             <ul id="header_logout_form_div2_3_ul">
-              <li class="header_logout_form_div2_3_ul_li" id="All" onclick="index_select('All')" value="allcategories"><a href="#">All&nbsp;categories</a></li>
-              <li class="header_logout_form_div2_3_ul_li" id="photos" onclick="index_select('Photos')" value="Photos"><a href="#">Photos</a></li>
-              <li class="header_logout_form_div2_3_ul_li" id="Graphics" onclick="index_select('Graphics')" value="Graphics"><a href="#">Graphics</a></li>
-              <li class="header_logout_form_div2_3_ul_li" id="Fonts" onclick="index_select('Fonts')" value="Fonts"><a href="#">Fonts</a></li>
+              <li class="header_logout_form_div2_3_ul_li" name="big_data" id="photos" onclick="index_select('photos')" value="Photos"><a href="#">Photos</a></li>
+              <li class="header_logout_form_div2_3_ul_li" name="big_data" id="Graphics" onclick="index_select('graphics')" value="Graphics"><a href="#">Graphics</a></li>
+              <li class="header_logout_form_div2_3_ul_li" name="big_data" id="Fonts" onclick="index_select('fonts')" value="Fonts"><a href="#">Fonts</a></li>
             </ul>
           </div>
+        </form>
         </div>
       </div>
 </header>
