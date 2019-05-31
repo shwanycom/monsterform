@@ -162,8 +162,8 @@ $(document).ready(function(e) {
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
+  <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
   <div class="shop_view_wrap">
-    <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
     <div class="shop_view_category">
       <a href="#"><?=$big_data?></a> &nbsp;>&nbsp; <a href="#"><?=$small_data?></a>
     </div>
@@ -263,7 +263,7 @@ $(document).ready(function(e) {
       </div><!-- end of div6 -->
     </div><!-- end of container -->
 
-    <div class="shop_view_narrow">
+    
       <div class="shop_view_sticky">
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_product_info">
@@ -337,12 +337,12 @@ $(document).ready(function(e) {
           </div>
         </div><!-- end of shop_view_sticky_purchase -->
       </div><!-- end of shop_view_sticky -->
-    </div><!-- end of shop_view_narrow -->
+
     <input type="hidden" name="product_num_set" value="/<?=$i_num?>">
     <input type="hidden" name="mon" value="<?=$mon?>">
     <input type="hidden" name="cart_img_name" value="<?=$img_file_copied1?>">
-    </form>
   </div><!-- end of wrap -->
+</form>
 
   <!--============================================================================== -->
   <?php
