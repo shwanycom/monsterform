@@ -40,7 +40,7 @@ create_table($conn, 'collections');
   <body>
     <?php
     include "./lib/header.php";
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION['email'])){
       include "./lib/section_text_category.php";
       include "./point/index_point.php";
     }else{
@@ -51,7 +51,7 @@ create_table($conn, 'collections');
     include "./lib/section_categories_section.php";
     include "./index_list/index_list.php";
     include './lib/footer_2.php';
-    if(isset($_SESSION['username']) && $_SESSION['username']=='admin'){
+    if(isset($_SESSION['email']) && $_SESSION['email']=='admin@gmail.com'){
       include "./admin/admin_main.php";
     }
     include "./lib/footer.php";

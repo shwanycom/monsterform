@@ -76,10 +76,10 @@ $number=$total_record- $start_row;
     <meta charset="utf-8">
     <title></title>
     <script>
-    function check_delete(num) {
-      var decision_delete= confirm("delete this member? \n Either OK or Cancel");
+    function check_delete(num, loc) {
+      var decision_delete= confirm("update this member? \n Either OK or Cancel");
       if(decision_delete){
-        window.location.href='admin_member_dml.php?mode=delete&no='+num;
+        window.location.href='admin_member_dml.php?mode=delete&no='+num+'&location='+loc;
       }
     }
     function check_partner(num, pt) {
@@ -187,10 +187,10 @@ $number=$total_record- $start_row;
       $use_mf=$row["use_mf"];
       echo '<tr class="">
                   <td>'.$no.'</td>
-                  <td id="td_send_message">'.$email.'<div id="div_send_message"><a href="#">
+                  <td id="td_send_message"><a href="../member_profile/profile_view.php?mode=shop&email='.$email.'">'.$email.'</a><div id="div_send_message">
                   <button id="button_send_message" type="button" name="button" onclick="send_to_member(\''.$email.'\')">
                   Send Message to '.$email.'
-                  </button></a></div></td>
+                  </button></div></td>
                   <td>'.$username.'</td>
                   <td>'.$mon.'</td>
                   <td><input id="on_partner" type="checkbox" name="on_partner" value="y" '.$check.' disabled></td>
@@ -198,7 +198,7 @@ $number=$total_record- $start_row;
                   <td>'.$profession.'</td>
                   <td>'.$use_mf.'</td>
                   <td>
-                  <button type="button" class="button" id="button_delete" onclick="check_delete('.$no.')">'.$button_block.'</button>
+                  <button type="button" class="button" id="button_delete" onclick="check_delete(\''.$no.'\',\''.$location.'\')">'.$button_block.'</button>
                   </td>
                   <td>
                   <button type="button" class="button" id="button_update" onclick="check_partner(\''.$no.'\',\''.$button_index.'\')">'.$button_index.'</button>

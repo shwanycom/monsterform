@@ -34,11 +34,11 @@ if(isset($_POST['shop_no'])){
       echo '<div id="follow_list_div">
          <table border="1">
            <tr>
-             <td rowspan="2" width="25%;"><img src="'.$mem_copy_name.'" alt="" width="50px;" height="50px;"></td>
-             <td id="follow_username" width="70%;">'.$mem_username.'</td>
+             <td rowspan="2" width="25%;"><a href="./profile_view.php?mode=shop&email='.$mem_email.'"><img src="'.$mem_copy_name.'" alt="" width="50px;" height="50px;"></a></td>
+             <td id="follow_username" width="70%;"><a href="./profile_view.php?mode=shop&email='.$mem_email.'">'.$mem_username.'</a></td>
            </tr>
            <tr>
-             <td id="follow_email" width="70%;">'.$mem_email.'</td>
+             <td id="follow_email" width="70%;"><a href="./profile_view.php?mode=shop&email='.$mem_email.'">'.$mem_email.'</a></td>
            </tr>
          </table>
        </div>';
@@ -76,11 +76,11 @@ if(isset($_POST['shop_no'])){
       echo '<div id="follow_list_div">
          <table border="1">
            <tr>
-             <td rowspan="2" width="25%;"><img src="'.$mem_copy_name.'" alt="" width="50px;" height="50px;"></td>
-             <td id="follow_username" width="70%;">'.$mem_username.'</td>
+             <td rowspan="2" width="25%;"><a href="./profile_view.php?mode=shop&email='.$mem_email.'"><img src="'.$mem_copy_name.'" alt="" width="50px;" height="50px;"></a></td>
+             <td id="follow_username" width="70%;"><a href="./profile_view.php?mode=shop&email='.$mem_email.'">'.$mem_username.'</a></td>
            </tr>
            <tr>
-             <td id="follow_email" width="70%;">'.$mem_email.'</td>
+             <td id="follow_email" width="70%;"><a href="./profile_view.php?mode=shop&email='.$mem_email.'">'.$mem_email.'</a></td>
            </tr>
          </table>
        </div>';

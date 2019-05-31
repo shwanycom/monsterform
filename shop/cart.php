@@ -24,10 +24,10 @@ if(isset($_SESSION['username'])){
 }else{
   $member_username="";
 }
-
+  $product_num_set="";
 	$regist_day = date("F d, Y");
 	$total_price=$mode="";
-
+  $mon="";
 
 	$sql="select * from cart c inner join products p on c.product_num=p.num where c.no='$no'";
 

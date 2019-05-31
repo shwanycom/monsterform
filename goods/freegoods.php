@@ -177,6 +177,9 @@ $row2=mysqli_fetch_array($result2);
         if($i%3==2){
           echo '<br>';
         }
+        if($i==5){
+          break;
+        }
       }
       ?>
       </div>

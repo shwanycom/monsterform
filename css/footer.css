@@ -36,6 +36,7 @@ body{
 }
 #footer_logo{
   width:150px;
+  float: right;
 }
 #footer_div1{
   height:300px;
@@ -44,6 +45,8 @@ body{
   display: inline-block;
   height:300px;
   padding-top:50px;
+  margin-right:80px;
+  font-family: UniNeue-light;
   text-align: left;
 }
 #footer_div1_div2{
@@ -54,6 +57,7 @@ body{
 .footer_div1_div2_div{
   display: inline-block;
   height:auto;
+  width:150px;
   float: left;
   padding-right: 50px;
 }
