@@ -358,7 +358,7 @@ $(document).ready(function(){
               <p><b>Set the Mon of your product</b></p><br>
             </div>
             <div style="text-align:left; width:48%; display:inline-block ">
-              <input type="checkbox" name="freegoods_agree" value="y" id="free_check">Agree for <b>Free</b> <br>
+              <input type="checkbox" name="freegoods_agree" value="n" id="free_check">Agree for <b>Free</b> <br>
             </div>
             <div id="s_w_agree_mon_div" style="text-align:right; width:48%; display:inline-block ">
               <span style="color:black;"><b>Mon </b></span> <input class="should_have_inputted" type="number" min="0" name="setted_mon" id="mon_selector"

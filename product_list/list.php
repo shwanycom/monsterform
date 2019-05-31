@@ -629,13 +629,13 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
       <?php
       if(!($page-1==0)){
         $go_page = $page-1;
-        echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'><span class='page_button'>&nbsp;PREV </span>&nbsp;</a>";
+        echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'><span class='page_button2'>&nbsp;PREV </span>&nbsp;</a>";
       }else{
         echo "";
       }
         for($i=1;$i<=$total_page;$i++){
           if($page==$i){
-            echo "<b>&nbsp;&nbsp;◁ $i ▷&nbsp;&nbsp;</b>";
+            echo "<b id='page_num1'>&nbsp; $i &nbsp;</b>";
           }else{
             echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$i'>&nbsp;$i&nbsp;</a>";
           }
@@ -646,14 +646,12 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
             echo "";
           }else{
             $go_page = $page+1;
-            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'>&nbsp;<span class='page_button'> NEXT </span></a>";
+            echo "<a href='./list.php?big_data=$big_data&mode=search&partner=$partner_default&handpicked=$handpicked_default&popular=$popular_default&search_text=$q_search&page=$go_page'>&nbsp;<span class='page_button2'> NEXT </span></a>";
           }
         }else{
           echo "";
         }
-
          ?>
-
          <br><br>
       </div> <!-- end of page_num -->
 

@@ -32,6 +32,10 @@ if(isset($_SESSION['email'])){
   function chart_show(){
     window.open("./member_profile/member_chart.php", "_blank", "toolbar=no,menubar=no,location=no,status=no,scrollbars=yes,resizable=no,channelmode=yes,top=200,left=200,width=1000,height=500");
   }
+
+  function search_main(){
+      var search_text = document.getElementById('search_text').value;
+  }
   </script>
 <header id="header">
   <div id="header_logout_form_div1">
@@ -189,7 +193,7 @@ if(isset($_SESSION['email'])){
         </div>
         <div class="header_logout_form_div5">
           <div id="search_div">
-            <img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding-top:2px; padding:0;"> <input type="text" id="search_text" placeholder="Search">
+            <input type="text" id="search_text" placeholder="Search"><button type="button" name="button" style="width:30px; height:30px;  outline:none; border:none;" onclick="search_main()"><img src="./img/zoom.png" id="search_img" style="width:17px; height:17px; padding:0;"></button>
           </div>
           <div id="header_logout_form_div2_3">
               <a href="#" id="header_logout_form_div2_3_a" onmouseover="mouse_over()" onmouseout="mouse_out()">
