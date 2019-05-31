@@ -25,7 +25,7 @@ if( isset($_GET['mode']) ) {
     $product_num_set = $_POST['product_num_set'];
     $product_num_array = explode("/", $product_num_set);
     $repeat_purchase = sizeof($product_num_array);
-    $required_mon = $_POST['mon']; //구매요청가격
+    $required_mon = $_POST['mon']; //보낸 상품 혹은 장바구니 토탈가격
     if($_GET['mode']=="add_cart"){
       $cart_img_name = $_POST['cart_img_name'];
     }
@@ -107,13 +107,14 @@ $pro_hit,'$pro_big_data','$pro_img_file_copied');";
           }else{
             $sales_profit = intval(ceil($product_mon*0.6));
           }
-          var_export($pro_no); echo "<br>";
-          var_export($partner); echo "<br>";
 
-          var_export($product_mon); echo "<br>";
-          var_export($product_mon*0.6); echo "<br>";
-          var_export($product_mon*0.8); echo "<br>";
-          var_export($sales_profit);
+          // var_export($pro_no); echo "<br>";
+          // var_export($partner); echo "<br>";
+          //
+          // var_export($product_mon); echo "<br>";
+          // var_export($product_mon*0.6); echo "<br>";
+          // var_export($product_mon*0.8); echo "<br>";
+          // var_export($sales_profit);
 
           $sql = "UPDATE `member` set `point_mon`=`point_mon`+$sales_profit where `no` = $pro_no;";
           $result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));

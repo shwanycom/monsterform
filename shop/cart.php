@@ -69,33 +69,19 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" href="../css/cart.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-$('#cart_payment').click(function(event) {
-  $('#total_price').val();
-  $.ajax({
-    url: './khy_modal/not_social.php?mode=email_ajax',
-    type: 'POST',
-    data: {email: $("#email_address").val()}
-  })
-  .done(function(result) {
-    console.log("success");
-    var json = $.parseJSON(result);
-    console.log(json[0].ok);
-    console.log(json[1].sign);
-    if(parseInt(json[1].sign)){
-      $("#email_address").css("border","2px solid #ff948a");
-      $("#email_address").attr("title","중복된 이메일입니다");
-      return false;
+$(document).ready(function() {
+  $('#cart_payment').click(function(event) {
+    console.log("이벤트발동");
+    console.log($('#total_price').val());
+    console.log($('#user_mon').val());
+    $total_mon=$('#total_price').val();
+    $user_mon=$('#user_mon').val();
+    if($user_mon<$total_mon){
+      alert('Mon이 부족합니다!');
+      document.location.href='../point/point_main.php';
     }else{
-      $("#email_address").css("border","2px solid #cfcfcf");
-      $("#email_address").attr("title","사용 가능한 이메일 입니다");
-
+      $('#cart_form').submit();
     }
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
   });
 });
 
@@ -179,6 +165,7 @@ $('#cart_payment').click(function(event) {
       <input type="hidden" name="product_num_set" value="<?=$product_num_set?>">
       <input type="hidden" name="mon" id="total_price"value="<?=$total_price?>">
       </form>
+      <input type="hidden" id="user_mon" value="<?=$mem_mon?>">
   </section>
   <?php
   include "../lib/footer_in_folder.php";
