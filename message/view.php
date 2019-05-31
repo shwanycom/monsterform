@@ -63,7 +63,7 @@ if($pro_img_copied!=null){
 					<a href="#"><img src="../data/img/<?=$pro_img_copied?>" class="message_pro"></a>
 					<div class="write_form_2">
 						<div class="write_form_3">
-							<a href="#" style="text-decoration:none"><span id="send_span"><?=$send_email?></span></a>
+							<a href="../member_profile/profile_view.php?mode=shop&email=<?=$send_email?>" style="text-decoration:none"><span id="send_span"><?=$send_email?></span></a>
 						</div>
 						<div class="write_form_4">
 							<span id="message_span"><?=$message?></span>
@@ -105,7 +105,7 @@ if($pro_img_copied!=null){
 								<a href="#"><img src="../data/img/<?=$pro_img_copied?>" class="message_pro"></a>
 								<div class="write_form_2">
 									<div class="write_form_3">
-										<a href="#" style="text-decoration:none"><span id="send_span"><?=$ripple_email?></span></a>
+										<a href="../member_profile/profile_view.php?mode=shop&email=<?=$ripple_email?>" style="text-decoration:none"><span id="send_span"><?=$ripple_email?></span></a>
 									</div>
 									<div class="write_form_4">
 										<span id="message_span"><?=$ripple_content?></span>

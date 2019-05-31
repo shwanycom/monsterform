@@ -651,9 +651,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search" && $small_data==''){
         }else{
           echo "";
         }
-
          ?>
-
          <br><br>
       </div> <!-- end of page_num -->
 

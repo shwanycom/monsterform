@@ -535,7 +535,7 @@ $number = $total_record - $start;
              }
              for($i=1;$i<=$total_page;$i++){
                if($page==$i){
-                 echo "<b>&nbsp;&nbsp;- $i -&nbsp;&nbsp;</b>";
+                 echo "<b id='page_num'>&nbsp;&nbsp; $i &nbsp;&nbsp;</b>";
                }else{
                  echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$i'>&nbsp;$i&nbsp;</a>";
                }
@@ -658,7 +658,7 @@ $number = $total_record - $start;
               }
               for($i=1;$i<=$total_page;$i++){
                 if($page==$i){
-                  echo "<b>&nbsp;&nbsp;- $i -&nbsp;&nbsp;</b>";
+                  echo "<b id='page_num'>&nbsp;&nbsp; $i &nbsp;&nbsp;</b>";
                 }else{
                   echo "<a href='./profile_view.php?mode=$mode&email=$shop_email&page=$i'>&nbsp;$i&nbsp;</a>";
                 }

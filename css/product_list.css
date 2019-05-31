@@ -110,7 +110,8 @@ opacity: 1;
   border-radius: 3px;
 }
 #page_num1{
-    font-size: 14pt;
+  font-size: 14pt;
+font-family: nina;
 }
 .page_button2{
   position: relative;

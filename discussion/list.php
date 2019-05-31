@@ -187,23 +187,23 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                    <?php
                    if(!($page-1==0)){
                      $go_page = $page-1;
-                     echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'>◀ 이전</a> &nbsp;&nbsp;";
+                     echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'><span class='page_button3'>PREV </span></a> &nbsp;&nbsp;";
                    }else{
-                     echo "◀ 이전&nbsp;&nbsp;";
+                     echo "<span class='page_button3'>PREV </span>";
                    }
                      for($i=1;$i<=$total_page;$i++){
                        if($page==$i){
-                         echo "<b>&nbsp;&nbsp;$i&nbsp;&nbsp;</b>";
+                         echo "<b id='page_num2'>&nbsp;&nbsp; $i &nbsp;&nbsp;</b>";
                        }else{
-                         echo "<a href='./list.php?mode=search&page=$i&total_search=$q_search'>$i</a>";
+                         echo "<a href='./list.php?mode=search&page=$i&total_search=$q_search'> $i &nbsp;&nbsp; </a>";
                        }
                      }
 
                      if($page==$total_page){
-                       echo "&nbsp;&nbsp;&nbsp;다음 ▶";
+                       echo "<span class='page_button3'> NEXT </span>";
                      }else{
                        $go_page = $page+1;
-                       echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'>&nbsp;&nbsp;&nbsp;다음 ▶</a>";
+                       echo "<a href='./list.php?mode=search&page=$go_page&total_search=$q_search'><span class='page_button3'> NEXT </span></a>";
                      }
                       ?>
 
