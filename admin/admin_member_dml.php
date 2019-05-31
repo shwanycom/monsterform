@@ -23,19 +23,22 @@ if(isset($_GET["hwan_mon"])){
 if(isset($_GET['remail'])){
   $remail=$_GET["remail"];
 }
+if(isset($_GET["location"])){
+  $get_location=$_GET["location"];
+}
 $now = date("Y-m-d(H:i)");
 
 if(isset($_GET["mode"]) && $_GET["mode"]=='delete'){
   $q_no = mysqli_real_escape_string($conn, $get_no);
-  $sql="UPDATE `member` set `location`='hell' WHERE no='$q_no'";
+  $q_get_location = mysqli_real_escape_string($conn, $get_location);
+  if($q_get_location=='hell'){
+    $sql="UPDATE `member` set `location`='free' WHERE no='$q_no'";
+  }else{
+    $sql="UPDATE `member` set `location`='hell' WHERE no='$q_no'";
+  }
   $result = mysqli_query($conn, $sql);
   if (!$result) {
     die('Error: BLOCK ERROR' . mysqli_error($conn));
-  }
-  $sql_del_products = "DELETE from `products` where no='$q_no'";
-  $result_del = mysqli_query($conn, $sql_del_products);
-  if (!$result_del) {
-    die('Error: PRODUCTS DEL ERROR' . mysqli_error($conn));
   }
   echo "<script> location.href='./admin_member.php';</script>";
 }

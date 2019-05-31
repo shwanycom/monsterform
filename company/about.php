@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php"; ?>
+<?php
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
+?>
+
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
