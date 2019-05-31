@@ -67,6 +67,36 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" href="../css/common.css?ver=1">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/cart.css">
+<script>
+
+  $.ajax({
+    url: './khy_modal/not_social.php?mode=email_ajax',
+    type: 'POST',
+    data: {email: $("#email_address").val()}
+  })
+  .done(function(result) {
+    console.log("success");
+    var json = $.parseJSON(result);
+    console.log(json[0].ok);
+    console.log(json[1].sign);
+    if(parseInt(json[1].sign)){
+      $("#email_address").css("border","2px solid #ff948a");
+      $("#email_address").attr("title","중복된 이메일입니다");
+      return false;
+    }else{
+      $("#email_address").css("border","2px solid #cfcfcf");
+      $("#email_address").attr("title","사용 가능한 이메일 입니다");
+
+    }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+</script>
 </head>
 <body>
   <?php include "../lib/header_in_folder.php";?>
@@ -93,6 +123,7 @@ if(isset($_SESSION['username'])){
       $cart_img_name = $row["cart_img_name"];
       $regist_day = date("F d, Y");
       $total_price+=$price;
+      $product_num_set .= "/".$product_num;
     ?>
       <div class="list_set">
         <div class="cart_list1">
@@ -120,9 +151,6 @@ if(isset($_SESSION['username'])){
       </div>
       <?php
          $number --;
-         $product_num_set .= "/".$product_num;
-         $mon += $price;
-
      }
      ?>
     </div>
@@ -137,14 +165,14 @@ if(isset($_SESSION['username'])){
         <span class="id_regist_span">Date : <?=$regist_day?></span>
       </div>
       <div class="purchase_kakao">
-          <input type="submit" id="cart_payment" value="Finish Purchase" >
+        <input type="button" id="cart_payment" value="Finish Purchase">
       </div>
     </div>
   <!--페이지 박스 넣고싶으면 여기다 넣어야 된다.-->
       </div>
       </div>
       <input type="hidden" name="product_num_set" value="<?=$product_num_set?>">
-      <input type="hidden" name="mon" value="<?=$mon?>">
+      <input type="hidden" name="mon" value="<?=$total_price?>">
       </form>
   </section>
   <?php
