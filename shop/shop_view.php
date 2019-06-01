@@ -4,6 +4,7 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 create_table($conn, "products");
 $row = $type = "";
+if(empty($member_no)) $member_no="";
 if(!isset($_GET['num']) || empty($_GET['num'])){
   echo "<script>alert('제품번호(num)을 주세용');
         history.go(-1);</script>";
@@ -263,7 +264,7 @@ $(document).ready(function(e) {
       </div><!-- end of div6 -->
     </div><!-- end of container -->
 
-    
+
       <div class="shop_view_sticky">
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_product_info">
@@ -288,7 +289,7 @@ $(document).ready(function(e) {
           </div>
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
             <?php
-            if(!empty($member_no)){
+
               if($user_no==$member_no){
               ?>
                 <div class="shop_view_sticky_inner_btn" style="height:30%;">
@@ -332,7 +333,7 @@ $(document).ready(function(e) {
                 </div>
               <?php
               }
-            }
+
             ?>
           </div>
         </div><!-- end of shop_view_sticky_purchase -->
