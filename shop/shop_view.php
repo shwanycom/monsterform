@@ -4,6 +4,7 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/create_table.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/session_call.php";
 create_table($conn, "products");
 $row = $type = "";
+if(empty($member_no)) $member_no="";
 if(!isset($_GET['num']) || empty($_GET['num'])){
   echo "<script>alert('제품번호(num)을 주세용');
         history.go(-1);</script>";
@@ -71,7 +72,7 @@ if(!isset($_GET['num']) || empty($_GET['num'])){
   // $content=str_replace(" ", "&nbsp;",$content);
   // $content=str_replace("\n", "<br>",$content);
 
-  if($member_no){
+  if(!empty($member_no)){
     $sql="SELECT * from `cart` where `no`=$member_no && `product_num`=$i_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
@@ -162,10 +163,10 @@ $(document).ready(function(e) {
   include "../lib/header_in_folder.php";
   ?>
   <!--============================================================================== -->
+  <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
   <div class="shop_view_wrap">
-    <form class="" action="../shop/cart_report_dml.php" method="post" id = "shop_view_form">
     <div class="shop_view_category">
-      <a href="#"><?=$big_data?></a> > <a href="#"><?=$small_data?></a>
+      <a href="#"><?=$big_data?></a> &nbsp;>&nbsp; <a href="#"><?=$small_data?></a>
     </div>
 
     <div class="shop_view_container">
@@ -263,7 +264,7 @@ $(document).ready(function(e) {
       </div><!-- end of div6 -->
     </div><!-- end of container -->
 
-    <div class="shop_view_narrow">
+
       <div class="shop_view_sticky">
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_product_info">
@@ -288,59 +289,61 @@ $(document).ready(function(e) {
           </div>
           <div class="shop_view_sticky_inner" style="height: 70%; padding-top:1%;">
             <?php
-            if($user_no==$member_no){
-            ?>
-              <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <a href="./shop_dml_board.php?mode=delete&num=<?=$i_num?>">
-                <button type="button" style="background-color:#ff761f; border-color:#ff761f ; color:white;"
-                onclick="">
-                <b>Delte Product</b></button><a>
-              </div>
-            <?php
-            }else if($type=="added"){
-            ?>
-              <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
-                <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
-                <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
-              </div>
-            <?php
-            }else if($type=="purchased"){
-              if(empty($zip_file_copied)){
-                echo "<script>alert('서버에 파일이 없습니다...?');return;</script>";
-              }
-            ?>
-              <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <a href="./shop_download.php?num=<?=$i_num?>">
-                  <button type="button" style="background-color:#70a330; color:white;"
+
+              if($user_no==$member_no){
+              ?>
+                <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                  <a href="./shop_dml_board.php?mode=delete&num=<?=$i_num?>">
+                  <button type="button" style="background-color:#ff761f; border-color:#ff761f ; color:white;"
                   onclick="">
-                  <b>Download it!</b></button><a>
-              </div>
-            <?php
-            }else{
-            ?>
-              <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
+                  <b>Delte Product</b></button><a>
+                </div>
+              <?php
+              }else if($type=="added"){
+              ?>
+                <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+                  <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
                   <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
-              </div>
-              <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
-                OR
-              </div>
-              <div class="shop_view_sticky_inner_btn" style="height:30%;">
-                <button type="button" style="background-color:white; color:#70a330;" onclick="send_to_dml('add_cart','');">
-                  <b> Add to Cart</b></button>
-              </div>
-            <?php
-            }
+                </div>
+              <?php
+              }else if($type=="purchased"){
+                if(empty($zip_file_copied)){
+                  echo "<script>alert('서버에 파일이 없습니다...?');return;</script>";
+                }
+              ?>
+                <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                  <a href="./shop_download.php?num=<?=$i_num?>">
+                    <button type="button" style="background-color:#70a330; color:white;"
+                    onclick="">
+                    <b>Download it!</b></button><a>
+                </div>
+              <?php
+              }else{
+              ?>
+                <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                  <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
+                    <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
+                </div>
+                <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+                  OR
+                </div>
+                <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                  <button type="button" style="background-color:white; color:#70a330;" onclick="send_to_dml('add_cart','');">
+                    <b> Add to Cart</b></button>
+                </div>
+              <?php
+              }
+
             ?>
           </div>
         </div><!-- end of shop_view_sticky_purchase -->
       </div><!-- end of shop_view_sticky -->
-    </div><!-- end of shop_view_narrow -->
+
     <input type="hidden" name="product_num_set" value="/<?=$i_num?>">
     <input type="hidden" name="mon" value="<?=$mon?>">
     <input type="hidden" name="cart_img_name" value="<?=$img_file_copied1?>">
-    </form>
   </div><!-- end of wrap -->
+</form>
 
   <!--============================================================================== -->
   <?php
