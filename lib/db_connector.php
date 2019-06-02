@@ -5,12 +5,9 @@ date_default_timezone_set("Asia/Seoul");
 // $username = "monsterform";
 // $password = "monster1!";
 
-
 $servername = "localhost";
 $username = "root";
 $password = "123456";
-
-
 
 $dbflag = "NO";
 $conn = mysqli_connect($servername, $username, $password);
