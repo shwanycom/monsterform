@@ -1,7 +1,8 @@
 div.shop_view_wrap{
   margin: 0 auto;
   max-width: 1440px;
-  margin-left: 10%;  
+  margin-left: 10%;
+  display: inline-block;
 }
 
 div.shop_view_category{
@@ -33,13 +34,13 @@ div.shop_view_gal{
   overflow: hidden;
   border:1px solid #dfd8d8;
 }
-div.shop_view_narrow{
+/* div.shop_view_narrow{
   width : 31%;
   margin-left: 3%;
   height : 2100px;
   display: inline-block;
-  /* border:1px solid blue; */
-}
+  border:1px solid blue;
+} */
 div.shop_view_sticky{
   width : 100%;
   max-width: 355px;
@@ -52,6 +53,7 @@ div.shop_view_sticky{
   border: 1px solid #dfd8d8;
   border-top: 5px solid #70a330;
   background-color: #fff;
+  display: inline-block;
 }
 div.shop_view_sticky_outter{
   width : 97%;
@@ -178,7 +180,4 @@ div#shop_view_qna{
   height: 800px;
   border-bottom: 1px solid #c1bebe;
   margin-bottom: 40px;
-}
-div.shop_view_wrap div{
-  display: inline-block;
 }

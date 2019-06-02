@@ -4,10 +4,24 @@ date_default_timezone_set("Asia/Seoul");
 // $servername = "192.168.0.174";
 // $username = "monsterform";
 // $password = "monster1!";
+<<<<<<< HEAD
 $servername = "localhost";
 $username = "root";
 $password = "123456";
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 1c309e71d8587a91d8305b6e112360fc5142871b
 
+
+$servername = "localhost";
+$username = "root";
+$password = "123456";
+>>>>>>> 00a7d4cbb528b74e4959a374b3df176e5b727a18
+
+$servername = "localhost";
+$username = "root";
+$password = "123456";
 
 
 $dbflag = "NO";
