@@ -550,6 +550,10 @@ hr{
   font-size: 1.5em;
   cursor: pointer;
 }
+/* #div_mem input #forget_pw{
+  width:30%;
+  margin:0 auto;
+} */
 
 /* ----------------------------------search 창  css----------------------------------- */
 #header_logout_form_div2_3 {

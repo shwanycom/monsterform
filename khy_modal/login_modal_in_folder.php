@@ -132,6 +132,7 @@ function sendToDml(type){
                 <input type="hidden" class="modal_text" name="login_email" placeholder="Email Address" id="username2" >
                 <input type="hidden" class="modal_text" name="login_password" placeholder="Password" id="password2" >
                 <input type="hidden" class="modal_btn" id="login" value="Log in!">
+                <input type="hidden" class="modal_find_btn" id="forget_pw" value="forgot?">
               </form>
               <input type="button" class="modal_btn" name="button" id="email_btn" value="Continue with E-mail" onclick="memform()" >
               <br>
@@ -157,6 +158,7 @@ var password = document.getElementById("member_password");
 var password_confirm = document.getElementById("member_password_confirm");
 var password2 = document.getElementById("password2");
 var login = document.getElementById("login");
+var forget_pw = document.getElementById("forget_pw");
 
 var last_td = document.getElementById("last_td")
 var by_span = document.getElementById("by_span")
@@ -201,6 +203,9 @@ if(btn){
   login.onclick = function(){
     check_login();
   }
+  forget_pw.onclick = function(){
+    window.open("../khy_modal/find_pw.php", "_blank", "toolbar=no,menubar=no,location=no,status=no,scrollbars=yes,resizable=no,channelmode=yes,top=200,left=200,width=700,height=300");
+  }
 }
 
 
@@ -243,6 +248,9 @@ function sign_man(){
     login.setAttribute("type","button");
     login.style.display = "block";
     login.style.margin = "10px 15px";
+    forget_pw.setAttribute("type","button");
+    forget_pw.style.display = "block";
+    forget_pw.style.margin = "10px 15px";
     last_td.innerText = "New to Monster Form?";
     by_span.innerText = "";
     mem_btn.setAttribute("type","hidden");
@@ -262,6 +270,7 @@ function sign_man(){
     password.setAttribute("type","hidden");
     password_confirm.setAttribute("type","hidden");
     login.setAttribute("type","hidden");
+    forget_pw.setAttribute("type","hidden");
     last_td.innerText = "Already have an account?";
     by_span.innerText = "By creating an account, you agree to our terms and privacy policy.";
     mem_btn.setAttribute("type","button");
