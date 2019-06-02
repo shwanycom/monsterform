@@ -158,7 +158,7 @@ $number=$total_record- $start_row;
       $('.go_hand_picked_img_class').click(function(){
         var n = $('.go_hand_picked_img_class').index(this);
         var num_num = $(".hidden_num:eq("+n+")").val();
-        var result = confirm("handpicked update");
+        var result = confirm("Pick Handpicked?");
         if(result){
          $.ajax({
            url: './admin_handpicked_dml.php?mode=go_hand', // 데이터 보내서 작업되어질 url

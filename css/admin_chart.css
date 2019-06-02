@@ -50,3 +50,19 @@ rect{
 .admin_chart_span_div span{
   font-size:20pt;
 }
+#btnExport{
+  height:30px;
+  width:150px;
+  outline: none;
+  border:2px solid lightgray;
+  border-radius:15px;
+}
+#btnExport:hover{
+  cursor: pointer;
+  height:30px;
+  width:150px;
+  outline: none;
+  background-color: #bbbbbb;
+  border:2px solid lightgray;
+  border-radius:15px;
+}

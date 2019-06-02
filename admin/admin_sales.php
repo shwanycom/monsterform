@@ -184,6 +184,7 @@ $month=$_POST['admin_submit_month'];
     <link rel="stylesheet" href="../css/footer_2.css">
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/admin_chart.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     google.charts.load('current', {'packages': ['linechart']}); /*LINE차트를 사용하기 위한 준비  */
@@ -252,6 +253,12 @@ $month=$_POST['admin_submit_month'];
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
     }
+    $(document).ready(function() {
+  	   $("#btnExport").click(function (e) {
+        window.open('data:application/vnd.ms-excel;chsarset=utf-8,\uFEFF' + encodeURI($('#dvData').html()));
+        e.preventDefault();
+       });
+    });
     </script>
   </head>
 
@@ -293,7 +300,41 @@ $month=$_POST['admin_submit_month'];
         </div>
       </div>
       <br>
+      <input type="button" name="" id="btnExport" value="SALES">
     </section>
+    <div id="dvData">
+    <table style="visibility: hidden;border-collapse: collapse;
+       font-family: "Trebuchet MS", Helvetica, sans-serif;">
+    	<tr>
+         <td style="border: 1px solid black; text-align: center;">1월</td>
+         <td style="border: 1px solid black; text-align: center;">2월</td>
+         <td style="border: 1px solid black; text-align: center;">3월</td>
+         <td style="border: 1px solid black; text-align: center;">4월</td>
+         <td style="border: 1px solid black; text-align: center;">5월</td>
+         <td style="border: 1px solid black; text-align: center;">6월</td>
+         <td style="border: 1px solid black; text-align: center;">7월</td>
+         <td style="border: 1px solid black; text-align: center;">8월</td>
+         <td style="border: 1px solid black; text-align: center;">9월</td>
+         <td style="border: 1px solid black; text-align: center;">10월</td>
+         <td style="border: 1px solid black; text-align: center;">11월</td>
+         <td style="border: 1px solid black; text-align: center;">12월</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon1?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon2?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon3?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon4?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon5?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon6?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon7?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon8?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon9?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon10?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon11?></td>
+        <td style="border: 1px solid black; text-align: center;"><?=$sum_report_admin_mon12?></td>
+      </tr>
+    </table>
+    </div>
     <?php
       include "./admin_main_in_folder.php";
       include "../lib/footer_in_folder.php";

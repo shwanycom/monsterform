@@ -171,7 +171,7 @@ $number=$total_record- $start_row;
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
-      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <meta charset="utf-8">
     <title></title>
     <script>
@@ -179,7 +179,7 @@ $number=$total_record- $start_row;
       $('.go_free_goods_img_class').click(function(){
         var n = $('.go_free_goods_img_class').index(this);
         var num_num = $(".hidden_num:eq("+n+")").val();
-        var result = confirm("freegoods할래여??");
+        var result = confirm("Pick Freegoods?");
         if(result){
          $.ajax({
            url: './admin_freegoods_dml.php?mode=go_free', // 데이터 보내서 작업되어질 url
