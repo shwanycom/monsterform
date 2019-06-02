@@ -26,12 +26,18 @@ if($_GET["mode"]=="login"){
   }else{
     $row=mysqli_fetch_array($result);
     if($password==$row['password']){
-      $_SESSION['no'] = $row['no'];
-      $_SESSION['email'] = $row['email'];
-      $_SESSION['username'] = $row['username'];
-      $_SESSION['mon'] = $row['point_mon'];
-      $_SESSION['partner'] = $row['partner'];
-      echo "<script>alert('세션값 부여완료');</script>";
+      $location = $row['location'];
+      if($location=='hell'){
+        echo "<script>alert('현재 Block상태인 계정입니다.'); history.go(-1);</script>";
+      }else{
+        $_SESSION['no'] = $row['no'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['mon'] = $row['point_mon'];
+        $_SESSION['partner'] = $row['partner'];
+        $username = $row['username'];
+        echo "<script>alert('$username 님 반갑습니다~');</script>";
+      }
     }else{
       echo "<script>alert('패스워드가 일치하지 않습니다'); history.go(-1);</script>";
     }
