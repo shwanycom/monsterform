@@ -215,7 +215,7 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "search"){
                  <th id="topics_title"><?=$topic?></th>
                </tr>
                <tr>
-                 <td id="subject_column"> <?=$subject?> </td>
+                 <td id="subject_column" colspan="2"> <?=$subject?> </td>
                </tr>
                <tr>
                  <td rowspan="4" width="30px;"><img src="<?=$pro_img?>" alt="" width="100px;" height="100px;"></td>
