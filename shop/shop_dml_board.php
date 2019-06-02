@@ -34,38 +34,38 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
     //include 파일업로드기능
     include "./lib/shop_file_upload.php";
-    var_export($q_memeber_no); echo "<br>";
-    var_export($q_memeber_username); echo "<br>";
-    var_export($q_member_email); echo "<br>";
-    var_export($subject); echo "<br>";
-    var_export($content); echo "<br>";
-    var_export($regist_day); echo "<br>";
-    var_export($price); echo "<br>";
-    var_export($big_data); echo "<br>";
-    var_export($small_data); echo "<br>";
-    var_export($hash_tag); echo "<br>";
-    var_export($freegoods_agree); echo "<br>";
-    var_export($file_type); echo "<br>";
-
-    var_export("zip : ".$zip_file_name); echo "<br>";
-    var_export($copied_zip_file_name); echo "<br>";
-    var_export($type[0]); echo "<br>";
-
-    var_export("img1 : ".$img_file_name[0]); echo "<br>";
-    var_export($copied_img_file_name[0]); echo "<br>";
-    var_export($img_type[0][0]); echo "<br>";
-    var_export("img2 : ".$img_file_name[1]); echo "<br>";
-    var_export($copied_img_file_name[1]); echo "<br>";
-    var_export($img_type[1][0]); echo "<br>";
-    var_export("img3 : ".$img_file_name[2]); echo "<br>";
-    var_export($copied_img_file_name[2]); echo "<br>";
-    var_export($img_type[2][0]); echo "<br>";
-    var_export("img4 : ".$img_file_name[3]); echo "<br>";
-    var_export($copied_img_file_name[3]); echo "<br>";
-    var_export($img_type[3][0]); echo "<br>";
-    var_export("font : ".$font_file_name); echo "<br>";
-    var_export($copied_font_file_name); echo "<br>";
-    var_export($font_type[0]); echo "<br>";
+    // var_export($q_memeber_no); echo "<br>";
+    // var_export($q_memeber_username); echo "<br>";
+    // var_export($q_member_email); echo "<br>";
+    // var_export($subject); echo "<br>";
+    // var_export($content); echo "<br>";
+    // var_export($regist_day); echo "<br>";
+    // var_export($price); echo "<br>";
+    // var_export($big_data); echo "<br>";
+    // var_export($small_data); echo "<br>";
+    // var_export($hash_tag); echo "<br>";
+    // var_export($freegoods_agree); echo "<br>";
+    // var_export($file_type); echo "<br>";
+    //
+    // var_export("zip : ".$zip_file_name); echo "<br>";
+    // var_export($copied_zip_file_name); echo "<br>";
+    // var_export($type[0]); echo "<br>";
+    //
+    // var_export("img1 : ".$img_file_name[0]); echo "<br>";
+    // var_export($copied_img_file_name[0]); echo "<br>";
+    // var_export($img_type[0][0]); echo "<br>";
+    // var_export("img2 : ".$img_file_name[1]); echo "<br>";
+    // var_export($copied_img_file_name[1]); echo "<br>";
+    // var_export($img_type[1][0]); echo "<br>";
+    // var_export("img3 : ".$img_file_name[2]); echo "<br>";
+    // var_export($copied_img_file_name[2]); echo "<br>";
+    // var_export($img_type[2][0]); echo "<br>";
+    // var_export("img4 : ".$img_file_name[3]); echo "<br>";
+    // var_export($copied_img_file_name[3]); echo "<br>";
+    // var_export($img_type[3][0]); echo "<br>";
+    // var_export("font : ".$font_file_name); echo "<br>";
+    // var_export($copied_font_file_name); echo "<br>";
+    // var_export($font_type[0]); echo "<br>";
 
 $sql="INSERT INTO `products` VALUES
 ($q_memeber_no,null,'$q_memeber_username','$q_member_email','$subject','$content','$regist_day',$price,'n','n',0,0,'$big_data','$small_data','$hash_tag','$img_file_name[0]','$img_file_name[1]','$img_file_name[2]','$img_file_name[3]',

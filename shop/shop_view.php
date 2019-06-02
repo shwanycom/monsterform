@@ -269,7 +269,7 @@ $(document).ready(function(e) {
 
         <div class="shop_view_sticky_outter" id="shop_view_sticky_product_info">
           <div class="shop_view_sticky_inner" style="border-bottom:1px solid #c1bebe; padding-bottom:4%; height: 100%;">
-            <div class="" style="text-align:left; font-size:1.9em; word-break:break-all;"> <?=$subject?>  </div>
+            <div class="" style="text-align:left; font-size:1.9em; word-break:break-all; height:60%"> <?=$subject?>  </div>
             <!-- <h2 style="text-align:left; font-size:1.9em"> </h2> 위에 div로 다시 묶음 필요x-->
             <p style="text-align:right;"><span style="color: #7d7b78;"><i>By</i>
             </span><a href='../member_profile/profile_view.php?mode=shop&email=<?=$email?>'><span><?=$username?></span></a> </p>
@@ -292,7 +292,7 @@ $(document).ready(function(e) {
 
               if($user_no==$member_no){
               ?>
-                <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                <div class="shop_view_sticky_inner_btn" style="height:30%; margin-top:15%;">
                   <a href="./shop_dml_board.php?mode=delete&num=<?=$i_num?>">
                   <button type="button" style="background-color:#ff761f; border-color:#ff761f ; color:white;"
                   onclick="">
@@ -301,7 +301,7 @@ $(document).ready(function(e) {
               <?php
               }else if($type=="added"){
               ?>
-                <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;">
+                <div class="shop_view_sticky_inner_btn" style="height:30%; line-height:48px; font-size:15px; color: #7d7b78;margin-top:15%;">
                   <button type="button" style="background-color:#70a330; color:white;" onclick="send_to_dml('purchase','view');">
                   <b>Finish Purchase <span><?=$mon?></span> Mon</b></button>
                 </div>
@@ -311,7 +311,7 @@ $(document).ready(function(e) {
                   echo "<script>alert('서버에 파일이 없습니다...?');return;</script>";
                 }
               ?>
-                <div class="shop_view_sticky_inner_btn" style="height:30%;">
+                <div class="shop_view_sticky_inner_btn" style="height:30%; margin-top:15%;">
                   <a href="./shop_download.php?num=<?=$i_num?>">
                     <button type="button" style="background-color:#70a330; color:white;"
                     onclick="">

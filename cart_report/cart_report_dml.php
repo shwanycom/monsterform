@@ -11,7 +11,11 @@ create_table($conn, 'collections');
 // $member_username = $_SESSION['username'];
 // $member_mon = $_SESSION['mon'];
 // $member_partner = $_SESSION['partner'];
-
+if(empty($member_no)){
+  echo "<script>alert('Login Please!');
+        history.go(-1);</script>";
+  exit;
+}
 if( isset($_GET['mode']) ) {
   if($_GET['mode']=="delete") {
     $product_num = $_GET['p_num'];
