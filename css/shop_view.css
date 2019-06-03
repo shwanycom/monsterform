@@ -22,6 +22,11 @@ div.shop_view_container{
   word-break: break-all;
   /* border:1px solid blue; */
 }
+img.shop_view_mySlides{
+  width:auto; height: auto;
+  max-height: 600px;
+  margin: 0 auto;
+}
 
 div.shop_view_container img{
   border-radius: 5px;
