@@ -38,6 +38,7 @@ div.shop_view_gal{
   border-radius: 5px;
   overflow: hidden;
   border:1px solid #dfd8d8;
+  text-align: center;
 }
 /* div.shop_view_narrow{
   width : 31%;

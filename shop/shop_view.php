@@ -172,10 +172,10 @@ $(document).ready(function(e) {
     <div class="shop_view_container">
       <div id="shop_view_div1">
         <div class="shop_view_gal">
-          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied1?>" style="width:100%; ">
-          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied2?>" style="width:100%; display:none">
-          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied3?>" style="width:100%; display:none">
-          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied4?>" style="width:100%; display:none">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied1?>" >
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied2?>" style="display:none">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied3?>" style="display:none">
+          <img class="shop_view_mySlides" src="../data/img/<?=$img_file_copied4?>" style="display:none">
         </div>
 
         <div class="shop_view_minigal_set">
