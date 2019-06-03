@@ -284,9 +284,9 @@ $(document).ready(function(){
       <input class="should_have_inputted" type="hidden" name="big_data" id="big_data" onchange="input_change(event)">
       <select class="shop_write_select" name="shop_write_select" id="shop_write_select">
         <option value="" disabled selected>Choose Category</option>
-        <option value="Photos">Photos</option>
-        <option value="Graphics">Graphics</option>
-        <option value="Fonts">Fonts</option>
+        <option value="photos">Photos</option>
+        <option value="graphics">Graphics</option>
+        <option value="fonts">Fonts</option>
       </select>
       <input class="should_have_inputted" type="hidden" name="small_data" id="small_data" onchange="input_change(event)">
       <select class="shop_write_select" name="shop_write_select" id="shop_write_select2">
