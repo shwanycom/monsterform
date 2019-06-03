@@ -4,7 +4,6 @@ include_once $_SERVER["DOCUMENT_ROOT"]."./monsterform/lib/db_connector.php";
 
 $email = $_SESSION['email'];
 $receive_id = $_POST['name'];
-var_dump($receive_id);
 
 
 $sql ="select * from member where email = '$receive_id'";
