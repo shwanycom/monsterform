@@ -42,10 +42,6 @@ if($mon==5000){
 
 $total_mon=$mon+$bonus;
 
-var_dump($total_mon);
-var_dump($mon);
-var_dump($bonus);
-
 
 if($message==null){
   $message= $email."님께서 ".$mon."mon을 선물 하였습니다.";
