@@ -35,13 +35,13 @@ if( isset($_GET['mode']) ) {
     }
     $regist_day = date("Y-m-d");
 
-    var_export("product_num_set : ".$product_num_set); echo "<br>";
-    var_export("product_num_array : ".$product_num_array); echo "<br>";
-    var_export("repeat_purchase : ".$repeat_purchase); echo "<br>";
-    var_export("required_mon : ".$required_mon); echo "<br>";
-    var_export("cart_img_name : ".$cart_img_name); echo "<br>";
-    var_export("regist_day : ".$regist_day); echo "<br>";
-    var_export("member_no : ".$member_no); echo "<br><br>";
+    // var_export("product_num_set : ".$product_num_set); echo "<br>";
+    // var_export("product_num_array : ".$product_num_array); echo "<br>";
+    // var_export("repeat_purchase : ".$repeat_purchase); echo "<br>";
+    // var_export("required_mon : ".$required_mon); echo "<br>";
+    // var_export("cart_img_name : ".$cart_img_name); echo "<br>";
+    // var_export("regist_day : ".$regist_day); echo "<br>";
+    // var_export("member_no : ".$member_no); echo "<br><br>";
 
     if($_GET['mode']=="add_cart"){
       $product_num=$product_num_array[1];
