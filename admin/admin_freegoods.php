@@ -69,7 +69,6 @@ if(isset($_GET['freegoods_search_value'])){
 
 
 
-
 if(isset($_GET['freegoods_search_kind']) && $_GET['freegoods_search_kind']=="photos"){
   $sort_kind="photos";
   $sort_kind_sql= "and p.big_data='$freegoods_search_kind'";
@@ -84,6 +83,10 @@ if(isset($_GET['freegoods_search_kind']) && $_GET['freegoods_search_kind']=="pho
   $sort_kind_sql= "";
 }
 
+if(!isset($sort_kind)&&!isset($sort_kind_sql)){
+  $sort_kind="all";
+  $sort_kind_sql= "";
+}
 
 if(!isset($_GET['mode'])){
 $sql="select * from `products`";
@@ -107,8 +110,7 @@ $url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_se
 }
 else if(!empty($_GET['freegoods_search_value']) && !isset($_GET['freegoods_sort_partner']) && isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products where freegoods_agree='y' $sort_kind_sql and subject like '%$freegoods_search_value%'";
-
-$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_partner=freegoods_sort_partner&freegoods_sort_allow=freegoods_sort_allow";
+$url="./admin_freegoods.php?mode=y&freegoods_search_kind=$sort_kind&freegoods_search_value=$freegoods_search_value&freegoods_sort_allow=freegoods_sort_allow";
 }
 else if(!empty($_GET['freegoods_search_value']) && isset($_GET['freegoods_sort_partner']) && !isset($_GET['freegoods_sort_allow'])){
 $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y'
