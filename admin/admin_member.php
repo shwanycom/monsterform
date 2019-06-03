@@ -129,7 +129,7 @@ $number=$total_record- $start_row;
       <div id="admin_member_section_search_div">
         <h1>Member List / TOTAL : <?=$total_record?></h1>
             <form action="./admin_member.php" method="get" id="search_form" name="search_form">
-              <input type="text" name="mode" value="search">
+              <input type="hidden" name="mode" value="search">
               <div id="search_form_div1">
                 <select id="search_kind" name="search_kind">
                 <option value="username">USERNAME</option>
@@ -147,7 +147,6 @@ $number=$total_record- $start_row;
             </form>
           </div>
       </div>
-      <hr style="border: 1px solid black;">
      <table id="admin_member_table">
     <?php
     $check="";
