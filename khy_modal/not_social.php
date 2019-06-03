@@ -136,8 +136,9 @@ if($_GET["mode"]=="login"){
         </script>";
 }else if(isset($_GET["mode"]) && $_GET["mode"]=="update_password"){
   $update_password = $_POST['new_password'];
+  $email = $_SESSION['email'];
 
-  $sql = "UPDATE `member` set `password`='$update_password';";
+  $sql = "UPDATE `member` set `password`='$update_password' where email='$email';";
   $result = mysqli_query($conn, $sql);
 
   echo "<script> alert('Change Password Success!!');
