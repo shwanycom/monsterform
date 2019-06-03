@@ -39,7 +39,7 @@ if($_GET["mode"]=="login"){
         echo "<script>alert('$username 님 반갑습니다~');</script>";
       }
     }else{
-      echo "<script>alert('패스워드가 일치하지 않습니다'); history.go(-1);</script>";
+       echo "<script>alert('패스워드가 일치하지 않습니다'); history.go(-1);</script>";
     }
   }
   mysqli_close($conn);

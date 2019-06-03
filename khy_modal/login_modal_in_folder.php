@@ -132,7 +132,7 @@ function sendToDml(type){
                 <input type="hidden" class="modal_text" name="login_email" placeholder="Email Address" id="username2" >
                 <input type="hidden" class="modal_text" name="login_password" placeholder="Password" id="password2" >
                 <input type="hidden" class="modal_btn" id="login" value="Log in!">
-                <input type="hidden" class="modal_find_btn" id="forget_pw" value="forgot?">
+                <input type="hidden" class="modal_text" id="forget_pw" value="forgot?">
               </form>
               <input type="button" class="modal_btn" name="button" id="email_btn" value="Continue with E-mail" onclick="memform()" >
               <br>

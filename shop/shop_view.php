@@ -296,7 +296,7 @@ $(document).ready(function(e) {
                   <a href="./shop_dml_board.php?mode=delete&num=<?=$i_num?>">
                   <button type="button" style="background-color:#ff761f; border-color:#ff761f ; color:white;"
                   onclick="">
-                  <b>Delte Product</b></button><a>
+                  <b>Delete Product</b></button><a>
                 </div>
               <?php
               }else if($type=="added"){
