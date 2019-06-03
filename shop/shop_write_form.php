@@ -297,10 +297,10 @@ $(document).ready(function(){
     <div class="shop_write_container">
       <div id="shop_write_div1">
         <div class="shop_write_gal">
-          <img class="shop_write_mySlides" id="shop_write_gal1" src="../img/add_img.png" style="width:100%; ">
-          <img class="shop_write_mySlides" id="shop_write_gal2" src="../img/add_img.png" style="width:100%; display:none">
-          <img class="shop_write_mySlides" id="shop_write_gal3" src="../img/add_img.png" style="width:100%; display:none">
-          <img class="shop_write_mySlides" id="shop_write_gal4" src="../img/add_img.png" style="width:100%; display:none">
+          <img class="shop_write_mySlides" id="shop_write_gal1" src="../img/add_img.png" >
+          <img class="shop_write_mySlides" id="shop_write_gal2" src="../img/add_img.png" style="display:none">
+          <img class="shop_write_mySlides" id="shop_write_gal3" src="../img/add_img.png" style="display:none">
+          <img class="shop_write_mySlides" id="shop_write_gal4" src="../img/add_img.png" style="display:none">
         </div>
 
         <div class="shop_write_minigal_set">

@@ -60,6 +60,13 @@ div.shop_write_container{
 div.shop_write_container img{
   border-radius: 5px;
 }
+img.shop_write_mySlides{
+  width:auto; height: auto;
+  max-width:600px;
+  max-height: 600px;
+  margin: 0 auto;
+
+}
 
 div.shop_write_gal{
   margin-bottom: 10px;
