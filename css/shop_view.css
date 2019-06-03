@@ -39,6 +39,7 @@ div.shop_view_gal{
   overflow: hidden;
   border:1px solid #dfd8d8;
   text-align: center;
+  background-color: white;
 }
 /* div.shop_view_narrow{
   width : 31%;
