@@ -119,12 +119,17 @@ if($pro_img_copied!=null){
 					</div>
 					<?php
 						}//end of while
-						mysqli_close($conn);
 					?>
 				<form name="ripple_form" action="dml_ripple.php?mode=insert_ripple" method="post" id="ripple_save_form">
 					<input type="hidden" name="parent" value="<?=$num?>">
 					<div id="ripple_insert">
-						<a href="#"><img src="../data/img/<?=$pro_img_copied?>" class="message_pro"></a>
+						<?php
+								$sql10="select * from member where email='$member_email'";
+								$result10 = mysqli_query($conn, $sql10);
+								$row10 = mysqli_fetch_array($result10);
+								$pro_img_copied10=$row10['pro_img_copied'];
+						 ?>
+						<a href="#"><img src="../data/img/<?=$pro_img_copied10?>" class="message_pro"></a>
 						<div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="50"></textarea></div>
 						<div class="ripple_button" style="margin-left:315px;"> <button type="submit" name="button" class="ripple_button"> <span id="re_button">reply</span></button> </div>
 					</div><!--end of ripple_insert  -->
