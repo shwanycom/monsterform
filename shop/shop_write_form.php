@@ -162,16 +162,16 @@ $(document).ready(function(){
     console.log("히든 값 :" + check);
 
     switch (check) {
-      case "Photos" :   console.log("포토선택케이스");
+      case "photos" :   console.log("포토선택케이스");
                         $("#shop_write_upload2").remove();
                         $('#shop_write_select2').html('<option value="" disabled selected>Choose Group</option><option value="animals">Animals</option><option value="arts">Arts</option><option value="beauty_fashion">Beauty&Fasshion</option><option value="business">Business</option><option value="food_drink">Food&Drink</option><option value="nature">Nature</option><option value="sports">Sports</option><option value="technology">Technology</option>');
                         break;
 
-      case "Graphics" : console.log("그래픽선택케이스");
+      case "graphics" : console.log("그래픽선택케이스");
                         $("#shop_write_upload2").remove();
                         $('#shop_write_select2').html('<option value="" disabled selected>Choose_Group</option><option value="icons">Icons</option><option value="illustrations">Illustrations</option><option value="web_elements">Web_Elements</option><option value="objects">Objects</option><option value="patterns">Patterns</option><option value="textures">Textures</option>');
                         break;
-      case "Fonts" : console.log("폰트선택케이스");
+      case "fonts" : console.log("폰트선택케이스");
                       $("#shop_write_upload").append('<div id="shop_write_upload2"></div>');
                       $('#shop_write_select2').html('<option value="" disabled selected>Choose_Group</option><option value="blackletter">Blackletter</option><option value="display">Display</option><option value="non_western">Non_Western</option><option value="sans_serif">Sans_Serif</option><option value="script">Script</option><option value="serif">Serif</option><option value="slab_serif">Slab&Serif</option><option value="symbols">Symbols</option>');
                       $("#shop_write_upload2").html('<label for="ttf_file"><span class="s_w_upload_span"><b>Upload font file...</b></span></label><p class="s_w_font_alt" style="margin:0px;"><i class="fas fa-check" style="font-size:20px; color:#ff5e5e;"> TTF or OTF file! </i></p><input type="file" name="font_file" id="ttf_file" onchange="loadfont(event)">');
