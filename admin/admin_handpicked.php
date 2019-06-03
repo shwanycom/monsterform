@@ -75,6 +75,10 @@ if(isset($_GET['handpicked_search_kind']) && $_GET['handpicked_search_kind']=="p
   $sort_kind="all";
   $sort_kind_sql= "";
 }
+if(!isset($sort_kind)&&!isset($sort_kind_sql)){
+  $sort_kind="all";
+  $sort_kind_sql= "";
+}
 
 if(!isset($_GET['mode'])){
 $sql="select * from products order by sell_count/hit desc";
@@ -101,17 +105,17 @@ else if(!empty($_GET['handpicked_search_value']) && !isset($_GET['handpicked_sor
 else if(empty($_GET['handpicked_search_value']) && isset($_GET['handpicked_sort_partner'])){
   $sql="select * from products as p inner join member as m on p.no=m.no where m.partner='y' $sort_kind_sql order by sell_count/hit desc";
 
-  $url="/admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=&handpicked_sort_partner=handpicked_sort_partner";
+  $url="./admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=&handpicked_sort_partner=handpicked_sort_partner";
 }
 else if(empty($_GET['handpicked_search_value']) && !isset($_GET['handpicked_sort_partner'])){
   if($sort_kind=="all"){
     $sql="select * from products order by sell_count/hit desc";
 
-    $url="/admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=";
+    $url="./admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=";
   }else{
     $sql="select * from products where big_data='$sort_kind' order by sell_count/hit desc";
 
-    $url="/admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=";
+    $url="./admin_handpicked.php?mode=search&handpicked_search_kind=$sort_kind&handpicked_search_value=";
   }
 }
 $result = mysqli_query($conn, $sql);
