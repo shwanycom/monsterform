@@ -181,7 +181,7 @@ $number=$total_record- $start_row;
       $('.go_free_goods_img_class').click(function(){
         var n = $('.go_free_goods_img_class').index(this);
         var num_num = $(".hidden_num:eq("+n+")").val();
-        var result = confirm("Pick Freegoods?");
+        var result = confirm("Update Freegoods?");
         if(result){
          $.ajax({
            url: './admin_freegoods_dml.php?mode=go_free', // 데이터 보내서 작업되어질 url
